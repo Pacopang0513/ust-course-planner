@@ -45,6 +45,20 @@ description: Step 1 未修课程计算。专业必修（database/curriculum）+ 
    `note_interpretation`，课程归属不清的标记 `review_pending`（下一阶段人工/AI 复核）
 7. 120 学分与 credit-reuse 检查：单门课若已计入其他要求组（exclusion/co-list），标注说明
 
+## 本地匹配约定（固定，效率优先）
+
+- **匹配对象**：`data/courses_{session}.json` 与 `data/cc_courses_{session}.json`
+  （结构化 JSON）——建 `规范化课号 → course` 索引后 O(1) 命中（毫秒级）；
+  **禁止**对 `cache/wcq/raw/` 原始 HTML 做正则匹配（爬虫已预处理归一，重复正则反而慢）
+- **课号规范化**：统一大写、去空格/点（`phys 3152` → `PHYS3152`）；
+  **保留字母后缀**：`LANG 1416C` ≠ `LANG 1416`、`COMP 4981H` ≠ `COMP 4981`
+- **重复收录去重**：CC 区域页与 subject 页可能收录同一门课 → 按规范化课号去重，
+  课程信息取 subject 页版本（cc_courses 文件仅作未命中兜底）
+- 临时核对某课（今年是否开设/导师/时间/配额，不联网）：
+  ```bash
+  python3 scripts/rank/filter.py --lookup "PHYS 3152" --lookup "LANG 1416C" --session 2610
+  ```
+
 ## 总结结构（固定，必须按此写入 data/unmet_courses.json）
 
 ```json

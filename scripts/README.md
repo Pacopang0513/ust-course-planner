@@ -78,6 +78,7 @@ python3 scripts/ustspace/crawler.py --codes-file data/candidate_rank.json
 python3 scripts/rank/ar_to_unmet.py --session 2610 --areas 23 24 25 28   # AR→未修（curriculum 缺失回退）python3 scripts/rank/local.py --unmet data/unmet_courses.json --top 50 --keep-major
 python3 scripts/rank/filter.py --candidates data/candidate_rank.json --session 2610 \
     --override "PHYS 4191" --override "PHYS 4291"     # 系豁免 pre-req → 放回 kept 标 user_overridden
+python3 scripts/rank/filter.py --lookup "PHYS 3152" --session 2610  # 本地查课（不联网，O(1) 索引）
 python3 scripts/rank/review_summary_build.py --session 2610              # review_summary 基架
 python3 scripts/rank/final.py --filter data/filter_report.json --reviews data/ustspace_reviews.json
 python3 scripts/rank/planner.py --scores data/course_scores.json --session 2610 \

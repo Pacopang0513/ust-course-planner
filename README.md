@@ -100,6 +100,7 @@ python3 scripts/rank/ar_to_unmet.py --session 2610 --areas 23 24 25 28   # 新�
 python3 scripts/rank/local.py --unmet data/unmet_courses.json --top 50 --keep-major   # 改进：必修保送
 python3 scripts/rank/filter.py --candidates data/candidate_rank.json --session 2610 \
     --override "PHYS 4191" --override "PHYS 4291"                          # 改进：用户豁免放回
+python3 scripts/rank/filter.py --lookup "PHYS 3152" --session 2610        # 本地查课（AI 核对今年是否开设/导师/时间/配额，不联网）
 python3 scripts/rank/review_summary_build.py --session 2610                # 新增：review_summary 基架
 python3 scripts/rank/final.py --filter data/filter_report.json --reviews data/ustspace_reviews.json
 python3 scripts/rank/planner.py --scores data/course_scores.json --session 2610 \

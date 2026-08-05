@@ -22,6 +22,7 @@ description: 联网抓取规范（固定流程）。AI 需要联网获取 Class 
 | 关键词/锚点 | 课程块 `<div class="course">`；课号 `<a name="ACCT3010">`；标题行 `<div class='subject'>`；属性 `<tr><th>PRE-REQUISITE/EXCLUSION/...`；section 行 `mainRow`（新 section）+ `otherRow`（同 section 附加时段，**必须合并**）；跳过 `mobileInstructorRow` / `mobileViewDetail`；导师 `<a href=".../instructor/...">NAME</a>` |
 | 缓存 | `cache/wcq/raw/{session}/{SUBJ}.html` |
 | 产物 | `data/courses_{session}.json`（course 级：code/number/title/units/attributes；section 级：section/datetime/room/instructors/quota/enrol/avail/wait；datetime 多时段逗号合并） |
+| 本地匹配 | 后续匹配一律用产物 JSON 建 `规范化课号 → course` 索引（O(1)），**禁止**对 cache/wcq/raw/ 原始 HTML 正则（爬虫已预处理归一，重复正则反而慢）；课号规范化=大写+去空格/点+**保留字母后缀**（1416C/4981H）；CC 区域页与 subject 页重复收录 → 去重取 subject 页版本。临时查课用 `filter.py --lookup "PHYS 3152"` |
 | 脚本 | `scripts/wcq/crawler.py --session 2610`（`--force` 重抓、`--list-only` 列 subject） |
 
 ### 1b. Common Core 课程匹配（同一页面下拉）

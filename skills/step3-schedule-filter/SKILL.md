@@ -28,7 +28,13 @@ python3 scripts/rank/filter.py --candidates data/candidate_rank.json \
 # kept < 15 时自动补位（从 Step 2 truncated 候补池按分数补入）：
 python3 scripts/rank/filter.py --candidates data/candidate_rank.json \
     --session 2610 --passed data/passed_courses.json --fill 15
+# 临时核对某课（今年是否开设/导师/时间/配额，不联网、O(1) 本地索引）：
+python3 scripts/rank/filter.py --lookup "PHYS 3152" --lookup "COMP 2011" --session 2610
 ```
+
+> 匹配一律以 `data/courses_{session}.json` 本地索引为准（**不**对 cache 原始 HTML 正则）；
+> 课号规范化（大写/去空格/保留字母后缀如 1416C、4981H）与 CC 重复去重约定见
+> step1 skill「本地匹配约定」，`--lookup` 与过滤共用同一索引逻辑。
 
 ## 过滤规则（固定）
 

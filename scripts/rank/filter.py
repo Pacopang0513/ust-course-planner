@@ -13,6 +13,14 @@ scripts/wcq/crawler.py 产出）过滤 Top N 候选：
   python3 scripts/rank/filter.py --candidates data/candidate_rank.json --session 2610
   python3 scripts/rank/filter.py --candidates data/candidate_rank.json \
       --session 2610 --passed data/passed_courses.json --output data/filter_report.json
+  python3 scripts/rank/filter.py --lookup "PHYS 3152" --session 2610   # 本地查课（不联网）
+
+本地匹配约定（效率固定，见 step1/step3 skill）：
+  - 匹配对象是结构化 JSON（courses_{session}.json / cc_courses_{session}.json），
+    禁止对 cache/wcq/raw/ 原始 HTML 正则——本地建规范化索引后 O(1) 命中
+  - 课号规范化：统一大写、去空格/点（phys 3152 → PHYS3152）；保留字母后缀
+    （LANG 1416C ≠ LANG 1416、COMP 4981H ≠ COMP 4981）
+  - CC 区域页与 subject 页重复收录同一课 → 去重取 subject 页版本（setdefault）
 """
 
 import argparse
@@ -44,6 +52,55 @@ def schedule_index(schedule: dict) -> dict:
         if code:
             idx[code] = c
     return idx
+
+
+def norm_code(s: str) -> str:
+    """课号规范化：大写、去空格/点 → 'PHYS3152'；保留字母后缀（1416C/4981H）"""
+    return re.sub(r"[\s.]+", "", str(s)).upper()
+
+
+def schedule_index_norm(schedule: dict) -> dict:
+    """{规范化课号: course}，O(1) 命中；同一课号重复收录（CC 区域页 vs subject 页）
+    取首个（= subject 页版本，信息更完整）"""
+    idx = {}
+    for c in schedule.get("courses", []):
+        code = f"{c.get('code', '')} {c.get('number', '')}".strip()
+        if code:
+            idx.setdefault(norm_code(code), c)
+    return idx
+
+
+def lookup_main(args) -> int:
+    """--lookup 本地查课：读 courses_{session}.json（合并 cc_courses 兜底），
+    规范化课号 O(1) 命中，输出课程/属性/section 信息，不联网"""
+    sched = load_json(ROOT / "data" / f"courses_{args.session}.json")
+    idx = schedule_index_norm(sched)
+    cc_path = ROOT / "data" / f"cc_courses_{args.session}.json"
+    if cc_path.exists():
+        for area in load_json(cc_path).get("areas", []):
+            for c in area.get("courses", []):
+                code = f"{c.get('code', '')} {c.get('number', '')}".strip()
+                if code:
+                    idx.setdefault(norm_code(code), c)
+    for raw in args.lookup:
+        key = norm_code(raw)
+        c = idx.get(key)
+        if c is None:
+            print(f"[{raw}] 未找到（本学年未开设，或课号拼写不符）")
+            continue
+        attrs = c.get("attributes") or {}
+        print(f"[{c.get('code')} {c.get('number')}] {c.get('title')} "
+              f"({c.get('units')} units)")
+        for k in ("PRE-REQUISITE", "EXCLUSION", "REMARKS"):
+            if attrs.get(k):
+                print(f"    {k}: {attrs[k]}")
+        secs = c.get("sections") or []
+        print(f"    sections: {len(secs)}")
+        for s in secs:
+            print(f"      {s.get('section')} | {s.get('datetime')} | {s.get('room')} | "
+                  f"{', '.join(s.get('instructors') or []) or '-'} | "
+                  f"quota {s.get('quota')} enrol {s.get('enrol')} avail {s.get('avail')}")
+    return 0
 
 
 def passed_set(passed: dict) -> set:
@@ -206,6 +263,33 @@ def selftest() -> int:
     check("COMP 2011 OR COMP 2012", False)
     check("(COMP 1021 OR COMP 2011) AND MATH 1013", True)
     check("", True)
+    print("== 本地匹配约定（规范化/后缀/去重） ==")
+
+    def assert_true(name: str, cond: bool):
+        nonlocal ok
+        print(f"  [{'OK' if cond else 'FAIL'}] {name}")
+        ok = ok and cond
+
+    sample = {"courses": [
+        {"code": "PHYS", "number": "3152", "title": "Exp Methods I", "units": 3.0,
+         "attributes": {"PRE-REQUISITE": "PHYS 1113"}, "sections": []},
+        {"code": "LANG", "number": "1416C", "title": "Chinese", "units": 3.0,
+         "attributes": {}, "sections": []},
+        {"code": "COMP", "number": "4981H", "title": "Final Year Thesis", "units": 6.0,
+         "attributes": {}, "sections": []},
+    ]}
+    idx = schedule_index_norm(sample)
+    assert_true("规范化 'phys 3152' → PHYS3152 命中",
+                idx.get(norm_code("phys 3152")) is not None)
+    assert_true("字母后缀保留 LANG1416C",
+                idx.get(norm_code("LANG1416C")) is not None)
+    assert_true("后缀不混淆（COMP4981 ≠ COMP4981H）",
+                idx.get(norm_code("COMP4981")) is None)
+    sample["courses"].append(
+        {"code": "PHYS", "number": "3152", "title": "dup copy", "units": 3.0,
+         "attributes": {}, "sections": []})
+    assert_true("CC/subject 重复收录取首个（subject 页版本）",
+                schedule_index_norm(sample).get("PHYS3152")["title"] == "Exp Methods I")
     return 0 if ok else 1
 
 
@@ -221,11 +305,16 @@ def main():
                     help="kept 不足该数量时自动从 candidate_rank.truncated 补位（默认 0=不补）")
     ap.add_argument("--override", action="append", default=[],
                     help="用户豁免课程 code（如 'PHYS 4291'）：即使硬性删除也放回 kept 并标 user_overridden（教授/系豁免 pre-req 场景）")
+    ap.add_argument("--lookup", action="append", default=[],
+                    help="本地查课：按规范化课号（如 'PHYS 3152'）从 courses_{session}.json 查询课程与 section（不联网、不依赖候选产物），可多次指定")
     ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args()
 
     if args.selftest:
         sys.exit(selftest())
+
+    if args.lookup:
+        sys.exit(lookup_main(args))
 
     candidates = load_json(Path(args.candidates))
     schedule = load_json(ROOT / "data" / f"courses_{args.session}.json")
