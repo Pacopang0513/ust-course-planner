@@ -1,0 +1,324 @@
+{
+  "program": "SREQ-SSCI",
+  "intake_year": "2026-27",
+  "school": "School of Science",
+  "title": "School Requirements",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\SREQ-SSCI.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:          The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P OR COMP 1023",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1023",
+                  "title": "Introduction to Python Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SSCI",
+              "note": "Science Foundation courses [6 courses from the specified elective list, including at least 1 lecture course, but no more than 3 courses (including lecture and laboratory courses), from each of the four disciplines: CHEM, LIFS/OCES, MATH/DASC and PHYS.] Kinetics Theories",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 1008",
+                  "title": "Introductory Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and Reaction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1051",
+                  "title": "Laboratory for General Chemistry A",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1052",
+                  "title": "Laboratory for General Chemistry B",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "DASC 2010",
+                  "title": "Calculus for Data Analytics in Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1903",
+                  "title": "Laboratory for General Biology I",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1904",
+                  "title": "Laboratory for General Biology II",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1930",
+                  "title": "Nature of Life Sciences",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2210",
+                  "title": "Biochemistry I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1005",
+                  "title": "Calculus and Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1006",
+                  "title": "Calculus, Vectors, and Matrices",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2111",
+                  "title": "Matrix Algebra and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2131",
+                  "title": "Honors in Linear and Abstract Algebra I",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 1001",
+                  "title": "The Earth as a Blue Planet",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 1010",
+                  "title": "Principles and Applications of Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1101",
+                  "title": "Introductory Physics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1111",
+                  "title": "General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1113",
+                  "title": "Laboratory for General Physics I",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1114",
+                  "title": "General Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1115",
+                  "title": "Laboratory for General Physics II",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1314",
+                  "title": "Honors General Physics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SSCI",
+              "note": "Note: Additional Required Courses for IRE Track [SCIE 1500 AND SCIE 2500 AND SCIE 3900 AND LANG 3027 AND (UROP 1000 OR UROP 1100)]",
+              "credits": "8-9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SCIE 1500",
+                  "title": "Guided Study on Research I",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 2500",
+                  "title": "Guided Study on Research II",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 3900",
+                  "title": "International Research Experience",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LANG 3027",
+                  "title": "Science Communication in English for Research Students",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "UROP 1000",
+                  "title": "Undergraduate Research Opportunities",
+                  "credits": "0",
+                  "area": ""
+                },
+                {
+                  "code": "UROP 1100",
+                  "title": "Undergraduate Research Opportunities Series 1",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SSCI",
+              "note": "Additional Science 2000-level or above Electives for IRE Track (Any 2 courses of the subject and level as specified and approved by advisor)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) School of Science In addition to the requirements of their major programs, students are required to complete the School Requirements as shown below. Some foundation courses listed below are also requirements of SSCI majors. These courses may also be used to fulfill Major Requirements, in addition to School Requirements. Students may consult the School for details and academic advice. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. Courses counted towards the School Requirements under the School of Science are generally not included in the calculation of the major cumulative grade average (MCGA). However, those which are also used to fulfill the Major Requirements including the Major Prerequisites will be counted towards the MCGA. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. School Requirements"
+      ]
+    }
+  ]
+}

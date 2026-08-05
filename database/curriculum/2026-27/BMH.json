@@ -1,0 +1,643 @@
+{
+  "program": "BMH",
+  "intake_year": "2026-27",
+  "school": "School of Science",
+  "title": "BSc in Biomedical and Health Sciences",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\BMH.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "LIFS 3180:           This is a new course subject to approval.",
+    "LIFS 3190:           This is a new course subject to approval.",
+    "LIFS 4170:           This is a new course subject to approval.",
+    "LIFS 4881:           This is a new course subject to approval."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "pre_major",
+          "name": "Major Pre-requisite course(s)",
+          "groups": [
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology are",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology are",
+              "credits": "0-1",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1903",
+                  "title": "Laboratory for General Biology I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1904",
+                  "title": "Laboratory for General Biology II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1980",
+                  "title": "Guided Study on Biomedical and Health Sciences",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2010",
+                  "title": "Modern Approaches to Biochemical and Cell Biological",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2040",
+                  "title": "Cell Biology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2210",
+                  "title": "Biochemistry I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2220",
+                  "title": "Biochemistry II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2901",
+                  "title": "Case Study on Biomedical and Health Sciences I: From",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3040",
+                  "title": "Animal Physiology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LIFS",
+              "note": "Note: LIFS 3901 OR LIFS 3902 OR LIFS 3903 OR LIFS 3904 (2 courses out of 4) Disease Models by Genome Editing Analysis of Mutant Animal Models Association Studies in Practice generation Sequencing Data",
+              "credits": "8",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 3901",
+                  "title": "Case Study on Biomedical and Health Sciences IIA - Generation of",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3902",
+                  "title": "Case Study on Biomedical and Health Sciences IIB - Phenotypic",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3903",
+                  "title": "Case Study on Biomedical and Health Sciences IIC - Genome-wide",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3904",
+                  "title": "Case Study on Biomedical and Health Sciences IID - Analysis of Next-",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4370",
+                  "title": "Human Genetics and Personalized Medicine",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4380",
+                  "title": "Pharmacology and Toxicology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LIFS",
+              "note": "Note: LIFS 4966 OR (LIFS 4976 AND LIFS 4986)",
+              "credits": "3-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 4966",
+                  "title": "Biomedical and Health Sciences Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4976",
+                  "title": "Biomedical and Health Sciences Project Research I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4986",
+                  "title": "Biomedical and Health Sciences Project Research II",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1051",
+                  "title": "Laboratory for General Chemistry A",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1052",
+                  "title": "Laboratory for General Chemistry B",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1005 OR MATH 1006 OR MATH 1013",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1005",
+                  "title": "Calculus and Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1006",
+                  "title": "Calculus, Vectors, and Matrices",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SHSS",
+              "note": "credits (for those opting for LIFS 4976 and LIFS 4986) or credits must be offered by LIFS.]",
+              "credits": "21",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1982",
+                  "title": "Introduction to Biomedical and Health Science Laboratory Techniques",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2070",
+                  "title": "Introduction to Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3002",
+                  "title": "Special Topics of Biological Sciences",
+                  "credits": "2-4",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3060",
+                  "title": "Microbiology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3070",
+                  "title": "Introduction to Biophysical Instrumentation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3140",
+                  "title": "General Genetics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3150",
+                  "title": "Biostatistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3180",
+                  "title": "Human Anatomy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3190",
+                  "title": "Human Physiology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3240",
+                  "title": "Introduction to Neurobiology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3370",
+                  "title": "Human Genetics in Practice",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4000",
+                  "title": "Special Topics in Life Science",
+                  "credits": "1-4",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4060",
+                  "title": "Immunobiology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4090",
+                  "title": "Developmental Biology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4140",
+                  "title": "Cancer Biology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4170",
+                  "title": "Bioethics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4320",
+                  "title": "Data Science for Biology and Medicine",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4540",
+                  "title": "Structure and Function of Proteins",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4550",
+                  "title": "Biochemistry of Nutrition",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4760",
+                  "title": "Biochemistry of Diseases",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4881",
+                  "title": "High Throughput Sequencing in Practice",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4950",
+                  "title": "Neurochemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2111",
+                  "title": "Fundamentals of Organic Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2155",
+                  "title": "Fundamental Organic Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2311",
+                  "title": "Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2355",
+                  "title": "Fundamental Analytical Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 4110",
+                  "title": "Regulatory Affairs in the Healthcare Industry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4650",
+                  "title": "Biomaterials and Drug Delivery",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 1120",
+                  "title": "Developing the Leader in You",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 1130",
+                  "title": "Traps and Pitfalls in Judgment and Decision Making",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 2110",
+                  "title": "Organizational Behavior",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1960",
+                  "title": "Introduction to Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1969",
+                  "title": "Discovering Mind and Behavior",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1980",
+                  "title": "Psychology of Personal Growth",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1990",
+                  "title": "Research Methods in Psychological Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2240",
+                  "title": "Biological Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3900",
+                  "title": "Abnormal Psychology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) BSc in Biomedical and Health Sciences In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Students MUST take the following courses prior to enrollment into the major",
+        "exempted from taking LIFS 1901",
+        "exempted from taking LIFS 1903 Research Proposal to Practice Reaction Kinetics Theories",
+        "LIFS/CHEM/                 Biomedical and Health Sciences Electives [Courses from the              17-21 SENG/SBM/                  specified elective list. Students should take a minimum of 17 credits (for those opting for LIFS 4966), of which at least 12"
+      ]
+    }
+  ]
+}

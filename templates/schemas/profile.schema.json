@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "用户画像 profile",
+  "type": "object",
+  "required": ["admission_year", "year_of_study", "programs", "credits_earned"],
+  "properties": {
+    "admission_year": { "type": "string", "examples": ["2023-24"] },
+    "year_of_study": { "type": "integer", "minimum": 1, "maximum": 6 },
+    "programs": {
+      "type": "object",
+      "properties": {
+        "first_major": { "type": "string", "examples": ["COMP"] },
+        "additional_major": { "type": "array", "items": { "type": "string" } },
+        "extended_major": { "type": "string" },
+        "minor": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "cga": { "type": ["number", "null"], "minimum": 0, "maximum": 4.3 },
+    "credits_earned": { "type": "number", "minimum": 0 },
+    "school": { "type": "string", "examples": ["SENG", "SSCI"] },
+    "source": { "type": "string", "description": "数据来源，如 SIS/用户确认" },
+    "confirmed_by_user": { "type": "boolean", "default": false }
+  }
+}

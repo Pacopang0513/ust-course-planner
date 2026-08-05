@@ -1,0 +1,112 @@
+ Elective(s)
+                                                                                                       Minimum
+                                                                                                       credit(s)
+                                                                                                       required
+ COMP                            COMP 2000-level or above Elective (Any course(s) of the                  3
+                                 subject and level as specified)
+
+ COMP                            COMP Electives (5 courses from the specified elective list, of             15
+                                 which at least 3 courses should be taken from 1 area and at
+                                 least 2 courses outside that area (including course(s) in the
+                                 Courses Without Associated Area). Students may use at most
+                                 one course under Deep Learning Applications (COMP 4471 and
+                                 COMP 5215) to count towards this elective requirement.)
+
+ Artificial Intelligence / Theory Area
+     COMP        3211            Learning, Reasoning, and Decision Making in AI                         3
+     COMP        3721            Theory of Computation                                                  3
+
+
+
+
+2026-27 COMP (4Y) (2026-27 intake)                                                                                Page 2
+
+                                                                 School of Engineering - BEng in Computer Science
+
+
+    COMP       4211           Machine Learning                                                      3
+    COMP       4212           Reinforcement Learning                                                3
+    COMP       4221           Introduction to Natural Language Processing                           3
+    COMP       4222           Machine Learning with Structured Data                                 3
+    COMP       4331           Data Mining                                                           3
+    COMP       4332           Big Data Mining and Management                                        3
+    COMP       4421           Image Processing                                                      3
+    COMP       4471           Deep Learning in Computer Vision                                      3
+    COMP       4541           Blockchain, Cryptocurrencies and Smart Contracts                      3
+    COMP       4551           Large-Scale Machine Learning System for Foundation Models             3
+    COMP       4901B          Large Language Models                                                 3
+    COMP       4901D          Embedded AI Systems                                                   3
+    COMP       4901L          Foundations of Computer Vision                                        3
+    COMP       4901R          Algorithmic Game Theory                                               3
+    COMP       4901T          Introduction to Computer Vision                                       3
+    COMP       4901V          Large-Scale Deep Perception, Localization, and Planning for           3
+                              Autonomous Vehicles
+    COMP       4901X          Formal Reasoning about Programs                                       3
+    COMP       5211           Advanced Artificial Intelligence                                      3
+    COMP       5212           Machine Learning                                                      3
+    COMP       5214           Advanced Deep Learning Architectures                                  3
+    COMP       5215           Perception and Information Processing for Robotics                    3
+    COMP       5221           Natural Language Processing                                           3
+    COMP       5331           Knowledge Discovery in Databases                                      3
+    COMP       5421           Computer Vision                                                       3
+    COMP       5711           Introduction to Advanced Algorithmic Techniques                       3
+    COMP       5712           Introduction to Combinatorial Optimization                            3
+    COMP       5713           Computational Geometry                                                3
+
+ Vision & Graphics / Multimedia Area
+    COMP       4411           Computer Graphics                                                     3
+    COMP       4421           Image Processing                                                      3
+    COMP       4431           Multimedia Computing                                                  3
+    COMP       4441           Music Video Creation                                                  3
+    COMP       4451           Game Programming                                                      3
+    COMP       4461           Human-Computer Interaction                                            3
+    COMP       4462           Data Visualization                                                    3
+    COMP       4471           Deep Learning in Computer Vision                                      3
+    COMP       4901T          Introduction to Computer Vision                                       3
+    COMP       5411           Advanced Computer Graphics                                            3
+    COMP       5421           Computer Vision                                                       3
+
+ Software / Database Area
+    COMP       3021           Java Programming                                                      3
+    COMP       3031           Principles of Programming Languages                                   3
+    COMP       3311           Database Management Systems                                           3
+    COMP       4021           Internet Computing                                                    3
+    COMP       4121           Modern Compiler Construction                                          3
+
+
+
+
+2026-27 COMP (4Y) (2026-27 intake)                                                                        Page 3
+
+                                                               School of Engineering - BEng in Computer Science
+
+
+    COMP       4321          Search Engines for Web and Enterprise Data                             3
+    COMP       4331          Data Mining                                                            3
+    COMP       4332          Big Data Mining and Management                                         3
+    COMP       4521          Mobile Application Development                                         3
+    COMP       4651          Cloud Computing and Big Data Systems                                   3
+    COMP       4901A         Distributed Systems                                                    3
+    COMP       5111          Fundamentals of Software Analysis                                      3
+    COMP       5112          Parallel Programming                                                   3
+    COMP       5311          Database Architecture and Implementation                               3
+    COMP       5331          Knowledge Discovery in Databases                                       3
+
+ Computer Systems / Networking Area
+    COMP       3631          Cryptography                                                           3
+    COMP       4521          Mobile Application Development                                         3
+    COMP       4531          IoT and Smart Sensing                                                  3
+    COMP       4541          Blockchain, Cryptocurrencies and Smart Contracts                       3
+    COMP       4611          Design and Analysis of Computer Architectures                          3
+    COMP       4621          Computer and Communication Networks                                    3
+    COMP       4632          Practicing Cybersecurity: Attacks and Counter-measures                 3
+    COMP       4634          Cybersecurity                                                          3
+    COMP       4635          Practical Cloud Computing Security                                     3
+    COMP       4641          Social Information Network Analysis and Engineering                    3
+    COMP       4651          Cloud Computing and Big Data Systems                                   3
+    COMP       4901A         Distributed Systems                                                    3
+    COMP       4901Q         High Performance Computing                                             3
+    COMP       5621          Computer Networks                                                      3
+    COMP       5631          Cryptography and Security                                              3
+
+ Courses Without Associated Area

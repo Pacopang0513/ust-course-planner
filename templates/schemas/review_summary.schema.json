@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "USTspace 评论 AI 精读总结 review_summary（Step 4 产物）",
+  "type": "object",
+  "required": ["course_count", "courses"],
+  "properties": {
+    "generated_at": { "type": "string" },
+    "session": { "type": "string" },
+    "course_count": { "type": "integer", "minimum": 0 },
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "review_count", "summary"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP 2011"] },
+          "name": { "type": "string" },
+          "review_count": { "type": "integer", "minimum": 0 },
+          "summary": {
+            "type": "object",
+            "required": ["grading", "workload", "recommendation"],
+            "properties": {
+              "overall_rating": { "type": ["number", "null"], "minimum": 0, "maximum": 5 },
+              "strengths": { "type": "array", "items": { "type": "string" } },
+              "weaknesses": { "type": "array", "items": { "type": "string" } },
+              "grading": {
+                "type": "object",
+                "properties": {
+                  "trend": { "type": ["string", "null"], "enum": ["lenient", "fair", "strict", "mixed", null] },
+                  "note": { "type": "string" }
+                }
+              },
+              "workload": {
+                "type": "object",
+                "properties": {
+                  "level": { "type": ["string", "null"], "enum": ["light", "medium", "heavy", "mixed", null] },
+                  "note": { "type": "string" }
+                }
+              },
+              "assessment": { "type": "array", "items": { "type": "string" } },
+              "recommendation": {
+                "type": "string",
+                "enum": ["highly_recommended", "recommended", "mixed", "not_recommended"]
+              },
+              "recent_trend": { "type": ["string", "null"] },
+              "evidence_note": { "type": "string" }
+            }
+          },
+          "instructors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "teaching_this_year"],
+              "properties": {
+                "name": { "type": "string" },
+                "teaching_this_year": { "type": "boolean" },
+                "rating": { "type": ["number", "null"], "minimum": 0, "maximum": 5 },
+                "style": { "type": ["string", "null"] },
+                "notes": { "type": ["string", "null"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

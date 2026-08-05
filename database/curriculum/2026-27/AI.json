@@ -1,0 +1,603 @@
+{
+  "program": "AI",
+  "intake_year": "2026-27",
+  "school": "School of Engineering",
+  "title": "BEng in Artificial Intelligence",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\AI.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 3212:           This is a new course subject to approval.",
+    "COMP 3214:           This is a new course subject to approval.",
+    "COMP 3231:           This is a new course subject to approval."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "fundamental",
+          "name": "Engineering Fundamental Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 1023",
+                  "title": "Introduction to Python Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2121 OR MATH 2131",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2131",
+                  "title": "Honors in Linear and Abstract Algebra I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 1944",
+                  "title": "Artificial Intelligence Ethics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: [COMP 1991 AND (COMP 4981 OR COMP 4981H)] OR [COMP 4910]",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1991",
+                  "title": "Industrial Experience",
+                  "credits": "0",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4910",
+                  "title": "Co-op Program",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4981",
+                  "title": "Final Year Project",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4981H",
+                  "title": "Final Year Thesis",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: (COMP 2011 AND COMP 2012) OR COMP 2012H",
+              "credits": "5-8",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012",
+                  "title": "Object-Oriented Programming and Data Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 2211",
+                  "title": "Introduction to Artificial Intelligence",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 2611",
+                  "title": "Computer Organization",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 2711 OR COMP 2711H",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2711",
+                  "title": "Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2711H",
+                  "title": "Honors Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 3711 OR COMP 3711H",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 3711",
+                  "title": "Design and Analysis of Algorithms",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3711H",
+                  "title": "Honors Design and Analysis of Algorithms",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4211",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 4221 OR COMP 4471",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 4221",
+                  "title": "Introduction to Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4471",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: Students are required to take COMP 4900 for every regular term in which they are in residency at HKUST with major in AI",
+              "credits": "0",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 4900",
+                  "title": "Academic and Professional Development",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "COMP",
+              "note": "COMP Electives (6 courses from the specified elective list, of which at least 4 courses should be taken from Artificial Intelligence area and at least 2 courses from Other COMP area.) Artificial Intelligence Area Other COMP Area",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 3212",
+                  "title": "Intelligent Software Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3213",
+                  "title": "Introduction to Generative Artificial Intelligence",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3214",
+                  "title": "Introduction to Automated Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3231",
+                  "title": "Artificial Intelligence for Healthcare",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4222",
+                  "title": "Machine Learning with Structured Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4321",
+                  "title": "Search Engines for Web and Enterprise Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4332",
+                  "title": "Big Data Mining and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4441",
+                  "title": "Music Video Creation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4451",
+                  "title": "Game Programming",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4461",
+                  "title": "Human-Computer Interaction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4462",
+                  "title": "Data Visualization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4531",
+                  "title": "IoT and Smart Sensing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4551",
+                  "title": "Large-Scale Machine Learning System for Foundation Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4641",
+                  "title": "Social Information Network Analysis and Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4651",
+                  "title": "Cloud Computing and Big Data Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4901B",
+                  "title": "Large Language Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4901D",
+                  "title": "Embedded AI Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5211",
+                  "title": "Advanced Artificial Intelligence",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5214",
+                  "title": "Advanced Deep Learning Architectures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3021",
+                  "title": "Java Programming",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3031",
+                  "title": "Principles of Programming Languages",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3111",
+                  "title": "Software Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3111H",
+                  "title": "Honors Software Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3311",
+                  "title": "Database Management Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3511",
+                  "title": "Operating Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3631",
+                  "title": "Cryptography",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3633",
+                  "title": "Competitive Programming in Cybersecurity II",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3721",
+                  "title": "Theory of Computation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4021",
+                  "title": "Internet Computing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4411",
+                  "title": "Computer Graphics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4521",
+                  "title": "Mobile Application Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4611",
+                  "title": "Design and Analysis of Computer Architectures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4621",
+                  "title": "Computer and Communication Networks",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4632",
+                  "title": "Practicing Cybersecurity: Attacks and Counter-measures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4633",
+                  "title": "Competitive Programming in Cybersecurity III",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4634",
+                  "title": "Cybersecurity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4911",
+                  "title": "IT Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5111",
+                  "title": "Fundamentals of Software Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5711",
+                  "title": "Introduction to Advanced Algorithmic Techniques",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) BEng in Artificial Intelligence In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WCQ Common Core 课程池 cc_courses_{session}",
+  "type": "object",
+  "required": ["session", "cc_group", "areas"],
+  "properties": {
+    "session": { "type": "string", "examples": ["2610"] },
+    "cc_group": { "type": "string", "examples": ["CC22"] },
+    "group_label": { "type": "string" },
+    "area_count": { "type": "integer", "minimum": 0 },
+    "areas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["area_code", "area", "courses"],
+        "properties": {
+          "area_code": { "type": "string", "examples": ["47"] },
+          "area": { "type": "string" },
+          "course_count": { "type": "integer", "minimum": 0 },
+          "courses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["code", "number"],
+              "properties": {
+                "code": { "type": "string" },
+                "number": { "type": "string" },
+                "title": { "type": "string" },
+                "units": { "type": ["number", "null"], "minimum": 0 },
+                "attributes": { "type": "object" },
+                "sections": { "type": "array" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

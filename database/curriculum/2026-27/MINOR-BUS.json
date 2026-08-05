@@ -1,0 +1,111 @@
+{
+  "program": "MINOR-BUS",
+  "intake_year": "2026-27",
+  "school": "School of Business and Management",
+  "title": "Undergraduate Minor Program in Business",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\MINOR-BUS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SBM",
+              "note": "SB&M Electives (Courses from the specified elective list, of which at least 4 courses must be taken from the list of Business Fundamental Courses. A maximum of 2 Business Advanced Electives can be counted towards the Minor Program requirements.) List 1 - Business Fundamental Courses (No more than 1 course within the same course groups of ACCT 2010/ACCT 2200, ECON 2103/ECON 2113/ECON 2123, FINA 2203/FINA 2303, and MGMT 1110/MGMT 2110 may be counted towards the elective requirement.) List 2 - Business Advanced Courses SB&M                     Any courses offered by the departments under SB&M at 3000-level or above",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ACCT 2010",
+                  "title": "Principles of Accounting I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ACCT 2200",
+                  "title": "Principles of Accounting II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2103",
+                  "title": "Principles of Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2113",
+                  "title": "Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2123",
+                  "title": "Macroeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 2203",
+                  "title": "Fundamentals of Business Finance",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 2303",
+                  "title": "Financial Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2010",
+                  "title": "Introduction to Information Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 2120",
+                  "title": "Marketing Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 1110",
+                  "title": "Introduction to Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 2110",
+                  "title": "Organizational Behavior",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Undergraduate Minor Program in Business Except for students pursuing a degree program and/or an additional major in the School of Business and Management, Dual Degree Program in Technology and Management, BSc in Biotechnology and Business, BSc in Mathematics and Economics, BSc in Risk Management and Business Intelligence and BSc in Sustainable and Green Finance. Any undergraduate students with (i) a CGA of 2.5 or above, and (ii) a grade B- or above in LANG 1407, LANG 1408 or LANG 1409, may enroll in this minor program. They must declare their intention to enroll in the minor program during the application period conducted in around June every year. Students who wish to withdraw from the minor program should apply before the last day of add/drop period in the first regular term of their final year of study. Minor Requirements To graduate with a minor in Business, the students must be enrolled in the minor program, complete a minimum total of 18 credits and all of its requirements, as well as all the requirements of their major program, and attain an average grade point of at least 1.85 in courses taken within the minor program. For credit transfer, students can transfer a maximum of 2 courses to the minor program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program.",
+        "2026-27 MINOR-BUS (4Y) (2026-27 intake)                                                                              Page 1 2026-27 MINOR-BUS (4Y) (2026-27 intake)                                                        Page 2"
+      ]
+    }
+  ]
+}

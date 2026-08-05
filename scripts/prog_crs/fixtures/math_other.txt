@@ -1,0 +1,65 @@
+ SCIE          4500         IRE Research Project II                                                3
+
+
+
+
+2026-27 MATH (4Y) (2026-27 intake)                                                                     Page 5
+
+                                                                        School of Science - BSc in Mathematics
+
+
+ Other(s)
+                            With approval by the program office, students should follow the      27-34
+                            curriculum of one of the following Mathematics Tracks: Pure
+                            Mathematics (Advanced) Track, Applied Mathematics Track,
+                            Statistics Track and complete all of its requirements excluding
+                            the capstone project requirement, which should be fulfilled by
+                            both SCIE 3500 and SCIE 4500 only. For students approved to
+                            follow the Applied Mathematics Track and Statistics Track, they
+                            must choose MATH 2431 which is listed in the Track
+                            Requirements; while for those who follow the Pure Mathematics
+                            (Advanced) Track, they should take MATH 2431 as an
+                            additional required course.
+
+ Pure Mathematics (Advanced) Track
+
+  Students in the Pure Mathematics (Advanced) Track should also take MATH 2043, MATH 2131, and MATH
+  3043 as specified in the major requirements.
+
+
+ Required Course(s)
+                                                                                                Credit(s)
+                                                                                                attained
+
+ MATH          2001         Foundation of Mathematics                                                2
+ MATH          3131         Honors in Linear and Abstract Algebra II                                 4
+
+ MATH                       Note: MATH 4991 OR MATH 4999                                             3
+    MATH       4991         Capstone Project in Pure Mathematics                                 3
+    MATH       4999         Independent Capstone Project                                         3
+
+ Elective Course(s)                                                                             Minimum
+                                                                                                credit(s)
+                                                                                                required
+
+ MATH                       MATH Depth Electives (4 courses from the specified elective              12
+                            list, of which at least 1 course from each area in Algebra /
+                            Analysis / Geometry)
+
+ Algebra
+    MATH       4141         Number Theory and Applications                                       3
+    MATH       4151         Introduction to Lie Groups                                           3
+
+ Analysis
+    MATH       4023         Complex Analysis                                                     3
+    MATH       4051         Theory of Ordinary Differential Equations                            3
+    MATH       4052         Partial Differential Equations                                       3
+    MATH       4063         Functional Analysis                                                  3
+
+ Geometry
+    MATH       4033         Calculus on Manifolds                                                3
+    MATH       4221         Euclidean and Non-Euclidean Geometries                               3
+    MATH       4223         Differential Geometry                                                3
+    MATH       4225         Topology                                                             3
+
+ MATH                       MATH 4000-level or above Elective (Any 2 courses of the                  6

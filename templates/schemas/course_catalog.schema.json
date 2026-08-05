@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ugcourse course catalog",
+  "type": "object",
+  "required": ["subject", "year", "courses"],
+  "properties": {
+    "subject": {"type": "string"},
+    "year": {"type": "string"},
+    "source": {
+      "type": "object",
+      "properties": {"url": {"type": "string"}, "fetched_at": {"type": "string"}}
+    },
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "title", "credits"],
+        "properties": {
+          "code": {"type": "string"},
+          "title": {"type": "string"},
+          "credits": {"type": "number"},
+          "attributes": {
+            "type": "object",
+            "description": "归一化属性键：Prerequisite(s) / Corequisite(s) / Exclusion(s) / Previous Course Code(s) / Equivalent / Co-list / Description 等标准键；text 为原文，codes 为提取的课程代码",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "text": {"type": "string"},
+                "codes": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

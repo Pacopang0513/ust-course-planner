@@ -1,0 +1,3 @@
+# mock cookie 文件（仅测试用，值均为占位符）
+JSESSIONID=mock-jsessionid!1234567890
+PS_TOKEN=mock-ps-token-0000

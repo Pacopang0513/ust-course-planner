@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SIS Pre-Enroll 预选课（Enrollment Summary 解析产物）",
+  "type": "object",
+  "required": ["term", "confirmed", "pending"],
+  "properties": {
+    "term": { "type": "string", "description": "SIS 当前默认学期（如 2025-26 Summer）" },
+    "confirmed": {
+      "type": "array",
+      "description": "Confirmed Enrollment：学校已确认预选/已注册课程",
+      "items": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP 2011"] },
+          "title": { "type": "string" },
+          "units": { "type": ["number", "null"], "minimum": 0 },
+          "section": { "type": "string", "examples": ["L1"] }
+        }
+      }
+    },
+    "pending": {
+      "type": "array",
+      "description": "Pending Enrollment：待定（Pending Add / Pending Drop）",
+      "items": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP 2011"] },
+          "title": { "type": "string" },
+          "units": { "type": ["number", "null"], "minimum": 0 },
+          "section": { "type": "string", "examples": ["L1"] }
+        }
+      }
+    },
+    "total_unit_load": {
+      "type": "object",
+      "properties": {
+        "total": { "type": ["number", "null"], "minimum": 0 },
+        "confirmed": { "type": ["number", "null"], "minimum": 0 },
+        "pending_add": { "type": ["number", "null"], "minimum": 0 },
+        "pending_drop": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "note": { "type": "string" }
+  }
+}

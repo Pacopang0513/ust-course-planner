@@ -1,0 +1,80 @@
+{
+  "program": "MINOR-IT",
+  "intake_year": "2026-27",
+  "school": "School of Engineering",
+  "title": "Undergraduate Minor Program in Information Technology",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\MINOR-IT.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 2011 AND COMP 2012 [Students taken the 5-credit use the course to replace both COMP 2011 and COMP 2012. In this case, students should take additional IT elective course(s) to make up the credits shortfall.]",
+              "credits": "8",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2012H",
+                  "title": "in 2014-15 or after may request to",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012",
+                  "title": "Object-Oriented Programming and Data Structures",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "COMP",
+              "note": "Information Technology Electives (Courses from the specified elective list, of which at least 6 credits must be at the 3000-level or above. Out of these 6 credits at the 3000-level or above, at least 3 credits must be at the 4000-level or above. Students may request to use up to 6 credits of courses listed under http://www.cse.ust.hk/ug/minor/IT/ to count towards this requirement.) COMP         Any COMP courses at 2000-level or above except COMP 3900, COMP 4900,",
+              "credits": "10",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "4981-4995",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Undergraduate Minor Program in Information Technology Except for those studying in the Department of Computer Science and Engineering, the BEng program in Computer Engineering, the Computer Science Track of the BSc program in Mathematics, the BSc program in Risk Management and Business Intelligence, or the BBA program in Information Systems, any undergraduate students with a CGA of 2.5 or above may apply. They must declare their intention to enroll in the minor program no earlier than the first regular term of their second year of study but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the minor program should apply before the last day of the add/drop period in the last regular term of their study. Minor Requirements To graduate with a minor in Information Technology, the students must be enrolled in the minor program; complete a minimum total of 18 credits and all of its requirements, as well as all the requirements of their major program of study; and attain an average grade point of at least 2.15 in courses taken within the minor program. For credit transfer, students can transfer a maximum total of 6 credits to the Minor Program. For students admitted in 2012-13 or after, at least 9 credits out of the total credits required by the minor program should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program.",
+        "2026-27 MINOR-IT (4Y) (2026-27 intake)                                                                                               Page 1",
+        "2026-27 MINOR-IT (4Y) (2026-27 intake)                                                                      Page 2"
+      ]
+    }
+  ]
+}

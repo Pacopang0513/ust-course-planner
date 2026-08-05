@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WCQ Class Schedule 抓取产物 courses_{session}",
+  "type": "object",
+  "required": ["session", "courses"],
+  "properties": {
+    "session": { "type": "string", "examples": ["2610"] },
+    "semester_name": { "type": "string" },
+    "fetched_at": { "type": "string" },
+    "course_count": { "type": "integer", "minimum": 0 },
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "number"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP"] },
+          "number": { "type": "string", "examples": ["2011"] },
+          "title": { "type": "string" },
+          "units": { "type": ["number", "null"], "minimum": 0 },
+          "attributes": { "type": "object" },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["section", "datetime"],
+              "properties": {
+                "section": { "type": "string" },
+                "datetime": { "type": "string" },
+                "room": { "type": "string" },
+                "instructors": { "type": "array", "items": { "type": "string" } },
+                "quota": { "type": ["integer", "null"] },
+                "enrol": { "type": ["integer", "null"] },
+                "avail": { "type": ["integer", "null"] },
+                "wait": { "type": ["integer", "null"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

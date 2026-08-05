@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "候选课程评分 course_scores",
+  "type": "object",
+  "required": ["courses"],
+  "properties": {
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "score"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP 2011"] },
+          "name": { "type": "string" },
+          "credits": { "type": ["number", "null"], "minimum": 0 },
+          "timeslots": { "type": "array", "items": { "type": "string" } },
+          "instructor": { "type": "string" },
+          "prerequisites": { "type": "array", "items": { "type": "string" } },
+          "exclusions": { "type": "array", "items": { "type": "string" } },
+          "score": { "type": "number", "minimum": 0, "maximum": 100 },
+          "score_reason": { "type": "string" },
+          "review_count": { "type": "integer", "minimum": 0 },
+          "review_confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "open_this_year": { "type": "boolean" },
+          "attractiveness": { "type": "number", "minimum": 0, "maximum": 100, "description": "吸引力（规则分+口碑）" },
+          "confidence_score": { "type": "number", "minimum": 0, "maximum": 100, "description": "置信度（评论数）" },
+          "category": {
+            "type": "string",
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
+          }
+        }
+      }
+    },
+    "generated_at": { "type": "string" }
+  }
+}

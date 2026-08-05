@@ -1,0 +1,133 @@
+
+   Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in
+   addition to the major requirements.
+
+   Option(s)
+   Environmental and Analytical Chemistry Option
+
+     Students in the Core Chemistry Track, and those in the International Research Enrichment Track with consent of the
+     program office, may enroll in the Environmental and Analytical Chemistry Option.
+
+
+   Required Course(s)
+
+                                                                                                                        Credit(s)
+                                                                                                                        attained
+
+   CHEM              4350     Environmental Chemistry Laboratory                                                           1
+   CHEM              4355     Instrumental Analytical Chemistry Laboratory                                                 1
+
+
+   Elective Course(s)
+
+                                                                                                                        Minimum
+                                                                                                                        credit(s)
+                                                                                                                        required
+
+   CHEM                       Chemistry Electives [Course(s) from the specified elective                                   12
+                              list, of which at least 2 courses must be taken
+                              from the Core Area. Courses taken as Required/Elective
+                              Courses of another Chemistry Option may not be
+                              counted towards this elective requirement.]
+
+
+   Core Area
+
+               CHEM 4110      Structural Elucidation in Organic Chemistry                                           3
+               CHEM 4310      Environmental Chemistry                                                               3
+               CHEM 4320      Environmental Analytical Chemistry                                                    3
+               CHEM 4330      Separation Science                                                                    3
+               CHEM 4340      Bioanalytical Techniques                                                              3
+               CHEM 4420      Statistical Machine Learning Methods for Chemical Data                                3
+                              Analysis
+
+
+   Others
+
+               CHEM 3010      Great Ideas in Chemistry                                                              3
+               CHEM 3020      Chemistry in the Mass Media                                                           3
+               CHEM 3030      Introduction to AI for Chemistry                                                      4
+               CHEM 3610      Chemistry Internship                                                                 2-3
+               CHEM 4120      Biomolecular Chemistry                                                                3
+               CHEM 4130      Medicinal Chemistry                                                                   3
+               CHEM 4140      Intermediate Organic Chemistry                                                        3
+               CHEM 4210      Solid State Chemistry                                                                 3
+               CHEM 4220      Materials Chemistry                                                                   3
+               CHEM 4230      Materials Characterization Method                                                     3
+               CHEM 4240      Intermediate Inorganic Chemistry                                                      3
+               CHEM 4410      Physical Chemistry in Biological Applications                                         3
+               CHEM 4430      Symmetry in Chemistry and Spectroscopy                                                3
+               CHEM 4620      Organometallic Chemistry                                                              3
+
+
+
+
+2026-27 CHEM (4Y) (2026-27 intake)                                                                                                   Page 3
+
+                                                                                     School of Science - BSc in Chemistry
+
+               CHEM 4640    Chemistry for Advanced Solar Cell Technologies                                  3
+               CHEM 4680    Undergraduate Research                                                          3
+               CHEM 4692    Capstone Research II                                                            3
+
+
+   Materials Chemistry Option
+
+     Students in the Core Chemistry Track, and those in the International Research Enrichment Track with consent of the
+     program office, may enroll in the Materials Chemistry Option.
+
+
+   Required Course(s)
+
+                                                                                                                Credit(s)
+                                                                                                                attained
+
+   CHEM             4250    Materials Preparation Laboratory                                                       1
+   CHEM             4255    Materials Characterization Laboratory                                                  1
+
+
+   Elective Course(s)
+
+                                                                                                                Minimum
+                                                                                                                credit(s)
+                                                                                                                required
+
+   CHEM                     Chemistry Electives [Course(s) from the specified elective                             12
+                            list, of which at least 2 courses must be taken
+                            from the Core Area. Courses taken as Required/Elective
+                            Courses of another Chemistry Option may not be
+                            counted towards this elective requirement.]
+
+
+   Core Area
+
+               CHEM 4110    Structural Elucidation in Organic Chemistry                                     3
+               CHEM 4210    Solid State Chemistry                                                           3
+               CHEM 4220    Materials Chemistry                                                             3
+               CHEM 4230    Materials Characterization Method                                               3
+               CHEM 4240    Intermediate Inorganic Chemistry                                                3
+               CHEM 4640    Chemistry for Advanced Solar Cell Technologies                                  3
+
+
+
+   Others
+
+               CHEM 3010    Great Ideas in Chemistry                                                        3
+               CHEM 3020    Chemistry in the Mass Media                                                     3
+               CHEM 3030    Introduction to AI for Chemistry                                                4
+               CHEM 3610    Chemistry Internship                                                           2-3
+               CHEM 4120    Biomolecular Chemistry                                                          3
+               CHEM 4130    Medicinal Chemistry                                                             3
+               CHEM 4140    Intermediate Organic Chemistry                                                  3
+               CHEM 4160    Cheminformatics                                                                 3
+               CHEM 4310    Environmental Chemistry                                                         3
+               CHEM 4320    Environmental Analytical Chemistry                                              3
+               CHEM 4330    Separation Science                                                              3
+               CHEM 4340    Bioanalytical Techniques                                                        3
+               CHEM 4410    Physical Chemistry in Biological Applications                                   3
+               CHEM 4420    Statistical Machine Learning Methods for Chemical Data                          3
+                            Analysis
+               CHEM 4430    Symmetry in Chemistry and Spectroscopy                                          3
+
+
+

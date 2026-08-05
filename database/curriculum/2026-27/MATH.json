@@ -1,0 +1,1883 @@
+{
+  "program": "MATH",
+  "intake_year": "2026-27",
+  "school": "School of Science",
+  "title": "BSc in Mathematics",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\MATH.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "pre_major",
+          "name": "Major Pre-requisite course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020] (Students following IRE track can only use MATH 1023 and MATH 1024 to fulfill the requirement)",
+              "credits": "4-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2023 OR MATH 2024 [Students following IRE Track or Pure Mathematics (Advanced) Track can only use MATH 2024 to fulfill the requirement.]",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2024",
+                  "title": "Honors Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2033 OR MATH 2043 [Students following IRE Track or Pure Mathematics (Advanced) Track can only use MATH 2043 to fulfill the requirement.]",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2033",
+                  "title": "Mathematical Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2043",
+                  "title": "Honors Mathematical Analysis",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2121 OR MATH 2131 [Students following IRE Track or Pure Mathematics (Advanced) Track can only use MATH 2131 to fulfill the requirement.]",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2131",
+                  "title": "Honors in Linear and Abstract Algebra I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 3033 OR MATH 3043 [Students following IRE Track or Pure Mathematics (Advanced) Track can only use MATH 3043 to fulfill the requirement.] Students should follow one of the tracks and complete all requirements as specified",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 3033",
+                  "title": "Real Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3043",
+                  "title": "Honors Real Analysis",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) BSc in Mathematics In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Students MUST take the following courses prior to enrollment into the major"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Applied Mathematics Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4360",
+                  "title": "Mathematical Modeling",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4992 OR MATH 4999",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4992",
+                  "title": "Capstone Project in Applied Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "MATH Depth Electives (4 courses from the specified elective list)",
+              "credits": "12",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2001",
+                  "title": "Foundation of Mathematics",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "Honors Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3322",
+                  "title": "Matrix Computation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3332",
+                  "title": "Data Analytic Tools",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3425",
+                  "title": "Stochastic Modeling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4051",
+                  "title": "Theory of Ordinary Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4321",
+                  "title": "Game Theory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4326",
+                  "title": "Introduction to Fluid Dynamics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4335",
+                  "title": "Introduction to Optimization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4336",
+                  "title": "Introduction to Mathematics of Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4343",
+                  "title": "Introduction to Graph Theory",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4351",
+                  "title": "Numerical Solutions of Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4511",
+                  "title": "Quantitative Methods for Fixed Income Derivatives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4512",
+                  "title": "Fundamentals of Mathematical Finance",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4823",
+                  "title": "Special Topics in Applied Mathematics",
+                  "credits": "1-4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Computer Science Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MATH/COMP",
+              "note": "Note: MATH 2343 OR COMP 2711 OR COMP 2711H",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2343",
+                  "title": "Discrete Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2711",
+                  "title": "Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2711H",
+                  "title": "Honors Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3121",
+                  "title": "Abstract Algebra",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4991 OR MATH 4992 OR MATH 4999",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4991",
+                  "title": "Capstone Project in Pure Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4992",
+                  "title": "Capstone Project in Applied Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 1023",
+                  "title": "Introduction to Python Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: (COMP 2011 AND COMP 2012) OR COMP 2012H",
+              "credits": "5-8",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012",
+                  "title": "Object-Oriented Programming and Data Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 2611",
+                  "title": "Computer Organization",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 3711 OR COMP 3711H",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 3711",
+                  "title": "Design and Analysis of Algorithms",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3711H",
+                  "title": "Honors Design and Analysis of Algorithms",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "MATH 3000-level or above Elective (Any 1 course of the subject and level as specified)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "MATH Electives (2 courses from the specified elective list)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2001",
+                  "title": "Foundation of Mathematics",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "Honors Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3322",
+                  "title": "Matrix Computation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3332",
+                  "title": "Data Analytic Tools",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3343",
+                  "title": "Combinatorial Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4141",
+                  "title": "Number Theory and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4223",
+                  "title": "Differential Geometry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4321",
+                  "title": "Game Theory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4343",
+                  "title": "Introduction to Graph Theory",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "COMP 4000-level or above Elective (Any 1 course of the subject and level as specified)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "(For students opting COMP 2012H only) COMP 2000-level or above Elective (Any 1 course of the subject and level as specified. Students opting COMP 2011 AND COMP 2012 do not need to fulfill this requirement.)",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "COMP Elective (1 course from the specified elective list)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 3031",
+                  "title": "Principles of Programming Languages",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3111",
+                  "title": "Software Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3111H",
+                  "title": "Honors Software Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3311",
+                  "title": "Database Management Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3511",
+                  "title": "Operating Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Financial and Actuarial Mathematics Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2421 OR MATH 2431",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "Honors Probability",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2511",
+                  "title": "Fundamentals of Actuarial Mathematics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3423",
+                  "title": "Statistical Inference",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4427",
+                  "title": "Loss Models and their Applications",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4511",
+                  "title": "Quantitative Methods for Fixed Income Derivatives",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4512",
+                  "title": "Fundamentals of Mathematical Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4513",
+                  "title": "Life Contingencies Models and Insurance Risk",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4514",
+                  "title": "Financial Economics in Actuarial Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4515",
+                  "title": "Statistical and Computational Methods in Financial Mathematics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4996 OR MATH 4999",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4996",
+                  "title": "Capstone Project in Financial and Actuarial Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "Pure or Applied Mathematics Elective (1 course from the specified elective list)",
+              "credits": "2",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2001",
+                  "title": "Foundation of Mathematics",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3343",
+                  "title": "Combinatorial Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "MATH Depth Electives (2 courses from the specified elective list. Courses taken as Required Courses may not be reused to count towards this elective requirement.)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 3424",
+                  "title": "Regression Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3425",
+                  "title": "Stochastic Modeling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3426",
+                  "title": "Sampling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3427",
+                  "title": "Bayesian Statistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3428",
+                  "title": "Statistical Computing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4423",
+                  "title": "Nonparametric Statistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4424",
+                  "title": "Multivariate Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4425",
+                  "title": "Introductory Time Series",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4426",
+                  "title": "Survival Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4429",
+                  "title": "Credibility Theory and its Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4432",
+                  "title": "Statistical Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4433",
+                  "title": "Spatial Data Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": "track",
+      "name": "General Mathematics Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4991 OR MATH 4992 OR MATH 4993 OR MATH",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4991",
+                  "title": "Capstone Project in Pure Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4992",
+                  "title": "Capstone Project in Applied Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4993",
+                  "title": "Capstone Project in Statistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "MATH 2000-level or above Electives (Any 3 courses of the subject and level as specified)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "MATH 3000-level or above Electives (Any 2 courses of the subject and level as specified)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "MATH 4000-level or above Electives (Any 2 courses of the subject and level as specified)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "4999"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "International Research Enrichment Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SCIE 3500",
+                  "title": "IRE Research Project I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SCIE 4500",
+                  "title": "IRE Research Project II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "other",
+          "name": "Other(s)",
+          "groups": []
+        }
+      ],
+      "notes": [
+        "Students in the IRE Track should also take MATH 1023, MATH 1024, MATH 2001, MATH 2043, MATH 2131 and MATH 3043 as specified in the major requirements."
+      ]
+    },
+    {
+      "block": "track",
+      "name": "must choose MATH 2431 which is listed in the Track",
+      "sections": [],
+      "notes": [
+        "With approval by the program office, students should follow the      27-34 curriculum of one of the following Mathematics Tracks: Pure Mathematics (Advanced) Track, Applied Mathematics Track, Statistics Track and complete all of its requirements excluding the capstone project requirement, which should be fulfilled by both SCIE 3500 and SCIE 4500 only. For students approved to follow the Applied Mathematics Track and Statistics Track, they"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Pure Mathematics (Advanced) Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2001",
+                  "title": "Foundation of Mathematics",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3131",
+                  "title": "Honors in Linear and Abstract Algebra II",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4991 OR MATH 4999",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4991",
+                  "title": "Capstone Project in Pure Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "MATH Depth Electives (4 courses from the specified elective list, of which at least 1 course from each area in Algebra / Analysis / Geometry) Algebra Analysis Geometry",
+              "credits": "12",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4141",
+                  "title": "Number Theory and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4151",
+                  "title": "Introduction to Lie Groups",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4051",
+                  "title": "Theory of Ordinary Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4063",
+                  "title": "Functional Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4033",
+                  "title": "Calculus on Manifolds",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4221",
+                  "title": "Euclidean and Non-Euclidean Geometries",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4223",
+                  "title": "Differential Geometry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4225",
+                  "title": "Topology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "MATH 4000-level or above Elective (Any 2 courses of the subject and level as specified)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Applied Mathematics or Statistics Elective (1 course from the specified elective list)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2343",
+                  "title": "Discrete Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3343",
+                  "title": "Combinatorial Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4321",
+                  "title": "Game Theory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4326",
+                  "title": "Introduction to Fluid Dynamics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4343",
+                  "title": "Introduction to Graph Theory",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Requirements; while for those who follow the Pure Mathematics (Advanced) Track, they should take MATH 2431 as an additional required course.",
+        "Students in the Pure Mathematics (Advanced) Track should also take MATH 2043, MATH 2131, and MATH 3043 as specified in the major requirements."
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Pure Mathematics Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2001",
+                  "title": "Foundation of Mathematics",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3121",
+                  "title": "Abstract Algebra",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4225",
+                  "title": "Topology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4991 OR MATH 4999",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4991",
+                  "title": "Capstone Project in Pure Mathematics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "MATH 2000-level or above Electives (Any 2 courses of the subject and level as specified)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Applied Mathematics or Statistics Elective (1 course from the specified elective list)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2343",
+                  "title": "Discrete Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3343",
+                  "title": "Combinatorial Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4321",
+                  "title": "Game Theory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4326",
+                  "title": "Introduction to Fluid Dynamics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4343",
+                  "title": "Introduction to Graph Theory",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Analysis Depth Elective (1 course from the specified elective list)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4051",
+                  "title": "Theory of Ordinary Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4063",
+                  "title": "Functional Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Geometry Depth Elective (1 course from the specified elective list)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4033",
+                  "title": "Calculus on Manifolds",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4221",
+                  "title": "Euclidean and Non-Euclidean Geometries",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4223",
+                  "title": "Differential Geometry",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Algebra Depth Elective (1 course from the specified elective list)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4141",
+                  "title": "Number Theory and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4151",
+                  "title": "Introduction to Lie Groups",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Statistics Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2421 OR MATH 2431",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "Honors Probability",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3423",
+                  "title": "Statistical Inference",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3424",
+                  "title": "Regression Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3426",
+                  "title": "Sampling",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3427",
+                  "title": "Bayesian Statistics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3428",
+                  "title": "Statistical Computing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4424 OR MATH 4425",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4424",
+                  "title": "Multivariate Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4425",
+                  "title": "Introductory Time Series",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 4993 OR MATH 4999",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4993",
+                  "title": "Capstone Project in Statistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "Pure or Applied Mathematics Elective (1 course from the specified elective list)",
+              "credits": "2",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2001",
+                  "title": "Foundation of Mathematics",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3343",
+                  "title": "Combinatorial Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "MATH Depth Electives (2 courses from the specified elective list. Courses taken as Required Courses may not be reused to count towards this elective requirement.)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 3425",
+                  "title": "Stochastic Modeling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4423",
+                  "title": "Nonparametric Statistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4424",
+                  "title": "Multivariate Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4425",
+                  "title": "Introductory Time Series",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4426",
+                  "title": "Survival Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4432",
+                  "title": "Statistical Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4433",
+                  "title": "Spatial Data Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4434",
+                  "title": "Deep Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4511",
+                  "title": "Quantitative Methods for Fixed Income Derivatives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4512",
+                  "title": "Fundamentals of Mathematical Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

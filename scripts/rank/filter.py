@@ -1,0 +1,345 @@
+#!/usr/bin/env python3
+"""
+候选课程过滤 — scripts/rank/filter.py
+=====================================
+Step 3：对照本学年 Class Schedule（data/courses_{session}.json，由
+scripts/wcq/crawler.py 产出）过滤 Top N 候选：
+  1. 今年未开设（不在 schedule）→ 删除
+  2. pre-requisite 未满足（对照 course_catalog + 已修课程）→ 删除
+  3. 仅限特定专业学生（Attributes/Remarks 中 "For ... students only"）→ 提示
+移除总结写入 data/filter_report.json（供 AI 复核后确认）。
+
+用法:
+  python3 scripts/rank/filter.py --candidates data/candidate_rank.json --session 2610
+  python3 scripts/rank/filter.py --candidates data/candidate_rank.json \
+      --session 2610 --passed data/passed_courses.json --output data/filter_report.json
+"""
+
+import argparse
+import json
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+
+RE_CODE = re.compile(r"([A-Z]{3,4})\s*(\d{4}[A-Z]?)")
+RESTRICTED = re.compile(r"For ([A-Z /-]+) students only", re.I)
+
+_SEP_RE_CACHE = {}
+
+
+def load_json(p: Path) -> dict:
+    if not p.exists():
+        sys.exit(f"错误: 找不到 {p}")
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
+def schedule_index(schedule: dict) -> dict:
+    """{code: course}，code 如 'COMP 2011'"""
+    idx = {}
+    for c in schedule.get("courses", []):
+        code = f"{c.get('code', '')} {c.get('number', '')}".strip()
+        if code:
+            idx[code] = c
+    return idx
+
+
+def passed_set(passed: dict) -> set:
+    """已修课程代码集合（去空格归一，兼容 'COMP2011' / 'COMP 2011'）"""
+    return {re.sub(r"\s+", "", c.get("code", ""))
+            for c in passed.get("courses", []) if c.get("code")}
+
+
+def _split_top(text: str, sep: str) -> list:
+    """按顶层分隔符切分（忽略括号内；分隔符两侧空白任意），返回去空白片段列表"""
+    pat = _SEP_RE_CACHE.setdefault(
+        sep, re.compile(r"\s+" + re.escape(sep.strip()) + r"\s+"))
+    parts, depth, cur = [], 0, ""
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        if depth == 0:
+            m = pat.match(text, i)
+            if m:
+                parts.append(cur)
+                cur = ""
+                i = m.end()
+                continue
+        cur += ch
+        i += 1
+    parts.append(cur)
+    return [p for p in (s.strip() for s in parts) if p]
+
+
+def _outer_parens(text: str) -> bool:
+    """整个文本是否被一对最外层括号包裹（括号内的内容决定）"""
+    depth = 0
+    for i, ch in enumerate(text):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+            if depth == 0:
+                return i == len(text) - 1
+    return False
+
+
+def _eval_expr(text: str, passed: set) -> tuple:
+    """递归解析 pre-req 表达式 → (met: bool|None, missing)。
+    - 顶层先按 OR 切分（OR 优先级最低，任一分支满足即可）——与 UST 真实文本
+      格式一致（如 "(COMP 2012 OR COMP 2012H) AND COMP 2211"）
+    - 分支内再按 AND 切分，必须全部满足；括号组递归求值
+    - 无法解析（无课程代码的段/文本结构异常）→ None，需 AI 复核（不删除）"""
+    text = text.strip()
+    if not text:
+        return True, []
+    if not RE_CODE.search(text):
+        return None, []
+
+    def ev(t: str) -> tuple:
+        t = t.strip()
+        if t.startswith("(") and t.endswith(")") and _outer_parens(t):
+            return _eval_expr(t[1:-1], passed)
+        return _eval_expr(t, passed)
+
+    or_parts = _split_top(text, " OR ")
+    if len(or_parts) > 1:
+        outcomes = [ev(p) for p in or_parts]
+        if any(m is True for m, _ in outcomes):
+            return True, []
+        miss_all = sorted({c for m, miss in outcomes for c in miss})
+        if any(m is None for m, _ in outcomes):
+            return None, miss_all
+        return False, miss_all
+
+    and_parts = _split_top(text, " AND ")
+    if len(and_parts) > 1:
+        miss_all, has_unknown = [], False
+        for p in and_parts:
+            met, miss = ev(p)
+            if met is False:
+                return False, miss
+            if met is None:
+                has_unknown = True
+            miss_all.extend(miss)
+        return (None if has_unknown else True), sorted(set(miss_all))
+
+    if text.startswith("(") and text.endswith(")") and _outer_parens(text):
+        return _eval_expr(text[1:-1], passed)
+
+    core = re.sub(r"\([^()]*\)", " ", text)
+    codes = {a + b for a, b in RE_CODE.findall(core)}
+    if not codes:
+        return None, []
+    miss = sorted(codes - passed)
+    return (True, []) if not miss else (False, miss)
+
+
+def prereq_met(attr_text: str, passed: set) -> tuple:
+    """解析 pre-requisite 文本 → (判定, 详情)。
+    - 返回 met: bool | None（None=无法解析，需 AI 复核，不删除）
+    - 详情含 missing / note"""
+    if not attr_text:
+        return True, {"missing": [], "note": "无 pre-req 约束"}
+    if not RE_CODE.search(attr_text):
+        return None, {"missing": [], "note": "pre-req 文本无课程代码，需 AI 复核"}
+    clean = re.sub(r"\s+", " ", attr_text.strip())
+    met, missing = _eval_expr(clean, passed)
+    if met is True:
+        return True, {"missing": [], "note": "全部满足"}
+    if met is None:
+        return None, {"missing": missing, "note": "含无法解析段，需 AI 复核"}
+    return False, {"missing": missing, "note": "存在未满足的课程"}
+
+
+def _resolve_catalog(args) -> Path:
+    """course-catalog 目录：默认取 database/course_catalog/ 下最新入学年份目录"""
+    if args.course_catalog:
+        return Path(args.course_catalog)
+    base = ROOT / "database" / "course_catalog"
+    if not base.is_dir():
+        return base
+    years = sorted(d.name for d in base.iterdir() if d.is_dir())
+    return base / years[-1] if years else base
+
+
+def _preq_text(cc: dict) -> str:
+    """course_catalog attributes 值可能是 {text,codes} 对象或旧格式字符串"""
+    attr = (cc.get("attributes") or {}).get("Prerequisite(s)", "")
+    if isinstance(attr, dict):
+        return str(attr.get("text", "") or "")
+    return attr or ""
+
+
+def selftest() -> int:
+    """解析器自测：AND/OR 优先级、括号组、无法解析段（参考 2026-27 真实格式）"""
+    passed = {"COMP1021", "COMP1023", "MATH1013"}
+    ok = True
+
+    def check(expr: str, want: bool):
+        nonlocal ok
+        met, missing = _eval_expr(expr, passed)
+        status = "OK" if met is want else "FAIL"
+        if met != want:
+            ok = False
+        print(f"  [{status}] {expr!r:70} → met={met} missing={missing}")
+
+    print("== 真实格式样例 ==")
+    check("COMP 1023 OR COMP 1028", True)                      # COMP 2011 的 pre-req
+    check("COMP 1021 OR COMP 1022P (prior to 2025-26) OR COMP 1023 OR ISOM 3230 OR ISOM 3320 OR ISOM 3400", True)
+    check("(COMP 2012 OR COMP 2012H) AND COMP 2211", False)    # COMP 3211：括号 OR 组 + AND
+    check("(Grade A or above in COMP 1023) OR (Grade A or above in COMP 1021 AND Pass grade in COMP 1028)", True)  # COMP 2012H
+    check("Level 3 or above in HKDSE Mathematics Extended Module M1/M2", None)  # 无课程代码 → 复核
+    print("== OR 优先（无括号混写） ==")
+    check("COMP 2011 AND COMP 2012 OR MATH 1013", True)        # (2011 AND 2012) OR M1013 → True
+    check("MATH 1013 AND COMP 2011 OR COMP 2012", False)       # (M1013 AND 2011) OR 2012 → False（旧实现会误判 True）
+    check("COMP 2011 OR COMP 2012 AND MATH 1013", False)       # 2011 OR (2012 AND M1013) → False
+    print("== AND / OR 基础 ==")
+    check("COMP 1021 AND COMP 2011", False)
+    check("COMP 1021 OR COMP 2011", True)
+    check("COMP 2011 OR COMP 2012", False)
+    check("(COMP 1021 OR COMP 2011) AND MATH 1013", True)
+    check("", True)
+    return 0 if ok else 1
+
+
+def main():
+    ap = argparse.ArgumentParser(description="候选课程过滤（今年开设 + pre-reg）")
+    ap.add_argument("--candidates", default=str(ROOT / "data" / "candidate_rank.json"))
+    ap.add_argument("--session", default="2610", help="学期代码，对应 data/courses_{session}.json")
+    ap.add_argument("--passed", default=str(ROOT / "data" / "passed_courses.json"))
+    ap.add_argument("--course-catalog", default="",
+                    help="课程目录目录（pre-req 兜底；默认取 database/course_catalog/ 最新年份）")
+    ap.add_argument("--output", default=str(ROOT / "data" / "filter_report.json"))
+    ap.add_argument("--fill", type=int, default=0,
+                    help="kept 不足该数量时自动从 candidate_rank.truncated 补位（默认 0=不补）")
+    ap.add_argument("--override", action="append", default=[],
+                    help="用户豁免课程 code（如 'PHYS 4291'）：即使硬性删除也放回 kept 并标 user_overridden（教授/系豁免 pre-req 场景）")
+    ap.add_argument("--selftest", action="store_true")
+    args = ap.parse_args()
+
+    if args.selftest:
+        sys.exit(selftest())
+
+    candidates = load_json(Path(args.candidates))
+    schedule = load_json(ROOT / "data" / f"courses_{args.session}.json")
+    passed = load_json(Path(args.passed)) if Path(args.passed).exists() else {"courses": []}
+    done = passed_set(passed)
+    catalog_dir = _resolve_catalog(args)
+
+    sched = schedule_index(schedule)
+    kept, removed = [], []
+    overrides = set(args.override or [])
+
+    def eval_one(c):
+        code = c.get("code", "")
+        sc = sched.get(code)
+        reasons = []
+        if sc is None:
+            reasons.append("not_offered_this_year")
+        else:
+            # pre-req 检查（schedule 页内联 pre-requisite，优先；缺则查 course_catalog）
+            pre = (sc.get("attributes") or {}).get("PRE-REQUISITE", "")
+            if not pre:
+                cat_file = catalog_dir / f"{code.split()[0]}.json"
+                if cat_file.exists():
+                    cat = load_json(cat_file)
+                    for cc in cat.get("courses", []):
+                        if cc.get("code", "").replace(" ", "") == code.replace(" ", ""):
+                            pre = _preq_text(cc)
+                            break
+            ok, info = prereq_met(pre, done)
+            if ok is False:
+                reasons.append(f"prereq_not_met:{','.join(info['missing'])}")
+            elif ok is None:
+                reasons.append(f"prereq_unknown:{info['note'][:60]}")
+            # 仅限特定专业提示
+            rem = (sc.get("attributes") or {}).get("REMARKS", "")
+            m = RESTRICTED.search(rem)
+            if m:
+                reasons.append(f"restricted:{m.group(1).strip()}")
+        return code, sc, reasons
+
+    for c in candidates.get("courses", []):
+        code, sc, reasons = eval_one(c)
+        entry = {
+            "code": code,
+            "name": c.get("name", ""),
+            "rule_score": c.get("rule_score"),
+            "credits": c.get("credits"),
+            "category": c.get("category"),
+            "schedule_found": sc is not None,
+            "sections": len(sc.get("sections") or []) if sc else 0,
+            "filter_reasons": reasons,
+        }
+        # 硬性删除：今年未开设 / pre-req 明确不满足；其余（unknown/restricted）保留并标记
+        hard = [r for r in reasons
+                if r.startswith("not_offered") or r.startswith("prereq_not_met")]
+        if hard and code not in overrides:
+            removed.append(entry)
+        else:
+            if hard and code in overrides:
+                entry["filter_reasons"] = reasons + ["user_overridden"]
+            kept.append(entry)
+
+    # 补位：kept < --fill 阈值时，从 truncated 候补池按分数降序补入
+    filled_from = []
+    if args.fill and len(kept) < args.fill:
+        need = args.fill - len(kept)
+        done_set = {c["code"] for c in kept} | {c["code"] for c in removed}
+        for c in candidates.get("truncated", []):
+            if need <= 0:
+                break
+            if c["code"] in done_set:
+                continue
+            code, sc, reasons = eval_one(c)
+            done_set.add(code)
+            hard = [r for r in reasons
+                    if r.startswith("not_offered") or r.startswith("prereq_not_met")]
+            if hard:
+                continue
+            kept.append({
+                "code": code,
+                "name": c.get("name", ""),
+                "rule_score": c.get("rule_score"),
+                "credits": c.get("credits"),
+                "category": c.get("category"),
+                "schedule_found": sc is not None,
+                "sections": len(sc.get("sections") or []) if sc else 0,
+                "filter_reasons": reasons + ["filled_from_truncated"],
+            })
+            filled_from.append(code)
+            need -= 1
+        if filled_from:
+            print(f"补位: kept < {args.fill}，从 truncated 补入 {len(filled_from)} 门: "
+                  f"{', '.join(filled_from)}")
+
+    out = {
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "session": args.session,
+        "input_count": len(candidates.get("courses", [])),
+        "kept_count": len(kept),
+        "removed_count": len(removed),
+        "kept": kept,
+        "removed": removed,
+        "note": ("removed=硬性删除（未开设/pre-req 未满足）；kept 中的 filter_reasons 可能含 "
+                 "prereq_unknown/restricted/user_overridden 等提示，由 phase3 AI 复核"),
+        "overrides": sorted(overrides),
+    }
+    dest = Path(args.output)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"过滤完成: 输入 {out['input_count']} -> 保留 {len(kept)} / 移除 {len(removed)}")
+    for r in removed:
+        print(f"  - {r['code']}: {','.join(r['filter_reasons'])}")
+    print(f"产物 -> {dest}")
+
+
+if __name__ == "__main__":
+    main()

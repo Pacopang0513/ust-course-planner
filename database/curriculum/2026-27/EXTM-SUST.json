@@ -1,0 +1,435 @@
+{
+  "program": "EXTM-SUST",
+  "intake_year": "2026-27",
+  "school": "Academy of Interdisciplinary Studies",
+  "title": "Extended Major Program in Sustainability",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\EXTM-SUST.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "CIVL 4560:          The course was last offered in 2021-22 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SUST 1000",
+                  "title": "Sustainability Fundamentals",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "EMIA 2010C",
+                  "title": "Cross-disciplinary Seminar: Sustainability",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "EMIA 2020",
+                  "title": "Cross-disciplinary Design Thinking",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "EMIA",
+              "note": "Note: EMIA 4990 OR EMIA 4991",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "EMIA 4990",
+                  "title": "Interdisciplinary Capstone Design",
+                  "credits": "0",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 4991",
+                  "title": "Interdisciplinary Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ENVR",
+              "note": "Note: ENVR 3005 OR ENVR 4340",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ENVR 3005",
+                  "title": "Environmental Risks: Principles and Practices",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 4340",
+                  "title": "Social Sustainability: Risks and Challenges",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SUST",
+              "note": "SUST Electives [Courses from the specified elective list. Students may use at most one course from the same course groups of CENG 4720 / CIVL 4430 / ENVR 3210 / OCES 4203; count towards this elective requirement. (Students opting for those opting for EMIA 4991 a minimum of 12 credits.) Out of the electives taken, at least 6 credits should be at 3000-level or above.] Neutrality",
+              "credits": "12-15",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CIVL 1190",
+                  "title": "/ ENVR 1170 and COMP 1021 / COMP 1023 to",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 4990",
+                  "title": "are required to take a minimum of 15 credits; while",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "SUST 1001",
+                  "title": "Special Topics in Sustainability",
+                  "credits": "1-4",
+                  "area": ""
+                },
+                {
+                  "code": "SUST 2001",
+                  "title": "Special Topics in Sustainability",
+                  "credits": "1-4",
+                  "area": ""
+                },
+                {
+                  "code": "SUST 3001",
+                  "title": "Special Topics in Sustainability",
+                  "credits": "1-4",
+                  "area": ""
+                },
+                {
+                  "code": "SUST 4001",
+                  "title": "Special Topics in Sustainability",
+                  "credits": "1-4",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 1170",
+                  "title": "Science, Environment and Society - From Big Bang to Big Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 2080",
+                  "title": "Circular Economy and Life Cycle Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3210",
+                  "title": "Environmental Technology for Impact Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1700",
+                  "title": "Introduction to Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4140",
+                  "title": "Energy Resources, Conversions and Technologies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4510",
+                  "title": "Nature Engineering and DNA Nanotechnology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4710",
+                  "title": "Environmental Control",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4720",
+                  "title": "Environmental Impact Assessment and Management Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 4640",
+                  "title": "Chemistry for Advanced Solar Cell Technologies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1140",
+                  "title": "Environment and Society: Sustainable Development Goals and Carbon",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1180",
+                  "title": "Monitoring Changing Climate from Space",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1190",
+                  "title": "Climate Change, Big History and Sustainability",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1210",
+                  "title": "Fundamental of Green Buildings",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1220",
+                  "title": "Big Data for Smarter Cities",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 2410",
+                  "title": "Environmental Assessment and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4430",
+                  "title": "Environmental Impact Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4560",
+                  "title": "Urban Hydroclimate and the Built Environment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1023",
+                  "title": "Introduction to Python Programming",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4454",
+                  "title": "Green Economy and Sustainability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4464",
+                  "title": "Urban and Environment Economics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ENEG 1700",
+                  "title": "Introduction to Energy and Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENEG 3110",
+                  "title": "Materials for Energy Technologies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENEG 4320",
+                  "title": "Energy Storage Technology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 4703",
+                  "title": "ESG Investing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1622",
+                  "title": "Science, Technology and Society: Historical and Cultural Approaches",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2621",
+                  "title": "Culture and Environment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2921",
+                  "title": "Ethical Theories and Contemporary Issues",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2011",
+                  "title": "A Practicum on Wetland Conservation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2060",
+                  "title": "Biodiversity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 1220",
+                  "title": "Marketing and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1905",
+                  "title": "Buildings for Contemporary Living",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3160",
+                  "title": "Environmental Business Strategies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3170",
+                  "title": "Managing CSR (Corporate Social Responsibility)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 1010",
+                  "title": "Principles and Applications of Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 2004",
+                  "title": "Sustainable Ocean",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 2005",
+                  "title": "Coastal Marine Habitats",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4203",
+                  "title": "Environmental Impact and Risk Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4301",
+                  "title": "Environmental Conservation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1003",
+                  "title": "Energy and Related Environmental Issues",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PPOL 3210",
+                  "title": "Energy Policy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1860",
+                  "title": "Population and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2330",
+                  "title": "Environmental Politics and Policy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3540",
+                  "title": "Environmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Extended Major Program in Sustainability Extended Major is an add-on element to enrich the existing majors. Students should declare this Extended Major Program in Sustainability (SUST) via the Opt-in Arrangement after they have been admitted to HKUST. Students who wish to withdraw from the Extended Major should apply before the last day of the add/drop period in the first regular term of their final year of study. The Extended Major in Sustainability is available for combination with Majors offered by School of Science (BSc program in Ocean Science and Technology), Majors offered by School of Engineering (BEng programs in Aerospace Engineering, Artificial Intelligence, Bioengineering, Chemical Engineering, Civil Engineering, Civil and Environmental Engineering, Computer Science (BEng, BSc), Decision Analytics, Energy and Environmental Engineering, Industrial Engineering and Engineering Management, Mechanical Engineering), Majors offered by School of Business and Management (BBA/BSc programs in Economics, Economics and Finance, Global Business, Information Systems, Management, Marketing, Operations Management, Professional Accounting, Quantitative Finance, and Risk Management and Business Intelligence), Majors offered by School of Humanities and Social Science (BSc programs in Global China Studies, and Quantitative Social Analysis), and Majors offered by the Academy of Interdisciplinary Studies (BSc programs in Environmental Management and Technology, and Innovation, Design and Technology). To graduate with an Extended Major, students must have enrolled in the Extended Major, complete a minimum of 24 credits and all of its requirements, as well as the requirements of the major program of study; and have attained an average grade point of at least 2.15 in courses taken within the Extended Major. All courses counted towards the Extended Major Requirements, as well as those used to fulfill the Major Requirements, will be included in the calculation of the Major Cumulative Grade Average (MCGA). Students must take all the Extended Major requirement, within which they must complete at least 12 single- counted credits. These 12 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. For credit transfer, students can transfer a maximum total of 6 credits to the Extended Major program. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Extended Major Requirements",
+        "2026-27 EXTM-SUST (4Y) (2026-27 intake)                                                                           Page 1",
+        "2026-27 EXTM-SUST (4Y) (2026-27 intake)                                                                  Page 2"
+      ]
+    }
+  ]
+}

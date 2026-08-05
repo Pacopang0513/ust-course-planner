@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "过滤报告 filter_report（Step 3 产物）",
+  "type": "object",
+  "required": ["session", "input_count", "kept_count", "removed_count", "kept", "removed"],
+  "properties": {
+    "generated_at": { "type": "string" },
+    "session": { "type": "string", "examples": ["2610"] },
+    "input_count": { "type": "integer", "minimum": 0 },
+    "kept_count": { "type": "integer", "minimum": 0 },
+    "removed_count": { "type": "integer", "minimum": 0 },
+    "note": { "type": "string" },
+    "kept": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "schedule_found", "filter_reasons"],
+        "properties": {
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "rule_score": { "type": ["number", "null"] },
+          "category": { "type": ["string", "null"] },
+          "schedule_found": { "type": "boolean" },
+          "sections": { "type": "integer", "minimum": 0 },
+          "filter_reasons": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "removed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "schedule_found", "filter_reasons"],
+        "properties": {
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "rule_score": { "type": ["number", "null"] },
+          "category": { "type": ["string", "null"] },
+          "schedule_found": { "type": "boolean" },
+          "sections": { "type": "integer", "minimum": 0 },
+          "filter_reasons": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

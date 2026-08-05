@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "课程表方案 timetable_plan",
+  "type": "object",
+  "required": ["plans"],
+  "properties": {
+    "plans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["plan_id", "courses", "total_credits"],
+        "properties": {
+          "plan_id": { "type": "string", "examples": ["plan-1"] },
+          "courses": {
+            "type": "array",
+            "items": { "type": "string", "examples": ["COMP 2011"] }
+          },
+          "total_credits": { "type": "number", "minimum": 12, "maximum": 18 },
+          "workload": { "type": "string", "enum": ["light", "medium", "heavy"] },
+          "cc_credits": { "type": "number", "minimum": 0 },
+          "major_credits": { "type": "number", "minimum": 0 },
+          "elective_credits": { "type": "number", "minimum": 0 },
+          "no_conflict": { "type": "boolean", "default": true },
+          "must_take_inserted": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "generated_at": { "type": "string" }
+  }
+}

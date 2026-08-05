@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Per-program mapping overrides (database/mappings/{PROG}.json)",
+  "type": "object",
+  "required": ["program", "overrides"],
+  "properties": {
+    "program": {"type": "string"},
+    "intake_year": {"type": "string"},
+    "overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["match", "map_to"],
+        "properties": {
+          "match": {
+            "type": "object",
+            "required": ["ar_group_regex"],
+            "properties": {"ar_group_regex": {"type": "string"}}
+          },
+          "map_to": {
+            "type": "object",
+            "properties": {
+              "block": {"type": "string", "enum": ["major", "track", "option"]},
+              "section": {"type": "string",
+                          "enum": ["pre_major", "fundamental", "required", "elective", "other"]},
+              "note_regex": {"type": "string"}
+            }
+          },
+          "note": {"type": "string"},
+          "confidence": {"type": "string", "enum": ["explicit"]}
+        }
+      }
+    }
+  }
+}

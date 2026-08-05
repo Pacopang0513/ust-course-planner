@@ -1,0 +1,900 @@
+{
+  "program": "PHYS",
+  "intake_year": "2026-27",
+  "school": "School of Science",
+  "title": "BSc in Physics",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\PHYS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "PHYS 4813:           The course was last offered in 2021-22 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "pre_major",
+          "name": "Major Pre-requisite course(s)",
+          "groups": [
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1111 OR PHYS 1112 OR PHYS 1312 (Students taking IRE Track can only use PHYS 1312 to fulfill the requirement.)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1111",
+                  "title": "General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1114 OR PHYS 1314 (Students taking IRE Track can only use PHYS 1314 to fulfill the requirement.)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1114",
+                  "title": "General Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1314",
+                  "title": "Honors General Physics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 1113",
+                  "title": "Laboratory for General Physics I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 1115",
+                  "title": "Laboratory for General Physics II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 2022",
+                  "title": "Modern Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 2023",
+                  "title": "Modern Physics Laboratory",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 2080",
+                  "title": "Physics Seminar and Tutorial I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS/MATH",
+              "note": "Note: PHYS 2124 OR MATH 2352 (Students taking the Physics and Mathematics Option may take either MATH 2352 or PHYS 2124. Other students can only take PHYS 2124 to fulfill the requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 2124",
+                  "title": "Mathematical Methods in Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3032",
+                  "title": "Classical Mechanics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 3033 OR PHYS 3053 (Students taking IRE Track or Honors Physics Option can only use PHYS 3053 fo fulfill the requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 3033",
+                  "title": "Electricity and Magnetism I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 3053",
+                  "title": "Honors Electricity and Magnetism I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 3036 OR PHYS 3037 (Students taking IRE Track or Honors Physics Option can only use PHYS 3037 to fulfill the requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 3036",
+                  "title": "Quantum Mechanics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 3037",
+                  "title": "Honors Quantum Mechanics I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS/MATH",
+              "note": "Note: PHYS 3142 OR MATH 3312 (Students taking the Physics and Mathematics Option may take either MATH 3312 or PHYS 3142. Other students can only take PHYS 3142 to fulfill the requirement.)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 3142",
+                  "title": "Computational Methods in Physics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3152",
+                  "title": "Methods of Experimental Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3153",
+                  "title": "Methods of Experimental Physics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 4050",
+                  "title": "Thermodynamics and Statistical Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 4080",
+                  "title": "Physics Seminar and Tutorial II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS/SCIE",
+              "note": "Note: PHYS 4191 OR PHYS 4291 OR (SCIE 3500 AND SCIE AND SCIE 4500) to fulfill the requirement; those taking Honors Physics Option can only use PHYS 4291 to fulfill the requirement.)",
+              "credits": "4-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 4191",
+                  "title": "Capstone Project",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4291",
+                  "title": "Capstone Research",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 3500",
+                  "title": "IRE Research Project I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 4500",
+                  "title": "IRE Research Project II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 4811 OR PHYS 4812 OR PHYS 4813 OR PHYS 4814 OR PHYS 4815 (2 courses out of 5) Technology Sense of Weather and Climate",
+              "credits": "2",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 4811",
+                  "title": "Contemporary Applications of Physics: Machine Learning in Physics",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4812",
+                  "title": "Contemporary Applications of Physics: Quantum Information",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4813",
+                  "title": "Contemporary Applications of Physics: Atmospheric Physics - Making",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4814",
+                  "title": "Contemporary Applications of Physics: Medical Physics",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4815",
+                  "title": "Contemporary Applications of Physics: Physics of Radiation Therapy",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2011 OR MATH 2023 (Students in Honors Physics Option, Physics and Mathematics Option and IRE Track can only use MATH 2023 to fulfill the requirement)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2111 OR MATH 2121 OR MATH 2131 (Students in Honors Physics Option, Physics and Mathematics Option and IRE Track can only use MATH 2121 OR MATH 2131 to fulfill the requirement)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2111",
+                  "title": "Matrix Algebra and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2131",
+                  "title": "Honors in Linear and Abstract Algebra I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) BSc in Physics In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Students MUST take the following courses prior to enrollment into the major"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "International Research Enrichment Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "PHYS/MATH",
+              "note": "Note: PHYS 3031 OR (MATH 4023 AND MATH 4052)",
+              "credits": "3-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 3031",
+                  "title": "Mathematical Methods in Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3034",
+                  "title": "Electricity and Magnetism II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3090",
+                  "title": "Directed Studies in Physics II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 4051",
+                  "title": "Quantum Mechanics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "PHYS",
+              "note": "Physics Electives [Course(s) from the specified elective list] PHYS                        Any PHYS courses at 3000-level or above Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 2010",
+                  "title": "Introductory Biological Physics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 2021",
+                  "title": "Black Holes and the Early Universe",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 2090",
+                  "title": "Directed Studies in Physics I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "4500) (Students taking IRE Track can only use (SCIE 3500",
+        "Students in the IRE Track should also take PHYS 3053, PHYS 3037, SCIE 3500, and SCIE 4500 as specified in the major requirements. Subject to approval of the program office, students may reuse MATH 4023, MATH 4052, and/or PHYS 3034 to count towards the requirements of Physics and Mathematics Option."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Computational Physics with Artificial Intelligence Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 1023",
+                  "title": "as specified in the School Requirements, and PHYS 3142 as specified in the Major",
+                  "credits": "",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3243",
+                  "title": "Probability and Statistics for Data Analysis in Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3245",
+                  "title": "Foundations of Machine Learning in Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 4245",
+                  "title": "Deep Learning for Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Computational Physics with Artificial Intelligence Option should also take COMP 1021 or",
+        "Requirements respectively. Students who opt for COMP 1021 should take a bridging course COMP 1028 to meet the course pre-requisite for PHYS 3243 and PHYS 3245."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Honors Physics Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "PHYS/MATH",
+              "note": "Note: PHYS 3031 OR (MATH 4023 AND MATH 4052)",
+              "credits": "3-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 3031",
+                  "title": "Mathematical Methods in Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 3034",
+                  "title": "Electricity and Magnetism II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 4051",
+                  "title": "Quantum Mechanics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "PHYS",
+              "note": "Physics Electives [Course(s) from the specified elective list] PHYS                     Any PHYS courses at 3000-level or above",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 2010",
+                  "title": "Introductory Biological Physics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 2021",
+                  "title": "Black Holes and the Early Universe",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 2090",
+                  "title": "Directed Studies in Physics I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Honors Physics Option should also take PHYS 3053, PHYS 3037, and PHYS 4291 as specified in the major requirements."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Physics and Mathematics Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 3034 OR PHYS 4051",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 3034",
+                  "title": "Electricity and Magnetism II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4051",
+                  "title": "Quantum Mechanics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2033",
+                  "title": "Mathematical Analysis",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 3033 OR MATH 3121 OR MATH 3131 OR MATH",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 3033",
+                  "title": "Real Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3121",
+                  "title": "Abstract Algebra",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3131",
+                  "title": "Honors in Linear and Abstract Algebra II",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4223",
+                  "title": "Differential Geometry",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "4223"
+      ]
+    }
+  ]
+}

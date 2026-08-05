@@ -1,0 +1,197 @@
+{
+  "program": "MINOR-ENVS",
+  "intake_year": "2026-27",
+  "school": "School of Science",
+  "title": "Undergraduate Minor Program in Environmental Science",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\MINOR-ENVS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "OCES 2001:              The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "OCES/ENVR",
+              "note": "Note: OCES 1010 OR ENVR 2010",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "OCES 1010",
+                  "title": "Principles and Applications of Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 2010",
+                  "title": "Environmental Science Fundamentals",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "OCES/ENVR",
+              "note": "the specified elective list. Students may use either this elective requirement.) OCES/PHYS/                  from the specified elective list. Students may only",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 2310",
+                  "title": "or CHEM 2311, but not both, to count towards",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "ENVS 4012",
+                  "title": "Special Topics in Environmental Science",
+                  "credits": "1-3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2310",
+                  "title": "Fundamentals of Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2311",
+                  "title": "Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 4310",
+                  "title": "Environmental Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 4320",
+                  "title": "Environmental Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 2130",
+                  "title": "Marine Biology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 3160",
+                  "title": "Ecology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4001",
+                  "title": "Ocean and Climate Change",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4201",
+                  "title": "Environmental Microbiology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4203",
+                  "title": "Environmental Impact and Risk Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4301",
+                  "title": "Environmental Conservation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3110",
+                  "title": "Life Cycle Assessment for Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ENVR",
+              "note": "use one course out of LIFS 1901, LIFS 1902 and CHEM 1011 to count towards this elective requirement.) Reaction Kinetics",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2060",
+                  "title": "Biodiversity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 2001",
+                  "title": "Survey of Ocean Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1003",
+                  "title": "Energy and Related Environmental Issues",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 2020",
+                  "title": "Urban Air Pollution",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Undergraduate Minor Program in Environmental Science Except for those with major in Environmental Science (ENVS), any undergraduate students under the 4-year degree with an overall CGA of 1.85 or above may enroll in the Environmental Science Minor Program. Students must declare their intention to enroll in the Minor Program no earlier than the first regular term of their second year of study but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the Minor Program should apply before the last day of the add/drop period in the first regular term of their final year of study. Minor Requirements To graduate with a minor in Environmental Science, students must have enrolled in the Minor Program, complete a minimum total of 18 credits and all of the minor requirements, as well as all the requirements of the major program of study. For credit transfer, students can transfer a maximum total of 6 credits to the Minor Program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program. Some courses in the curriculum have been previously coded with CORE-prefix where the special CORE-prefix has been replaced by the domain code of courses starting from Fall 2023-24. Students who have registered with these CORE- coded courses may look up their latest course codes by consulting the conversion table published on the Common Core website.",
+        "ENVS/CHEM/                 Environmental Science Depth Electives (3 courses from                                        9 2026-27 MINOR-ENVS (4Y) (2026-27 intake)                                                                                               Page 1 LIFS/CHEM/                  Environmental Science Foundation Electives (2 courses                       6"
+      ]
+    }
+  ]
+}

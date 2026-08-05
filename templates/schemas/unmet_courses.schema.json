@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "未修课程 unmet_courses（Step 1 产物）",
+  "type": "object",
+  "required": ["courses"],
+  "properties": {
+    "generated_at": { "type": "string" },
+    "program": { "type": "string" },
+    "intake_year": { "type": "string" },
+    "graduation_target_credits": { "type": "number", "minimum": 0 },
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "category"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP 2011"] },
+          "name": { "type": "string" },
+          "credits": { "type": ["number", "null"], "minimum": 0 },
+          "category": {
+            "type": "string",
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
+          },
+          "source_groups": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "block": { "type": "string" },
+                "section": { "type": "string" },
+                "group": { "type": "string" },
+                "note": { "type": "string", "description": "curriculum Note 原文（OR/AND/计数语义）" }
+              }
+            }
+          },
+          "note_interpretation": {
+            "type": "string",
+            "description": "AI 对 Note 语义的解析结果（必修/候选池/计数）"
+          }
+        }
+      }
+    }
+  }
+}

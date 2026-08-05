@@ -1,0 +1,282 @@
+{
+  "program": "MINOR-BIEN",
+  "intake_year": "2026-27",
+  "school": "School of Engineering",
+  "title": "Undergraduate Minor Program in Bioengineering",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\MINOR-BIEN.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "BIEN 4310:           The course was last offered in 2021-22 and was deleted subsequently.",
+    "ELEC 4830:           The course was last offered in 2021-22 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "BIEN/CENG",
+              "note": "Note: BIEN 1010 OR CENG 1600",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "BIEN 1010",
+                  "title": "Introduction to Biomedical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1600",
+                  "title": "Biotechnology and Its Business Opportunities",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4810",
+                  "title": "OR LIFS",
+                  "credits": "4320",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIEN 2310",
+                  "title": "Modeling for Chemical and Biological Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIEN 3320",
+                  "title": "Data Science for Biology and Medicine",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIEN 3410",
+                  "title": "Bioimaging and Image Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4810",
+                  "title": "Introduction to Biosensors and Bioinstrumentation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4320",
+                  "title": "Data Science for Biology and Medicine",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "BIEN/LIFS",
+              "note": "Note: BIEN 2410 OR BIEN 2610 OR LIFS 3040",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "BIEN 2410",
+                  "title": "Cellular and Systems Physiology for Engineers",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 2610",
+                  "title": "Chemical Biology for Engineers",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3040",
+                  "title": "Animal Physiology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SENG/LIFS",
+              "note": "Bioengineering Electives (3 courses from the specified list, of which at least one course must be at 4000-level)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "BIEN 4110",
+                  "title": "Regulatory Affairs in the Healthcare Industry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 4310",
+                  "title": "Statistical Signal Analysis and Applications in Neural Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1110",
+                  "title": "Introduction to Chemical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4620",
+                  "title": "Bioproducts and Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4640",
+                  "title": "Biomolecular Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4650",
+                  "title": "Biomaterials and Drug Delivery",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4670",
+                  "title": "Pharmaceutical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4211",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4820",
+                  "title": "Medical Imaging",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4830",
+                  "title": "Statistical Signal Analysis and Applications in Neural Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1300",
+                  "title": "Design Thinking for Health Innovation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "UCOP 3200",
+                  "title": "Design for Global Health",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4370",
+                  "title": "Human Genetics and Personalized Medicine",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4760",
+                  "title": "Biochemistry of Diseases",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Undergraduate Minor Program in Bioengineering The Minor Program in Bioengineering is designed for undergraduate students interested in applying engineering principles to biological problems. Any undergraduate students at HKUST with a minimum CGA of 2.15 or above may enroll in the Bioengineering Minor Program. The program is designed for students with fundamental knowledge in life science (e.g. LIFS 1901 or LIFS 2040), but also open to other students for enrollment, given that they may be required to take additional course(s) to acquire relevant foundation. Students must declare their intention to enroll in the minor program no earlier than the first regular term of their second year of study but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the minor program should apply before the last day of add/drop period in the last regular term of their study. Minor Requirements To graduate with a minor in Bioengineering, students must be enrolled in the minor program, complete a minimum total of 18 credits and all of the minor requirements, as well as the requirements of the major program of study; and have attained an average grade point of at least 2.15 in courses taken within the minor program. For credit transfer, students can transfer a maximum total of 6 credits to the minor program. Courses accepted for transfer credits must normally be at a level equivalent to HKUST courses of 2000-level or above. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program.",
+        "BIEN/ELEC/                     Note: BIEN 2310 OR BIEN 3320 OR BIEN 3410 OR ELEC                                3-4 2026-27 MINOR-BIEN (4Y) (2026-27 intake)                                                                                Page 1"
+      ]
+    }
+  ]
+}

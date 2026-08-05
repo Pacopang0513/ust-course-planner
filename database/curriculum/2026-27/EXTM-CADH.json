@@ -1,0 +1,496 @@
+{
+  "program": "EXTM-CADH",
+  "intake_year": "2026-27",
+  "school": "Academy of Interdisciplinary Studies",
+  "title": "Extended Major Program in Creative Arts and Digital Humanities",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\EXTM-CADH.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "HUMA 3105:            The course was last offered in 2021-22 and was deleted subsequently.",
+    "ISDN 1100:            The course was last offered in 2021-22 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "AMCC/HUMA",
+              "note": "Note: AMCC 2010 OR AMCC 2020 OR HUMA 2107",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "AMCC 2010",
+                  "title": "Digital Audio Workstation Composition",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "AMCC 2020",
+                  "title": "Coding for Artistic Expression and Creation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2107",
+                  "title": "Introduction to Electronic Music Composition",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "EMIA 2010D",
+                  "title": "Cross-disciplinary Seminar: Creative Arts and Digital Humanities",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "EMIA 2020",
+                  "title": "Cross-disciplinary Design Thinking",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "EMIA",
+              "note": "Note: EMIA 4990 OR EMIA 4991",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "EMIA 4990",
+                  "title": "Interdisciplinary Capstone Design",
+                  "credits": "0",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 4991",
+                  "title": "Interdisciplinary Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "HUMA",
+              "note": "Note: HUMA 1100 OR HUMA 1102 OR HUMA 1650 OR HUMA",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 1100",
+                  "title": "Music of the World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1102",
+                  "title": "Enjoyment of Classical Music",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1650",
+                  "title": "Appreciation of Western Art",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1660",
+                  "title": "Introduction to Chinese Art",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "HUMA 1673",
+                  "title": "Art and Digital Culture",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "HUMA",
+              "note": "Note: HUMA 1678 OR HUMA 2412 Humanities",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 1678",
+                  "title": "Introduction to Digital Humanities & AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2412",
+                  "title": "Exploring Text at Scale: Natural Language Processing and Digital",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "CADH",
+              "note": "CADH Electives (Courses from the specified elective list. Students opting for EMIA 4990 are required to take a minimum credits. All electives must be taken from the same group. At least 3-credit of the elective courses traken should be from 3000-level or above.) Group 1: Creative Arts Solutions Group 2: Digital Humanities",
+              "credits": "6-9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "EMIA 2220",
+                  "title": "Technical Theater Arts",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1004",
+                  "title": "Sketching",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1007",
+                  "title": "From Design Thinking to Design Action: Defining Problems for Better",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1100",
+                  "title": "Experiencing Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2000",
+                  "title": "What is Design and Why Design?",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2210",
+                  "title": "Introduction to Brand Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1107",
+                  "title": "Music and Film",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1210",
+                  "title": "Chinese Women on Screen",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1221",
+                  "title": "Introduction to Game Studies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2101",
+                  "title": "Enjoyment of Western Opera",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2103",
+                  "title": "Introduction to Music Composition",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2104",
+                  "title": "Music Theory I: Introduction to Tonal Music",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2105",
+                  "title": "Music, Drama, and Theatre",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2109",
+                  "title": "East Asian Popular Music",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2240",
+                  "title": "Reading Chinese Literature: Dreams of the Red Chamber",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2250",
+                  "title": "Modern Chinese Fiction (1917-1949)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2260",
+                  "title": "Contemporary Chinese Fiction (1949-present)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2300",
+                  "title": "Traditional Chinese Poetry: Early Chinese Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2310",
+                  "title": "Traditional Chinese Fiction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2320",
+                  "title": "Chinese Drama",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2660",
+                  "title": "Introduction to Chinese Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2661",
+                  "title": "Chinese Oil Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2670",
+                  "title": "Understanding Western Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2680",
+                  "title": "Understanding Western Architecture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3104",
+                  "title": "Music Theory IIA - Fundamentals of Harmony and Counterpoint",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3105",
+                  "title": "Making Choral Music",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3107",
+                  "title": "Electronic Music Composition II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3201",
+                  "title": "Animation: A Global Perspective",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3210",
+                  "title": "Traditional Chinese Poetry: Tang and Song Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3220",
+                  "title": "Modern Chinese Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3250",
+                  "title": "Independent Cinema in Contemporary China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3660",
+                  "title": "Tradition & Modernity: Chinese Ink Painting in 20th Century",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3680",
+                  "title": "Contemporary Architecture: The Pritzker Prize Winners",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4220",
+                  "title": "Verbal and Visual Representation of China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4250",
+                  "title": "Masterpieces of Modern Literature",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 2210",
+                  "title": "Sci-Fi Storytelling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 2500B",
+                  "title": "Film Script Analysis and Scriptwriting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2300",
+                  "title": "Introduction to 3D Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3200",
+                  "title": "Graphic Communication",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3300",
+                  "title": "Interaction Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1411",
+                  "title": "Inside Chinese Documents and Archives: Methods and Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1412",
+                  "title": "China Through Time and Space: Chinese Historical Geography",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2400",
+                  "title": "Approaches to Humanities in China Studies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4431",
+                  "title": "Multimedia Computing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4451",
+                  "title": "Game Programming",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4461",
+                  "title": "Human-Computer Interaction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4462",
+                  "title": "Data Visualization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "DASC 3240",
+                  "title": "Data Visualization in Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4336",
+                  "title": "Introduction to Mathematics of Image Processing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Extended Major Program in Creative Arts and Digital Humanities Extended Major is an add-on element to enrich the existing majors. Students should declare their Extended Major via the Opt-in Arrangement after they have been admitted to HKUST. Students who wish to withdraw from the Extended Major should apply before the last day of the add/drop period in the first regular term of their final year of study. The Extended Major in Creative Arts and Digital Humanities is available for combination with Majors offered by School of Science (BSc programs in Mathematics, and Ocean Science and Technology), Majors offered by School of Business and Management (BBA/BSc programs in Economics, Economics and Finance, Finance, Global Business, Information Systems, Management, Marketing, Operations Management, Professional Accounting, Quantitative Finance, Risk Management and Business Intelligence, and Sustainable and Green Finance), Majors offered by School of Humanities and Social Science (BSc programs in Global China Studies, and Quantitative Social Analysis), and BSc program in Innovation, Design and Technology offered by the Academy of Interdisciplinary Studies. It is designed for students with fundamental knowledge in calculus and programming, but also open to other students, given that they may be required to take one or two additional courses to acquire relevant foundation. To graduate with an Extended Major, students must have enrolled in the Extended Major, complete a minimum of 21 credits and all of its requirements, as well as the requirements of the major program of study; and have attained an average grade point of at least 2.15 in courses taken within the Extended Major. All courses counted towards the Extended Major Requirements, as well as those used to fulfill the Major Requirements, will be included in the calculation of the Major Cumulative Grade Average (MCGA). Students must take all the Extended Major requirement, within which they must complete at least 12 single- counted credits. These 12 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. For credit transfer, students can transfer a maximum total of 6 credits to the Extended Major program. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Extended Major Requirements",
+        "2026-27 EXTM-CADH (4Y) (2026-27 intake)                                                                          Page 1 1660",
+        "of 9 credits; while those opting for EMIA 4991 a minimum of 6 2026-27 EXTM-CADH (4Y) (2026-27 intake)                                                                     Page 2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "program": "MINOR-SUST",
+  "intake_year": "2026-27",
+  "school": "Academy of Interdisciplinary Studies",
+  "title": "Undergraduate Minor Program in Sustainability",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\MINOR-SUST.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "OCES 2001:           The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SUST 1000",
+                  "title": "Sustainability Fundamentals",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "AIS",
+              "note": "the areas and at least 2 courses at 3000-level or above) Students of the 2022-23 intake and onwards may not use requirement.] Area 1: Skills and Competencies Area 2: Values and Perspectives Product Label Area 3: Knowledge",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CIVL 1150",
+                  "title": "to count towards Area 2 of this elective",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 2050",
+                  "title": "Sustainability Thinking",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3004",
+                  "title": "Life Cycle Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3310",
+                  "title": "Green Business Strategy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1110",
+                  "title": "Engineering Solutions to Grand Challenges of the 21st Century",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENTR 3030",
+                  "title": "Social Innovations and Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3160",
+                  "title": "Environmental Business Strategies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 1080",
+                  "title": "The Smart Consumer - Uncovering the Hidden Story behind the",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 1150",
+                  "title": "Climate Change Impacts and Extreme Weather Events",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3110",
+                  "title": "Life Cycle Assessment for Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2623",
+                  "title": "Cultural Sustainability in South China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 1700",
+                  "title": "Critical Issues in Business Operations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 1220",
+                  "title": "Marketing and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3540",
+                  "title": "Environmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 1030",
+                  "title": "Environment and Health",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 2010",
+                  "title": "Environmental Science Fundamentals",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 2020",
+                  "title": "Urban Air Pollution",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 2070",
+                  "title": "Smart Buildings for a Warming Planet",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3410",
+                  "title": "Economics for Environmental Policy and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3420",
+                  "title": "Environmental Law and Regulations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 4320",
+                  "title": "ESG Management and Reporting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1004",
+                  "title": "Chemistry in Everyday Life",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1008",
+                  "title": "Introductory Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3170",
+                  "title": "Managing CSR (Corporate Social Responsibility)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 2001",
+                  "title": "Survey of Ocean Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 2004",
+                  "title": "Sustainable Ocean",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1860",
+                  "title": "Population and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2310",
+                  "title": "Introductory Environmental and Health Economics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Undergraduate Minor Program in Sustainability Except for those studying in the BSc program in Environmental Management and Technology, any undergraduate students with an overall CGA of 2.5 or above may enroll in this Minor Program. Students must declare their intention to enroll in the Minor Program no earlier than the first regular term of their second year of study but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the Minor Program should apply before the last day of the add/drop period in the first regular term of their final year of study. Minor Requirements To graduate with a minor in Sustainability, students must have enrolled in the Minor Program and complete a minimum total of 18 credits and all of its requirements, as well as the requirements of the major program of study. For credit transfer, students can transfer a maximum total of 6 credits to the Minor Program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program.",
+        "SBM/SENG/                       Sustainability Electives [(5 courses from the specified                            15 SHSS/SSCI/                      elective list, out of which at least 1 course taken from each of 2026-27 MINOR-SUST (4Y) (2026-27 intake)                                                                                  Page 1"
+      ]
+    }
+  ]
+}

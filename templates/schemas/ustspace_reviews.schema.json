@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "USTspace 评论汇总 ustspace_reviews（Step 4 产物）",
+  "type": "object",
+  "required": ["course_count", "courses"],
+  "properties": {
+    "generated_at": { "type": "string" },
+    "course_count": { "type": "integer", "minimum": 0 },
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["subject", "number", "review_count"],
+        "properties": {
+          "subject": { "type": "string", "examples": ["COMP"] },
+          "number": { "type": "string", "examples": ["2011"] },
+          "name": { "type": "string" },
+          "credits": { "type": ["number", "null"] },
+          "review_count": { "type": "integer", "minimum": 0 },
+          "ratings": {
+            "type": "object",
+            "properties": {
+              "content": { "type": ["number", "null"] },
+              "teaching": { "type": ["number", "null"] },
+              "grading": { "type": ["number", "null"] },
+              "workload": { "type": ["number", "null"] }
+            }
+          },
+          "instructors": { "type": "array", "items": { "type": "string" } },
+          "heat_top5": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "hash": { "type": "string" },
+                "semester": { "type": "string" },
+                "instructors": { "type": "array", "items": { "type": "string" } },
+                "author": { "type": "string" },
+                "date": { "type": "string" },
+                "title": { "type": "string" },
+                "comment": { "type": "string" },
+                "rating_content": { "type": ["number", "null"] },
+                "rating_teaching": { "type": ["number", "null"] },
+                "rating_grading": { "type": ["number", "null"] },
+                "rating_workload": { "type": ["number", "null"] },
+                "upvote_count": { "type": ["integer", "null"] },
+                "vote_count": { "type": ["integer", "null"] },
+                "comment_count": { "type": ["integer", "null"] },
+                "has_midterm": { "type": ["boolean", "null"] },
+                "has_final": { "type": ["boolean", "null"] },
+                "has_assignment": { "type": ["boolean", "null"] },
+                "has_project": { "type": ["boolean", "null"] },
+                "has_attendance": { "type": ["boolean", "null"] }
+              }
+            }
+          },
+          "instructor_top5": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "instructor": { "type": "string" },
+                "top5": { "type": "array", "items": { "type": "object" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "failed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    }
+  }
+}

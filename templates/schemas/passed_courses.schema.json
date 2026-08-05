@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "已修课程 passed_courses",
+  "type": "object",
+  "required": ["courses"],
+  "properties": {
+    "courses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "grade"],
+        "properties": {
+          "code": { "type": "string", "examples": ["CHEM 1011"] },
+          "name": { "type": "string" },
+          "credits": { "type": "number", "minimum": 0 },
+          "grade": { "type": "string", "examples": ["A+", "B", "P", "T", "EX"] },
+          "term": { "type": "string", "examples": ["2024-25 Fall"] },
+          "status": {
+            "type": "string",
+            "enum": ["taken", "in_progress", "transferred", "exempted", "audit", "incomplete"]
+          }
+        }
+      }
+    },
+    "source": { "type": "string" }
+  }
+}

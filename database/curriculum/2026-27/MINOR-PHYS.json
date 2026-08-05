@@ -1,0 +1,168 @@
+{
+  "program": "MINOR-PHYS",
+  "intake_year": "2026-27",
+  "school": "School of Science",
+  "title": "Undergraduate Minor Program in Physics",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\MINOR-PHYS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1111 OR PHYS 1112 OR PHYS 1312",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1111",
+                  "title": "General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1114 OR PHYS 1314",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1114",
+                  "title": "General Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1314",
+                  "title": "Honors General Physics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "PHYS 2022",
+                  "title": "Modern Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "PHYS",
+              "note": "Physics Electives [Courses from the specified elective list, of which at least one course taken from the list of Restricted Electives.] Restricted Electives Others",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 3032",
+                  "title": "Classical Mechanics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 3033",
+                  "title": "Electricity and Magnetism I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 3036",
+                  "title": "Quantum Mechanics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 3037",
+                  "title": "Honors Quantum Mechanics I",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 3053",
+                  "title": "Honors Electricity and Magnetism I",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4050",
+                  "title": "Thermodynamics and Statistical Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Courses offered by the Department of Physics at 1000- or 2000-level including PHYS 1002, PHYS 1003 and PHYS 1007, but excluding",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "1001, PHYS 1101 and PHYS",
+              "credits": "2080",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Physics courses at 3000-level or above excluding PHYS",
+              "credits": "4080",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) Undergraduate Minor Program in Physics Except for those studying the BSc program offered by the Physics Department, or the Mathematics and Physics Track of the BSc Mathematics program, any undergraduate student with a CGA of 1.85 or above may enroll in the Physics Minor Program. Students must declare their intention to enroll in the minor program no earlier than the first regular term of their second year but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the minor program should apply before the last day of the add/drop period in the first regular term of their final year of study. Minor Requirements To graduate with a minor in Physics, the students must be enrolled in the minor program and complete a minimum total of 18 credits and all of its requirements, as well as all the requirements of the major program of study; and have attained an average grade point of at least 1.5 in courses taken within the minor program. For credit transfer, students can transfer a maximum total of 6 credits to the Minor Program. Out of the total credits required by the minor program, at least 9 should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University’s credit transfer procedures, to satisfy the graduation requirements of a degree program.",
+        "2026-27 MINOR-PHYS (4Y) (2026-27 intake)                                                                              Page 1 2026-27 MINOR-PHYS (4Y) (2026-27 intake)                                                            Page 2"
+      ]
+    }
+  ]
+}

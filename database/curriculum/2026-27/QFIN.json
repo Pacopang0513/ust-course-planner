@@ -1,0 +1,374 @@
+{
+  "program": "QFIN",
+  "intake_year": "2026-27",
+  "school": "School of Business and Management",
+  "title": "BSc in Quantitative Finance",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2026-27\\QFIN.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3103",
+                  "title": "Intermediate Investments",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3111",
+                  "title": "Finance Professional Development",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3203",
+                  "title": "Derivative Securities",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3303",
+                  "title": "Intermediate Corporate Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3810",
+                  "title": "Bloomberg Market Concepts Certification",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 4803",
+                  "title": "Quantitative Trading",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3334",
+                  "title": "Introduction to Econometrics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3230",
+                  "title": "Business Programming in VBA",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1014 OR MATH 1024 (Students taken MATH 1020 to fulfill the School Requirements may be exempted from this requirement)",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2011 OR MATH 2023",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "QFIN",
+              "note": "Restricted Electives (Courses from the specified elective list, of which at least 3 credits from Area A, at least 6 credits from Area B, and at least 9 credits from Area C) Area A: Finance FINA                       Any FINA courses at 3000- or 4000-level Area B: Programming and Data Analysis Area C: Quantitative Skills",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISOM 3360",
+                  "title": "Data Mining for Business Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3370",
+                  "title": "Big Data Technologies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012",
+                  "title": "Object-Oriented Programming and Data Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4211",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4221",
+                  "title": "Introduction to Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4332",
+                  "title": "Big Data Mining and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4471",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "RMBI 4310",
+                  "title": "Advanced Data Mining for Risk Management and Business Intelligence",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4304",
+                  "title": "Time Series Econometrics and Business Forecasting",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3540",
+                  "title": "Introduction to Probability Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4520",
+                  "title": "Statistics for Financial Risk Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4530",
+                  "title": "Statistical Analysis of Financial Data in R/S-plus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4540",
+                  "title": "Time Series Analysis and Forecasting",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2111",
+                  "title": "Matrix Algebra and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2131",
+                  "title": "Honors in Linear and Abstract Algebra I",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2350",
+                  "title": "Applied Linear Algebra and Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2351",
+                  "title": "Introduction to Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "Honors Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3423",
+                  "title": "Statistical Inference",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4511",
+                  "title": "Quantitative Methods for Fixed Income Derivatives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4512",
+                  "title": "Fundamentals of Mathematical Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2026-27 under the 4-year degree) BSc in Quantitative Finance In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Unless approved by the Dean or the Dean's designate, students are not allowed to reuse courses that are counted towards the School Requirements to also fulfill the Major or Option requirements. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. To graduate with this major, students must complete all of its requirements, including a minimum total of 13 credits from the Major Required Courses obtained at HKUST. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements"
+      ]
+    }
+  ]
+}

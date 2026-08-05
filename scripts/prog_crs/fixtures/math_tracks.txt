@@ -1,0 +1,124 @@
+
+
+ Track Study
+ Students should follow one of the tracks and complete all requirements as specified
+ Applied Mathematics Track
+ Required Course(s)
+                                                                                                           Credit(s)
+                                                                                                           attained
+
+ MATH            2352             Differential Equations                                                        4
+ MATH            2411             Applied Statistics                                                            4
+ MATH            3312             Numerical Analysis                                                            3
+ MATH            4052             Partial Differential Equations                                                3
+ MATH            4360             Mathematical Modeling                                                         3
+
+ MATH                             Note: MATH 4992 OR MATH 4999                                                  3
+    MATH         4992             Capstone Project in Applied Mathematics                                   3
+    MATH         4999             Independent Capstone Project                                              3
+
+ Elective Course(s)                                                                                        Minimum
+                                                                                                           credit(s)
+                                                                                                           required
+
+ MATH                             MATH Depth Electives (4 courses from the specified elective                   12
+                                  list)
+    MATH         2001             Foundation of Mathematics                                                 2
+    MATH         2421             Probability                                                               4
+    MATH         2431             Honors Probability                                                        4
+    MATH         3322             Matrix Computation                                                        3
+    MATH         3332             Data Analytic Tools                                                       3
+    MATH         3425             Stochastic Modeling                                                       3
+    MATH         4023             Complex Analysis                                                          3
+    MATH         4051             Theory of Ordinary Differential Equations                                 3
+    MATH         4321             Game Theory                                                               3
+    MATH         4326             Introduction to Fluid Dynamics                                            3
+    MATH         4335             Introduction to Optimization                                              3
+    MATH         4336             Introduction to Mathematics of Image Processing                           3
+    MATH         4343             Introduction to Graph Theory                                              4
+    MATH         4351             Numerical Solutions of Partial Differential Equations                     3
+    MATH         4511             Quantitative Methods for Fixed Income Derivatives                         3
+    MATH         4512             Fundamentals of Mathematical Finance                                      3
+
+
+
+
+2026-27 MATH (4Y) (2026-27 intake)                                                                                   Page 2
+
+                                                                         School of Science - BSc in Mathematics
+
+
+    MATH       4823         Special Topics in Applied Mathematics                                1-4
+
+ Computer Science Track
+ Required Course(s)
+                                                                                                 Credit(s)
+                                                                                                 attained
+
+ MATH/COMP                  Note: MATH 2343 OR COMP 2711 OR COMP 2711H                                 4
+    MATH       2343         Discrete Structures                                                   4
+    COMP       2711         Discrete Mathematical Tools for Computer Science                      4
+    COMP       2711H        Honors Discrete Mathematical Tools for Computer Science               4
+
+ MATH          3121         Abstract Algebra                                                           3
+
+ MATH                       Note: MATH 4991 OR MATH 4992 OR MATH 4999                                  3
+    MATH       4991         Capstone Project in Pure Mathematics                                  3
+    MATH       4992         Capstone Project in Applied Mathematics                               3
+    MATH       4999         Independent Capstone Project                                          3
+
+ COMP          1023         Introduction to Python Programming                                         3
+
+ COMP                       Note: (COMP 2011 AND COMP 2012) OR COMP 2012H                             5-8
+    COMP       2011         Programming with C++                                                  4
+    COMP       2012         Object-Oriented Programming and Data Structures                       4
+    COMP       2012H        Honors Object-Oriented Programming and Data Structures                5
+
+ COMP          2611         Computer Organization                                                      4
+
+ COMP                       Note: COMP 3711 OR COMP 3711H                                             3-4
+    COMP       3711         Design and Analysis of Algorithms                                     3
+    COMP       3711H        Honors Design and Analysis of Algorithms                              4
+
+ Elective Course(s)                                                                              Minimum
+                                                                                                 credit(s)
+                                                                                                 required
+
+ MATH                       MATH 3000-level or above Elective (Any 1 course of the subject             3
+                            and level as specified)
+
+ MATH                       MATH Electives (2 courses from the specified elective list)                6
+    MATH       2001         Foundation of Mathematics                                             2
+    MATH       2411         Applied Statistics                                                    4
+    MATH       2421         Probability                                                           4
+    MATH       2431         Honors Probability                                                    4
+    MATH       3312         Numerical Analysis                                                    3
+    MATH       3322         Matrix Computation                                                    3
+    MATH       3332         Data Analytic Tools                                                   3
+    MATH       3343         Combinatorial Analysis                                                3
+    MATH       4023         Complex Analysis                                                      3
+    MATH       4141         Number Theory and Applications                                        3
+    MATH       4223         Differential Geometry                                                 3
+    MATH       4321         Game Theory                                                           3
+    MATH       4343         Introduction to Graph Theory                                          4
+
+
+
+
+2026-27 MATH (4Y) (2026-27 intake)                                                                          Page 3
+
+                                                                             School of Science - BSc in Mathematics
+
+
+ COMP                       COMP 4000-level or above Elective (Any 1 course of the subject                3
+                            and level as specified)
+
+ COMP                       (For students opting COMP 2012H only) COMP 2000-level or                      0-3
+                            above Elective (Any 1 course of the subject and level as
+                            specified. Students opting COMP 2011 AND COMP 2012 do
+                            not need to fulfill this requirement.)
+
+ COMP                       COMP Elective (1 course from the specified elective list)                     3
+    COMP       3031         Principles of Programming Languages                                       3
+    COMP       3111         Software Engineering                                                      4
+    COMP       3111H        Honors Software Engineering                                               4
