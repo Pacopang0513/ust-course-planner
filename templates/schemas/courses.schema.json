@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/courses.schema.json",
+  "version": 1,
   "title": "WCQ Class Schedule 抓取产物 courses_{session}",
   "type": "object",
   "required": ["session", "courses"],

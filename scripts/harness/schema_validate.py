@@ -36,13 +36,13 @@ FILE_SCHEMA = {
     "checkpoint.json": "checkpoint.schema.json",
     "pre_enrolled.json": "pre_enroll.schema.json",
 }
-DIR_SCHEMA = {"curriculum", "course_catalog", "mappings"}
+DIR_SCHEMA = {"curriculum", "course_catalog"}
 # 前缀匹配：courses_{session}.json → courses.schema.json（session 动态）
 PREFIX_SCHEMA = {"courses_": "courses", "cc_courses_": "cc_courses"}
 
 
 def _schema_for(target: Path, schema_dir: Path):
-    """basename 匹配 → 显式映射 → 前缀匹配 → 父目录链匹配（curriculum/2026-27/PHYS.json）"""
+    """basename 匹配 → 显式映射 → 前缀匹配 → 父目录链匹配（curriculum/<YEAR>/PHYS.json）"""
     c = schema_dir / f"{target.stem}.schema.json"
     if c.exists():
         return c

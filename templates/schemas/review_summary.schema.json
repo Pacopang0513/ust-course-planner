@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/review_summary.schema.json",
+  "version": 1,
   "title": "USTspace 评论 AI 精读总结 review_summary（Step 4 产物）",
   "type": "object",
   "required": ["course_count", "courses"],
@@ -16,6 +18,8 @@
           "code": { "type": "string", "examples": ["COMP 2011"] },
           "name": { "type": "string" },
           "review_count": { "type": "integer", "minimum": 0 },
+          "d_rating": { "type": ["number", "null"], "minimum": 0, "maximum": 25, "description": "D 组件：本学期任课教授最近 5 条评论的 AI 精读评分（0-25，未精读为 null）" },
+          "d_note": { "type": "string", "description": "D 组件依据（读了哪些评论/结论）" },
           "summary": {
             "type": "object",
             "required": ["grading", "workload", "recommendation"],

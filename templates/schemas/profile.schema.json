@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/profile.schema.json",
+  "version": 1,
   "title": "用户画像 profile",
   "type": "object",
   "required": ["admission_year", "year_of_study", "programs", "credits_earned"],

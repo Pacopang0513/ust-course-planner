@@ -1,13 +1,32 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "未修课程 unmet_courses（Step 1 产物）",
+  "$id": "https://ustplan.local/schemas/unmet_courses.schema.json",
+  "version": 1,
+  "title": "未修课程 unmet_courses（Step 1 产物，bucket 化）",
   "type": "object",
   "required": ["courses"],
   "properties": {
     "generated_at": { "type": "string" },
     "program": { "type": "string" },
     "intake_year": { "type": "string" },
+    "track": { "type": "string", "description": "所选 track/option 块名（无分支为空）" },
     "graduation_target_credits": { "type": "number", "minimum": 0 },
+    "buckets": {
+      "type": "array",
+      "description": "栏位元数据（bucket_id → 标签/类别/配额）",
+      "items": {
+        "type": "object",
+        "required": ["bucket_id"],
+        "properties": {
+          "bucket_id": { "type": "string", "examples": ["major-required-0", "cc-47"] },
+          "label": { "type": "string", "description": "如 'Common Core (A)' / 课程 code / pool subject" },
+          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"] },
+          "quota": { "type": "integer", "minimum": 1, "description": "该栏位需选的课程数（默认 1）" },
+          "note": { "type": "string", "description": "requirement Note 原文" },
+          "note_semantics": { "type": "string", "description": "note_eval 解析出的 Note 表达式形状（复杂 Note 如 FYP 组才有；AI 复核用，禁止手写求值器）" }
+        }
+      }
+    },
     "courses": {
       "type": "array",
       "items": {
@@ -21,6 +40,9 @@
             "type": "string",
             "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
           },
+          "bucket_id": { "type": "string", "description": "所属栏位（必修一门一桶 / 选修一 pool 一桶 / CC 一区域一桶）" },
+          "bucket_quota": { "type": "integer", "minimum": 1 },
+          "prereq_reference": { "type": "boolean", "default": false, "description": "pre-req 引用补录（仅参考，不评分不排课）" },
           "source_groups": {
             "type": "array",
             "items": {

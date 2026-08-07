@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/filter_report.schema.json",
+  "version": 1,
   "title": "过滤报告 filter_report（Step 3 产物）",
   "type": "object",
   "required": ["session", "input_count", "kept_count", "removed_count", "kept", "removed"],
@@ -10,6 +12,7 @@
     "kept_count": { "type": "integer", "minimum": 0 },
     "removed_count": { "type": "integer", "minimum": 0 },
     "note": { "type": "string" },
+    "overrides": { "type": "array", "items": { "type": "string" } },
     "kept": {
       "type": "array",
       "items": {
@@ -18,11 +21,36 @@
         "properties": {
           "code": { "type": "string" },
           "name": { "type": "string" },
-          "rule_score": { "type": ["number", "null"] },
+          "credits": { "type": ["number", "null"] },
           "category": { "type": ["string", "null"] },
+          "bucket_id": { "type": ["string", "null"], "description": "所属栏位" },
+          "bucket_quota": { "type": ["integer", "null"], "minimum": 1 },
+          "prereq_reference": { "type": "boolean", "default": false },
           "schedule_found": { "type": "boolean" },
           "sections": { "type": "integer", "minimum": 0 },
-          "filter_reasons": { "type": "array", "items": { "type": "string" } }
+          "filter_reasons": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "not_offered_this_year / prereq_not_met:xxx / prereq_unknown:xxx / excluded_by_passed:xxx / restricted:xxx / user_overridden"
+          },
+          "prereq": {
+            "type": "object",
+            "description": "pre-req 状态（供 Step 6 waiver_required 与报告）",
+            "properties": {
+              "text": { "type": "string" },
+              "met": { "type": ["boolean", "null"], "description": "null = 无法解析，需 AI 复核" },
+              "missing": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "exclusion": {
+            "type": "object",
+            "description": "EXCLUSION 互斥信息（planner 排课时强制检查）",
+            "properties": {
+              "text": { "type": "string" },
+              "codes": { "type": "array", "items": { "type": "string" } },
+              "conflicts_with_passed": { "type": "array", "items": { "type": "string" } }
+            }
+          }
         }
       }
     },
@@ -34,11 +62,23 @@
         "properties": {
           "code": { "type": "string" },
           "name": { "type": "string" },
-          "rule_score": { "type": ["number", "null"] },
+          "credits": { "type": ["number", "null"] },
           "category": { "type": ["string", "null"] },
+          "bucket_id": { "type": ["string", "null"] },
+          "bucket_quota": { "type": ["integer", "null"], "minimum": 1 },
+          "prereq_reference": { "type": "boolean", "default": false },
           "schedule_found": { "type": "boolean" },
           "sections": { "type": "integer", "minimum": 0 },
-          "filter_reasons": { "type": "array", "items": { "type": "string" } }
+          "filter_reasons": { "type": "array", "items": { "type": "string" } },
+          "exclusion": {
+            "type": "object",
+            "description": "EXCLUSION 互斥信息",
+            "properties": {
+              "text": { "type": "string" },
+              "codes": { "type": "array", "items": { "type": "string" } },
+              "conflicts_with_passed": { "type": "array", "items": { "type": "string" } }
+            }
+          }
         }
       }
     }

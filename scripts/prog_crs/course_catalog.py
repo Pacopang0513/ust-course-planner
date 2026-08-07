@@ -8,8 +8,8 @@ ugcourse 课程目录解析器 — course_catalog.py（async 并发）
 co-list/equivalent/previous-codes/delivery) / 描述。供 phase3 做可修性检查。
 
 用法:
-  python3 scripts/prog_crs/course_catalog.py --all --year 2026-27
-  python3 scripts/prog_crs/course_catalog.py --subject COMP --year 2026-27
+  python3 scripts/prog_crs/course_catalog.py --all --year <YEAR>
+  python3 scripts/prog_crs/course_catalog.py --subject COMP --year <YEAR>
   python3 scripts/prog_crs/course_catalog.py --list-subjects
 """
 
@@ -183,13 +183,15 @@ async def run(args) -> int:
 
 def main():
     ap = argparse.ArgumentParser(description="ugcourse 课程目录解析器（async）")
-    ap.add_argument("--year", default="2026-27")
+    ap.add_argument("--year", default="")
     ap.add_argument("--all", action="store_true", help="抓取全部 subject")
     ap.add_argument("--subject", help="抓取单个 subject")
     ap.add_argument("--list-subjects", action="store_true")
     ap.add_argument("--force", action="store_true", help="强制重抓已存在文件")
     ap.add_argument("--concurrency", type=int, default=8, help="并发数（默认 8）")
     args = ap.parse_args()
+    if not args.year:
+        sys.exit("错误: 缺少 --year（入学年份，如运行中由 ustplan status 查询）")
     asyncio.run(run(args))
 
 

@@ -75,18 +75,31 @@ def main():
     print("[demo] phase3-course-analysis (写候选课程评分)")
     checkpoint("begin", "phase3-course-analysis")
     write_json("data/course_scores.json", {
+        "buckets": [
+            {"bucket_id": "major-required-1", "label": "COMP 2011",
+             "category": "major_required", "quota": 1, "note": "",
+             "top_codes": ["COMP 2011"]},
+            {"bucket_id": "major-required-2", "label": "MATH 2011",
+             "category": "major_required", "quota": 1, "note": "",
+             "top_codes": ["MATH 2011"]},
+        ],
         "courses": [
             {"code": "COMP 2011", "name": "Data Structures", "credits": 3.0,
-             "timeslots": ["Mon 10:30-11:50"], "instructor": "Prof. Mock",
-             "prerequisites": ["COMP 1021"], "exclusions": [],
+             "category": "major_required", "bucket_id": "major-required-1",
+             "bucket_quota": 1, "bucket_rank": 1,
+             "prerequisites": "COMP 1021", "prereq_met": True,
+             "prereq_missing": [], "filter_reasons": [],
              "score": 82.0, "score_reason": "grading A-range 20%, good reviews",
              "review_count": 12, "review_confidence": "medium", "open_this_year": True},
             {"code": "MATH 2011", "name": "Multivariable Calculus", "credits": 3.0,
-             "timeslots": ["Wed 13:30-14:50"], "instructor": "Prof. Mock",
-             "prerequisites": ["MATH 1013"], "exclusions": [],
+             "category": "major_required", "bucket_id": "major-required-2",
+             "bucket_quota": 1, "bucket_rank": 1,
+             "prerequisites": "MATH 1013", "prereq_met": True,
+             "prereq_missing": [], "filter_reasons": [],
              "score": 70.0, "score_reason": "grading strict",
              "review_count": 8, "review_confidence": "low", "open_this_year": True},
         ],
+        "ranked_out": [],
         "generated_at": now(),
     })
     checkpoint("done", "phase3-course-analysis")

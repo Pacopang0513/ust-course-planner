@@ -1,0 +1,35 @@
+{
+  "$schema": "../templates/schemas/config.schema.json",
+  "session": "latest",
+  "admission_year": null,
+  "defaults": {
+    "target_credits": 15,
+    "plans": 3,
+    "top_per_bucket": 3,
+    "credits_min": 12,
+    "credits_max": 18,
+    "candidate_pool": 50
+  },
+  "scoring": {
+    "baseline": 2.5,
+    "weights": { "a": 30.0, "b": 20.0, "c": 25.0, "d": 25.0 },
+    "professor": { "teaching": 0.3, "grading": 0.3, "content": 0.2, "workload": 0.2 },
+    "heat_tiers": [
+      { "min_reviews": 80, "points": 25.0 },
+      { "min_reviews": 60, "points": 20.0 },
+      { "min_reviews": 40, "points": 15.0 },
+      { "min_reviews": 20, "points": 10.0 },
+      { "min_reviews": 5, "points": 5.0 }
+    ],
+    "min_reviews_for_score": 5,
+    "weight_penalty_per_missing": 0.2,
+    "level_bonus": { "1": 5, "2": 3, "3": 1 }
+  },
+  "jobs": {
+    "wcq_full": { "timeout_minutes": 25 },
+    "buckets_pre": { "timeout_minutes": 5 },
+    "sis_fetch": { "timeout_minutes": 10 },
+    "ustspace_pre": { "timeout_minutes": 15 }
+  },
+  "semesters": { "Fall": 0, "Winter": 5, "Spring": 20, "Summer": 30 }
+}

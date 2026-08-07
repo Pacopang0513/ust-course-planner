@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/manifest.schema.json",
+  "version": 1,
+  "title": "运行清单 data/manifest.json（run 状态追踪）",
+  "type": "object",
+  "required": ["run_id"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "run_id": { "type": "string", "description": "本轮运行标识（时间戳）" },
+    "started_at": { "type": "string", "format": "date-time" },
+    "session": { "type": "string", "description": "目标学期 session（phase1 确认后固定）" },
+    "admission_year": { "type": ["string", "null"], "description": "入学年份（phase2 确认后固定）" },
+    "updated_at": { "type": "string" },
+    "artifacts": {
+      "type": "object",
+      "description": "产物追踪：相对路径 → {sha256, schema, schema_version, produced_by, produced_at}",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["sha256"],
+        "properties": {
+          "sha256": { "type": "string" },
+          "schema": { "type": "string" },
+          "schema_version": { "type": "integer" },
+          "produced_by": { "type": "string" },
+          "produced_at": { "type": "string" }
+        }
+      }
+    },
+    "steps": {
+      "type": "object",
+      "description": "step 完成状态：stepN → {status, done_at, summary_sha256}",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": { "enum": ["done", "failed"] },
+          "done_at": { "type": "string" },
+          "summary_sha256": { "type": "string" }
+        }
+      }
+    },
+    "phases": {
+      "type": "object",
+      "description": "phase 完成时间（与 checkpoint.json 互补：checkpoint 管顺序，此处管审计）",
+      "additionalProperties": { "type": "object" }
+    }
+  }
+}

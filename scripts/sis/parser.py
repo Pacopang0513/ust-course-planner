@@ -488,7 +488,7 @@ ZR_GRID_FIELDS = ["ZR_CRSE_CODE", "COURSE_TITLE_LONG", "UNT_TAKEN", "SECTION_NAM
 def fetch_pre_enroll(cookies: dict, session_code: str) -> str:
     url = (f"{PSC_BASE}/SA_LEARNER_SERVICES.ZR_SSENRL_SUM_CMP.GBL"
            f"?Page=ZR_SSENRL_SUM_PG&Action=A&ACAD_CAREER=UGRD"
-           f"&EMPLID={emplid}&ENRL_REQUEST_ID=&INSTITUTION=HKUST&STRM={session_code}")
+           f"&ENRL_REQUEST_ID=&INSTITUTION=HKUST&STRM={session_code}")
     resp = _get_with_retry(url, cookies)
     if _is_auth_failure(resp.text):
         raise RuntimeError("SIS 返回未授权页面 — PS_TOKEN 已过期，请重新登录后更新 credentials/cookies.txt")
@@ -696,7 +696,7 @@ def main():
                         help="重新从 SIS 抓取数据（需要 cookie）")
     parser.add_argument("--fetch-grades", action="store_true",
                         help="只抓取 Grades 页（value=1030，Transcript 不全时的补充路径）")
-    parser.add_argument("--session", type=str, default="2610",
+    parser.add_argument("--session", type=str, default="",
                         help="目标学期代码（默认 2610；用于 pre-enroll 页 STRM 参数，SIS term code 与 wcq 一致）")
     parser.add_argument("--cookie-file", type=str,
                         default=str(ROOT / "credentials" / "cookies.txt"),

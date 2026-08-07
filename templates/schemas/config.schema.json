@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/config.schema.json",
+  "version": 1,
+  "title": "ustplan 统一配置 config/ustplan.json",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string", "description": "schema 自引用（允许，非业务字段）" },
+    "session": {
+      "type": ["string", "null"],
+      "description": "目标学期 session（'latest'= 自动取最近；或 '2610' 固定；null = 由用户确认）",
+      "examples": ["latest", "2610"]
+    },
+    "admission_year": {
+      "type": ["string", "null"],
+      "description": "入学年份（如 2026-27）；null = 运行时由画像推断",
+      "examples": ["2026-27"]
+    },
+    "defaults": {
+      "type": "object",
+      "properties": {
+        "target_credits": { "type": "number", "minimum": 0, "description": "用户默认目标学分" },
+        "plans": { "type": "integer", "minimum": 1, "description": "课程表方案数量" },
+        "top_per_bucket": { "type": "integer", "minimum": 1, "description": "每栏位取 Top N 进入总表" },
+        "credits_min": { "type": "number", "description": "Regular Term 学分下限" },
+        "credits_max": { "type": "number", "description": "学分上限（overload 需 Dean 批准）" },
+        "candidate_pool": { "type": "integer", "minimum": 1, "description": "选课池取排名前 N" }
+      },
+      "additionalProperties": false
+    },
+    "scoring": {
+      "type": "object",
+      "description": "评分公式 A+B+C+D 全部参数（产品参数，可调）",
+      "properties": {
+        "baseline": { "type": "number", "description": "评分基准线（2.5）" },
+        "weights": {
+          "type": "object",
+          "description": "A/B/C/D 组件权重",
+          "properties": {
+            "a": { "type": "number" }, "b": { "type": "number" },
+            "c": { "type": "number" }, "d": { "type": "number" }
+          },
+          "additionalProperties": false,
+          "required": ["a", "b", "c", "d"]
+        },
+        "professor": {
+          "type": "object",
+          "description": "教授评分综合各维度权重",
+          "additionalProperties": { "type": "number" }
+        },
+        "heat_tiers": {
+          "type": "array",
+          "description": "评论热度档位（降序 min_reviews → points）",
+          "items": {
+            "type": "object",
+            "properties": {
+              "min_reviews": { "type": "integer", "minimum": 0 },
+              "points": { "type": "number" }
+            },
+            "required": ["min_reviews", "points"],
+            "additionalProperties": false
+          }
+        },
+        "min_reviews_for_score": { "type": "integer", "minimum": 1, "description": "评论数低于此值总分直接为 0" },
+        "weight_penalty_per_missing": { "type": "number", "minimum": 0, "maximum": 1, "description": "评论数不足时每缺 1 条降权比例" },
+        "level_bonus": {
+          "type": "object",
+          "description": "低阶必修加分百分比（课号千位 → %）",
+          "additionalProperties": { "type": "number" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "jobs": {
+      "type": "object",
+      "description": "后台任务超时（分钟）",
+      "additionalProperties": {
+        "type": "object",
+        "properties": { "timeout_minutes": { "type": "number", "minimum": 0 } },
+        "required": ["timeout_minutes"],
+        "additionalProperties": false
+      }
+    },
+    "semesters": {
+      "type": "object",
+      "description": "学期 → session 尾号映射（{YY}{YY+1}{尾号}）",
+      "additionalProperties": { "type": "number" }
+    }
+  },
+  "additionalProperties": false
+}

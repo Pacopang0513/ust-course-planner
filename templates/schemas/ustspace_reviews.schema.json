@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/ustspace_reviews.schema.json",
+  "version": 1,
   "title": "USTspace 评论汇总 ustspace_reviews（Step 4 产物）",
   "type": "object",
   "required": ["course_count", "courses"],
@@ -61,6 +63,37 @@
               "properties": {
                 "instructor": { "type": "string" },
                 "top5": { "type": "array", "items": { "type": "object" } }
+              }
+            }
+          },
+          "instructor_stats": {
+            "type": "array",
+            "description": "每导师评论统计（B 组件输入）",
+            "items": {
+              "type": "object",
+              "properties": {
+                "instructor": { "type": "string" },
+                "review_count": { "type": "integer", "minimum": 0 },
+                "ratings": {
+                  "type": "object",
+                  "properties": {
+                    "content": { "type": ["number", "null"] },
+                    "teaching": { "type": ["number", "null"] },
+                    "grading": { "type": ["number", "null"] },
+                    "workload": { "type": ["number", "null"] }
+                  }
+                }
+              }
+            }
+          },
+          "instructor_recent": {
+            "type": "array",
+            "description": "每导师按时间排序的最近评论（D 组件输入）",
+            "items": {
+              "type": "object",
+              "properties": {
+                "instructor": { "type": "string" },
+                "recent5": { "type": "array", "items": { "type": "object" } }
               }
             }
           }

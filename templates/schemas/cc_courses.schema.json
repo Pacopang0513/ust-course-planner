@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/cc_courses.schema.json",
+  "version": 1,
   "title": "WCQ Common Core 课程池 cc_courses_{session}",
   "type": "object",
   "required": ["session", "cc_group", "areas"],

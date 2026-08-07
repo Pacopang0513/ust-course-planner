@@ -36,11 +36,13 @@ def run(script: str, extra: list, step: str):
 
 def main():
     ap = argparse.ArgumentParser(description="prog-crs 预构建")
-    ap.add_argument("--year", default="2026-27", help="入学年份（curriculum 按年版本化）")
+    ap.add_argument("--year", default="", help="入学年份（curriculum 按年版本化）")
     ap.add_argument("--force", action="store_true", help="强制重抓 PDF")
     ap.add_argument("--no-catalog", action="store_true", help="跳过 ugcourse 课程目录")
     ap.add_argument("--only", choices=["all", "catalog", "curriculum"], default="all")
     args = ap.parse_args()
+    if not args.year:
+        sys.exit("错误: 缺少 --year（入学年份，如运行中由 ustplan status 查询）")
     year = args.year
 
     if args.only in ("all", "curriculum"):

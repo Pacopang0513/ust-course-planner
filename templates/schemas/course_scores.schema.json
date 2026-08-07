@@ -1,36 +1,114 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "候选课程评分 course_scores",
+  "$id": "https://ustplan.local/schemas/course_scores.schema.json",
+  "version": 1,
+  "title": "Bucket 评分总表 course_scores（Step 5 产物）",
   "type": "object",
-  "required": ["courses"],
+  "required": ["courses", "buckets"],
   "properties": {
-    "courses": {
+    "generated_at": { "type": "string" },
+    "session": { "type": "string", "examples": ["2610"] },
+    "bucket_count": { "type": "integer", "minimum": 0 },
+    "buckets": {
       "type": "array",
+      "description": "栏位汇总（每栏位仅保留 TOP3 课程）",
       "items": {
         "type": "object",
-        "required": ["code", "score"],
+        "required": ["bucket_id", "top_codes"],
+        "properties": {
+          "bucket_id": { "type": "string" },
+          "label": { "type": "string" },
+          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"] },
+          "quota": { "type": "integer", "minimum": 1 },
+          "note": { "type": "string" },
+          "top_codes": { "type": "array", "items": { "type": "string" }, "description": "该栏位 TOP3 课程码（按分数降序）" }
+        }
+      }
+    },
+    "courses": {
+      "type": "array",
+      "description": "每栏位 TOP3（总表）",
+      "items": {
+        "type": "object",
+        "required": ["code", "score", "bucket_id", "bucket_rank"],
         "properties": {
           "code": { "type": "string", "examples": ["COMP 2011"] },
           "name": { "type": "string" },
           "credits": { "type": ["number", "null"], "minimum": 0 },
-          "timeslots": { "type": "array", "items": { "type": "string" } },
-          "instructor": { "type": "string" },
-          "prerequisites": { "type": "array", "items": { "type": "string" } },
-          "exclusions": { "type": "array", "items": { "type": "string" } },
-          "score": { "type": "number", "minimum": 0, "maximum": 100 },
-          "score_reason": { "type": "string" },
-          "review_count": { "type": "integer", "minimum": 0 },
-          "review_confidence": { "type": "string", "enum": ["high", "medium", "low"] },
-          "open_this_year": { "type": "boolean" },
-          "attractiveness": { "type": "number", "minimum": 0, "maximum": 100, "description": "吸引力（规则分+口碑）" },
-          "confidence_score": { "type": "number", "minimum": 0, "maximum": 100, "description": "置信度（评论数）" },
           "category": {
             "type": "string",
             "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
-          }
+          },
+          "bucket_id": { "type": "string" },
+          "bucket_quota": { "type": "integer", "minimum": 1 },
+          "bucket_rank": { "type": "integer", "minimum": 1, "description": "栏位内名次（1-3）" },
+          "score": { "type": "number", "description": "A+B+C+D+低阶加分，可为负（差评倒扣）" },
+          "score_reason": { "type": "string", "description": "各组件得分与依据（可追溯）" },
+          "score_components": {
+            "type": "object",
+            "description": "A/B/C/D 组件明细",
+            "properties": {
+              "a": { "type": ["number", "null"] },
+              "b": { "type": ["number", "null"] },
+              "c": { "type": ["number", "null"] },
+              "d": { "type": ["number", "null"] },
+              "a_weight": { "type": ["number", "null"] },
+              "b_weight": { "type": ["number", "null"], "description": "教授评论不足 5 条时按缺条数降 20% 原始权重" },
+              "c_weight": { "type": ["number", "null"] },
+              "d_weight": { "type": ["number", "null"], "description": "AI 未精读时为 0" },
+              "course_avg": { "type": ["number", "null"], "description": "课程四维均分（A 组件输入）" },
+              "professor_rating": { "type": ["number", "null"], "description": "本学期教授评分综合（B 组件输入）" },
+              "professor_review_count": { "type": ["integer", "null"] }
+            }
+          },
+          "review_count": { "type": "integer", "minimum": 0 },
+          "review_confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "open_this_year": { "type": "boolean" },
+          "prerequisites": { "type": "string", "description": "pre-req 原文（空=无）" },
+          "prereq_met": { "type": ["boolean", "null"] },
+          "prereq_missing": { "type": "array", "items": { "type": "string" } },
+          "prereq_reference": { "type": "boolean", "default": false },
+          "filter_reasons": { "type": "array", "items": { "type": "string" } }
         }
       }
     },
-    "generated_at": { "type": "string" }
+    "ranked_out": {
+      "type": "array",
+      "description": "栏位 TOP3 之外的完整评分备选池（供 must-take/多样性/补学分）",
+      "items": {
+        "type": "object",
+        "required": ["code", "score", "bucket_id"],
+        "properties": {
+          "code": { "type": "string" },
+          "name": { "type": "string" },
+          "credits": { "type": ["number", "null"], "minimum": 0 },
+          "category": {
+            "type": "string",
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
+          },
+          "bucket_id": { "type": "string" },
+          "bucket_quota": { "type": "integer", "minimum": 1 },
+          "bucket_rank": { "type": ["integer", "null"] },
+          "score": { "type": "number" },
+          "score_reason": { "type": "string" },
+          "score_components": { "type": "object" },
+          "review_count": { "type": "integer", "minimum": 0 },
+          "review_confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "open_this_year": { "type": "boolean" },
+          "prerequisites": { "type": "string" },
+          "prereq_met": { "type": ["boolean", "null"] },
+          "prereq_missing": { "type": "array", "items": { "type": "string" } },
+          "prereq_reference": { "type": "boolean", "default": false },
+          "filter_reasons": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "source_files": {
+      "type": "object",
+      "properties": {
+        "filter": { "type": "string" },
+        "reviews": { "type": "string" }
+      }
+    }
   }
 }

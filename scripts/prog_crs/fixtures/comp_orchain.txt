@@ -1,0 +1,25 @@
+
+ BEng in Computer Science - Curriculum (2026-27 intake) - Course List
+
+ Required Course(s)
+                                                                                                        Credit(s)
+                                                                                                        attained
+ COMP                            Note: (COMP 2011 AND COMP 2012) OR COMP 2012H                              5-8
+     COMP        2011            Programming with C++                                                   4
+     COMP        2611            Computer Organization                                                      4
+     COMP        2711H           Honors Discrete Mathematical Tools for Computer Science                4
+
+ ELEC/IEDA/
+ MATH                            Note: ELEC 2600 OR ELEC 2600H OR IEDA 2520 OR IEDA                         3-4
+                                 2540 OR MATH 2411 OR MATH 2421 OR MATH 2431
+     ELEC        2600            Probability and Random Processes in Engineering                        4
+     IEDA        2520            Probability for Engineers                                              3
+     MATH        2411            Applied Statistics                                                     4
+     MATH        2421            Probability                                                            4
+     MATH        2431            Honors Probability                                                     4
+
+ MATH                            2540 OR MATH 2411 OR MATH 2421 OR MATH 2431 (3)
+
+2026-27 COMP (4Y) (2026-27 intake)                                                                                 Page 1
+
+                                                                     School of Engineering - BEng in Computer Science

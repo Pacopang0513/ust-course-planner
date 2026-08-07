@@ -1,9 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "课程表方案 timetable_plan",
+  "$id": "https://ustplan.local/schemas/timetable_plan.schema.json",
+  "version": 1,
+  "title": "课程表方案 timetable_plan（Step 6 产物）",
   "type": "object",
   "required": ["plans"],
   "properties": {
+    "session": { "type": "string", "examples": ["2610"] },
+    "target_credits": { "type": "number", "description": "用户目标学分（12-18 之外提示 overload/下限）" },
+    "generated_at": { "type": "string" },
     "plans": {
       "type": "array",
       "items": {
@@ -11,20 +16,87 @@
         "required": ["plan_id", "courses", "total_credits"],
         "properties": {
           "plan_id": { "type": "string", "examples": ["plan-1"] },
+          "label": { "type": "string" },
+          "target_credits": { "type": "number", "description": "本方案的学分目标" },
           "courses": {
             "type": "array",
             "items": { "type": "string", "examples": ["COMP 2011"] }
           },
-          "total_credits": { "type": "number", "minimum": 12, "maximum": 18 },
+          "total_credits": {
+            "type": "number",
+            "description": "软约束：常规 12-18，超出（overload/下限）仅提示不拒绝"
+          },
           "workload": { "type": "string", "enum": ["light", "medium", "heavy"] },
           "cc_credits": { "type": "number", "minimum": 0 },
           "major_credits": { "type": "number", "minimum": 0 },
           "elective_credits": { "type": "number", "minimum": 0 },
           "no_conflict": { "type": "boolean", "default": true },
-          "must_take_inserted": { "type": "array", "items": { "type": "string" } }
+          "must_take_inserted": { "type": "array", "items": { "type": "string" } },
+          "waiver_required": {
+            "type": "array",
+            "description": "pre-req 未满足/待确认课程（需教授豁免）",
+            "items": {
+              "type": "object",
+              "required": ["code"],
+              "properties": {
+                "code": { "type": "string" },
+                "prerequisites": { "type": "string" },
+                "missing": { "type": "array", "items": { "type": "string" } },
+                "note": { "type": "string" }
+              }
+            }
+          },
+          "course_details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["code", "section"],
+              "properties": {
+                "code": { "type": "string" },
+                "name": { "type": "string" },
+                "category": { "type": "string" },
+                "credits": { "type": ["number", "null"] },
+                "bucket_id": { "type": "string" },
+                "section": { "type": "string", "examples": ["L1", "L1 + T1B"] },
+                "datetime": { "type": "string" },
+                "room": { "type": "string" },
+                "instructors": { "type": "array", "items": { "type": "string" } },
+                "sections": {
+                  "type": "array",
+                  "description": "所选全部 section（tutorial 课程含 L + T 各一节）",
+                  "items": {
+                    "type": "object",
+                    "required": ["section"],
+                    "properties": {
+                      "section": { "type": "string", "examples": ["L1"] },
+                      "datetime": { "type": "string" },
+                      "room": { "type": "string" },
+                      "instructors": { "type": "array", "items": { "type": "string" } }
+                    }
+                  }
+                },
+                "prerequisites": { "type": "string" },
+                "prereq_met": { "type": ["boolean", "null"] },
+                "prereq_missing": { "type": "array", "items": { "type": "string" } },
+                "exclusions": {
+                  "type": "array",
+                  "description": "该课程 EXCLUSION 互斥课程（规范化课号；排课时已强制检查，此处供复核）",
+                  "items": { "type": "string" }
+                },
+                "zero_credit": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "0 学分课程（如 COMP 1991 实习）：无时间 section 时仅标注占位，不占排课时间"
+                }
+              }
+            }
+          },
+          "notes": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
         }
       }
-    },
-    "generated_at": { "type": "string" }
+    }
   }
 }

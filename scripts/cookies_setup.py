@@ -203,6 +203,12 @@ def interactive(path: Path):
 
 
 def main():
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        sys.stdin.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
     ap = argparse.ArgumentParser(description="cookie 获取与预检（AI 不接触明文）")
     ap.add_argument("--check", action="store_true", help="预检当前凭据有效性")
     ap.add_argument("--print-bookmarklet", action="store_true",

@@ -17,7 +17,7 @@ Step 4 产物 data/review_summary.json 的自动基架生成：从 USTspace 抓�
   workload: 评分 workload ≥4.0 light / ≥3.0 medium / 否则 heavy（评分越高=越轻松）
 
 用法:
-  python3 scripts/rank/review_summary_build.py --session 2610
+  python3 scripts/rank/review_summary_build.py --session <SESSION>
   # 之后由 AI 精读覆盖 grading/workload/strengths/weaknesses/recommendation 等字段
 """
 
@@ -90,20 +90,44 @@ def scaffold_entry(c: dict, schedule: dict) -> dict:
 
 def main():
     ap = argparse.ArgumentParser(description="USTspace 评论 → review_summary 基架")
-    ap.add_argument("--session", default="2610")
+    ap.add_argument("--session", default="")
     ap.add_argument("--reviews", default=str(ROOT / "data" / "ustspace_reviews.json"))
     ap.add_argument("--output", default=str(ROOT / "data" / "review_summary.json"))
     args = ap.parse_args()
+    if not args.session:
+        sys.exit("错误: 缺少 --session（学期代码；运行中的学期可由 ustplan status 查询）")
 
     reviews = load(Path(args.reviews))
     schedule = load(ROOT / "data" / f"courses_{args.session}.json")
 
+    # 幂等：已有文件保留 AI 精读过的条目（按 code 合并，精读优先），
+    # 仅对新增课程生成基架；reviews 未收录的手动补充条目（如 0 评论必修）也保留。
+    existing = {}
+    out_dest = Path(args.output)
+    if out_dest.exists():
+        old = json.loads(out_dest.read_text(encoding="utf-8"))
+        existing = {c.get("code"): c for c in old.get("courses", []) if c.get("code")}
+
+    seen = set()
     out = []
     for c in reviews.get("courses", []):
+        code = f"{c.get('subject', '')} {c.get('number', '')}".strip()
+        if code in seen:
+            continue  # 去重（reviews 内重复收录 + existing 合并叠加）
+        seen.add(code)
         rc = c.get("review_count") or 0
         if rc == 0:
+            # 0 评论课程：已有精读条目保留，无条目则跳过（不进基架）
+            if code in existing:
+                out.append(existing[code])
             continue
-        out.append(scaffold_entry(c, schedule))
+        if code in existing:
+            out.append(existing[code])
+        else:
+            out.append(scaffold_entry(c, schedule))
+    for code, entry in existing.items():
+        if code not in seen:
+            out.append(entry)
     out.sort(key=lambda x: -x["review_count"])
 
     doc = {
@@ -115,7 +139,9 @@ def main():
     dest = Path(args.output)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"review_summary 基架: {len(out)} 门 -> {dest}")
+    kept = sum(1 for e in out if e.get("d_rating") is not None or
+               (e.get("summary") or {}).get("strengths"))
+    print(f"review_summary 基架: {len(out)} 门 -> {dest}（保留已精读 {kept} 门）")
     print("提示: AI 需精读 heat_top5 + 今年导师评论，覆盖 grading/workload/"
           "strengths/weaknesses/recommendation 等字段")
 

@@ -12,7 +12,7 @@ prog-crs 全量爬虫 — crawler.py（async 并发）
   4. pdftotext -layout → {code}.txt（并发）
 
 用法:
-  python3 scripts/prog_crs/crawler.py [--year 2026-27] [--concurrency 8]
+  python3 scripts/prog_crs/crawler.py [--year <YEAR>] [--concurrency 8]
   python3 scripts/prog_crs/crawler.py --force          # 强制重抓
   python3 scripts/prog_crs/crawler.py --list-only      # 只更新 manifest，不下载
 """
@@ -181,11 +181,13 @@ async def run(args) -> int:
 
 def main():
     ap = argparse.ArgumentParser(description="prog-crs 全量爬虫（async）")
-    ap.add_argument("--year", default="2026-27")
+    ap.add_argument("--year", default="", help="入学年份（如 2026-27）；缺省报错")
     ap.add_argument("--force", action="store_true", help="强制重抓已存在的 PDF")
     ap.add_argument("--list-only", action="store_true", help="只更新 manifest，不下载")
     ap.add_argument("--concurrency", type=int, default=8, help="并发数（默认 8）")
     args = ap.parse_args()
+    if not args.year:
+        sys.exit("错误: 缺少 --year（入学年份，如运行中由 ustplan status 查询）")
     asyncio.run(run(args))
 
 

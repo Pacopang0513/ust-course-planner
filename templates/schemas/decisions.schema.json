@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/decisions.schema.json",
+  "version": 1,
+  "title": "用户决策日志 data/decisions.json（P1-P5 审计）",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "P1": {
+      "type": "object",
+      "description": "P1 凭证 + major/minor/extended_major + track + 目标学期。major/minor/extended_major 三状态：缺失=空置（不通过校验）；'NA'=没有；否则=课程代码",
+      "properties": {
+        "major": { "type": "string", "description": "第一主修课程代码，如 PHYS；必填" },
+        "minor": { "type": "string", "description": "副修代码；无副修填 'NA'（必填）" },
+        "extended_major": { "type": "string", "description": "扩展主修代码；无则填 'NA'（必填）" },
+        "track": { "type": ["string", "null"] },
+        "session": { "type": "string" },
+        "semester": { "type": "string" }
+      }
+    },
+    "P2": {
+      "type": "object",
+      "description": "P2 画像确认",
+      "properties": {
+        "confirmed": { "type": "boolean" },
+        "admission_year": { "type": "string" },
+        "corrections": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "P3": {
+      "type": "object",
+      "description": "P3 未修清单确认 + 目标学分（过滤结果随本确认点展示，P4 并入）",
+      "properties": {
+        "confirmed": { "type": "boolean" },
+        "target_credits": { "type": "number" },
+        "overrides": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "P4": {
+      "type": "object",
+      "description": "P4 保留兼容（旧运行）；新流程并入 P3，不再强制",
+      "properties": {
+        "confirmed": { "type": "boolean" },
+        "overrides": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "P5": {
+      "type": "object",
+      "description": "P5 方案选择（弱化为展示；用户要求修改时记录，非强制）",
+      "properties": {
+        "chosen_plan": { "type": "string" },
+        "must_take": { "type": "array", "items": { "type": "string" } },
+        "exclude": { "type": "array", "items": { "type": "string" } },
+        "credits_overrides": {
+          "type": "object",
+          "description": "学分覆盖 {课程代码: 学分}（如全年 6 学分课按学期 3 学分：{\"PHYS 4291\": 3}）",
+          "additionalProperties": { "type": "number" }
+        }
+      }
+    },
+    "phase4.5": {
+      "type": "object",
+      "description": "phase4.5 必选课（可选扩展）",
+      "properties": {
+        "must_take": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "updated_at": { "type": "string" }
+  },
+  "additionalProperties": true
+}

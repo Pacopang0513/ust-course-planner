@@ -17,8 +17,8 @@ datetime 解析设计（关键）：
   - TBA/TBD 无时间 → 无法判定，标记提醒
 
 用法:
-  python3 scripts/wcq/conflict.py --session 2610 --courses "ACCT 2010:L02" "COMP 2011:L1" "MATH 2352"
-  python3 scripts/wcq/conflict.py --session 2610 --courses "COMP 2011" "MATH 2352" --data-dir ../data
+  python3 scripts/wcq/conflict.py --session <SESSION> --courses "ACCT 2010:L02" "COMP 2011:L1" "MATH 2352"
+  python3 scripts/wcq/conflict.py --session <SESSION> --courses "COMP 2011" "MATH 2352" --data-dir ../data
   python3 scripts/wcq/conflict.py --selftest          # 解析器自测
 """
 
@@ -26,13 +26,14 @@ import argparse
 import json
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 
 DAY_INDEX = {"Mo": 0, "Tu": 1, "We": 2, "Th": 3, "Fr": 4, "Sa": 5, "Su": 6}
 DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 DATE_WINDOW = re.compile(
-    r"\d{2}-[A-Z]{3}-\d{4}\s*-\s*\d{2}-[A-Z]{3}-\d{4}\s*"
+    r"(\d{2}-[A-Z]{3}-\d{4})\s*-\s*(\d{2}-[A-Z]{3}-\d{4})\s*"
 )
 SLOT = re.compile(
     r"((?:Mo|Tu|We|Th|Fr|Sa|Su)+)\s+(\d{1,2}):(\d{2})(AM|PM)"
@@ -49,8 +50,20 @@ def _to_min(h: int, m: int, ap: str) -> int:
     return h * 60 + m
 
 
+def _parse_window(match) -> tuple:
+    """日期窗口 '02-OCT-2026 - 31-OCT-2026' → (w_start_iso, w_end_iso)；无法解析返回 (None, None)"""
+    try:
+        w_start = datetime.strptime(match.group(1), "%d-%b-%Y").date().isoformat()
+        w_end = datetime.strptime(match.group(2), "%d-%b-%Y").date().isoformat()
+        return (w_start, w_end)
+    except ValueError:
+        return (None, None)
+
+
 def parse_slots(dt: str) -> list:
-    """datetime 字符串 → [(day_int, start_min, end_min), ...]；无有效时间返回 []"""
+    """datetime 字符串 → [(day_int, start_min, end_min, w_start, w_end), ...]；
+    无有效时间返回 []；无日期窗口时 w_start/w_end 为 None（视为全学期）。
+    日期窗口（如 02-OCT-2026 - 31-OCT-2026）参与冲突判定：窗口不相交不冲突。"""
     if not dt:
         return []
     # 逐段剔除 TBA/TBD 等无时间片段（如 "Mo 09:00AM - 10:20AM, TBA"），保留有效段
@@ -59,6 +72,10 @@ def parse_slots(dt: str) -> list:
     ).strip()
     if not text:
         return []
+    window = (None, None)
+    mw = DATE_WINDOW.search(text)
+    if mw:
+        window = _parse_window(mw)
     text = DATE_WINDOW.sub("", text)
     slots = []
     for m in SLOT.finditer(text):
@@ -71,16 +88,22 @@ def parse_slots(dt: str) -> list:
         while i < len(days):
             day = days[i:i + 2]
             if day in DAY_INDEX:
-                slots.append((DAY_INDEX[day], start, end))
+                slots.append((DAY_INDEX[day], start, end, window[0], window[1]))
             i += 2
     return slots
 
 
 def _overlap(a, b) -> bool:
-    """两个槽 (day, s, e) 是否冲突"""
+    """两个槽 (day, s, e, w_s, w_e) 是否冲突：时段重叠且日期窗口相交。
+    窗口为 None 视为全学期（与任何窗口相交）。"""
     if a[0] != b[0]:
         return False
-    return a[1] < b[2] and b[1] < a[2]
+    if not (a[1] < b[2] and b[1] < a[2]):
+        return False
+    wa_s, wa_e, wb_s, wb_e = a[3], a[4], b[3], b[4]
+    if wa_s is None or wb_s is None:
+        return True
+    return wa_s <= wb_e and wb_s <= wa_e
 
 
 def load_courses(session: str, data_dir) -> dict:
@@ -93,7 +116,7 @@ def load_courses(session: str, data_dir) -> dict:
 def _fmt(slots) -> str:
     return "; ".join(
         f"{DAY_NAMES[d]} {s//60:02d}:{s%60:02d}-{e//60:02d}:{e%60:02d}"
-        for d, s, e in slots
+        for d, s, e, *_ in slots
     )
 
 
@@ -190,23 +213,30 @@ def selftest() -> int:
         if len(slots) != want:
             ok = False
         print(f"  [{status}] {dt!r:50} → {len(slots)} 槽 {_fmt(slots)}")
-    # 冲突逻辑：Mo 4pm-5:20 与 Mo 4:30-5:50 冲突；与 Fr 10am 不冲突
-    c1 = [(0, 16 * 60, 17 * 60 + 20)]
-    c2 = [(0, 16 * 60 + 30, 17 * 60 + 50)]
-    c3 = [(4, 10 * 60, 11 * 60 + 20)]
+    # 冲突逻辑：Mo 4pm-5:20 与 Mo 4:30-5:50 冲突；与 Fr 10am 不冲突；
+    # 同天同时但日期窗口不相交（481X 系列：9 月 vs 10 月）不冲突
+    c1 = [(0, 16 * 60, 17 * 60 + 20, None, None)]
+    c2 = [(0, 16 * 60 + 30, 17 * 60 + 50, None, None)]
+    c3 = [(4, 10 * 60, 11 * 60 + 20, None, None)]
+    c4 = [(0, 16 * 60, 17 * 60 + 20, "2026-09-01", "2026-09-30")]
+    c5 = [(0, 16 * 60, 17 * 60 + 20, "2026-10-01", "2026-10-31")]
     print(f"  [{'OK' if _overlap(c1[0], c2[0]) else 'FAIL'}] 同天重叠 → 冲突")
     print(f"  [{'OK' if not _overlap(c1[0], c3[0]) else 'FAIL'}] 不同天 → 不冲突")
+    print(f"  [{'OK' if not _overlap(c4[0], c5[0]) else 'FAIL'}] 同天同时、窗口不相交 → 不冲突")
+    print(f"  [{'OK' if _overlap(c1[0], c5[0]) else 'FAIL'}] 无窗口(全学期) vs 有窗口 → 冲突")
     return 0 if ok else 1
 
 
 def main():
     ap = argparse.ArgumentParser(description="WCQ 时间冲突检测")
-    ap.add_argument("--session", default="2610", help="学期代码（如 2610 = 2026-27 Fall）")
+    ap.add_argument("--session", default="", help="学期代码（如 2610 = 2026-27 Fall）")
     ap.add_argument("--courses", nargs="+", help="课程列表，格式 'CODE NUMBER[:SECTION]'")
     ap.add_argument("--data-dir", default=str(Path(__file__).resolve().parents[2] / "data"),
                     help="课程数据目录（默认项目内 data/）")
     ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args()
+    if not args.session:
+        sys.exit("错误: 缺少 --session（学期代码；运行中的学期可由 ustplan status 查询）")
 
     if args.selftest:
         sys.exit(selftest())

@@ -18,11 +18,11 @@ WCQ Class Schedule 爬虫 — scripts/wcq/crawler.py（async 并发）
      → data/cc_courses_{session}.json（该组今年开设的全部 CC 课程）
 
 用法:
-  python3 scripts/wcq/crawler.py --session 2610
-  python3 scripts/wcq/crawler.py --session 2610 --subject COMP   # 单 subject
-  python3 scripts/wcq/crawler.py --session 2610 --force          # 强制重抓
-  python3 scripts/wcq/crawler.py --session 2610 --list-only      # 只列 subject
-  python3 scripts/wcq/crawler.py --admission-year 2026-27        # Common Core 课程池
+  python3 scripts/wcq/crawler.py --session <SESSION>
+  python3 scripts/wcq/crawler.py --session <SESSION> --subject COMP   # 单 subject
+  python3 scripts/wcq/crawler.py --session <SESSION> --force          # 强制重抓
+  python3 scripts/wcq/crawler.py --session <SESSION> --list-only      # 只列 subject
+  python3 scripts/wcq/crawler.py --admission-year <YEAR>        # Common Core 课程池
   python3 scripts/wcq/crawler.py --cc-group CC26                 # 显式指定 CC 组
   python3 scripts/wcq/crawler.py --selftest                      # 解析器自测
 """
@@ -67,6 +67,15 @@ def _header_map(block: str) -> dict:
         return {}
     cols = [_strip(c).lower() for c in RE_HEADER_CELL.findall(m.group(1)) if _strip(c)]
     return {c: i for i, c in enumerate(cols)}
+
+
+def latest_session() -> str:
+    """自动检测最近学期：索引页全部 session（cgi-bin/XXXX/）取数字最大。"""
+    html, reason = _get(f"{BASE}/wcq/cgi-bin/")
+    if not html:
+        return ""
+    sess = {int(s) for s in re.findall(r"cgi-bin/(\d{4})/", html)}
+    return str(max(sess)) if sess else ""
 
 
 def _get(url: str) -> tuple:
@@ -482,7 +491,7 @@ def selftest() -> int:
 
 def main():
     ap = argparse.ArgumentParser(description="WCQ Class Schedule 爬虫（async）")
-    ap.add_argument("--session", default="2610", help="学期代码（2610 = 2026-27 Fall）")
+    ap.add_argument("--session", default="latest", help="学期代码（2610 = 2026-27 Fall）")
     ap.add_argument("--subject", help="只抓单个 subject")
     ap.add_argument("--cc-group", choices=["4Y", "CC22", "CC25", "CC26"],
                     help="抓指定入学年份组的 Common Core 课程（不抓 subject）")
@@ -496,6 +505,12 @@ def main():
     if args.selftest:
         selftest()
     else:
+        if args.session == "latest":
+            sess = latest_session()
+            if not sess:
+                sys.exit("错误: --session latest 自动检测失败（WCQ 索引页不可达）")
+            args.session = sess
+            print(f"自动检测到最近学期: {args.session}（--session latest）")
         if args.admission_year:
             g = admission_to_group(args.admission_year)
             if not g:

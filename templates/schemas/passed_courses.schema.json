@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/passed_courses.schema.json",
+  "version": 1,
   "title": "已修课程 passed_courses",
   "type": "object",
   "required": ["courses"],

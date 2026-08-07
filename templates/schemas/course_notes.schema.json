@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/course_notes.schema.json",
+  "version": 1,
+  "title": "课程语义说明 course_notes（database/course_notes/{SUBJ}.json）",
+  "type": "object",
+  "required": ["subject", "notes"],
+  "properties": {
+    "subject": { "type": "string", "examples": ["EMIA"] },
+    "source": { "type": "string", "description": "信息来源（官方课程目录/AR 等）" },
+    "fetched_at": { "type": "string", "examples": ["2026-08-07"] },
+    "rules": {
+      "type": "array",
+      "description": "课程组合决策规则（脚本可消费）",
+      "items": {
+        "type": "object",
+        "required": ["codes", "rule", "logic"],
+        "properties": {
+          "codes": { "type": "array", "items": { "type": "string" } },
+          "rule": { "type": "string", "examples": ["ext_capstone_pairing"] },
+          "description": { "type": "string" },
+          "logic": { "type": "string", "description": "机器可读语义（脚本据此实现，禁止歧义）" }
+        }
+      }
+    },
+    "notes": {
+      "type": "object",
+      "description": "每课语义说明（报告/AI 引用）",
+      "additionalProperties": { "type": "string" }
+    },
+    "tags": {
+      "type": "object",
+      "description": "课程标签：code → tags[]。已知标签：major_capstone（主修顶点课程，触发 EXT 顶点 4990 规则）；year_long（全年课程，schedule units 为全年总学分，每学期注册 = units/2，planner 自动折算）",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

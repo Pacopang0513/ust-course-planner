@@ -10,10 +10,10 @@ scripts/wcq/crawler.py 产出）过滤 Top N 候选：
 移除总结写入 data/filter_report.json（供 AI 复核后确认）。
 
 用法:
-  python3 scripts/rank/filter.py --candidates data/candidate_rank.json --session 2610
+  python3 scripts/rank/filter.py --candidates data/candidate_rank.json --session <SESSION>
   python3 scripts/rank/filter.py --candidates data/candidate_rank.json \
-      --session 2610 --passed data/passed_courses.json --output data/filter_report.json
-  python3 scripts/rank/filter.py --lookup "PHYS 3152" --session 2610   # 本地查课（不联网）
+      --session <SESSION> --passed data/passed_courses.json --output data/filter_report.json
+  python3 scripts/rank/filter.py --lookup "PHYS 3152" --session <SESSION>   # 本地查课（不联网）
 
 本地匹配约定（效率固定，见 step1/step3 skill）：
   - 匹配对象是结构化 JSON（courses_{session}.json / cc_courses_{session}.json），
@@ -294,21 +294,24 @@ def selftest() -> int:
 
 
 def main():
-    ap = argparse.ArgumentParser(description="候选课程过滤（今年开设 + pre-reg）")
-    ap.add_argument("--candidates", default=str(ROOT / "data" / "candidate_rank.json"))
-    ap.add_argument("--session", default="2610", help="学期代码，对应 data/courses_{session}.json")
+    ap = argparse.ArgumentParser(description="候选课程过滤（今年开设 + pre-reg，bucket 版）")
+    ap.add_argument("--candidates", default=str(ROOT / "data" / "unmet_courses.json"),
+                    help="未修清单（bucket 化，step1 产物）")
+    ap.add_argument("--session", default="", help="学期代码，对应 data/courses_{session}.json")
     ap.add_argument("--passed", default=str(ROOT / "data" / "passed_courses.json"))
     ap.add_argument("--course-catalog", default="",
                     help="课程目录目录（pre-req 兜底；默认取 database/course_catalog/ 最新年份）")
     ap.add_argument("--output", default=str(ROOT / "data" / "filter_report.json"))
     ap.add_argument("--fill", type=int, default=0,
-                    help="kept 不足该数量时自动从 candidate_rank.truncated 补位（默认 0=不补）")
+                    help="kept 不足该数量时自动从候选池补位（默认 0=不补）")
     ap.add_argument("--override", action="append", default=[],
                     help="用户豁免课程 code（如 'PHYS 4291'）：即使硬性删除也放回 kept 并标 user_overridden（教授/系豁免 pre-req 场景）")
     ap.add_argument("--lookup", action="append", default=[],
                     help="本地查课：按规范化课号（如 'PHYS 3152'）从 courses_{session}.json 查询课程与 section（不联网、不依赖候选产物），可多次指定")
     ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args()
+    if not args.session:
+        sys.exit("错误: 缺少 --session（学期代码；运行中的学期可由 ustplan status 查询）")
 
     if args.selftest:
         sys.exit(selftest())
@@ -323,13 +326,23 @@ def main():
     catalog_dir = _resolve_catalog(args)
 
     sched = schedule_index(schedule)
+    sched_norm = schedule_index_norm(schedule)
+    cc_path = ROOT / "data" / f"cc_courses_{args.session}.json"
+    if cc_path.exists():
+        for area in load_json(cc_path).get("areas", []):
+            for c in area.get("courses", []):
+                code = f"{c.get('code', '')} {c.get('number', '')}".strip()
+                if code:
+                    sched_norm.setdefault(norm_code(code), c)
     kept, removed = [], []
     overrides = set(args.override or [])
+    bucket_meta = {b["bucket_id"]: b for b in candidates.get("buckets", [])}
 
     def eval_one(c):
         code = c.get("code", "")
         sc = sched.get(code)
         reasons = []
+        pre = ""
         if sc is None:
             reasons.append("not_offered_this_year")
         else:
@@ -353,23 +366,42 @@ def main():
             m = RESTRICTED.search(rem)
             if m:
                 reasons.append(f"restricted:{m.group(1).strip()}")
-        return code, sc, reasons
+        return code, sc, reasons, pre
 
     for c in candidates.get("courses", []):
-        code, sc, reasons = eval_one(c)
+        code, sc, reasons, pre_text = eval_one(c)
         entry = {
             "code": code,
             "name": c.get("name", ""),
-            "rule_score": c.get("rule_score"),
             "credits": c.get("credits"),
             "category": c.get("category"),
+            "bucket_id": c.get("bucket_id"),
+            "bucket_quota": c.get("bucket_quota"),
             "schedule_found": sc is not None,
             "sections": len(sc.get("sections") or []) if sc else 0,
+            "prereq": {"text": pre_text,
+                       "met": (None if any(r.startswith("prereq_unknown") for r in reasons)
+                               else False if any(r.startswith("prereq_not_met") for r in reasons)
+                               else True),
+                       "missing": [m for r in reasons if r.startswith("prereq_not_met:")
+                                   for m in r.split(":", 1)[1].split(",")]},
+            "exclusion": {"text": (sc.get("attributes") or {}).get("EXCLUSION", "") if sc else "",
+                          "codes": [f"{a} {b}" for a, b in RE_CODE.findall(
+                              (sc.get("attributes") or {}).get("EXCLUSION", ""))] if sc else [],
+                          "conflicts_with_passed": []},
             "filter_reasons": reasons,
         }
-        # 硬性删除：今年未开设 / pre-req 明确不满足；其余（unknown/restricted）保留并标记
-        hard = [r for r in reasons
-                if r.startswith("not_offered") or r.startswith("prereq_not_met")]
+        # EXCLUSION 与已修课程重叠提示（排课阶段 planner 强制互斥检查）
+        if sc and entry["exclusion"]["codes"]:
+            blocked = [x for x in entry["exclusion"]["codes"]
+                       if norm_code(x) in done]
+            if blocked:
+                entry["exclusion"]["conflicts_with_passed"] = blocked
+                entry["filter_reasons"] = reasons + \
+                    [f"excluded_by_passed:{','.join(blocked)}"]
+        # 硬性删除：仅"今年未开设"；pre-req 未满足 → 保留 + 标记（waiver 是
+        # 处理路径，评分与排课不考虑 pre-req；step6 输出 waiver_required 提醒）
+        hard = [r for r in reasons if r.startswith("not_offered")]
         if hard and code not in overrides:
             removed.append(entry)
         else:
@@ -377,36 +409,35 @@ def main():
                 entry["filter_reasons"] = reasons + ["user_overridden"]
             kept.append(entry)
 
-    # 补位：kept < --fill 阈值时，从 truncated 候补池按分数降序补入
+    # 补位：kept < --fill 阈值时，从候选池按分数/顺序补入
     filled_from = []
     if args.fill and len(kept) < args.fill:
         need = args.fill - len(kept)
         done_set = {c["code"] for c in kept} | {c["code"] for c in removed}
-        for c in candidates.get("truncated", []):
+        for c in candidates.get("courses", []):
             if need <= 0:
                 break
             if c["code"] in done_set:
                 continue
-            code, sc, reasons = eval_one(c)
+            code, sc, reasons, pre_text = eval_one(c)
             done_set.add(code)
-            hard = [r for r in reasons
-                    if r.startswith("not_offered") or r.startswith("prereq_not_met")]
+            hard = [r for r in reasons if r.startswith("not_offered")]
             if hard:
                 continue
             kept.append({
-                "code": code,
-                "name": c.get("name", ""),
-                "rule_score": c.get("rule_score"),
-                "credits": c.get("credits"),
-                "category": c.get("category"),
+                "code": code, "name": c.get("name", ""),
+                "credits": c.get("credits"), "category": c.get("category"),
+                "bucket_id": c.get("bucket_id"), "bucket_quota": c.get("bucket_quota"),
                 "schedule_found": sc is not None,
                 "sections": len(sc.get("sections") or []) if sc else 0,
+                "prereq": {"text": pre_text, "met": None, "missing": []},
+                "exclusion": {"text": "", "codes": [], "conflicts_with_passed": []},
                 "filter_reasons": reasons + ["filled_from_truncated"],
             })
             filled_from.append(code)
             need -= 1
         if filled_from:
-            print(f"补位: kept < {args.fill}，从 truncated 补入 {len(filled_from)} 门: "
+            print(f"补位: kept < {args.fill}，补入 {len(filled_from)} 门: "
                   f"{', '.join(filled_from)}")
 
     out = {
@@ -417,8 +448,10 @@ def main():
         "removed_count": len(removed),
         "kept": kept,
         "removed": removed,
-        "note": ("removed=硬性删除（未开设/pre-req 未满足）；kept 中的 filter_reasons 可能含 "
-                 "prereq_unknown/restricted/user_overridden 等提示，由 phase3 AI 复核"),
+        "note": ("removed=今年未开设（pre-req 不足不作为删除理由，只标记 waiver）；"
+                 "kept 中的 filter_reasons 可能含 prereq_not_met/prereq_unknown/"
+                 "excluded_by_passed/restricted/user_overridden 等提示；"
+                 "prereq 字段记录 pre-req 原文与判定，供 Step 6 输出 waiver_required"),
         "overrides": sorted(overrides),
     }
     dest = Path(args.output)

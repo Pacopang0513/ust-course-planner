@@ -161,7 +161,7 @@ def main():
 
     RAW_ROOT.mkdir(parents=True, exist_ok=True)
     csrf = ""
-    results, fails = [], []
+    results, fails, no_data = [], [], []
 
     for code in codes:
         raw = RAW_ROOT / f"{code}.json"
@@ -187,7 +187,12 @@ def main():
         except requests.RequestException as e:
             fails.append({"code": code, "reason": f"网络错误 {e}"})
             print(f"  [FAIL] {code}: {e}")
-        except (RuntimeError, ValueError, KeyError) as e:
+        except RuntimeError as e:
+            if "API 返回 error" in str(e):
+                # {"error": true} = 该课无评论数据（正常，非失败，不阻塞 job）
+                no_data.append({"code": code, "reason": str(e)})
+                print(f"  [NODATA] {code}: {e}")
+                continue
             if "error" in str(e) and csrf:
                 # csrf 过期 → 刷新一次重试
                 csrf = fetch_csrf(sess, code)
@@ -205,17 +210,22 @@ def main():
                     continue
             fails.append({"code": code, "reason": str(e)})
             print(f"  [FAIL] {code}: {e}")
+        except (ValueError, KeyError) as e:
+            fails.append({"code": code, "reason": str(e)})
+            print(f"  [FAIL] {code}: {e}")
 
     out = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "course_count": len(results),
         "courses": results,
         "failed": fails,
+        "no_data": no_data,
     }
     dest = ROOT / "data" / "ustspace_reviews.json"
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\n汇总 {len(results)} 门课, 失败 {len(fails)} -> {dest}")
+    print(f"\n汇总 {len(results)} 门课, 无评论 {len(no_data)}, 失败 {len(fails)} -> {dest}")
+    # 无评论数据（{"error":true}）属正常，不置非 0 退出码（避免 job 误判 failed）
     sys.exit(1 if fails else 0)
 
 

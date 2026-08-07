@@ -21,8 +21,8 @@ Step 1 的回退路径：当 `database/curriculum/{admissionYear}/{PROG}.json`�
 
 用法:
   python3 scripts/rank/ar_to_unmet.py --ar cache/sis/sis_academic_req.json \
-      --cc data/cc_courses_2610.json --profile data/profile.json \
-      --passed data/passed_courses.json --session 2610 \
+      --cc data/cc_courses_<SESSION>.json --profile data/profile.json \
+      --passed data/passed_courses.json --session <SESSION> \
       --output data/unmet_courses.json
 """
 
@@ -105,7 +105,7 @@ def main():
     ap = argparse.ArgumentParser(description="SIS AR → 未修课程（curriculum 缺失回退）")
     ap.add_argument("--ar", default=str(ROOT / "cache" / "sis" / "sis_academic_req.json"),
                     help="SIS Academic Requirements 解析产物")
-    ap.add_argument("--session", default="2610")
+    ap.add_argument("--session", default="")
     ap.add_argument("--areas", nargs="*", default=[],
                     help="只取指定 CC 区域（子串匹配 area_code/area，如 C-Comm A H SA）；"
                          "空=全池（由 AI 按 AR 状态收窄）")
@@ -113,6 +113,8 @@ def main():
     ap.add_argument("--passed", default=str(ROOT / "data" / "passed_courses.json"))
     ap.add_argument("--output", default=str(ROOT / "data" / "unmet_courses.json"))
     args = ap.parse_args()
+    if not args.session:
+        sys.exit("错误: 缺少 --session（学期代码；运行中的学期可由 ustplan status 查询）")
 
     ar_path = Path(args.ar)
     if not ar_path.exists():
