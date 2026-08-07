@@ -8,6 +8,11 @@ description: 联网抓取规范（固定流程）。AI 需要联网获取 Class 
 > 原则：**AI 永不接触 cookie 明文**。所有带认证的抓取由 `scripts/` 统一执行
 > （经 `--cookie-file` 读取 `credentials/cookies.txt` 或临时文件）；AI 只消费
 > `cache/` 与 `data/` 中的解析产物。先查缓存，再联网。解析产物必须过 schema。
+>
+> **执行入口**：运行期抓取统一经 `scripts/ustplan.py job start/status/wait`
+> （wcq_full / sis_fetch / ustspace_pre / buckets_pre，超时与产物见
+> `docs/RUNBOOK.md` §1）；本文件仅作为 URL 模板/参数/cookie/解析规范参考，
+> 禁止在 skill 流程中直接拼命令抓取。
 
 ## 1. WCQ Class Schedule（公开，无需 cookie）
 
@@ -16,6 +21,7 @@ description: 联网抓取规范（固定流程）。AI 需要联网获取 Class 
 | 项 | 值 |
 |---|---|
 | URL 模板 | `https://w5.ab.ust.hk/wcq/cgi-bin/{session}/`（session 如 `2610` = 2026-27 Fall；`26`=学年 `10`=Fall） |
+| **session 自动检测** | `--session latest`：抓 `https://w5.ab.ust.hk/wcq/cgi-bin/` 索引页，正则 `cgi-bin/(\d{4})/` 取**数字最大** = 最近学期（harness t0 默认使用） |
 | 索引页 | 同上，含全部 subject 链接 `href="/wcq/cgi-bin/{session}/subject/{SUBJ}"` |
 | subject 页 | `https://w5.ab.ust.hk/wcq/cgi-bin/{session}/subject/{SUBJ}`（如 `/subject/COMP`） |
 | 方法 | GET，无 cookie，UA: `Mozilla/5.0 (course-arranger build script)` |
@@ -23,7 +29,7 @@ description: 联网抓取规范（固定流程）。AI 需要联网获取 Class 
 | 缓存 | `cache/wcq/raw/{session}/{SUBJ}.html` |
 | 产物 | `data/courses_{session}.json`（course 级：code/number/title/units/attributes；section 级：section/datetime/room/instructors/quota/enrol/avail/wait；datetime 多时段逗号合并） |
 | 本地匹配 | 后续匹配一律用产物 JSON 建 `规范化课号 → course` 索引（O(1)），**禁止**对 cache/wcq/raw/ 原始 HTML 正则（爬虫已预处理归一，重复正则反而慢）；课号规范化=大写+去空格/点+**保留字母后缀**（1416C/4981H）；CC 区域页与 subject 页重复收录 → 去重取 subject 页版本。临时查课用 `filter.py --lookup "PHYS 3152"` |
-| 脚本 | `scripts/wcq/crawler.py --session 2610`（`--force` 重抓、`--list-only` 列 subject） |
+| 脚本 | `scripts/wcq/crawler.py --session <SESSION>`（`--force` 重抓、`--list-only` 列 subject） |
 
 ### 1b. Common Core 课程匹配（同一页面下拉）
 
@@ -37,11 +43,30 @@ description: 联网抓取规范（固定流程）。AI 需要联网获取 Class 
 | 区域页 | `GET .../common_core/{GROUP}/{code}` → 该区域**今年开设**的全部 CC 课程（跨 subject，复用 div.course 解析） |
 | 404 语义 | 该区域今年无课（如 UxOP-UPOP/UCOP）→ 记录 EMPTY，不重试 |
 | 入学年份映射 | ≤2021→4Y；2022-2024→CC22；2025→CC25；≥2026→CC26（`admission_to_group`） |
-| 产物 | `data/cc_courses_{session}.json`（每区域：area_code/area/course_count/courses 全字段同 schedule） |
-| 脚本 | `python3 scripts/wcq/crawler.py --admission-year 2026-27 --session 2610`（自动选组）或 `--cc-group CC26` |
+| 产物 | `data/cc_courses_{session}.json`（每区域：area_code/**area（含 requirement 标签，如 Common Core (A)）**/course_count/courses 全字段同 schedule） |
+| 脚本 | `python3 scripts/wcq/crawler.py --admission-year <YEAR> --session <SESSION>`（自动选组）或 `--cc-group CC26` |
 
-**使用**：Step 1 从 profile 取 admission_year → 抓对应组 → 得"今年可读 CC 课程池"，
-与 `database/common-core/{版本}` 的分布要求（如 home area 外 4 区 12 学分）对照计算 CC 未修。
+**使用**：Step 1 从 profile 取 admission_year → 抓对应组 → 得"今年可读 CC 课程池"。
+**每个区域的 `area` 标签即该栏位满足的 requirement 项**（HMW/E-Comm/C-Comm/CTDL =
+基础层；A/H/S/T/SA/SUS = Broadening 区域；UxOP-* = Experiencing）——
+buckets.py 据此归档：基础层 → cc_required，其余 → cc_elective，每区域一个 bucket；
+与 `database/common-core/{版本}` 的分布要求（如 home area 外 4 区 12 学分）对照复核配额。
+
+### 1c. 历史 CC 区域表（课程码 → 区域归属，CC 满足性判定的第二数据源）
+
+**背景（2026-08 实测）**：SIS AR 页面对部分 CC 区域（如 S/SA）不渲染明细（折叠
+空壳），"已修 X 学分"无法从 AR 归因到具体区域；而当年开课学期所在的 wcq CC
+区域页（公开、历史 session 仍在线）明确列出课程归属。把多个历史学期的区域页
+并集为静态表，供 buckets.py 判定"已修课程属于哪个区域"（**CC 满足性全脚本化，
+无 AI 判断**——例：SOSC 1969 → SA 区、PHYS 1007 → S 区）。
+
+| 项 | 值 |
+|---|---|
+| 脚本 | `scripts/wcq/cc_areas.py --admission-year 2023-24`（默认：入学年起至最新全部 Fall/Spring/Summer；`--sessions` 指定、`--force` 重抓） |
+| 缓存 | `cache/wcq/raw/{session}/common_core/{GROUP}-{area}.html`（与 1b 同目录复用） |
+| 产物 | `database/common-core/areas_{GROUP}.json`（areas[] + code_area 课程码→区域码映射；构建期写入 database/，运行时只读） |
+| 消费 | `buckets.py` 自动检测 `database/common-core/areas_{GROUP}.json`（`--cc-areas` 可覆盖） |
+| 防呆 | 旧学期（≤2022-23 session）索引/区域页全部返回同一份通用页 → 脚本比对"页面=索引页"即判无效跳过；**4Y 组（36 学分制）无真实区域页**（本学期为空、历史不提供）→ 不构建 areas_4Y.json，4Y 学生 CC 满足性走 SIS AR 判定 |
 
 ## 2. SIS 学生数据（需 PS_TOKEN cookie）
 
@@ -55,6 +80,7 @@ description: 联网抓取规范（固定流程）。AI 需要联网获取 Class 
 | dropdown 值 | course_history=2050、academic_requirements=3010、class_schedule=1002、grades=1030、transcript=2035、transfer_credit=2025 |
 | cookie | 仅需 `PS_TOKEN`（CAS 签发令牌）；**必须用 requests.Session 保持**（POST 依赖 GET 下发的 PS_TOKENEXPIRE） |
 | 关键词 | 课程行 `CRSE_NAME$N` / `CRSE_GRADE$N`；AR 分组 `<td class='PAGROUPDIVIDER'>`；状态 `Not Satisfied` / `Satisfied`；Transcript：CGA / Overall GPA 字段、每学期课程与成绩 |
+| **AR 学分/条目明细**（2026-08 新增） | 组级 `GROUPBOX2$N` div（含组名）+ `SAA_DESCRLONG_03$N`（状态）+ `04$N`（`Units/Courses: X required, Y taken, Z needed`）；条目级 `GROUPBOX3$M` 折叠锚点（title 含区域名）+ `05$M` + `06$M`。**注意**：部分区域（HMW/E-Comm/C-Comm/S/SA 等）为折叠空壳无条目数据——组级 03/04 才是可靠数据；区域满足性判定见 1c（历史 CC 区域表） |
 | 缓存 | `cache/sis/raw_*.html` → `cache/sis/sis_{student_info,course_history,academic_req,transcript,pre_enroll}.json` |
 | 脚本 | `scripts/sis/parser.py --fetch` |
 
@@ -99,23 +125,29 @@ Step 6 占用其 section 时段。
 | cookie | `ustspace_session`（加密会话） |
 | 响应 | JSON：`course`（含 rating_content/teaching/grading/workload、review_count、instructors、prerequisites/exclusions）+ `reviews[]`（hash/semester/instructors/author/date/title/comment_content/rating_*/upvote_count/vote_count/comment_count/has_midterm/final/quiz/assignment/essay/project/attendance/reading/presentation） |
 | 热度 | `vote_count` 降序取 top5；导师维度按 `instructors[].name` 分组取 top5 |
+| **导师统计** | `instructor_stats`：每导师 {review_count, ratings 四维均值}（评分公式 B 组件输入） |
+| **导师最近评论** | `instructor_recent`：每导师按时间排序（date 降序）最近 5 条（评分公式 D 组件输入） |
 | 缓存 | `cache/ustspace/raw/{CODE}.json`（完整 API JSON） |
-| 产物 | `data/ustspace_reviews.json`（紧凑：ratings、heat_top5、instructor_top5、review_count） |
-| 脚本 | `scripts/ustspace/crawler.py --codes "COMP 2011" --cookie-file credentials/cookies.txt`（`--codes-file data/candidate_rank.json` 批量） |
-| 注意 | 2000+ 级课程评论需 contributor 等级；数据仅供教学分析，抓取限速（并发 ≤ 4） |
+| 产物 | `data/ustspace_reviews.json`（紧凑：ratings、heat_top5、instructor_top5、instructor_stats、instructor_recent、review_count） |
+| 脚本 | `scripts/ustspace/crawler.py --codes "COMP 2011" --cookie-file credentials/cookies.txt`（`--codes-file data/filter_report.json` 批量） |
+| 注意 | 2000+ 级课程评论需 contributor 等级；数据仅供教学分析，抓取限速（并发 ≤ 4）；**`{"error":true}` = 该课无评论数据（正常，非失败）**，记入 failed[] 继续 |
 
 ## 4. prog-crs 预构建（公开，无需 cookie）
 
-**用途**：专业 curriculum 候选索引 + 课程详情（pre-req/exclusion/学分）——离线预构建。
+**用途**：专业 curriculum 候选索引（按入学年份）——离线预构建。**课程详情
+（pre-req 等）不预构建**：它是动态数据，每个学生/目标学期不同，以运行时
+Class Schedule（wcq）页内联 PRE-REQUISITE 为准；需要单课详情时按需
+`course_catalog.py --subject X --year Y` 临时查（产物落 cache/，不入库）。
 
 | 项 | 值 |
 |---|---|
-| 根 URL | `https://prog-crs.hkust.edu.hk/ugprog/{year}/{CODE}`（year=入学年份） |
+| 根 URL | `https://prog-crs.hkust.edu.hk/ugprog/{year}/`（year=入学年份；**索引取 `/ugprog/{year}/`，勿用主 `/ugprog`**——主索引只列当前年份） |
+| 年份可用性 | 2023-24 起公开；2022-23 及更早为 archive 已下线（401）→ 走 SIS AR 回退（ar_to_unmet.py） |
 | PDF 提取 | 专业页内 "Major Requirements" 链接 → 下载 PDF → `pdftotext -layout` |
-| 课程详情 | `https://prog-crs.hkust.edu.hk/ugcourse/{year}/{SUBJ}/` |
+| 课程详情（按需） | `https://prog-crs.hkust.edu.hk/ugcourse/{year}/{SUBJ}/` |
 | 缓存 | `cache/prog-crs/raw/{year}/` |
-| 产物 | `database/curriculum/{year}/{CODE}.json`、`database/course_catalog/{year}/{SUBJ}.json` |
-| 脚本 | `scripts/prog_crs/build.py --year 2026-27` |
+| 产物 | `database/curriculum/{year}/{CODE}.json` |
+| 脚本 | `scripts/prog_crs/build.py --year {year}`（仅 curriculum；2022-23 及更早报错提示走 AR 回退） |
 
 ## 5. 通用规则
 
@@ -125,3 +157,8 @@ Step 6 占用其 section 时段。
 4. **凭据**：AI 上下文不得出现 cookie 值；cookie 的获取/写入/有效期预检统一走
    `scripts/cookies_setup.py`（`--check` 只输出状态）；测试 cookie 放项目外临时目录，用后删除
 5. **版本化**：schedule 按 session（2610）、curriculum 按入学年份（2026-27）
+6. **运行时产物链（固定）**：`data/unmet_courses.json`（bucket 化）→
+   `data/filter_report.json`（pre-req 只标记不移除）→ `data/ustspace_reviews.json`
+   → `data/review_summary.json`（含 D 组件）→ `data/course_scores.json`
+   （每栏位 TOP3 + ranked_out 备选池）→ `output/timetable_plan.json`
+   （含 waiver_required）；每一步产物必须过 schema（R2）才能进下一步

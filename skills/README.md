@@ -1,29 +1,27 @@
 # skills/
 
-流程 skills 目录（按调用顺序组织）。
+流程 skills 目录（按调用顺序组织）。统一五段式：**触发 → 执行（ustplan）→
+AI 职责 → 确认点 → 交接**。命令一律走 `scripts/ustplan.py`，产物校验由合约自动完成。
 
 当前已有（按调用顺序）：
 
-- `harness` 主编排（固定调用顺序 phase1→phase4.5、异常处理矩阵、checkpoint 推进）
-- `phase1-input` 输入准备（前置检查、目标学期→session 映射）
-- `phase2-profile` 画像生成（SIS 提取 + 入学年份推断 + 用户确认）
-- `step1-unmet-calculation` Step 1 未修计算（专业必修 + 今年可读 CC − 已修，公式见 skill）
-- `step2-candidate-ranking` Step 2 本地规则打分 Top50（类别/等级/紧迫度权重固定）
-- `step3-schedule-filter` Step 3 schedule 过滤（未开设/pre-req，移除原因逐条记录）
-- `step4-review-analysis` Step 4 USTspace 评论精读（热度 top5 + 今年导师 top5 → review_summary.json）
-- `step5-score-fusion` Step 5 合成排名（吸引力 = 规则 60% + 口碑 40%，置信度分档）
-- `step6-timetable-planning` Step 6 课程表编排（N 套方案 + wcq 冲突校验）
-- `phase4-report` 总结报告（整合各产物 → output/final_report.md）
-- `enrollment-dates-reminder` 选课时间提醒（输出末尾附加三期选课时间）
-- `must-take-course-insertion` 强制选课（用户指定课程硬性插入后重新排课）
-- `web-crawl-guide` 联网抓取规范（固定 URL 模板/关键词/cookie 约定，AI 抓取必须遵守）
+- `harness` 主编排（固定顺序 + 确认点 P1-P5 + 后台任务纪律 + 异常矩阵指引）
+- `phase1-input` Phase 1（t0 ustplan start + 后台 wcq；P1 凭证 + major + track + 学期）
+- `phase2-profile` Phase 2（SIS 权威画像 + 后台并行；P2 画像 + 未修预览）
+- `step1-unmet-calculation` Step 1（bucket 化未修；CC 满足性全脚本三层判定；P3 未修 + 学分）
+- `step3-schedule-filter` Step 3（今年开设过滤；pre-req 只标记 → waiver；P4 过滤确认）
+- `step4-review-analysis` Step 4（USTspace 评论精读；基架 + AI 覆盖 + D 组件；--finalize）
+- `step5-score-fusion` Step 5（Bucket 评分 A+B+C+D，参数在 config/ustplan.json）
+- `step6-timetable-planning` Step 6（目标学分编排 + L+T 组件 + waiver 清单；P5 方案）
+- `phase4-report` Phase 4（模板渲染机械段落 + AI 补口碑/建议 + 选课时间提醒）
+- `enrollment-dates-reminder` 选课时间提醒（报告末尾固定模板）
+- `must-take-course-insertion` Phase 4.5 强制选课（ustplan plan --must-take 硬插重排）
+- `web-crawl-guide` 联网抓取规范（URL 模板/cookie/缓存约定参考；执行走 ustplan job）
 
-每个 step/phase skill 都规定了：输入文件、固定执行脚本、**固定总结结构（JSON 产物）**、
-本地保存路径与 schema 校验、交接给下一步的内容。产物均过 R2 schema 校验。
-
-**确认点（P1-P5）**：关键阶段间设有人类确认中断（cookie 提供/画像确认/未修清单/
-过滤结果/方案选择），详见各 skill 的"确认点"小节与 harness 流程图；无用户确认
-不得推进 checkpoint。
+**确认点（P1-P5）**：关键阶段间设有人类确认中断（P1 凭证+major+track+学期 /
+P2 画像 / P3 未修+学分 / P4 过滤 / P5 方案），无确认不得推进 checkpoint；
+确认后写 `ustplan decisions set Pn ...` 并 `ustplan phase done <phase>`。
+**后台计算与用户回答并行**（提问前 job start，回复后 job status），不互相阻塞。
 
 - 写入者：开发阶段人工维护
 - 权限：AI 读取调用

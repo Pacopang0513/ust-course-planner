@@ -1,93 +1,55 @@
 ---
 name: step6-timetable-planning
-description: Step 6 课程表编排。按 Step 5 排名组合 N 套无时间冲突方案（不同学分/workload/CC 与 major 配比），用 wcq 冲突检测验证，按固定结构总结保存为 output/timetable_plan.json。Use when generating timetable plans.
+description: Step 6 课程表编排。ustplan step step6 执行 scripts/rank/planner.py 以用户目标学分（P3 决定）为参照生成 N 套无冲突方案（目标/±3 夹 12-18），bucket 配额选课（防选重/选多），低阶必修先排，L+T 组件各选一节；输出 output/timetable_plan.json（含 waiver_required）。Use when generating timetable plans.
 ---
 
-# Step 6 — 课程表编排
+# Step 6 — 课程表编排（目标学分驱动）
 
-## 目的
+## 触发
 
-按 Step 5 排名产出 **N 套（默认 3 套）**无时间冲突的课程表方案，覆盖不同偏好
-（学分高低 / workload / CC 与 major 配比），供用户选择。
+- step5 done 后（`ustplan step step6`）。
 
-## 输入
+## 执行（ustplan 合约）
 
-| 文件 | 来源 |
-|---|---|
-| `data/course_scores.json` | Step 5 产物（排名） |
-| `data/courses_{session}.json` | 本学年 schedule（section 时间/教室/导师/Quota） |
-| `data/passed_courses.json` | 已修（排课不含已修课） |
-| `database/policies/registration.md` | 负荷规则：每 Regular Term 12-18 学分 |
-
-## 执行步骤（固定）
-
-1. **选课池**：`scripts/rank/planner.py` 从 course_scores 排名前 N（默认 20）取池，
-   按 `review_confidence` 高的优先不适用——排名即分数降序，无需二次排序
-2. **编排（脚本，确定性）**：
-   ```bash
-   python3 scripts/rank/planner.py --scores data/course_scores.json \
-       --session 2610 --passed data/passed_courses.json --plans 3 \
-       --pre-enrolled data/pre_enrolled.json \
-       --output output/timetable_plan.json
-   ```
-   - 严格按 schedule 排课：每门课从 `courses_{session}.json` 的 sections 中选
-     第一个与已选课程无冲突的 section（时间槽由 wcq/conflict.py 同一解析器判定）；
-     TBA 无时间 section 不参与排课，对应课程记入 notes
-   - **预选课（学校 Pre-Enroll）**：`--pre-enrolled` 预选课的 section 时段进入
-     占用槽，选课不得与其冲突；未匹配到时段（未开设/TBA）记入 notes 提示
-   - section 的 datetime / room / instructors 原样记录在方案 `course_details`（
-     每门课的上课时间与授课教授由此可溯）
-   - 两阶段选课：phase1 专业必修全入（必修优先），phase2 按方案偏好
-     （低学分 12-13 必修优先 / 中 15-16 均衡 / 高 17-18 CC 配比高）补足学分，
-     达到目标下限即停；方案间课程完全相同会自动做一次确定性换课（多样性）
-   - 硬约束：学分 12-18 / 不含已修课 / 无重复课（脚本保证）
-3. **AI 复核**：读产物 notes 与 course_details，确认取舍理由合理
-   （换掉的课、未入方案的高分课、学分未达区间的说明），必要时调整 `--top`/
-   `--plans` 重跑
-4. 每个方案 `no_conflict: true` 由脚本构造保证；如需独立复核可另跑
-   `scripts/wcq/conflict.py` 验证任一方案
-
-## 总结结构（固定，写入 output/timetable_plan.json）
-
-```json
-{
-  "plans": [
-    {"plan_id": "plan-1", "courses": ["COMP 2011", "MATH 2023", "..."],
-     "course_details": [
-       {"code": "COMP 2011", "name": "...", "category": "major_required",
-        "credits": 4.0, "section": "L1", "datetime": "TuTh 01:30PM - 02:50PM",
-        "room": "...", "instructors": ["LI, Xin"]}],
-     "total_credits": 15.0, "workload": "medium",
-     "cc_credits": 3.0, "major_credits": 9.0, "elective_credits": 3.0,
-     "no_conflict": true, "must_take_inserted": [],
-     "notes": ["取舍说明（冲突换课/未入方案的高分课）"]}
-  ],
-  "generated_at": "ISO"
-}
+```bash
+python3 scripts/ustplan.py step step6
+python3 scripts/ustplan.py plan --must-take "PHYS 4291"   # phase4.5 硬插重排
+python3 scripts/ustplan.py plan --exclude "PHYS 4191"     # 备选排除
+python3 scripts/ustplan.py plan --target 19               # overload 提示（按 18 编排）
+python3 scripts/ustplan.py grid --plan 1 [--html]         # 周历展示（ASCII/HTML）
 ```
 
-- `course_details` 为脚本按 schedule 严格落地的每课 section（时间/教室/授课教授），
-  供报告与用户核对
-- 校验：`scripts/harness/schema_validate.py --target output/timetable_plan.json`
+- 方案生成：目标学分参照（P3），默认三档 目标 / +3 / −3（夹 12-18）；
+  <12 或 >18 → 按边界编排 + 提示（<12 咨询学校、>18 Dean 批准 overload）；
+- 硬约束：学分 12-18 / 不重复 / 不含已修 / 每栏位不超配额 / 无时间冲突 /
+  **无 EXCLUSION 互斥**（对照 Class Schedule EXCLUSION 属性，与已修/预选/已排
+  课程互斥 → 不排入并说明；MATH 2411/2421 类重复课不会同排）；
+- **tutorial 组件**：一门课多个组件类型（L/T/LA/R…）时每组件各选一节
+  （L1+T2 亦可），组件间与已排课不得冲突；course_details[].sections[] 全列；
+- 必修先入（低阶优先；**0 学分课程靠后**——同桶真实学分课先占配额，防
+  COMP 1991 实习挡 FYP）→ 按分数补足（最高档方案优先 CC）；
+- **0 学分课程**（如 COMP 1991 实习）：无时间 section 时仅标注占位
+  （course_details.zero_credit=true），不占排课时间；
+- 预选课时段进入占用槽；TBA 课程计学分占位不排时间；
+- **方案多样性**：phase2 取课顺序按方案变体轮转（分数/CC 优先/按桶轮转）；
+  多套方案课程相同时自动换课（只换非必修非 must-take 的低分课，尊重配额与
+  互斥）；无课可换时自动换用不同 section 时段；
+- **waiver_required[]**：placed 课程 pre-req 未满足/无法判定 → 提醒写豁免申请。
 
-## 确认点 P5（强制中断）— 方案展示与选择
+## AI 职责
 
-**排课产物生成并校验后必须暂停，向用户展示方案摘要，等待用户选择/反馈：**
+- 读 notes 与 course_details 做合理性检查（换课原因、高分课被排除原因、
+  未达目标说明）；需要时 `plan --target/--must-take/--exclude` 重跑。
 
-```
-课程表方案（{session}，共 3 套）
-plan-1：14 学分 light  CC 3 / major 11 / 选修 0   [课程...]
-plan-2：17 学分 heavy  CC 6 / major 11 / 选修 0   [课程...]
-plan-3：17 学分 heavy  CC 6 / major 11 / 选修 0   [课程...]
-取舍说明（notes 摘要）：冲突换课 / 未入方案的高分课 / 目标区间未达
-```
+## 方案展示（P5 弱化，不强制中断）
 
-- 用户选定方案 → phase4 报告按所选方案展开；有偏好修正（如"不要 plan-3 的 X 课"）
-  → 用 `--must-take`/调整参数重跑 planner 再展示
-- 用户确认后 `done phase3-course-analysis`，进入 phase4-report
-- 用户指定额外课程 → phase4.5 must-take（报告之后执行）
+- 展示（产品化）：N 套方案（学分/workload/CC-major 配比/课程清单/notes 摘要）
+  + 周历（`ustplan grid`）；pre-req/waiver 提醒清单单独呈现；
+- 用户要求修改 → 记录：`ustplan decisions set P5 chosen_plan=plan-N must_take=...`
+  （或 exclude/target），重跑后再展示；
+- 用户无异议即视为通过，直接推进：`ustplan phase done phase3-course-analysis`；
+- 用户指定的必选课（"把 X 加进去"）→ 走 phase4.5 流程（must-take-course-insertion）。
 
 ## 交接
 
-- 方案 → phase4 报告输出给用户，末尾附加 enrollment-dates-reminder 选课时间提醒
-- 用户确认后 → phase4.5 must-take-course-insertion：指定课程硬插 → 重排 → 重新校验
+timetable_plan.json → phase4-report（报告渲染 + 口碑 + 建议 + 选课时间提醒）。

@@ -1,62 +1,46 @@
 ---
 name: step5-score-fusion
-description: Step 5 合成排名。将规则分（Step 2）与 USTspace 口碑（Step 4 总结）合成为吸引力 + 置信度，按固定结构总结保存为 data/course_scores.json（含 score_reason 可追溯）。Use when fusing rule scores and review signals into a final ranking.
+description: Step 5 Bucket 评分合成。ustplan step step5 执行 scripts/rank/bucket_score.py：A+B+C+D（课程总评/本学期教授/热度档位/AI 精读 D），每栏位取 TOP N（默认 3）汇总 data/course_scores.json（score_components 可追溯）；权重参数来自 config/ustplan.json → scoring。Use when fusing scores into the final per-bucket ranking.
 ---
 
-# Step 5 — 合成排名（吸引力 + 置信度）
+# Step 5 — Bucket 评分合成（A+B+C+D）
 
-## 目的
+## 触发
 
-把 Step 2 规则分与 Step 4 口碑信号合成最终排名，作为 Step 6 编排的输入。
-每门课的得分构成**写入 score_reason**，保证可追溯。
+- step4 done 后（`ustplan step step5`）。
 
-## 输入
-
-| 文件 | 来源 |
-|---|---|
-| `data/filter_report.json`（kept[]） | Step 3 产物 |
-| `data/ustspace_reviews.json` | Step 4 抓取产物（评论数/四维评分） |
-| `data/review_summary.json` | Step 4 AI 精读总结（可选，作口碑调整依据） |
-
-## 执行（固定）
+## 执行（ustplan 合约）
 
 ```bash
-python3 scripts/rank/final.py --filter data/filter_report.json \
-    --reviews data/ustspace_reviews.json --output data/course_scores.json
+python3 scripts/ustplan.py step step5
 ```
 
-## 合成规则（固定）
+- 输入：filter_report（kept[]）+ ustspace_reviews（A/B/C）+ review_summary（D）+
+  courses_{session}（本学期教授）+ unmet（桶元数据）；
+- 公式（参数全部来自 config/ustplan.json → scoring，纯函数在 scoring.py）：
 
 ```
-吸引力 = 规则分 × 0.60 + 口碑分 × 0.40
-口碑分 = 课程四维均分归一化 × 0.40 + 评论热度(评论数/20×5 封顶100) × 0.60
-置信度分档 = 评论数 ≥100 → high(90) / ≥20 → medium(60) / ≥1 → low(30) / 0 → none(10)
-review_confidence 字段按档位写 high/medium/low（none 降为 low）
+课程得分 = A + B + C + D                        （满分 100，可负分）
+A = (课程四维均分 − baseline) / baseline × wA     # 均分<baseline 倒扣；新课 → 0
+B = (本学期教授评分综合 − baseline) / baseline × wB
+    教授评分综合 = Σ(维度均分 × 权重)；评论 <min_reviews 每缺 1 条降权；新教授 wB=0
+C = 热度档位分；评论 < min_reviews_for_score → 总分直接 0
+D = 本学期任课教授最近 5 条评论 AI 精读（0~25，review_summary.d_rating）
+major_required 低阶加分：1xxx +5% / 2xxx +3% / 3xxx +1%（负分不乘）
 ```
 
-- 若 `review_summary.json` 存在：AI 可用其 `recommendation`/`grading`/`workload`
-  对口碑分做 ±10 内的调整，并在 `score_reason` 注明（如 "AI 调 +5: 导师口碑好"）
-- 排名按 score 降序；分数相同按评论数多的优先
+- 每栏位取 `top_per_bucket` 门 → 总表；栏位并列不混排（防选重/选多）；
+  其余进 ranked_out 备选池（must-take/多样性换课用）。
 
-## 总结结构（固定，写入 data/course_scores.json）
+## AI 职责
 
-```json
-{
-  "courses": [
-    {"code": "PHYS 4191", "name": "...", "credits": 4.0,
-     "score": 65.36, "score_reason": "rule=87.5(60%), ustspace口碑=32.0(40%), 均分=4.10/5, 评论数=4",
-     "review_count": 4, "review_confidence": "low",
-     "open_this_year": true,
-     "attractiveness": 65.36, "confidence_score": 30,
-     "category": "major_required"}
-  ],
-  "generated_at": "ISO"
-}
-```
+- 核对 score_reason 与组件分合理性（D 组件缺失的课应在 P5 前提示）；
+- 无评论新课（<5 条）→ 0 分；差评课（<2.5）→ 负分垫底——报告引用 score_reason。
 
-校验：`scripts/harness/schema_validate.py --target data/course_scores.json`
+## 确认点
+
+- 本步无独立确认点；评分结果随 step6 方案在 P5 一并展示。
 
 ## 交接
 
-- 排名 `courses[]` → Step 6 编排（按名次优先入排）
-- 每门课的 `score_reason` 直接供 phase4 报告引用
+course_scores.json → step6（planner.py，按栏位配额 + 目标学分编排）。

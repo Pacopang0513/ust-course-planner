@@ -1,75 +1,68 @@
 ---
 name: phase1-input
-description: Phase 1 输入准备。确认前置条件（credentials/cookies、user 资料、SIS 可用性、目标学期）并初始化 data/checkpoint.json（phase1 检查点），输出目标学期与 session 代码。Use when starting the course planning run.
+description: Phase 1 输入准备。t0 立即 ustplan start（manifest + 后台 wcq 抓取）；产品化模板收集 2 个登录凭证 + major/minor/extended_major（三状态：代码/NA，全部必填）+ track（必填）+ 目标学期确认；预检通过后 done。Use when starting the course planning run.
 ---
 
 # Phase 1 — 输入准备
 
-## 目的
+## 触发
 
-正式流程的第一步：确认所有前置输入齐备、确定目标学期，并启动检查点链
-（R4 阶段顺序由此开始）。
+- t0：用户首条消息即执行 `ustplan start`（若已 start 则跳过）；
+  若用户中途进入，先 `ustplan status` 检查运行状态。
 
-## 前置检查清单（逐项确认，缺一即停）
-
-| 项 | 要求 | 不满足时的处理 |
-|---|---|---|
-| `credentials/cookies.txt` | `python3 scripts/cookies_setup.py --check` 输出 **SIS 与 USTspace 均 OK** | 引导用户运行 `scripts/cookies_setup.py`（交互粘贴，自动验证；`--print-bookmarklet` 可一键复制） |
-| `user/` | major 手册 / CC 资料（如有则参考） | 可选，缺省用 database/ 预构建 |
-| `cache/sis/sis_course_history.json` | SIS 已抓取（或本次 phase2 抓取） | 交由 phase2 执行 `sis/parser.py --fetch` |
-| 目标学期 | 用户指定（如 2026-27 Fall）或默认"下一学期" | 询问用户 |
-| `database/build.json` | 目标入学年份已预构建 curriculum | 未构建 → `scripts/prog_crs/build.py --year {admission_year}` |
-
-## 目标学期 → session 代码（固定映射）
-
-| 学期 | session 后缀 | 示例 |
-|---|---|---|
-| Fall | `{YY}{YY+1}0` | 2026-27 Fall → `2610` |
-| Winter | `{YY}{YY+1}5` | 2026-27 Winter → `2615` |
-| Spring | `{YY}{YY+1}20` | 2026-27 Spring → `2620` |
-| Summer | `{YY}{YY+1}30` | 2026-27 Summer → `2630` |
-
-（YY = 学年首两位；wcq 页面同一学期下拉可核对）
-
-## 确认点 P1（强制中断）— cookie 预检 + 目标学期确认
-
-**AI 在 begin phase1-input 后必须暂停，等待用户动作，不得直接 done：**
-
-1. **cookie 预检**（AI 不读明文，只跑脚本看状态）：
-   ```bash
-   python3 scripts/cookies_setup.py --check
-   ```
-   - 输出 **SIS (PS_TOKEN) [OK]** 与 **USTspace (ustspace_session) [OK]** → 通过
-   - 有 `MISSING / EXPIRED` → 告知用户运行 `python3 scripts/cookies_setup.py`
-     （交互引导：粘贴 cookie → 自动写入并验证；`--print-bookmarklet` 可获取
-     "登录页点一下复制到剪贴板"的书签代码；只需重贴失效的键）
-   - 等用户完成后重跑 `--check`，两项全 OK 才继续
-2. **目标学期确认**（用户确认）：
-   - 展示：目标学期、session 代码（固定映射表）、`database/build.json` 预构建状态
-   - 说明：CC 入学年份组（4Y/CC22/CC25/CC26）依赖入学年份，将在 **P2 画像确认**
-     时一并确定（phase1 时 admission_year 尚未从 SIS 提取）
-   - 用户确认或修改后，把确认结果写入本阶段临时说明
-
-**未完成上述两项确认，不得 `checkpoint.py done phase1-input`。**
-
-## 执行（固定）
+## 执行（ustplan）
 
 ```bash
-# 初始化/重置检查点（首次运行或新任务）
-python3 scripts/harness/checkpoint.py reset
-python3 scripts/harness/checkpoint.py begin phase1-input
-# → 确认点 P1：等用户提供 cookie + 确认目标学期（见上节）
-# ... 完成前置确认后
-python3 scripts/harness/checkpoint.py done phase1-input
+python3 scripts/ustplan.py start                 # 新运行 + 后台 wcq_full（--session latest）
+python3 scripts/ustplan.py doctor                # 环境预检（cookie 状态等）
+python3 scripts/ustplan.py job status wcq_full   # 用户回复后查抓取进度
 ```
 
-确认结果写入本阶段临时说明（供用户核对）：目标学期、session 代码、
-预构建状态。CC 入学年份组（admission_year → 4Y/CC22/CC25/CC26）在 P2 与画像一并确认。
+- wcq_full 完成后 session 自动检测并写入 manifest（`job status/wait` 时自动收录），
+  P1 需与用户确认目标学期。
 
-> 中断恢复：任意确认点/阶段可随时中断；重跑时先 `checkpoint.py status` 查看进度，
-> 从进行中的阶段继续（`begin` 已完成阶段允许重入）。
+## AI 职责
+
+1. 首次输出（固定产品化模板，无程序语言）：
+   - 问候 + 说明：可以帮你排下学期的课；
+   - 要**两个登录令牌**：SIS 的 **PS_TOKEN** 与 ust.space 的 **ustspace_session**
+     （登录对应网站后复制粘贴即可；明文仅用于本次抓取，不会读取显示）——
+     直接给令牌名字，验证结果只反馈 OK/失效/缺失；
+   - 要**程序三字段**（防漏读，全部必填，三状态：填入课程代码 / NA=没有 /
+     空置不通过）：
+     - **major**（第一主修，必填）
+     - **minor**（副修；没有填 NA）
+     - **extended_major**（扩展主修；没有填 NA）
+     - 课程代码选项可从本地 curriculum 即时提取（database/curriculum/{入学年}/）；
+       本轮交互用结构化问题收集（question 工具，选项含 NA 与自定义输入），
+       不临场组织长文本；
+   - 要 **track**（track 必填，影响必修/选修范围）；
+   - 告知已在后台整理本学期课程数据。
+2. 用户回复后（固定动作，禁止读文档/代码探索）：
+   a. 把用户给的两个令牌写入 `credentials/cookies.txt`（两行，AI 不打印明文）：
+      ```
+      PS_TOKEN=<用户给的 SIS 令牌>
+      ustspace_session=<用户给的 ust.space 令牌>
+      ```
+      令牌若带 URL 编码（如 `%3D`）先还原为原值；无需手工验证格式，
+      写入后统一由脚本校验；
+   b. `python3 scripts/ustplan.py doctor` 复查 cookie（输出 OK/失效/缺失）；
+   c. `python3 scripts/ustplan.py job status wcq_full` 取 session 并展示确认。
+   异常（cookie 失效/网络不可达）按 RUNBOOK §2 引导重贴，不猜测、不重复探索。
+3. **记录到 decisions 时三字段必须齐全**：`major`/`minor`/`extended_major`
+   一律显式写入（无则 `"NA"`）；缺任一字段 `phase done phase1-input` 会被
+   contracts 校验拦截（空置不通过）。
+
+## 确认点 P1（强制中断）
+
+- 前置：两个凭证预检 OK + major/minor/extended_major 三字段齐备（代码或 NA）
+  + track 给出 + 目标学期确认
+- 记录：`ustplan decisions set P1 major=... minor=... extended_major=... track=... session=... semester=...`
+- 推进：`ustplan phase done phase1-input`
+- 期间后台任务持续运行，不阻塞；异常按 RUNBOOK §2（cookie 失效引导重贴）。
 
 ## 交接
 
-- 目标学期 + session 代码 → phase2（画像）与各 step（wcq session 参数）
-- 检查点 `phase1-input` done → phase2-profile 可 begin
+P1（manifest session + decisions.major/minor/extended_major/track）→ phase2-profile
+及全部 steps（profile.programs 同步写入三字段，minor=NA 时置空数组）。
+phase1 done 后 phase2 可 begin。

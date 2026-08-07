@@ -1,73 +1,39 @@
 ---
 name: phase4-report
-description: Phase 4 总结报告。把 Step 1-6 的固定结构产物整合为最终报告（未修清单、过滤理由、口碑摘要、N 套课程表方案），输出到 output/，末尾附加选课时间提醒（enrollment-dates-reminder）。Use when producing the final course selection report.
+description: Phase 4 总结报告。ustplan report 按模板自动渲染机械段落（画像/未修/过滤/评分/方案/waiver），AI 精读 review_summary 补口碑摘要与下一步建议，附加选课时间提醒（enrollment-dates-reminder），输出 output/final_report.md。Use when producing the final course selection report.
 ---
 
 # Phase 4 — 总结报告
 
-## 目的
+## 触发
 
-把各 Step 的本地总结产物整合成**用户可读的最终报告**，输出到 `output/`。
-报告必须引用各产物（可溯源），不含脚本运行细节。
+- phase3 done + P5 选定方案后（`ustplan phase begin phase4-report`）。
 
-## 输入（全部应为已存在的固定结构产物）
-
-| 数据 | 文件 |
-|---|---|
-| 画像 | `data/profile.json` |
-| 预选课 | `data/pre_enrolled.json`（学校已预选，方案中已占用时段） |
-| 未修清单 | `data/unmet_courses.json` |
-| Top N 候选 | `data/candidate_rank.json` |
-| 过滤报告 | `data/filter_report.json`（移除理由逐条引用） |
-| 评论总结 | `data/review_summary.json`（每门课口碑摘要） |
-| 最终排名 | `data/course_scores.json` |
-| 课程表方案 | `output/timetable_plan.json` |
-
-## 报告结构（固定）
-
-```
-# 课程选择报告（{目标学期}）
-
-## 1. 画像摘要
-  专业/入学年份/年级/学分/CGA（来自 profile.json）
-
-## 2. 未修课程
-  专业必修 x 门、CC 必修 x 门、选修 x 门（unmet_courses.json 统计）
-
-## 3. 过滤说明
-  输入 N → 保留 M → 移除 K；移除原因分类统计（未开设 / pre-req 不满足），
-  逐条列原因（filter_report.json removed[]）；pre-req 豁免提醒
-
-## 4. 候选口碑摘要（Top 10）
-  每门课：综合评分、推荐度、给分/工作量、今年导师口碑（review_summary.json）
-
-## 5. 最终排名（course_scores.json，前 15）
-
-## 6. 课程表方案（N 套）
-  每套：课程列表、学分、workload、CC/major/选修配比、冲突说明、取舍理由
-
-## 7. 下一步建议
-  优先锁定方案、必须现在做的准备（如教授豁免申请）
-```
-
-末尾必须附加 `enrollment-dates-reminder` 输出的选课时间提醒（固定模板，不可省略）。
-
-## 执行（固定，含检查点推进）
+## 执行（ustplan）
 
 ```bash
-python3 scripts/harness/checkpoint.py begin phase4-report
-# ... 撰写报告、附加 enrollment-dates-reminder、跑校验 ...
-python3 scripts/harness/checkpoint.py done phase4-report
+python3 scripts/ustplan.py report --plan plan-1    # 按模板渲染机械段落
+python3 scripts/ustplan.py grid --plan 1 --html    # 周历 HTML 一并交付（可选）
 ```
 
-## 输出
+- 模板：`templates/reports/final_report.md.tpl`（画像/未修栏位/过滤说明/评分总表/
+  方案明细/waiver 清单自动填充；第 4 节口碑摘要与第 7 节建议留占位）。
 
-- `output/final_report.md`（用户可读版）
-- `output/timetable_plan.json` 已由 Step 6 产出（报告引用之）
+## AI 职责
 
-校验：`python3 scripts/harness/schema_validate.py --target output/timetable_plan.json`
+1. 精读 `data/review_summary.json` 填第 4 节"候选口碑摘要"
+   （每栏位 TOP3：综合评分/推荐度/给分/工作量/今年导师口碑）；
+2. 填第 7 节"下一步建议"：选定方案锁定（validation period 尽早提交
+   shopping cart）；waiver 申请（课程 + missing pre-req）；overload/低学分说明；
+3. **末尾附加选课时间提醒**（enrollment-dates-reminder 固定模板，不可删除）；
+4. 产物仅引用 artifact 数据（可追溯），不写脚本运行细节。
+
+## 确认点
+
+- 报告即交付物（无强制确认点）；用户确认后推进：
+  `ustplan phase done phase4-report`。
 
 ## 交接
 
-- 报告给用户 → 用户选择方案 → phase4.5 `must-take-course-insertion`（指定课程硬插重排）
-- 无指定课程 → 流程结束
+final_report.md + timetable_plan.json → phase4.5-must-take 询问必选课；
+无必选课 → 流程结束。

@@ -1,104 +1,53 @@
 ---
 name: step1-unmet-calculation
-description: Step 1 未修课程计算。专业必修（database/curriculum）+ 今年可读 CC（wcq 下拉池，按 admission_year 匹配）− 已修（SIS 课程历史）= 未修列表，AI 解读 Note 语义后按固定结构总结保存为 data/unmet_courses.json。Use when computing which courses a student has not yet taken.
+description: Step 1 未修课程计算（bucket 化）。ustplan step step1 执行 scripts/rank/buckets.py：必修一门一桶、选修一 pool 一桶、CC 一区域一桶；track 过滤 + pre-req 引用补录 + 已修/预选课扣除（OR 池整桶满足）；CC 区域满足性全脚本三层判定；AI 精读 Note 语义后保存 data/unmet_courses.json。Use when computing un-taken courses.
 ---
 
-# Step 1 — 未修课程计算
+# Step 1 — 未修课程计算（bucket 化）
 
-## 公式（固定）
+## 触发
 
-```
-未修 = 专业必修（database/curriculum/{admissionYear}/{PROG}.json）
-     + 今年可读 CC（data/cc_courses_{session}.json，wcq 按入学年份组匹配）
-     − 已修（data/passed_courses.json，来自 SIS course history）
-     − 预选课（data/pre_enrolled.json，学校已预选/已注册，视为"已确定修读"，不重复推荐）
-```
+- phase3-course-analysis begin 后（`ustplan phase begin phase3-course-analysis`）。
 
-- `database/common-core/{版本}.md` **不是课程来源**，仅提供 CC 结构规则（区域划分、
-  home area、学分要求），用于从"可读 CC 池"中筛出该生**必须覆盖的区域**及其课程
-- 专业名与本地 curriculum `title`/`program` 完全相符 → 直接用本地；不符/缺失 →
-  按 web-crawl-guide §4 二次匹配
+## 执行（ustplan 合约）
 
-## 输入（先确认存在）
-
-| 文件 | 来源 |
-|---|---|
-| `data/profile.json` | phase2 产物（admission_year / programs / credits_earned） |
-| `data/passed_courses.json` | phase2 产物（已修课程，SIS course history 转换） |
-| `data/pre_enrolled.json` | phase2 产物（学校预选课，P2 确认） |
-| `database/curriculum/{year}/{PROG}.json` | prog-crs 预构建 |
-| `data/cc_courses_{session}.json` | `scripts/wcq/crawler.py --admission-year {year}` 产物 |
-
-## 执行步骤
-
-1. 从 profile 取 admission_year → 确认 `cc_courses_{session}.json` 是匹配组的（web-crawl-guide §1b 映射）
-2. 读本地 curriculum，展开 block/section/group：
-   - **必修组**（required/fundamental/pre_major）→ 全部入列表，category=`major_required`
-   - **选修组**（elective/other）→ 入列表，category=`major_elective`
-   - 组内候选（pool/alternatives）→ 课程逐个入列表（同组共享 Note）
-3. 读可读 CC 池，按 common-core 版本结构规则筛出该生必修区域（如 home area 外 4 区）的课程
-   → category=`cc_required` / `cc_elective`
-4. 用 passed_courses 排除已修（含 transferred/exempted/audit）
-5. 用 `data/pre_enrolled.json` 排除学校预选课（confirmed + pending 均视为将修，
-   不重复推荐；如预选课与未修清单同课则标注 `pre_enrolled` 并从推荐中移除）
-6. **AI 解读 Note 语义**：OR/AND、计数（"any 2 of"）、跨组互斥 → 写入
-   `note_interpretation`，课程归属不清的标记 `review_pending`（下一阶段人工/AI 复核）
-7. 120 学分与 credit-reuse 检查：单门课若已计入其他要求组（exclusion/co-list），标注说明
-
-## 本地匹配约定（固定，效率优先）
-
-- **匹配对象**：`data/courses_{session}.json` 与 `data/cc_courses_{session}.json`
-  （结构化 JSON）——建 `规范化课号 → course` 索引后 O(1) 命中（毫秒级）；
-  **禁止**对 `cache/wcq/raw/` 原始 HTML 做正则匹配（爬虫已预处理归一，重复正则反而慢）
-- **课号规范化**：统一大写、去空格/点（`phys 3152` → `PHYS3152`）；
-  **保留字母后缀**：`LANG 1416C` ≠ `LANG 1416`、`COMP 4981H` ≠ `COMP 4981`
-- **重复收录去重**：CC 区域页与 subject 页可能收录同一门课 → 按规范化课号去重，
-  课程信息取 subject 页版本（cc_courses 文件仅作未命中兜底）
-- 临时核对某课（今年是否开设/导师/时间/配额，不联网）：
-  ```bash
-  python3 scripts/rank/filter.py --lookup "PHYS 3152" --lookup "LANG 1416C" --session 2610
-  ```
-
-## 总结结构（固定，必须按此写入 data/unmet_courses.json）
-
-```json
-{
-  "generated_at": "ISO",
-  "program": "PHYS",
-  "intake_year": "2023-24",
-  "graduation_target_credits": 120,
-  "courses": [
-    {
-      "code": "PHYS 4191",
-      "name": "Final Year Physics Project",
-      "credits": 4.0,
-      "category": "major_required|cc_required|major_elective|cc_elective|free_elective",
-      "source_groups": [{"block": "...", "section": "...", "group": "...", "note": "Note 原文"}],
-      "note_interpretation": "AI 对 Note 语义的解析（必修/候选池/计数）"
-    }
-  ]
-}
+```bash
+python3 scripts/ustplan.py step step1
 ```
 
-校验：`scripts/harness/schema_validate.py --target data/unmet_courses.json`
+- 前置检查自动完成：phase 状态、输入（profile/passed_courses + 可选 pre_enrolled）
+  存在且过 schema、step 顺序；
+- 命令由合约构建：`buckets.py --profile … --session {P1.session} --track {P1.track}
+  --passed …`（session/track 从运行状态注入，无需手写）；
+- 公式：未修 = 专业必修（按 track 过滤）+ 今年可读 CC − 已修 − 预选课。
+- 脚本自动处理（无需 AI）：track 限制（"can only use X"）、EXT 主修合并、
+  课号清洗、已修/预选扣除、OR 池整桶满足、pre-req 引用补录、
+  **CC 区域满足性三层判定**（历史区域表 → AR 条目 → AR 组回退）。
 
-## 确认点 P3（强制中断）— 未修清单确认
+## AI 职责（精读，脚本不做语义判断）
 
-**AI 解读 Note 语义并生成未修清单后必须暂停，向用户展示摘要并等待确认：**
+1. 核对产物与 SIS AR 一致（AR 权威）：AR 显示满足的栏位 → 相应 bucket 移除或标注；
+2. **Note 语义已脚本固化**（`scripts/rank/note_eval.py`，AND/OR/方括号/any N of
+   表达式解析 + 整桶满足判定），复杂 Note 的表达式形状写入 `buckets[].note_semantics`；
+   AI 复核该形状与要求一致即可，**不再手写求值器**（嵌套括号/方括号 `[...]`
+   不会被当 Python 列表误判；FYP 组如
+   `[COMP 1991 AND (COMP 4981 OR COMP 4981H)] OR [COMP 4910]` 只修 0 学分
+   实习不会误判整桶满足）；仅在与 AR/学生事实矛盾时标注 review_pending 并确认；
+3. **CC 满足性不做 AI 判断**（脚本已全判）；仅在与 AR/学生事实矛盾时标注
+   review_pending 并向用户确认；
+4. 等效课（MATH 2011≡2023 类）→ 依据 AR/用户确认标注，可沉淀 database/mappings/；
+5. 无法判定 → 本步内解决（含问用户），不留到下一步；120 学分/credit-reuse → 注记。
 
-```
-未修课程统计（{program}，{intake_year} 入学）
-- 专业必修 x 门 / CC 必修 x 门 / 专业选修 x 门 / CC 选修 x 门 / 自由选修 x 门
-- review_pending：{课程列表}（Note 语义不清，需用户/人工复核）
-- 已排除已修 N 门（含 transferred/exempted/audit）
-```
+## 确认点 P3（强制中断，含过滤结果展示）
 
-- 用户确认 → 进入 Step 2
-- 用户指出遗漏/误收（如某门课已修、某组不该算必修）→ 修正 `data/unmet_courses.json`
-  后重新校验
-- 存在 `review_pending` 时**必须**在本步解决（含问用户），不得带入下一步
+- 展示（产品化）：必修按 bucket 全列；CC/选修仅列未满足栏位；review_pending 列表；
+  pre-req 参考课程；
+- **同回合问目标学分**（默认 15，一次问清）；
+- **同回合顺带展示 step3 过滤结果**（今年未开设移除 / waiver 课程 / 复核项），
+  用户有异议（教授豁免/等效课）→ 记录 `overrides` 重跑 step3；
+- 记录：`ustplan decisions set P3 confirmed=true target_credits=<N> [overrides=...]`；
+- 修正 → 覆盖 + 重跑 `step step1 --force` + 重新确认。
 
 ## 交接
 
-产物给 Step 2（`scripts/rank/local.py`）作输入。若存在 `review_pending` 课程，先在
-step1 阶段解决，不得带入下一步。
+unmet_courses.json → step3（filter.py）。P3 确认后 step3 可执行。
