@@ -1,0 +1,43 @@
+{
+  "program": "GBM",
+  "intake_year": "2024-25",
+  "school": "School of Business and Management",
+  "title": "BBA in General Business Management",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\GBM.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "BBA",
+              "note": "in General Business Management In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Unless approved by the Dean or the Dean's designate, students are not allowed to reuse courses that are counted towards the School Requirements to also fulfill the Major or Option requirements. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": []
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree)",
+        "SB&M                          SB&M Electives (Any 9 courses offered by the departments                  29 under SB&M, of which at least 4 courses are of 3000-level or above.)"
+      ]
+    }
+  ]
+}

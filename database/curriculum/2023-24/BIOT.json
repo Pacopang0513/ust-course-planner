@@ -1,0 +1,719 @@
+{
+  "program": "BIOT",
+  "intake_year": "2023-24",
+  "school": "School of Science",
+  "title": "BSc in Biotechnology",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\BIOT.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "pre_major",
+          "name": "Major Pre-requisite course(s)",
+          "groups": [
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology are",
+              "credits": "0-1",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1903",
+                  "title": "Laboratory for General Biology I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1904",
+                  "title": "Laboratory for General Biology II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2040",
+                  "title": "Cell Biology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2070",
+                  "title": "Introduction to Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2080",
+                  "title": "Plant Biology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2210",
+                  "title": "Biochemistry I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2220",
+                  "title": "Biochemistry II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3150",
+                  "title": "Biostatistics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LIFS/SCIE",
+              "note": "Note: LIFS 4963 OR (LIFS 4973 AND LIFS 4983) OR (SCIE 4500 AND LIFS 4983) (Students following IRE Track can only use (SCIE 4500 AND LIFS 4983) to fulfill the requirement.)",
+              "credits": "3-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 4963",
+                  "title": "Biotechnology Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4973",
+                  "title": "Biotechnology Project Research I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4983",
+                  "title": "Biotechnology Project Research II",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 4500",
+                  "title": "IRE Research Project II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1051",
+                  "title": "Laboratory for General Chemistry A",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1052",
+                  "title": "Laboratory for General Chemistry B",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "CHEM",
+              "note": "Note: CHEM 2111 OR CHEM 2311",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 2111",
+                  "title": "Fundamentals of Organic Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2311",
+                  "title": "Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "CHEM",
+              "note": "Note: CHEM 2155 OR CHEM 2355",
+              "credits": "1",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 2155",
+                  "title": "Fundamental Organic Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2355",
+                  "title": "Fundamental Analytical Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LANG",
+              "note": "Note: LANG 3024 OR LANG 3027 (Students following the Applied Bioscience Track / Entrepreneurship Track should take Track should take LANG 3027 to fulfill the requirement.)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LANG 3024",
+                  "title": "to fulfill the requirement. Students following IRE",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "LANG 3024",
+                  "title": "Science Communication in English (Life Science)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LANG 3027",
+                  "title": "Science Communication in English for Research Students",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "BIEN/CENG",
+              "note": "minimum of 15 credits; while others a minimum of 18 credits. Courses taken as Major/Track Required Courses may not be counted towards the elective requirement.) LIFS                     Any LIFS courses at 3000/4000-level Students should follow one of the tracks and complete all requirements as specified",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 2010",
+                  "title": "Modern Approaches to Biochemical and Cell Biological Research",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2060",
+                  "title": "Biodiversity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2240",
+                  "title": "Cell Biology Laboratory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2720",
+                  "title": "Biochemistry Laboratory",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2820",
+                  "title": "Biochemical Laboratory Techniques",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2888",
+                  "title": "Introduction to Bioindustries",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BTEC 5210",
+                  "title": "Principles and Application in Biotechnology",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "BTEC 5340",
+                  "title": "Biomarkers and Medical Devices",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 1010",
+                  "title": "Principles and Applications of Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 2010",
+                  "title": "Introductory Biological Physics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 5050",
+                  "title": "Global Health Ethics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1110",
+                  "title": "Introduction to Chemical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1600",
+                  "title": "Biotechnology and Its Business Opportunities",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4620",
+                  "title": "Bioproducts and Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4670",
+                  "title": "Pharmaceutical Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) BSc in Biotechnology In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Students MUST take the following courses prior to enrollment into the major",
+        "are exempted from taking LIFS 1901",
+        "exempted from taking LIFS 1903 Reaction Kinetics Theories"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Applied Bioscience Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3040",
+                  "title": "Animal Physiology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3060",
+                  "title": "Microbiology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4370",
+                  "title": "Human Genetics and Personalized Medicine",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "LIFS",
+              "note": "Applied Bioscience Elective (3 courses from the specified list)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 2011",
+                  "title": "A Practicum on Wetland Conservation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3220",
+                  "title": "Animal Physiology Laboratory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3260",
+                  "title": "Microbiology Laboratory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3370",
+                  "title": "Human Genetics in Practice",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4882",
+                  "title": "Investigative Pharmacology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4884",
+                  "title": "Application of RNA Technology to Human Diseases",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "LIFS/BTEC/                  Biotechnology Electives (Courses from the specified elective             15-18 OCES/PHYS/                  list; Students following IRE Track are required to take a"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Entrepreneurship Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "LIFS/CENG",
+              "note": "Note: LIFS 2888 OR CENG 1600",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 2888",
+                  "title": "Introduction to Bioindustries",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1600",
+                  "title": "Biotechnology and Its Business Opportunities",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3110",
+                  "title": "Biotechnological Application of Recombinant DNA Techniques",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3140",
+                  "title": "General Genetics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4200",
+                  "title": "Concepts and Issues in Contemporary Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4630",
+                  "title": "Advanced Topics in Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIBU 4820",
+                  "title": "Biotechnology Entrepreneurship and Business Operations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": "track",
+      "name": "International Research Enrichment Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3070",
+                  "title": "Introduction to Biophysical Instrumentation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SCIE 3500",
+                  "title": "IRE Research Project I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the IRE Track should also take SCIE 4500 and LIFS 4983 as specified in the major requirements.",
+        "Others                       Note: With approval by the program office, students should           18 follow the curriculum of the Applied Bioscience Track, and complete all of its requirements."
+      ]
+    }
+  ]
+}

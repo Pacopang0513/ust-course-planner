@@ -1,0 +1,398 @@
+{
+  "program": "OM",
+  "intake_year": "2023-24",
+  "school": "School of Business and Management",
+  "title": "BBA in Operations Management",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\OM.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "BBA",
+              "note": "in Operations Management In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Unless approved by the Dean or the Dean's designate, students are not allowed to reuse courses that are counted towards the School Requirements to also fulfill the Major or Option requirements. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3710",
+                  "title": "Business Modeling and Optimization",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3770",
+                  "title": "Global Supply Chain Management",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "ISOM",
+              "note": "OM Electives (Any 4 ISOM courses coded between 3500 and 3999 (except ISOM 3780); 4500 and 4999. Students taking the Business Analytics Option can only use courses in the specified elective list to fulfill this requirement. Courses taken as Option Required Courses may not be counted towards this elective requirement.) Courses for students without option",
+              "credits": "12",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "ISOM",
+              "note": "Any ISOM courses at 3000- /4000- level coded from 3500 to Restricted list of courses for students taking the Business Analytics option",
+              "credits": "3999",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3530",
+                  "title": "Business Data Analytics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3540",
+                  "title": "Introduction to Probability Models",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4520",
+                  "title": "Statistics for Financial Risk Management",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4530",
+                  "title": "Statistical Analysis of Financial Data in R/S-plus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4540",
+                  "title": "Time Series Analysis and Forecasting",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4720",
+                  "title": "Simulation in Business and Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4740",
+                  "title": "Enterprise Resource Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4780",
+                  "title": "Integrated Planning and Execution",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4810",
+                  "title": "OM Best Practices",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4830",
+                  "title": "Analytics for Service Operations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4840",
+                  "title": "Financial Service Operations Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4880",
+                  "title": "Operations Management Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree)"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Business Analytics Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "ISOM",
+              "note": "4520, ISOM 4530, ISOM 4540, ISOM 4720, ISOM 4740, ISOM 4780, ISOM 4810, ISOM 4830, ISOM 4840 and ISOM 4880 to fulfill the OM Electives as specified under the Major Requirements.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3360",
+                  "title": "Data Mining for Business Analytics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3900",
+                  "title": "Decision Analytics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(except ISOM 3780) and 4500 to 4999 Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+        "Students in the Business Analytics Option should also take 4 courses out of ISOM 3530, ISOM 3540,"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Supply Chain Management Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "ISOM",
+              "note": "Note: ISOM 3730 OR ISOM 4740 OR ISOM 4750 OR ISOM",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISOM 3730",
+                  "title": "Quality and Process Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4740",
+                  "title": "Enterprise Resource Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4750",
+                  "title": "Business Project Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4780",
+                  "title": "Integrated Planning and Execution",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3760",
+                  "title": "Logistics Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "4780"
+      ]
+    }
+  ]
+}

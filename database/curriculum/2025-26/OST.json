@@ -1,0 +1,649 @@
+{
+  "program": "OST",
+  "intake_year": "2025-26",
+  "school": "School of Science",
+  "title": "BSc in Ocean Science and Technology",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\OST.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "pre_major",
+          "name": "Major Pre-requisite course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 1001",
+                  "title": "The Earth as a Blue Planet",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 1010",
+                  "title": "Principles and Applications of Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 2002",
+                  "title": "Marine Chemistry",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 2003",
+                  "title": "Descriptive Physical Oceanography",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 2004",
+                  "title": "Sustainable Ocean",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 2005",
+                  "title": "Coastal Marine Habitats",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 2130",
+                  "title": "Marine Biology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 3001",
+                  "title": "Coastal Environmental Monitoring",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 3003",
+                  "title": "Field Methods in Marine Studies",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 3160",
+                  "title": "Ecology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 3301",
+                  "title": "Data Analysis in Ocean Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 4001",
+                  "title": "Ocean and Climate Change",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 4203",
+                  "title": "Environmental Impact and Risk Assessment",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "OCES/SCIE",
+              "note": "Note: OCES 4964 OR (OCES 4974 AND OCES 4984) OR (SCIE 3500 AND SCIE 4500) (Students following IRE Track can only use (SCIE 3500 AND SCIE 4500) to fulfill the requirement.)",
+              "credits": "3-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "OCES 4964",
+                  "title": "Ocean Science and Technology Capstone Project Research",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4974",
+                  "title": "Ocean Science and Technology Research Project I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4984",
+                  "title": "Ocean Science and Technology Research Project II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 3500",
+                  "title": "IRE Research Project I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 4500",
+                  "title": "IRE Research Project II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology are",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1005 OR MATH 1006 OR MATH 1013 OR MATH 1020 OR MATH 1023",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1005",
+                  "title": "Calculus and Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1006",
+                  "title": "Calculus, Vectors, and Matrices",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1101 OR PHYS 1111 OR PHYS 1112 OR PHYS",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1101",
+                  "title": "Introductory Physics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1111",
+                  "title": "General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1023",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1023",
+                  "title": "Introduction to Python Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LANG",
+              "note": "Note: LANG 4010 (Students following IRE Track are exempted from this course and should take LANG 3027 to fulfill the IRE requirement.) Environmental Impact Assessments",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LANG 4010",
+                  "title": "From Report to Presentation: Mastering Effective Communication in",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "LIFS/MATH",
+              "note": "specified elective list. Students taking the Marine Ecology Option must use OCES 4301 to count towards this elective requirement, while those taking the Oceanography Option must use MATH 1014. Courses taken to fulfill the Track/Option requirements may not be counted towards this elective requirement.) OCES                     Any OCES courses at 3000/4000-level",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "OCES 2201",
+                  "title": "Internship",
+                  "credits": "2-4",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 2330",
+                  "title": "Marine Biology Laboratory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2311",
+                  "title": "Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2011",
+                  "title": "A Practicum on Wetland Conservation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2060",
+                  "title": "Biodiversity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 3150",
+                  "title": "Biostatistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2350",
+                  "title": "Applied Linear Algebra and Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4326",
+                  "title": "Introduction to Fluid Dynamics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2025-26 under the 4-year degree) BSc in Ocean Science and Technology In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Students MUST take the following courses prior to enrollment into the major",
+        "Reaction Kinetics exempted from taking LIFS 1901 1312"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "International Research Enrichment Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 4303",
+                  "title": "AI and Machine Learning in Marine Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LIFS/MATH",
+              "note": "Note: LIFS 3150 OR MATH 2411 Others With approval by the program office, students should enroll in one of the following Ocean Science Options: Marine Ecology Option or Oceanography Option, and complete all of its requirements. Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 3150",
+                  "title": "Biostatistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "OCES/CHEM/                  Ocean Science and Technology Electives (Courses from the                      12",
+        "Students in the IRE Track should also take SCIE 3500 and SCIE 4500 as specified in the major requirements."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Marine Ecology Option",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "OCES",
+              "note": "Marine Ecology Electives (3 courses from the specified elective list)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "OCES 3005",
+                  "title": "Blue Economy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 3302",
+                  "title": "Marine Pollution Tracking",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4103",
+                  "title": "Fisheries and Aquaculture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4204",
+                  "title": "Coral Reef Ecosystem Science",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 4320",
+                  "title": "Marine Toxicology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students taking Marine Ecology Option should also take OCES 4301 as the Major Electives as specified under the Major Requirements."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Oceanography Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 3204",
+                  "title": "Essential Oceanography",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 4303",
+                  "title": "AI and Machine Learning in Marine Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students taking Oceanography Option should also take MATH 1014 as the Major Electives as specified under the Major Requirements."
+      ]
+    }
+  ]
+}

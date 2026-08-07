@@ -1,0 +1,301 @@
+{
+  "program": "SREQ-SBM",
+  "intake_year": "2024-25",
+  "school": "School of Business and Management",
+  "title": "School Requirements",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\SREQ-SBM.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ACCT 2010",
+                  "title": "Principles of Accounting I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "Note: ECON 2103 OR ECON 2113",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ECON 2103",
+                  "title": "Principles of Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2113",
+                  "title": "Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "Note: ECON 2123 OR ECON 3123 (BSc ECOF students can only use ECON 3123 to fulfill this requirement; while others should take ECON 2123)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ECON 2123",
+                  "title": "Macroeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 3123",
+                  "title": "Macroeconomic Theory I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2303",
+                  "title": "Financial Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2010",
+                  "title": "Introduction to Information Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2020",
+                  "title": "Coding for Business",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2500",
+                  "title": "Business Statistics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2600",
+                  "title": "Introduction to Business Analytics",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2010",
+                  "title": "Business Ethics and the Individual",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2130",
+                  "title": "Business Ethics and Social Responsibility",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1003 OR MATH 1012 OR MATH 1013 OR MATH 1020 OR MATH 1023",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1003",
+                  "title": "Calculus and Linear Algebra",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "AND",
+              "note": "MARK 2120 AND MGMT 2110 (Students who enroll in the BSc majors of SBM are not required to take these courses for graduation)",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ACCT 2200",
+                  "title": "Principles of Accounting II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MARK 2120",
+                  "title": "Marketing Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2110",
+                  "title": "Organizational Behavior",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) School of Business and Management In addition to the requirements of their major programs, students are required to complete the School Requirements as shown below. Unless approved by the Dean or the Dean's designate, students are not allowed to use courses included in the School Requirements to fulfill the Major or Option requirements. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. All courses counted towards the School Requirements under the School of Business and Management, as well as those used to fulfill the Major Requirements, will be included in the calculation of the major cumulative grade average (MCGA). Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. School Requirements",
+        "SB&M                        Note: Courses for BBA majors: ACCT 2200 AND ISOM 2700                      12"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "program": "MINOR-ROBO",
+  "intake_year": "2025-26",
+  "school": "School of Engineering",
+  "title": "Undergraduate Minor Program in Robotics",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\MINOR-ROBO.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SENG",
+              "note": "Robotics Electives (Courses from the specified elective list, of which at least 7 credits must be taken from Group A Electives and include at least 1 COMP course; at least 2 courses from Group B; and at least 1 course from Group C.) Group A - Core Electives Group B - Area Electives [Subject to approval of program office, students may request to use a PG course (e.g. ELEC 5660,",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ELEC 3300",
+                  "title": "Introduction to Embedded Systems",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1029C",
+                  "title": "C Programming Bridging Course",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 2520",
+                  "title": "Design and Manufacturing I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "5421) to substitute the elective course in this group] Group C - Robotics Project (ENGG 4950F and ENGG 4950T may not be counted towards this requirement)",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ELEC 3200",
+                  "title": "System Modeling, Analysis and Control",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4220",
+                  "title": "Robotics: Modeling, Control and Planning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4211",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2100E",
+                  "title": "Computing in Industrial Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 3610",
+                  "title": "Control Principles",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4710",
+                  "title": "Introduction to Robotics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ENGG",
+              "note": "3960-     Robotics Special Project",
+              "credits": "1-4",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 4950",
+                  "title": "Engineering Special Project",
+                  "credits": "1-4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 4000D",
+                  "title": "Experiential Learning in Robotics Technologies",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2025-26 under the 4-year degree) Undergraduate Minor Program in Robotics The Minor Program in Robotics is designed mainly for engineering students, but also open to students from other Schools with knowledge in foundation programming [e.g. COMP 1021, COMP 1022P (prior to 2025-26), ISOM 3230, ISOM 3320] and computer organization (e.g. COMP 2611, ELEC 1100, ELEC 1200). Any undergraduate students with an overall CGA of 2.5 or above may enroll in this Minor Program. Students must declare their intention to enroll in the Minor Program no earlier than the first regular term of their second year of study but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the Minor Program should apply before the last day of the add/drop period in the first regular term of their final year of study. Minor Requirements To graduate with a minor in Robotics, students must have enrolled in the Minor Program, complete a minimum total of 18 credits and all of the minor requirements, as well as the requirements of the major program of study. For credit transfer, students can transfer a maximum total of 6 credits to the Minor Program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University.",
+        "2026-27 MINOR-ROBO (4Y) (2025-26 intake)                                                                                            Page 1 3962 2026-27 MINOR-ROBO (4Y) (2025-26 intake)                                                                          Page 2"
+      ]
+    }
+  ]
+}

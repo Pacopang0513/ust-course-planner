@@ -1,0 +1,514 @@
+{
+  "program": "SGFN",
+  "intake_year": "2023-24",
+  "school": "School of Business and Management",
+  "title": "BSc in Sustainable and Green Finance",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\SGFN.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SGFN 4733",
+                  "title": "Green Finance Case Analyses",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SUST 1000",
+                  "title": "Sustainability Fundamentals",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ACCT 2010",
+                  "title": "Principles of Accounting I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2303",
+                  "title": "Financial Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3103",
+                  "title": "Intermediate Investments",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3203",
+                  "title": "Derivative Securities",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3810",
+                  "title": "Bloomberg Market Concepts Certification",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 4303",
+                  "title": "Fixed Income Securities",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 4513",
+                  "title": "Risk Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 4703",
+                  "title": "ESG Investing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2020",
+                  "title": "Coding for Business",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2500",
+                  "title": "Business Statistics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2600",
+                  "title": "Introduction to Business Analytics",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3780",
+                  "title": "Sustainable Supply Chain Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2130",
+                  "title": "Business Ethics and Social Responsibility",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 1170",
+                  "title": "Science, Environment and Society - From Big Bang to Big Data",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 2080",
+                  "title": "Circular Economy and Life Cycle Assessment",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3005",
+                  "title": "Environmental Risks: Principles and Practices",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3110",
+                  "title": "Life Cycle Assessment for Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3310",
+                  "title": "Green Business Strategy",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 4320",
+                  "title": "ESG Management and Reporting",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 4340",
+                  "title": "Social Sustainability: Risks and Challenges",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 4350",
+                  "title": "Governing Green Finance: National and International",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LANG",
+              "note": "Note: LANG 2061 OR LANG 3060",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LANG 2061",
+                  "title": "Professional Writing for the Workplace",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LANG 3060",
+                  "title": "Advanced Academic Writing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LANG 2062",
+                  "title": "Professional Speaking for the Workplace",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1003 OR MATH 1012 OR MATH 1013 OR MATH 1020 OR MATH 1023",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1003",
+                  "title": "Calculus and Linear Algebra",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "FINA",
+              "note": "FINA 3000-/4000-level Electives (Any course(s) of the subject and level as specified)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "ENVR",
+              "note": "Sustainability Electives (1 course from the specified elective list)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ENVR 3220",
+                  "title": "Energy Sources and Usage",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3410",
+                  "title": "Economics for Environmental Policy and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3420",
+                  "title": "Environmental Law and Regulations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 4480",
+                  "title": "Climate Modeling and Risk Assessment",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) BSc in Sustainable and Green Finance Students taking the BSc Program in Sustainable and Green Finance as their first major are exempted from the School Requirements. However, they are still required to complete the University requirements in addition to the major requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "Perspectives and Approaches"
+      ]
+    }
+  ]
+}

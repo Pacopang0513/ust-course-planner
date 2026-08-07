@@ -1,0 +1,599 @@
+{
+  "program": "BIBU",
+  "intake_year": "2023-24",
+  "school": "School of Science",
+  "title": "BSc in Biotechnology and Business",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\BIBU.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIBU 1010",
+                  "title": "Biotechnology and Business Seminar",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIBU 4820",
+                  "title": "Biotechnology Entrepreneurship and Business Operations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIBU 4830",
+                  "title": "Biotechnology Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "BIBU",
+              "note": "Note: BIBU 4840 OR BIBU 4850",
+              "credits": "3-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "BIBU 4840",
+                  "title": "Biotechnology and Business Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIBU 4850",
+                  "title": "Biotechnology and Business Project Research",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology are",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1904",
+                  "title": "Laboratory for General Biology II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2040",
+                  "title": "Cell Biology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2070",
+                  "title": "Introduction to Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2210",
+                  "title": "Biochemistry I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3110",
+                  "title": "Biotechnological Application of Recombinant DNA Techniques",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4200",
+                  "title": "Concepts and Issues in Contemporary Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4630",
+                  "title": "Advanced Topics in Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "CHEM",
+              "note": "Note: Students with level 3 or above in HKDSE 1/2x or 1x",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 1008",
+                  "title": "Introductory Chemistry",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1003 OR MATH 1012 OR MATH 1013 OR MATH 1020 OR MATH 1023",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1003",
+                  "title": "Calculus and Linear Algebra",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1101 OR PHYS 1111 OR PHYS 1112 OR PHYS",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1101",
+                  "title": "Introductory Physics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1111",
+                  "title": "General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ACCT 2200",
+                  "title": "Principles of Accounting II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "Note: ECON 2103 OR ECON 2113",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ECON 2103",
+                  "title": "Principles of Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2113",
+                  "title": "Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 2123",
+                  "title": "Macroeconomics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2203",
+                  "title": "Fundamentals of Business Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2010",
+                  "title": "Introduction to Information Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2500",
+                  "title": "Business Statistics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MARK 2120",
+                  "title": "Marketing Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2110",
+                  "title": "Organizational Behavior",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2130",
+                  "title": "Business Ethics and Social Responsibility",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LANG 2010",
+                  "title": "English for Science I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LANG",
+              "note": "Note: LANG 2061 OR LANG 2062 OR LANG 3060",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LANG 2061",
+                  "title": "Professional Writing for the Workplace",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LANG 2062",
+                  "title": "Professional Speaking for the Workplace",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LANG 3060",
+                  "title": "Advanced Academic Writing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SSCI/SBM",
+              "note": "Biotechnology and Business Electives (Courses from the specified elective list, of which at least 3 credits from each area in Biotechnology / Business. Courses taken as Major Required Courses may not be counted towards this elective requirement.) Biotechnology LIFS                      Any LIFS courses at 3000/4000-level Business SB&M                      Any ECON/FINA/ISOM/MARK/MGMT courses at 3000/4000-level",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "BTEC 5340",
+                  "title": "Biomarkers and Medical Devices",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BTEC 5380",
+                  "title": "Drug Discovery and Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2111",
+                  "title": "Fundamentals of Organic Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2155",
+                  "title": "Fundamental Organic Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2311",
+                  "title": "Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2355",
+                  "title": "Fundamental Analytical Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) BSc in Biotechnology and Business Students taking the BSc Program in Biotechnology and Business as their first major are exempted from the School Requirements. However, they are still required to complete the University requirements in addition to the major requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "exempted from taking LIFS 1901 Chemistry are exempted from taking CHEM 1008 Reaction Kinetics Theories 1312"
+      ]
+    }
+  ]
+}

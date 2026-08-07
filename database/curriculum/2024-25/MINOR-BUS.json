@@ -1,0 +1,231 @@
+{
+  "program": "MINOR-BUS",
+  "intake_year": "2024-25",
+  "school": "School of Business and Management",
+  "title": "Undergraduate Minor Program in Business",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\MINOR-BUS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SBM",
+              "note": "Business Electives (6 courses from the specified elective list, of which at least 4 courses must be taken from the list of Business Fundamental Courses. A maximum of two Business Advanced Electives can be counted towards the Minor Program requirements.) List 1 - Business Fundamental Courses (No more than one course within the same course groups of ECON 2103/ECON 2113/ECON 2123, FINA 2203/FINA 2303, and MGMT 1110/MGMT 2110 may be counted towards the elective requirement.) List 2 - Business Advanced Courses Majors",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ACCT 2010",
+                  "title": "Principles of Accounting I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2103",
+                  "title": "Principles of Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2113",
+                  "title": "Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2123",
+                  "title": "Macroeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 2203",
+                  "title": "Fundamentals of Business Finance",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 2303",
+                  "title": "Financial Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2010",
+                  "title": "Introduction to Information Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 2120",
+                  "title": "Marketing Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 1110",
+                  "title": "Introduction to Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 2110",
+                  "title": "Organizational Behavior",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ACCT 2200",
+                  "title": "Principles of Accounting II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ACCT 3030",
+                  "title": "Intermediate Financial Accounting for Non-Accounting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ACCT 4410",
+                  "title": "Taxation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 3014",
+                  "title": "Managerial Microeconomics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 3024",
+                  "title": "Managerial Macroeconomics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 3334",
+                  "title": "Introduction to Econometrics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 3103",
+                  "title": "Intermediate Investments",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 3203",
+                  "title": "Derivative Securities",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 4103",
+                  "title": "Financial Markets Trading and Structure",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3310",
+                  "title": "e-Business Management and Web Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3360",
+                  "title": "Data Mining for Business Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3710",
+                  "title": "Business Modeling and Optimization",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4020",
+                  "title": "Innovation Management and Technology Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4740",
+                  "title": "Enterprise Resource Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4750",
+                  "title": "Business Project Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3410",
+                  "title": "Promotion and Advertising Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3480",
+                  "title": "Pricing Strategy",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 4450",
+                  "title": "Brand Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3110",
+                  "title": "Human Resources Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3120",
+                  "title": "Managerial Leadership",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4210",
+                  "title": "Corporate Strategy",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) Undergraduate Minor Program in Business Except for students pursuing a degree program and/or an additional major in the School of Business and Management, Dual Degree Program in Technology and Management, BSc in Biotechnology and Business, BSc in Mathematics and Economics, BSc in Risk Management and Business Intelligence and BSc in Sustainable and Green Finance. Any undergraduate students with (i) a CGA of 2.5 or above, and (ii) a grade B- in LANG 1003 (prior to 2022-23) or in LANG 1403/LANG 1404, may enroll in this minor program. They must declare their intention to enroll in the minor program during the application period conducted in around June every year. Students who wish to withdraw from the minor program should apply before the last day of add/drop period in the first regular term of their final year of study. Minor Requirements To graduate with a minor in Business, the students must be enrolled in the minor program, complete a minimum total of 18 credits and all of its requirements, as well as all the requirements of their major program, and attain an average grade point of at least 1.85 in courses taken within the minor program. For credit transfer, students can transfer a maximum of 2 courses to the minor program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. Some courses in the curriculum have been previously coded with CORE-prefix where the special CORE-prefix has been replaced by the domain code of courses starting from Fall 2023-24. Students who have registered with these CORE- coded courses may look up their latest course codes by consulting the conversion table published on the Common Core website.",
+        "2026-27 MINOR-BUS (4Y) (2024-25 intake)                                                                                             Page 1 2026-27 MINOR-BUS (4Y) (2024-25 intake)                                                                    Page 2"
+      ]
+    }
+  ]
+}

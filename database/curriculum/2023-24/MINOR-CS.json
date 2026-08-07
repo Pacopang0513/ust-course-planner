@@ -1,0 +1,712 @@
+{
+  "program": "MINOR-CS",
+  "intake_year": "2023-24",
+  "school": "School of Humanities and Social Science",
+  "title": "Undergraduate Minor Program in China Studies",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\MINOR-CS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "HUMA 1020:              The course was last offered in 2020-21 and was deleted subsequently.",
+    "HUMA 1420:            The course was last offered in 2020-21 and was deleted subsequently.",
+    "HUMA 1630:            The course was last offered in 2020-21 and was deleted subsequently.",
+    "HUMA 1632:            The course was last offered in 2018-19 and was deleted subsequently.",
+    "HUMA 1810:            The course was last offered in 2019-20 and was deleted subsequently.",
+    "HUMA 2280:            The course was last offered in 2018-19 and was deleted subsequently.",
+    "HUMA 3200:            The course was last offered in 2019-20 and was deleted subsequently.",
+    "HUMA 4840:            The course was last offered in 2019-20 and was deleted subsequently.",
+    "SOSC 1661:            The course was last offered in 2020-21 and was deleted subsequently.",
+    "SOSC 3410:            The course was last offered in 2019-20 and was deleted subsequently.",
+    "SOSC 4270:            The course was last offered in 2019-20 and was deleted subsequently.",
+    "SOSC 4290:            The course was last offered in 2023-24 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "HUMA/SOSC",
+              "note": "China Studies Elective (Courses from the specified elective list, of which at least 9 credits must be at the 2000-/3000-/4000- level. Out of the electives taken, there should be at least 6 credits in Humanities courses and 6 credits in Social Science courses.) China and the World Present and Comparative Perspectives Economy and Politics History, Society and Culture Approaches Remaking Politics & the Unseen World of Chinese Villages Perspective and Writing Essays and Writing Novels and Writing Century Chinese History Modern China Hong Kong Studies",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 1030",
+                  "title": "Structure of the Chinese Language",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1520",
+                  "title": "Modern East Asia",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2000D",
+                  "title": "Science, Technology and the Modern World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2400",
+                  "title": "Approaches to Humanities in China Studies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2420",
+                  "title": "Late Imperial China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2440",
+                  "title": "20th-Century China in Documentary Films",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2590",
+                  "title": "The Making of the Modern World: Renaissance to the",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4000E",
+                  "title": "The Foreigners' Look at China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4520",
+                  "title": "History of US-China Relations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4700",
+                  "title": "Confucianism in a Global Context",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1190",
+                  "title": "China and the World: China's Development in Historical",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1350",
+                  "title": "Contemporary China: Continuity and Change",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2290",
+                  "title": "Understanding Globalization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3410",
+                  "title": "East Asian Economic Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1400",
+                  "title": "Hong Kong and the Greater Bay Area",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1420",
+                  "title": "Poverty",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1780",
+                  "title": "Population and Development in China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1840",
+                  "title": "Government, Law and Society in China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2000C",
+                  "title": "Comparative Public Policy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3000C",
+                  "title": "Social Theory and Modernity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3000E",
+                  "title": "Food Policy for Developing Countries",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3520",
+                  "title": "Understanding Comparative Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3540",
+                  "title": "Environmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3630",
+                  "title": "Democracy and Democratization around the World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4000A",
+                  "title": "China in Comparative Perspective",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4260",
+                  "title": "China's Economic Transformation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4270",
+                  "title": "Social Change in Contemporary China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4280",
+                  "title": "China in the Global Political Economy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4290",
+                  "title": "China's Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4310",
+                  "title": "Chinese Capitalism: Historical and Comparative Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4600",
+                  "title": "Understanding Chinese Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1020",
+                  "title": "Chinese Writing and Culture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1060",
+                  "title": "Introduction to Mandarin Chinese Grammar",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1108",
+                  "title": "Expressive Sounds",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1150",
+                  "title": "Exploration of Drawing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1154",
+                  "title": "Photography",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1155",
+                  "title": "Video Art",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1156",
+                  "title": "Exploration of Chinese Calligraphy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1210",
+                  "title": "Chinese Women on Screen",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1231",
+                  "title": "Popular Culture of East Asia",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1420",
+                  "title": "Late Imperial China from Yuan to Qing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1430",
+                  "title": "History of P. R. China's Diplomacy, 1949-1989",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1440",
+                  "title": "Modern China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1622",
+                  "title": "Science, Technology and Society: Historical and Cultural",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1630",
+                  "title": "Popular Religion in South China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1632",
+                  "title": "Community Heritage and Food Technology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1660",
+                  "title": "Introduction to Chinese Art",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1671",
+                  "title": "Cantonese Opera in Hong Kong Culture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1810",
+                  "title": "Introduction to Chinese Philosophy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1811",
+                  "title": "History of Chinese Philosophy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1921",
+                  "title": "Philosophy of Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1922",
+                  "title": "Introduction to Analytic Philosophy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2010",
+                  "title": "Metaphors in English and Chinese",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2032",
+                  "title": "Language, Power and Identity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2050",
+                  "title": "Classical Chinese",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2108",
+                  "title": "Music of China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2109",
+                  "title": "East Asian Popular Music",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2240",
+                  "title": "Reading Chinese Literature: Dreams of the Red Chamber",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2250",
+                  "title": "Modern Chinese Fiction (1917-1949)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2260",
+                  "title": "Contemporary Chinese Fiction (1949-present)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2280",
+                  "title": "Identity Goes Global: From Border Crossing to Boundary",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2300",
+                  "title": "Traditional Chinese Poetry: Early Chinese Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2310",
+                  "title": "Traditional Chinese Fiction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2320",
+                  "title": "Chinese Drama",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2330",
+                  "title": "Anime",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2340",
+                  "title": "Between Old and New: Chinese Stories and Their Reinventions",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2420",
+                  "title": "Late Imperial China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2470",
+                  "title": "From Fung Shui to Mao's Villages: City Plans, Urban",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2520",
+                  "title": "History of Tea in East Asia",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2623",
+                  "title": "Cultural Sustainability in South China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2632",
+                  "title": "Chinese Culture and Society in Anthropological Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2635",
+                  "title": "Cultural Diversity in China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2640",
+                  "title": "Unofficial China: Social History 1800s-1930s",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2660",
+                  "title": "Introduction to Chinese Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2661",
+                  "title": "Chinese Oil Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2840",
+                  "title": "Buddhism and the Chinese Intellectual Tradition",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2930",
+                  "title": "What am I? Personal Identity and the Self from a Philosophical",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3000B",
+                  "title": "The Bible in Film",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3030",
+                  "title": "Language, Communication and Culture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3050",
+                  "title": "Psychology of Language",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3200",
+                  "title": "Questions of Humanity in World Literature",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3202",
+                  "title": "Chinese Creative Writing: Reading Literary Classics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3203",
+                  "title": "Chinese Creative Writing: Reading Literary Classics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3204",
+                  "title": "Chinese Creative Writing-Reading Literary Classics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3210",
+                  "title": "Traditional Chinese Poetry: Tang and Song Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3220",
+                  "title": "Modern Chinese Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3250",
+                  "title": "Independent Cinema in Contemporary China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3430",
+                  "title": "Reading Modern Chinese History Historically",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3630",
+                  "title": "Community and Cultural Identity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3660",
+                  "title": "Tradition & Modernity: Chinese Ink Painting in 20th",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3800",
+                  "title": "Guided Studies in Chinese Philosophical Classics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3810",
+                  "title": "Taoism and the Chinese Tradition",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4000D",
+                  "title": "Hollywood Goes to Asia: Transnational Asian Media",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4000F",
+                  "title": "The Nexus of Power: Warfare, Trade and the State in",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4000H",
+                  "title": "Picturing History: Photographers and the Making of",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4000L",
+                  "title": "Philosophy of History and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4020",
+                  "title": "Language and Literature in Modern China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4220",
+                  "title": "Verbal and Visual Representation of China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4250",
+                  "title": "Masterpieces of Modern Literature",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4610",
+                  "title": "Heritage in Cross-cultural Perspective",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4801",
+                  "title": "Classical Chinese Philosophy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4840",
+                  "title": "Selected Readings of Religious Taoism",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2740",
+                  "title": "Gender and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3880",
+                  "title": "Social Inequality and Social Mobility",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4000C",
+                  "title": "City and Modernity",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2031",
+                  "title": "The Cantonese Language",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4000G",
+                  "title": "Global Hong Kong in Literature and Film",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1661",
+                  "title": "Contemporary Hong Kong: Government & Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1662",
+                  "title": "Contemporary Hong Kong Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3130",
+                  "title": "Hong Kong Culture",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) Undergraduate Minor Program in China Studies Except for those studying in the BSc program in Global China Studies: Humanities and Social Science, any undergraduate student with a CGA of 1.5 or above may enroll in the China Studies Minor Program. They must declare their intention to enroll in the minor program no earlier than the second regular term of their second year of study, but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the minor program should apply before the last day of the add/drop period in the second regular term of their final year of study. The China Studies Minor Program is a cross-divisional program and its courses are grouped into four areas, namely (1) China and the World, (2) Economy and Politics, (3) History, Society and Culture, and (4) Hong Kong Studies. Students may specialize in a single area or take courses across different areas to match their interest. Minor Requirements To graduate with a minor in China Studies, the students must have enrolled in the minor program and complete a minimum total of 18 credits and all of its requirements, as well as all the requirements of their major program of study; and have attained an average grade point of at least 1.5 in courses taken in the minor program. A maximum total of 6 credits completed successfully outside HKUST can be transferred to the Minor Program. Courses accepted for credit transfer must normally be at a level equivalent to 1000-level or above at HKUST. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Courses used to fulfill the requirements of other minor programs offered by the School of Humanities and Social Science cannot be used to count toward the China Studies Minor Program. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. Some courses in the curriculum have been previously coded with CORE-prefix where the special CORE-prefix has been replaced by the domain code of courses starting from Fall 2023-24. Students who have registered with these CORE- coded courses may look up their latest course codes by consulting the conversion table published on the Common Core website. 2026-27 MINOR-CS (4Y) (2023-24 intake)                                                                                              Page 1",
+        "2026-27 MINOR-CS (4Y) (2023-24 intake)                                                                           Page 2 2026-27 MINOR-CS (4Y) (2023-24 intake)                                                                        Page 3 2026-27 MINOR-CS (4Y) (2023-24 intake)                                                                      Page 4 2026-27 MINOR-CS (4Y) (2023-24 intake)                                                                        Page 5"
+      ]
+    }
+  ]
+}

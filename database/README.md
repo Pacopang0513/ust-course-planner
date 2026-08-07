@@ -11,23 +11,26 @@
 | `policies/` | UST 政策事实库（grading / registration / graduation） | 开发期人工 | 评价给分、排课策略、毕业要求计算 |
 | `common-core/` | Common Core 分入学年份版本（硬开关：admissionYear） | 开发期人工 | 推荐 CC 课、计算 CC 进度 |
 | `curriculum/{year}/` | 各专业 major 课程要求候选索引（按入学年份） | `scripts/prog_crs/build.py` | 课程推荐、剩余学分计算 |
-| `course_catalog/{year}/` | 课程详情（pre-req / exclusion / 学分） | `scripts/prog_crs/build.py` | 某门课能不能选 |
 | `mappings/` | 每系 AR↔curriculum 覆盖规则 | 开发期人工 | mapper override |
 | `build.json` | prog-crs 已构建年份标记 `{year: 构建时间}` | `scripts/prog_crs/build.py` | 判断预构建是否可用 |
+
+> **不预构建 course_catalog**：课程详情（pre-req/exclusion/学分）是动态数据，
+> 每个学生、每个目标学期面对不同的 catalog，由运行时抓取的 Class Schedule
+> （`data/courses_{session}.json`，wcq/crawler.py，页内联 PRE-REQUISITE）提供；
+> 需要单课详情时按需 `scripts/prog_crs/course_catalog.py --subject X --year Y`。
 
 ## 权限
 
 - AI 只读，禁止修改（纳入 R1 只读完整性校验）
-- `curriculum/`、`course_catalog/`、`build.json`、`mappings/` 仅在构建/开发期由 scripts 或人工写入；`policies/`、`common-core/` 严格只读
+- `curriculum/`、`build.json`、`mappings/` 仅在构建/开发期由 scripts 或人工写入；`policies/`、`common-core/` 严格只读
 
 ## 构建预构建数据
 
 ```bash
-python3 scripts/prog_crs/build.py                      # 默认 2026-27
-python3 scripts/prog_crs/build.py --year 2025-26       # 其他入学年份
+python3 scripts/prog_crs/build.py --year <YEAR>       # 入学年份（如 2023-24 / 2026-27）
 ```
 
-- 全量抓取 prog-crs 各专业 curriculum + 全部 subject 课程目录
+- 全量抓取 prog-crs 各专业 curriculum（仅 curriculum；catalog 按需单查，见上）
 - 学生跟**入学年份**的 curriculum，由 `data/profile.json` 的 `admission_year` 决定加载哪份
 - 课程是否本学年开设以 Class Schedule 为准（https://w5.ab.ust.hk/wcq/cgi-bin/）
 

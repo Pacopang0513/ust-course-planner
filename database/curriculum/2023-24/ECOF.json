@@ -1,0 +1,147 @@
+{
+  "program": "ECOF",
+  "intake_year": "2023-24",
+  "school": "School of Business and Management",
+  "title": "BSc in Economics and Finance",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\ECOF.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "ECON/MATH",
+              "note": "Note: ECON 2174 OR MATH 2023",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ECON 2174",
+                  "title": "Mathematics for Economists",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3113",
+                  "title": "Microeconomic Theory I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3133",
+                  "title": "Microeconomic Theory II",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3143",
+                  "title": "Macroeconomic Theory II",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3334",
+                  "title": "Introduction to Econometrics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 3103",
+                  "title": "Intermediate Investments",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "ECON",
+              "note": "ECON 4000-level Electives (Any 3 courses of the subject and level as specified)",
+              "credits": "11",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "FINA",
+              "note": "FINA 3000-level or above Electives (Any 2 courses of the subject and level as specified)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) BSc in Economics and Finance In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Unless approved by the Dean or the Dean's designate, students are not allowed to reuse courses that are counted towards the School Requirements to also fulfill the Major or Option requirements. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements"
+      ]
+    }
+  ]
+}

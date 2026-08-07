@@ -1,0 +1,485 @@
+{
+  "program": "MAEC",
+  "intake_year": "2024-25",
+  "school": "School of Science",
+  "title": "BSc in Mathematics and Economics",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\MAEC.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:         The course was last offered in 2024-25 and was deleted subsequently.",
+    "LIFS 1030:          The course was last offered in 2020-21 and was deleted subsequently.",
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2033 OR MATH 2043",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2033",
+                  "title": "Mathematical Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2043",
+                  "title": "Honors Mathematical Analysis",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2121 OR MATH 2131",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2131",
+                  "title": "Honors in Linear and Abstract Algebra I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 3033 OR MATH 3043",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 3033",
+                  "title": "Real Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3043",
+                  "title": "Honors Real Analysis",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH/ECON",
+              "note": "Note: MATH 4994 OR MATH 4999 OR ECON 4670",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4994",
+                  "title": "Capstone Project in Mathematics and Economics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4999",
+                  "title": "Independent Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4670",
+                  "title": "Economics Research and Communication",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "Note: ECON 2103 OR ECON 2113",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ECON 2103",
+                  "title": "Principles of Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2113",
+                  "title": "Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3113",
+                  "title": "Microeconomic Theory I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3123",
+                  "title": "Macroeconomic Theory I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3133",
+                  "title": "Microeconomic Theory II",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3143",
+                  "title": "Macroeconomic Theory II",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 3334",
+                  "title": "Introduction to Econometrics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ACCT 2010",
+                  "title": "Principles of Accounting I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2203",
+                  "title": "Fundamentals of Business Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "MATH Depth Electives (2 courses from the specified elective list. Courses taken as Major Required Courses may not be counted towards this elective requirement.) MATH                    Mathematics courses at 4000-level or above",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 3423",
+                  "title": "Statistical Inference",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3425",
+                  "title": "Stochastic Modeling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3426",
+                  "title": "Sampling",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "ECON 4000-level or above Electives (At least 2 courses of the subject and level as specified)",
+              "credits": "8",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "SSCI",
+              "note": "Science Foundation course (2 courses from the specified elective list) Kinetics Theories",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 1008",
+                  "title": "Introductory Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and Reaction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1030",
+                  "title": "Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1930",
+                  "title": "Nature of Life Sciences",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2210",
+                  "title": "Biochemistry I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 1010",
+                  "title": "Principles and Applications of Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1101",
+                  "title": "Introductory Physics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1111",
+                  "title": "General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1114",
+                  "title": "General Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1314",
+                  "title": "Honors General Physics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) BSc in Mathematics and Economics Students taking the BSc Program in Mathematics and Economics as their first major are exempted from the School Requirements. However, they are still required to complete the University requirements in addition to the major requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1836 @@
+{
+  "program": "CPEG",
+  "intake_year": "2024-25",
+  "school": "School of Engineering",
+  "title": "BEng in Computer Engineering",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\CPEG.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:           The course was last offered in 2024-25 and was deleted subsequently.",
+    "ELEC 3210:            The course was last offered in 2024-25 and was deleted subsequently.",
+    "ELEC 4210:            The course was last offered in 2021-22 and was deleted subsequently.",
+    "ELEC 4830:            The course was last offered in 2021-22 and was deleted subsequently.",
+    "MATH 1012:            The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "fundamental",
+          "name": "Engineering Fundamental Course(s)",
+          "groups": [
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2111",
+                  "title": "Matrix Algebra and Applications",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1112 OR PHYS 1312",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1114 OR PHYS 1314",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1114",
+                  "title": "General Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1314",
+                  "title": "Honors General Physics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SENG",
+              "note": "Engineering Introduction course (If the students take an introduction course included in their major, this course can be counted towards their major requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1100",
+                  "title": "Introduction to Electro-Robot Design",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1200",
+                  "title": "A System View of Communications: from Signals to Packets",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 1010",
+                  "title": "Introduction to Biomedical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1000",
+                  "title": "Foundations of Chemical and Biological Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1500",
+                  "title": "A First Course on Materials Science and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1700",
+                  "title": "Introduction to Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1100",
+                  "title": "Discovering Civil and Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1210",
+                  "title": "Fundamental of Green Buildings",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1100",
+                  "title": "First Year Cornerstone Engineering Design Project Course",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2010",
+                  "title": "Introduction of Industrial Engineering and Decision Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1902",
+                  "title": "Energy Systems in a Sustainable World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1906",
+                  "title": "Mechanical Engineering for Modern Life",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1907",
+                  "title": "Introduction to Aerospace Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "CPEG",
+              "note": "Note: [CPEG 1971 AND (CPEG 4901 OR CPEG 4902 OR",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "CPEG 4911 OR CPEG 4912)] OR [CPEG 4910] (Students taking the Research Option must take either CPEG 4902 or",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CPEG 4911",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "CPEG 4912",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "CPEG 4910",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "CPEG",
+              "note": "4912)",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 1971",
+                  "title": "Industrial Experience",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 4901",
+                  "title": "Computer Engineering Final Year Project in COMP",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 4902",
+                  "title": "Computer Engineering Final Year Thesis in COMP",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 4910",
+                  "title": "Co-op Program",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 4911",
+                  "title": "Computer Engineering Final Year Project in ELEC",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 4912",
+                  "title": "Computer Engineering Final Year Thesis in ELEC",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 2930",
+                  "title": "Academic and Professional Development II",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CPEG 3930",
+                  "title": "Academic and Professional Development III",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: (COMP 2011 AND COMP 2012) OR COMP 2012H",
+              "credits": "5-8",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012",
+                  "title": "Object-Oriented Programming and Data Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP/ELEC",
+              "note": "Note: COMP 2611 OR ELEC 2350",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2611",
+                  "title": "Computer Organization",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 2350",
+                  "title": "Introduction to Computer Organization and Design",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 2711 OR COMP 2711H",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2711",
+                  "title": "Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2711H",
+                  "title": "Honors Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3511",
+                  "title": "Operating Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 1100",
+                  "title": "Introduction to Electro-Robot Design",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2100",
+                  "title": "Signals and Systems",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2400",
+                  "title": "Electronic Circuits",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2600",
+                  "title": "Probability and Random Processes in Engineering",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3300",
+                  "title": "Introduction to Embedded Systems",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 2010",
+                  "title": "Engineering Seminar Series",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "COMP/ELEC",
+              "note": "COMP/ELEC 2000-level or above Elective (Any course(s) of the subject and level as specified) ENGG                            and at least 1 course outside that area (including course(s) in the Courses without Associated Area).] Artificial Intelligence / Theory Area Communications Area Embedded System / Robotics Area",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3711",
+                  "title": "Design and Analysis of Algorithms",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3711H",
+                  "title": "Honors Design and Analysis of Algorithms",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3721",
+                  "title": "Theory of Computation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4211",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4221",
+                  "title": "Introduction to Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4222",
+                  "title": "Machine Learning with Structured Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4332",
+                  "title": "Big Data Mining and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4471",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4541",
+                  "title": "Blockchain, Cryptocurrencies and Smart Contracts",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4551",
+                  "title": "Large-Scale Machine Learning System for Foundation Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5211",
+                  "title": "Advanced Artificial Intelligence",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5212",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5214",
+                  "title": "Advanced Deep Learning Architectures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5215",
+                  "title": "Perception and Information Processing for Robotics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5221",
+                  "title": "Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5331",
+                  "title": "Knowledge Discovery in Databases",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5421",
+                  "title": "Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5711",
+                  "title": "Introduction to Advanced Algorithmic Techniques",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5712",
+                  "title": "Introduction to Combinatorial Optimization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5713",
+                  "title": "Computational Geometry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3180",
+                  "title": "Data-Driven Portfolio Optimization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3210",
+                  "title": "Signals and Systems II",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3350",
+                  "title": "Principles of Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4240",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4840",
+                  "title": "Artificial Intelligence for Medical Image Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3100",
+                  "title": "Signal Processing and Communications",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3600",
+                  "title": "Electromagnetics: From Wireless to Photonic Applications",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4110",
+                  "title": "Digital Communications and Wireless Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4610",
+                  "title": "Engineering Optics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4620",
+                  "title": "Photonics and Optical Communications",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4521",
+                  "title": "Mobile Application Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4531",
+                  "title": "IoT and Smart Sensing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4611",
+                  "title": "Design and Analysis of Computer Architectures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3200",
+                  "title": "System Modeling, Analysis and Control",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3210",
+                  "title": "Signals and Systems II",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3310",
+                  "title": "Digital Fundamentals and System Design",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4210",
+                  "title": "Control System Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4220",
+                  "title": "Robotics: Modeling, Control and Planning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4260",
+                  "title": "Intelligent Robots and Embodied AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4320",
+                  "title": "FPGA-based Design: From Theory to Practice",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ENGG",
+              "note": "3960-3962     Robotics Special Project",
+              "credits": "1-4",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 4950",
+                  "title": "Engineering Special Project",
+                  "credits": "1-4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4411",
+                  "title": "Computer Graphics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4431",
+                  "title": "Multimedia Computing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4441",
+                  "title": "Music Video Creation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4451",
+                  "title": "Game Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4461",
+                  "title": "Human-Computer Interaction",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4462",
+                  "title": "Data Visualization",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4471",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5411",
+                  "title": "Advanced Computer Graphics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5421",
+                  "title": "Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3400",
+                  "title": "Introduction to Integrated Circuits and Systems",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3410",
+                  "title": "CMOS VLSI Design",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3500",
+                  "title": "Integrated Circuit Devices",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3610",
+                  "title": "Quantum Mechanics for Electronic Engineers",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4420",
+                  "title": "Analogue Integrated Circuits Design and Analysis",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4430",
+                  "title": "Integrated Power Electronics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4450",
+                  "title": "Practical Considerations of Analog Integrated Circuit Design",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4510",
+                  "title": "Semiconductor Physics for Solid-State Electronics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4520",
+                  "title": "Integrated Circuit Fabrication Technology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4530",
+                  "title": "Fundamentals of Photovoltaic and Renewable Energy",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3100",
+                  "title": "Signal Processing and Communications",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3130",
+                  "title": "Digital Image Processing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4810",
+                  "title": "Introduction to Biosensors and Bioinstrumentation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4820",
+                  "title": "Medical Imaging",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4830",
+                  "title": "Statistical Signal Analysis and Applications in Neural Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3021",
+                  "title": "Java Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3031",
+                  "title": "Principles of Programming Languages",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3111",
+                  "title": "Software Engineering",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3111H",
+                  "title": "Honors Software Engineering",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3311",
+                  "title": "Database Management Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4021",
+                  "title": "Internet Computing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4121",
+                  "title": "Modern Compiler Construction",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4321",
+                  "title": "Search Engines for Web and Enterprise Data",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4332",
+                  "title": "Big Data Mining and Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4521",
+                  "title": "Mobile Application Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4651",
+                  "title": "Cloud Computing and Big Data Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5111",
+                  "title": "Fundamentals of Software Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5112",
+                  "title": "Parallel Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5311",
+                  "title": "Database Architecture and Implementation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5331",
+                  "title": "Knowledge Discovery in Databases",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3810",
+                  "title": "Data Science for Neural Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 3631",
+                  "title": "Cryptography",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4521",
+                  "title": "Mobile Application Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4531",
+                  "title": "IoT and Smart Sensing",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4541",
+                  "title": "Blockchain, Cryptocurrencies and Smart Contracts",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4611",
+                  "title": "Design and Analysis of Computer Architectures",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4621",
+                  "title": "Computer and Communication Networks",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4632",
+                  "title": "Practicing Cybersecurity: Attacks and Counter-measures",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4634",
+                  "title": "Cybersecurity",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4635",
+                  "title": "Practical Cloud Computing Security",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4641",
+                  "title": "Social Information Network Analysis and Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4651",
+                  "title": "Cloud Computing and Big Data Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5621",
+                  "title": "Computer Networks",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5622",
+                  "title": "Advanced Computer Communications and Networking",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 5631",
+                  "title": "Cryptography and Security",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3120",
+                  "title": "Computer Communication Networks",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 4350",
+                  "title": "AI Processor Architecture",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4911",
+                  "title": "IT Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) BEng in Computer Engineering In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Research Option",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "UROP",
+              "note": "AND UROP 1100) or a 3-credit COMP 5000-level course to fulfill this requirement.] COMP                        Any COMP course at 5000-level",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ELEC 5900",
+                  "title": "Modern Engineering Research Methodologies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "UROP 1100",
+                  "title": "Undergraduate Research Opportunities Series 1",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP/ELEC",
+              "note": "CPEG Electives (1 PG-level course as approved by advisor)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "COMP/ELEC/                      Area Courses [At least 2 courses should be taken from one area           12 Graphic / Multimedia Area Semiconductor / VLSI Area Signal Processing Area Software / Database Area Systems / Networking Area Courses Without Associated Area Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+        "Students in the Research Option should also take either CPEG 4902 or CPEG 4912 as specified in the major requirements.",
+        "COMP/ELEC/                     Research Electives [Students should take either (ELEC 5900                     3-4"
+      ]
+    }
+  ]
+}

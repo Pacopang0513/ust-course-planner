@@ -1,0 +1,588 @@
+{
+  "program": "AE",
+  "intake_year": "2024-25",
+  "school": "School of Engineering",
+  "title": "BEng in Aerospace Engineering",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\AE.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:          The course was last offered in 2024-25 and was deleted subsequently.",
+    "MATH 1012:           The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "fundamental",
+          "name": "Engineering Fundamental Course(s)",
+          "groups": [
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P OR COMP 2011 OR COMP 2012H",
+              "credits": "3-5",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2111 OR MATH 2350 OR MATH 2351",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2111",
+                  "title": "Matrix Algebra and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2350",
+                  "title": "Applied Linear Algebra and Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2351",
+                  "title": "Introduction to Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1112 OR PHYS 1312",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "list) Theories",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 1008",
+                  "title": "Introductory Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1101",
+                  "title": "Introductory Physics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 1907",
+                  "title": "Introduction to Aerospace Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 1990",
+                  "title": "Industrial Training",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 2020",
+                  "title": "Statics and Dynamics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 2040",
+                  "title": "Solid Mechanics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 2210",
+                  "title": "Fluid Mechanics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 2310",
+                  "title": "Thermodynamics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 2410",
+                  "title": "Engineering Materials I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3400",
+                  "title": "Introduction to Engineering Composite Materials",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3610",
+                  "title": "Control Principles",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3620",
+                  "title": "Aircraft Design",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3640",
+                  "title": "Aerodynamics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3650",
+                  "title": "Aircraft Structural Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3660",
+                  "title": "Aircraft Propulsion",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3670",
+                  "title": "Aircraft Performance and Stability",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3680",
+                  "title": "Avionics Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 3690",
+                  "title": "Aerospace Engineering Laboratory",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 4980",
+                  "title": "Final Year Aerospace Design Project",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2420",
+                  "title": "Basic Electronics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 2010",
+                  "title": "Engineering Seminar Series",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "MECH",
+              "note": "MECH Electives in Aerospace (2 courses from the specified elective list) Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MECH 2520",
+                  "title": "Design and Manufacturing I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 3310",
+                  "title": "Heat Transfer",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 3740",
+                  "title": "Introduction to Aerospace Computational Fluid Dynamics (CFD)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4100",
+                  "title": "Experiential Projects in Aerospace Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4740",
+                  "title": "Numerical Methods in Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4810",
+                  "title": "Unmanned Aviation Vehicle",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4890",
+                  "title": "Introduction to Nanosatellite Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 5961",
+                  "title": "Acoustics and Aeroacoustics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) BEng in Aerospace Engineering In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "CHEM/LIFS/                  Science 1000-level course (1 course from the specified course            3-4"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Research Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MECH 4990",
+                  "title": "Aerospace Research Project",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

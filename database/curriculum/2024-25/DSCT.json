@@ -1,0 +1,621 @@
+{
+  "program": "DSCT",
+  "intake_year": "2024-25",
+  "school": "School of Science",
+  "title": "BSc in Data Science and Technology",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\DSCT.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:         The course was last offered in 2024-25 and was deleted subsequently.",
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "pre_major",
+          "name": "Major Pre-requisite course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "DSCT 4900",
+                  "title": "Academic and Professional Development",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2121 OR MATH 2131",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2131",
+                  "title": "Honors in Linear and Abstract Algebra I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2421 OR MATH 2431",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "Honors Probability",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3322",
+                  "title": "Matrix Computation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3332",
+                  "title": "Data Analytic Tools",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3423",
+                  "title": "Statistical Inference",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 3424",
+                  "title": "Regression Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH/COMP",
+              "note": "Note: MATH 4432 OR COMP 4211",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4432",
+                  "title": "Statistical Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4211",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH/COMP",
+              "note": "Note: MATH 4995 OR COMP 4910 OR COMP 4981 OR COMP 4981H",
+              "credits": "3-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 4995",
+                  "title": "Capstone Project for Data Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4910",
+                  "title": "Co-op Program",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4981",
+                  "title": "Final Year Project",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4981H",
+                  "title": "Final Year Thesis",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: (COMP 2011 AND COMP 2012) OR COMP 2012H",
+              "credits": "5-8",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012",
+                  "title": "Object-Oriented Programming and Data Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 2711 OR COMP 2711H",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2711",
+                  "title": "Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2711H",
+                  "title": "Honors Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 3711 OR COMP 3711H",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 3711",
+                  "title": "Design and Analysis of Algorithms",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3711H",
+                  "title": "Honors Design and Analysis of Algorithms",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "ELEC",
+              "note": "take a minimum of 4 courses (12 credits) from the specified elective list, of which at least 2 courses should be taken from COMP/ELEC; those opting for COMP 4910 or COMP 4981 or COMP 4981H should take a minimum of 3 courses (9 credits), of which at least 1 course should be taken from COMP/ELEC. Out of the total 4 (or 3) elective courses taken, at least 1 course but no more than 2 courses should be from MATH.] COMP/ELEC courses",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2211",
+                  "title": "Introduction to Artificial Intelligence",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3311",
+                  "title": "Database Management Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3631",
+                  "title": "Cryptography",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4021",
+                  "title": "Internet Computing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4221",
+                  "title": "Introduction to Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4222",
+                  "title": "Machine Learning with Structured Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4332",
+                  "title": "Big Data Mining and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4462",
+                  "title": "Data Visualization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4471",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4541",
+                  "title": "Blockchain, Cryptocurrencies and Smart Contracts",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4634",
+                  "title": "Cybersecurity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4641",
+                  "title": "Social Information Network Analysis and Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4651",
+                  "title": "Cloud Computing and Big Data Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4240",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "courses",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2033",
+                  "title": "Mathematical Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2043",
+                  "title": "Honors Mathematical Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2351",
+                  "title": "Introduction to Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2352",
+                  "title": "Differential Equations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3033",
+                  "title": "Real Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3043",
+                  "title": "Honors Real Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3312",
+                  "title": "Numerical Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3425",
+                  "title": "Stochastic Modeling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3427",
+                  "title": "Bayesian Statistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3428",
+                  "title": "Statistical Computing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4023",
+                  "title": "Complex Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4052",
+                  "title": "Partial Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4335",
+                  "title": "Introduction to Optimization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4336",
+                  "title": "Introduction to Mathematics of Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4343",
+                  "title": "Introduction to Graph Theory",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4423",
+                  "title": "Nonparametric Statistics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4424",
+                  "title": "Multivariate Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4425",
+                  "title": "Introductory Time Series",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4433",
+                  "title": "Spatial Data Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4434",
+                  "title": "Deep Learning",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) BSc in Data Science and Technology Students taking the BSc Program in Data Science and Technology as their first major are exempted from the School Requirements. However, they are still required to complete the University requirements in addition to the major requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Students MUST take the following courses prior to enrollment into the major",
+        "MATH/COMP/                 Data Science Electives [Students opting for MATH 4995 should           9-12"
+      ]
+    }
+  ]
+}

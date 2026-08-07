@@ -1,0 +1,288 @@
+{
+  "program": "IIM",
+  "intake_year": "2024-25",
+  "school": "Academy of Interdisciplinary Studies",
+  "title": "Curriculum Framework of BSc Program in Individualized",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\IIM.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:         The course was last offered in 2024-25 and was deleted subsequently.",
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "COMP/ISOM",
+              "note": "Note: COMP 1021 OR COMP 1022P OR COMP 1023 OR ISOM 2010",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1023",
+                  "title": "Introduction to Python Programming",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2010",
+                  "title": "Introduction to Information Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1003 OR MATH 1005 OR MATH 1006 OR",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "MATH 1012 OR MATH 1013 OR MATH 1020 OR MATH 1023",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1003",
+                  "title": "Calculus and Linear Algebra",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1005",
+                  "title": "Calculus and Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1006",
+                  "title": "Calculus, Vectors, and Matrices",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "IIM",
+              "note": "Note: Courses planned by the students (with endorsement by             At least the Individualized Major Advisory Committee and approved by the University, of which at least 12 credits must be at 3000-level or above.)",
+              "credits": "48",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "IIMP 2000",
+                  "title": "Academic and Professional Development",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "IIMP",
+              "note": "Note: IIMP 4970 OR (IIMP 4980 AND IIMP 4990) OR IIMP 4991",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "IIMP 4970",
+                  "title": "Interdisciplinary Industrial Project",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "IIMP 4980",
+                  "title": "Interdisciplinary Capstone Project I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IIMP 4990",
+                  "title": "Interdisciplinary Capstone Project II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IIMP 4991",
+                  "title": "Interdisciplinary Capstone Project",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "IIM",
+              "note": "Courses planned by the students (with endorsement by the Individualized Major Advisory Committee and approved by the University, of which at least 9 credits must be at 3000-level or above.)",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Interdisciplinary Major (For students admitted in 2024-25 under the 4-year degree) Curriculum Framework of BSc Program in Individualized Interdisciplinary Major This is an individualized program with curriculum and discipline title initiated by the student and approved by the University. Student completed the program will be conferred an award of BSc in Individualized Interdisciplinary Major (interdisciplinary study title). In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Fundamental Course(s)",
+        "Interdisciplinary Major"
+      ]
+    }
+  ]
+}

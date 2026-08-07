@@ -1,0 +1,653 @@
+{
+  "program": "CEEV",
+  "intake_year": "2024-25",
+  "school": "School of Engineering",
+  "title": "BEng in Chemical and Environmental Engineering",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\CEEV.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "CENG 3950:          The course title will be changed to \"Chemical Engineering Laboratory\" starting from Fall,"
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "fundamental",
+          "name": "Engineering Fundamental Course(s)",
+          "groups": [
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P OR COMP 2011 OR COMP 2012H",
+              "credits": "3-5",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1112 OR PHYS 1312",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "CENG",
+              "note": "Note: CENG 1000 OR CENG 1500",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CENG 1000",
+                  "title": "Foundations of Chemical and Biological Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1500",
+                  "title": "A First Course on Materials Science and Applications",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 1010",
+                  "title": "Academic and Professional Development I",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 1110",
+                  "title": "Introduction to Chemical Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 1700",
+                  "title": "Introduction to Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 1980",
+                  "title": "Industrial Training",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 2210",
+                  "title": "Chemical and Biological Engineering Thermodynamics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 2220",
+                  "title": "Transport Phenomena I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 2310",
+                  "title": "Modeling for Chemical and Biological Engineering I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 3110",
+                  "title": "Process Dynamics and Control",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 3150",
+                  "title": "Integrated Chemical Process and Product Design",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 3210",
+                  "title": "Separation Processes",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 3220",
+                  "title": "Transport Phenomena II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 3230",
+                  "title": "Chemical and Biological Reaction Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 3950",
+                  "title": "Chemical and Environmental Engineering Laboratory",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 4020",
+                  "title": "Academic and Professional Development II",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 4710",
+                  "title": "Environmental Control",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CENG 4720",
+                  "title": "Environmental Impact Assessment and Management Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "CENG",
+              "note": "Note: CENG 4920 OR CENG 4930 OR CENG 4940 (Students taking the Research Option must take CENG 4930) LIFS",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CENG 4920",
+                  "title": "Chemical Engineering Capstone Design",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4930",
+                  "title": "Chemical Engineering Thesis Research",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4940",
+                  "title": "Chemical Engineering Industrial Project",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 2610",
+                  "title": "Chemical Biology for Engineers",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2311",
+                  "title": "Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 2010",
+                  "title": "Engineering Seminar Series",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1052",
+                  "title": "Laboratory for General Chemistry B",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 2111",
+                  "title": "Fundamentals of Organic Chemistry",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 2155",
+                  "title": "Fundamental Organic Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SENG/ENVR",
+              "note": "CEEV Depth Elective (2 courses from the specified elective list, of which at least 1 course should be taken from the list of Restricted Electives) Restricted Electives Others Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CENG 4140",
+                  "title": "Energy Resources, Conversions and Technologies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4450",
+                  "title": "Carbon Footprint Analysis and Reduction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENEG 4320",
+                  "title": "Energy Storage Technology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3110",
+                  "title": "Life Cycle Assessment for Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3220",
+                  "title": "Energy Sources and Usage",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4130",
+                  "title": "Plant Design and Economics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4160",
+                  "title": "Prototype Development for Chemical Processes and Products",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4950",
+                  "title": "Chem-E-Car",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4470",
+                  "title": "Air Quality Control and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENEG 4130",
+                  "title": "Photovoltaic Materials and Devices",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3210",
+                  "title": "Environmental Technology for Impact Assessment",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) BEng in Chemical and Environmental Engineering In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "Theories",
+        "BIEN/CHEM/                 Note: BIEN 2610 OR CHEM 2311 OR LIFS 1901                          3"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Research Option",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "CENG/BIEN",
+              "note": "Research Electives (2 courses from the specified elective list, out of which at least 3 credits must be attained from CENG 4980. Students may take CENG 4980 for more than one term) CENG                        Any CENG courses at 5000-level",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CENG 4980",
+                  "title": "Investigation Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "BIEN",
+              "note": "Any BIEN courses at 5000-level 2027-28. -     CENG 4160:          The course was last offered in 2022-23 and was deleted subsequently. -     COMP 1022P:         The course was last offered in 2024-25 and was deleted subsequently. -     MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students must take CENG 4930 as specified in the Major Requirements."
+      ]
+    }
+  ]
+}

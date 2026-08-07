@@ -1,0 +1,357 @@
+{
+  "program": "GBUS",
+  "intake_year": "2025-26",
+  "school": "School of Business and Management",
+  "title": "BBA in Global Business",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\GBUS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "BBA",
+              "note": "in Global Business In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Unless approved by the Dean or the Dean's designate, students are not allowed to reuse courses that are counted towards the School Requirements to also fulfill the Major or Option requirements. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "GBUS 1000",
+                  "title": "Global Leadership Development",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "GBUS 2010",
+                  "title": "Global Business Analysis",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "GBUS/SBMT",
+              "note": "Note: GBUS 2040 OR SMBT 2100-2110",
+              "credits": "1-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "GBUS 2040",
+                  "title": "Environmental, Social, and Governance (ESG) Corporate Project",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SBMT",
+              "note": "2100-2110       Community Services Project",
+              "credits": "1-4",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "GBUS/ISOM",
+              "note": "Note: GBUS 3030 OR ISOM 4780",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "GBUS 3030",
+                  "title": "Global Business Case Studies",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4780",
+                  "title": "Integrated Planning and Execution",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "GBUS 4910",
+                  "title": "Capstone Project",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "GBUS",
+              "note": "Global Business Electives (Courses from the specified elective list, of which at least 6 credits from Area A, and at least 1 course from Area B and Area C, respectively. With approval of the program office, students may replace the requirement of completing one Additional Major/ Extended Major/ Minor (see “Others” below) by taking additional 9 credits at 3000-level or above from this elective list, with at least 1 course from Area A out of the additional 9 credits.) Area A: Global Business Area B: Global and Societal Perspective Area C: Business Strategy and Innovation",
+              "credits": "15-24",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "GBUS 2030",
+                  "title": "From Zero to Exit – Journey of A Start-up",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "GBUS 2050",
+                  "title": "Blue Ocean Strategy Innovation and Execution",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "GBUS 3010",
+                  "title": "Global Perspectives on Contemporary Issues",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "GBUS 3040",
+                  "title": "Business and ESG Management for Asia and Emerging Markets",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "GBUS 3050",
+                  "title": "Deal Making in Asia and Emerging Markets",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "GBUS 3060",
+                  "title": "Value Investing in Global Markets",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ACCT 3610",
+                  "title": "Business Law",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4364",
+                  "title": "International Trade and Investment",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4474",
+                  "title": "Hong Kong's Economy",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3430",
+                  "title": "Global Marketing",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3120",
+                  "title": "Managerial Leadership",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3170",
+                  "title": "Managing CSR (Corporate Social Responsibility)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4230",
+                  "title": "International Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4240",
+                  "title": "Strategic Management in China",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4250",
+                  "title": "Management Consulting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4260",
+                  "title": "China's Economic Transformation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4264",
+                  "title": "Economics of Innovation and Entrepreneurship",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3900",
+                  "title": "Decision Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4020",
+                  "title": "Innovation Management and Technology Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4040",
+                  "title": "Digital Strategy and Transformation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4750",
+                  "title": "Business Project Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4780",
+                  "title": "Integrated Planning and Execution",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3220",
+                  "title": "Marketing Research",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3480",
+                  "title": "Pricing Strategy",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3610",
+                  "title": "Digital Marketing",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 4450",
+                  "title": "Brand Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3140",
+                  "title": "Negotiation",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3160",
+                  "title": "Environmental Business Strategies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4210",
+                  "title": "Corporate Strategy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4220",
+                  "title": "Entrepreneurship and Innovation",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ENTR 3030",
+                  "title": "Social Innovations and Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENTR 3360",
+                  "title": "From Product Innovations to Successful Technology Startups",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3310",
+                  "title": "Green Business Strategy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 4200",
+                  "title": "Product Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "other",
+          "name": "Other(s)",
+          "groups": []
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2025-26 under the 4-year degree)",
+        "Complete one Additional Major, Minor or Extended Major Program (Students pursuing Dual Degree Program in Technology and Management are exempted from this requirement) One regular term of study abroad"
+      ]
+    }
+  ]
+}

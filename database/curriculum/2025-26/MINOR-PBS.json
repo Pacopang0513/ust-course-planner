@@ -1,0 +1,247 @@
+{
+  "program": "MINOR-PBS",
+  "intake_year": "2025-26",
+  "school": "School of Humanities and Social Science, and Business & Management",
+  "title": "Undergraduate Minor Program in",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\MINOR-PBS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "MARK 1230:              The course was last offered in 2021-22 and was deleted subsequently.",
+    "SOSC 3550:            The course was last offered in 2021-22 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "SOSC",
+              "note": "Note: SOSC 1960 OR SOSC 1969 OR SOSC 1980",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SOSC 1960",
+                  "title": "Introduction to Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1969",
+                  "title": "Discovering Mind and Behavior",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1980",
+                  "title": "Psychology of Personal Growth",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 1990",
+                  "title": "Research Methods in Psychological Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "MGMT",
+              "note": "from the two specified elective lists, of which at least two courses from List A, and at least one from List B, with no more than one 1000-level course in total). Courses taken as Required courses may not be counted toward the elective requirement.) List A: SOSC courses List B: SBM courses",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SOSC 2210",
+                  "title": "Social Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2240",
+                  "title": "Biological Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2250",
+                  "title": "Cognitive Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2260",
+                  "title": "Counselling Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2800",
+                  "title": "Cognitive Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2888",
+                  "title": "Special Topics in Psychology",
+                  "credits": "1-4",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2980",
+                  "title": "Personality Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2990",
+                  "title": "Developmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3540",
+                  "title": "Environmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3550",
+                  "title": "Educational Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3888",
+                  "title": "Special Topics in Psychology",
+                  "credits": "1-4",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3900",
+                  "title": "Abnormal Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3990",
+                  "title": "Health Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 1220",
+                  "title": "Marketing and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 1230",
+                  "title": "Consumerism and Happiness",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 2120",
+                  "title": "Marketing Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3220",
+                  "title": "Marketing Research",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3410",
+                  "title": "Promotion and Advertising Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3420",
+                  "title": "Consumer Behavior",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 1120",
+                  "title": "Developing the Leader in You",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 1130",
+                  "title": "Traps and Pitfalls in Judgment and Decision Making",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 2110",
+                  "title": "Organizational Behavior",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3110",
+                  "title": "Human Resources Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3120",
+                  "title": "Managerial Leadership",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3130",
+                  "title": "Judgement and Decision Making in Organizations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3140",
+                  "title": "Negotiation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Psychological and Behavioral Science (For students admitted in 2025-26 under the 4-year degree) Undergraduate Minor Program in Psychological and Behavioral Science Any undergraduate students who have completed at least two regular terms of study with a CGA of 2.3 or above may enroll in the minor program. They must declare their intention to enroll in the program during the application period conducted in January and August every year no later than the commencement of their final year of study. Students who wish to withdraw from the minor program should apply before the last day of the add/drop period in the first regular term of their final year of study. Minor Requirements To graduate with a minor in Psychological and Behavioral Science, the students must have enrolled in the minor program and completed a minimum total of 18 credits and all of its requirements, as well as all the requirements of their major program of study. They are also required to attain an average grade point of at least 1.7 in courses taken within the minor program. A maximum total of 6 credits completed successfully outside HKUST can be transferred to the minor program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Courses used to fulfill the requirements of other minor programs offered by the School of Humanities and Social Science or the School of Business and Management cannot be used to count toward the minor program. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. Some courses in the curriculum have been previously coded with CORE-prefix where the special CORE-prefix has been replaced by the domain code of courses starting from Fall 2023-24. Students who have registered with these CORE- coded courses may look up their latest course codes by consulting the conversion table published on the Common Core website.",
+        "2026-27 MINOR-PBS (4Y) (2025-26 intake)                                                                                             Page 1 Psychological and Behavioral Science",
+        "SOSC/MARK/                  Psychological and Behavioral Science Electives (Courses                       12 2026-27 MINOR-PBS (4Y) (2025-26 intake)                                                                               Page 2"
+      ]
+    }
+  ]
+}

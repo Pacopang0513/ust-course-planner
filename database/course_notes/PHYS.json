@@ -1,0 +1,15 @@
+{
+  "$schema": "../templates/schemas/course_notes.schema.json",
+  "subject": "PHYS",
+  "source": "database/curriculum/2026-27/PHYS.json (Major Requirements)",
+  "fetched_at": "2026-08-07",
+  "rules": [],
+  "notes": {
+    "PHYS 4291": "Capstone Research，全年 6 学分（每学期 3 学分注册，描述 'extended over two regular terms'）。主修顶点研究（Honors Physics Option 只能用 PHYS 4291 满足顶点要求）。属于 major_capstone：凡修读该课的 EXT 学生，EXT 顶点项目须走 EMIA 4990（与 4291 并行整合 AI），不可用 EMIA 4991。属于 year_long：schedule units（6）为全年总学分，每学期注册 3 学分。",
+    "PHYS 4191": "Capstone 备选（非 Honors 可用 PHYS 4191 OR PHYS 4291 OR (SCIE 3500 AND SCIE 4500) 满足）。同为 major_capstone 语义。"
+  },
+  "tags": {
+    "PHYS 4291": ["major_capstone", "year_long"],
+    "PHYS 4191": ["major_capstone"]
+  }
+}

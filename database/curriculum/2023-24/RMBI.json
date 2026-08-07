@@ -1,0 +1,939 @@
+{
+  "program": "RMBI",
+  "intake_year": "2023-24",
+  "school": "School of Business and Management",
+  "title": "BSc in Risk Management and Business Intelligence",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\RMBI.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:           The course was last offered in 2024-25 and was deleted subsequently.",
+    "MATH 1012:            The course was last offered in 2024-25 and was deleted subsequently.",
+    "MATH 4428:            The course was last offered in 2019-20 and was deleted subsequently.",
+    "RMBI 3020:            The course was last offered in 2021-22 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "RMBI 2001",
+                  "title": "Academic and Professional Development in Risk Management",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "RMBI 3110",
+                  "title": "Introduction to Risk Management and Business Intelligence",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "RMBI 4310",
+                  "title": "Advanced Data Mining for Risk Management and Business",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "RMBI 4980",
+                  "title": "Risk Management and Business Intelligence Capstone Project I",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "RMBI 4990",
+                  "title": "Risk Management and Business Intelligence Capstone Project II",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ACCT 2010",
+                  "title": "Principles of Accounting I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "Note: ECON 2103 OR ECON 2113",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ECON 2103",
+                  "title": "Principles of Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2113",
+                  "title": "Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ECON 2123",
+                  "title": "Macroeconomics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2303",
+                  "title": "Financial Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2010",
+                  "title": "Introduction to Information Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ISOM/COMP",
+              "note": "Note: ISOM 3360 OR COMP 4331",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISOM 3360",
+                  "title": "Data Mining for Business Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ISOM/COMP",
+              "note": "Note: ISOM 3370 OR COMP 4651",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISOM 3370",
+                  "title": "Big Data Technologies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4651",
+                  "title": "Cloud Computing and Big Data Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ISOM/MATH",
+              "note": "Note: ISOM 3540 OR MATH 2421",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISOM 3540",
+                  "title": "Introduction to Probability Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 3710",
+                  "title": "Business Modeling and Optimization",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4520",
+                  "title": "Statistics for Financial Risk Management",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2010",
+                  "title": "Business Ethics and the Individual",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2130",
+                  "title": "Business Ethics and Social Responsibility",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LABU 2051",
+                  "title": "Business Case Analyses I",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LABU 2052",
+                  "title": "Business Case Analyses II",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2011 OR MATH 2023",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2023",
+                  "title": "Multivariable Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 2111 OR MATH 2121",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 2111",
+                  "title": "Matrix Algebra and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2121",
+                  "title": "Linear Algebra",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "IEDA/MATH",
+              "note": "should be taken from each area and at least 6 credits at 3000- level or above) Area 1: Risk Management Area 2: Business Intelligence Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "RMBI 3000",
+                  "title": "Special Topics in Risk Management",
+                  "credits": "0-4",
+                  "area": ""
+                },
+                {
+                  "code": "RMBI 3020",
+                  "title": "Practicing Risk Management using Case Studies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "RMBI 4220",
+                  "title": "Life Contingencies Models and Insurance Risk",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 3103",
+                  "title": "Intermediate Investments",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 3203",
+                  "title": "Derivative Securities",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 4103",
+                  "title": "Financial Markets Trading and Structure",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 4513",
+                  "title": "Risk Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3780",
+                  "title": "Sustainable Supply Chain Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4200",
+                  "title": "Information and Cyber Security Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4540",
+                  "title": "Time Series Analysis and Forecasting",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4840",
+                  "title": "Financial Service Operations Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 4331",
+                  "title": "Quantitative Methods in Financial Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 4420",
+                  "title": "Dynamic Pricing and Revenue Optimization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 4510",
+                  "title": "Systems Risk Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 4520",
+                  "title": "Numerical Methods for Financial Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4427",
+                  "title": "Loss Models and their Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4428",
+                  "title": "Bayesian Analysis and Credibility Theory",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4511",
+                  "title": "Quantitative Methods for Fixed Income Derivatives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4512",
+                  "title": "Fundamentals of Mathematical Finance",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4514",
+                  "title": "Financial Economics in Actuarial Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "RMBI 3010",
+                  "title": "Data Analytics with R",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 4713",
+                  "title": "Introduction to Artificial Intelligence and Big Data in Finance",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2600",
+                  "title": "Introduction to Business Analytics",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3260",
+                  "title": "Database Design and Administration",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3270",
+                  "title": "Blockchain Programming in Business Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3310",
+                  "title": "e-Business Management and Web Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3330",
+                  "title": "Data Visualization and Visual Analytics",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3340",
+                  "title": "Developing AI Applications",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3900",
+                  "title": "Decision Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4010",
+                  "title": "Digital Business Strategy: Harnessing Platform, Crowd, and Machine",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4030",
+                  "title": "Deep Learning for Business Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4040",
+                  "title": "Digital Strategy and Transformation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4530",
+                  "title": "Statistical Analysis of Financial Data in R/S-plus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4720",
+                  "title": "Simulation in Business and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4830",
+                  "title": "Analytics for Service Operations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4860",
+                  "title": "Decision and Data Analytics in Financial Markets",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012",
+                  "title": "Object-Oriented Programming and Data Structures",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2711",
+                  "title": "Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3311",
+                  "title": "Database Management Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3631",
+                  "title": "Cryptography",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4221",
+                  "title": "Introduction to Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4321",
+                  "title": "Search Engines for Web and Enterprise Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4462",
+                  "title": "Data Visualization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4641",
+                  "title": "Social Information Network Analysis and Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4432",
+                  "title": "Statistical Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) BSc in Risk Management and Business Intelligence Students taking the BSc Program in Risk Management and Business Intelligence as their first major are exempted from the School Requirements. However, they are still required to complete the University requirements in addition to the major requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "and Business Intelligence Intelligence"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Financial Technology Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "ISOM/IEDA",
+              "note": "Note: ISOM 3350 OR IEDA 4500",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISOM 3350",
+                  "title": "FinTech and Cryptoventures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 4500",
+                  "title": "Engineering Foundations of FinTech",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "MATH",
+              "note": "counted toward this requirement)",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "RMBI 4220",
+                  "title": "Life Contingencies Models and Insurance Risk",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 4713",
+                  "title": "Introduction to Artificial Intelligence and Big Data in Finance",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3000B",
+                  "title": "Blockchain Entrepreneurship for Social Impact",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3270",
+                  "title": "Blockchain Programming in Business Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3340",
+                  "title": "Developing AI Applications",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3350",
+                  "title": "FinTech and Cryptoventures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4020",
+                  "title": "Innovation Management and Technology Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4200",
+                  "title": "Information and Cyber Security Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4530",
+                  "title": "Statistical Analysis of Financial Data in R/S-plus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4860",
+                  "title": "Decision and Data Analytics in Financial Markets",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2711",
+                  "title": "Discrete Mathematical Tools for Computer Science",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3631",
+                  "title": "Cryptography",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4221",
+                  "title": "Introduction to Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4632",
+                  "title": "Practicing Cybersecurity: Attacks and Counter-measures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4634",
+                  "title": "Cybersecurity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4911",
+                  "title": "IT Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4514",
+                  "title": "Financial Economics in Actuarial Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "RMBI/FINA/                  Risk Management and Business Intelligence Electives (Courses        9 ISOM/COMP/                  from the specified electives list, of which at least 1 course",
+        "RMBI/FINA/                     Financial Technology Electives (Courses from the specified                     6 ISOM/COMP/                     elective list. Courses taken as Major Electives may not be"
+      ]
+    }
+  ]
+}

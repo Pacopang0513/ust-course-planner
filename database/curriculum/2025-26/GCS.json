@@ -1,0 +1,1253 @@
+{
+  "program": "GCS",
+  "intake_year": "2025-26",
+  "school": "School of Humanities and Social Science",
+  "title": "BSc in Global China Studies",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\GCS.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "HUMA 1020:           The course was last offered in 2020-21 and was deleted subsequently.",
+    "HUMA 1630:           The course was last offered in 2020-21 and was deleted subsequently.",
+    "SOSC 1150:           The course was last offered in 2020-21 and was deleted subsequently.",
+    "SOSC 1661:           The course was last offered in 2020-21 and was deleted subsequently.",
+    "SOSC 3530:           The course was last offered in 2020-21 and was deleted subsequently.",
+    "SOSC 4290:           The course was last offered in 2023-24 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "HUMA 1440",
+                  "title": "Modern China",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "HUMA 2590",
+                  "title": "The Making of the Modern World: Renaissance to the Present",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 1350",
+                  "title": "Contemporary China: Continuity and Change",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 2290",
+                  "title": "Understanding Globalization",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SHSS",
+              "note": "Note: SHSS 4991 OR SHSS 4992 OR (SHSS 4991 AND SHSS 4993) [For students taking one of the Research Options, they should take SHSS 4992 OR (SHSS 4991 AND SHSS 4993)]",
+              "credits": "3-6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SHSS 4991",
+                  "title": "Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SHSS 4992",
+                  "title": "Honors Thesis",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "SHSS 4993",
+                  "title": "Honors Research",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LANG 2170",
+                  "title": "Chinese Communication Skills for Humanities & Social Science",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2025-26 under the 4-year degree) BSc in Global China Studies In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Integrated Humanities and Social Science Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "HUMA 2400",
+                  "title": "Approaches to Humanities in China Studies",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 2140",
+                  "title": "Research Methods in the Social Sciences",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "HUMA/SOSC",
+              "note": "HUMA/SOSC Restricted Electives (6 courses, which should include three 3000-level courses & three 4000-level courses taken from at least 3 different areas, from the specified elective list.) Area: Environment, Economy & Globalization Area: Heritage, Community & Identity Area: Political & Social Change Area: Literature, Communication & Media Globe",
+              "credits": "18",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SOSC 3120",
+                  "title": "Economic Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3540",
+                  "title": "Environmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4260",
+                  "title": "China's Economic Transformation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4280",
+                  "title": "China in the Global Political Economy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4290",
+                  "title": "China's Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3630",
+                  "title": "Community and Cultural Identity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3900",
+                  "title": "Philosophical Inquiry into the Modern World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4610",
+                  "title": "Heritage in Cross-cultural Perspective",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4700",
+                  "title": "Confucianism in a Global Context",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4801",
+                  "title": "Classical Chinese Philosophy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3520",
+                  "title": "Understanding Comparative Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3530",
+                  "title": "Social Movements and Contentious Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3630",
+                  "title": "Democracy and Democratization around the World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3880",
+                  "title": "Social Inequality and Social Mobility",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4310",
+                  "title": "Chinese Capitalism: Historical and Comparative Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4600",
+                  "title": "Understanding Chinese Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3030",
+                  "title": "Language, Communication and Culture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3201",
+                  "title": "Animation: A Global Perspective",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4020",
+                  "title": "Language and Literature in Modern China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4220",
+                  "title": "Verbal and Visual Representation of China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4221",
+                  "title": "Chinese Classics and Their Reworking in Various Media Around the",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SHSS",
+              "note": "OR (SHSS 4991 AND SHSS 4993) are required to take a minimum total of 8 courses (24 credits), out of which 2 must be at 3000-/4000- level; students opting for SHSS 4991 are required to take a minimum total of 9 courses (27 credits), out of which 3 must be at 3000-/4000- level.] Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Studies Students should follow one of the tracks and complete all requirements as specified"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Applied Economics Research Option",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "SOSC/ECON",
+              "note": "Applied Economics Electives (3 courses, which should include two courses at 3000-level or above, from the specified elective list. Courses taken as Major Elective Courses may not be counted towards this elective requirement.)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SOSC 1420",
+                  "title": "Poverty",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3120",
+                  "title": "Economic Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4260",
+                  "title": "China's Economic Transformation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "Any ECON courses",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "HUMA/SOSC/                     HUMA/SOSC/SHSS Electives [Students opting for SHSS 4992                     24-27",
+        "Students in the Integrated Humanities and Social Science Track with CGA of 3.3 or above may apply for enrollment in the Applied Economics Research Option. In addition, they should take Honors Thesis or Honors Research with a primary focus in applied economics to complete the requirement of SHSS 4992 OR (SHSS 4991 AND SHSS 4993) as specified in the Major Requirements."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Environment and Technology Research Option",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "ENVR",
+              "note": "include two courses at 3000-level or above, from the specified elective list. Courses taken as Major Elective Courses may not be counted towards this elective requirement.)",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 2621",
+                  "title": "Culture and Environment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1150",
+                  "title": "Science, Technology and Work",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4290",
+                  "title": "China's Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3210",
+                  "title": "Environmental Technology for Impact Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3310",
+                  "title": "Green Business Strategy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3410",
+                  "title": "Economics for Environmental Policy and Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Integrated Humanities and Social Science Track with CGA of 3.3 or above may apply for enrollment in the Environment and Technology Research Option. In addition, they should take Honors Thesis or Honors Research with a primary focus in environment and technology to complete the requirement of SHSS 4992 OR (SHSS 4991 AND SHSS 4993) as specified in the Major Requirements."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Heritage and Cultural Sustainability Research Option",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "HUMA/SOSC",
+              "note": "Heritage and Cultural Sustainability Electives (3 courses, which should include two courses at 3000-level or above, from the specified elective list. Courses taken as Major Elective Courses may not be counted towards this elective requirement.)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 1100",
+                  "title": "Music of the World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1630",
+                  "title": "Popular Religion in South China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1639",
+                  "title": "Marriage, Family and Kinship in Cross-cultural Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1650",
+                  "title": "Appreciation of Western Art",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1660",
+                  "title": "Introduction to Chinese Art",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2240",
+                  "title": "Reading Chinese Literature: Dreams of the Red Chamber",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2320",
+                  "title": "Chinese Drama",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2621",
+                  "title": "Culture and Environment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2632",
+                  "title": "Chinese Culture and Society in Anthropological Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2635",
+                  "title": "Cultural Diversity in China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2660",
+                  "title": "Introduction to Chinese Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2661",
+                  "title": "Chinese Oil Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2670",
+                  "title": "Understanding Western Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2680",
+                  "title": "Understanding Western Architecture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2840",
+                  "title": "Buddhism and the Chinese Intellectual Tradition",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3630",
+                  "title": "Community and Cultural Identity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3660",
+                  "title": "Tradition & Modernity: Chinese Ink Painting in 20th Century",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3680",
+                  "title": "Contemporary Architecture: The Pritzker Prize Winners",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3810",
+                  "title": "Taoism and the Chinese Tradition",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4610",
+                  "title": "Heritage in Cross-cultural Perspective",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4700",
+                  "title": "Confucianism in a Global Context",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3130",
+                  "title": "Hong Kong Culture",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "HUMA/SOSC/                     Environment and Technology Electives (3 courses, which should                  9",
+        "Students in the Integrated Humanities and Social Science Track with CGA of 3.3 or above may apply for enrollment in the Heritage and Cultural Sustainability Research Option. In addition, they should take Honors Thesis or Honors Research with a primary focus in heritage and cultural sustainability to complete the requirement of SHSS 4992 OR (SHSS 4991 AND SHSS 4993) as specified in the major requirements."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "History Research Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "SHSS",
+              "note": "4993) as specified in the major requirements.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "HUMA",
+              "note": "History Electives (3 courses, which should include two courses at 3000-level or above, from the specified elective list. Courses taken as Major Elective Courses may not be counted towards this elective requirement.) Unseen World of Chinese Villages",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 1430",
+                  "title": "History of P. R. China's Diplomacy, 1949-1989",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1520",
+                  "title": "Modern East Asia",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1650",
+                  "title": "Appreciation of Western Art",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1660",
+                  "title": "Introduction to Chinese Art",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2420",
+                  "title": "Late Imperial China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2470",
+                  "title": "From Fung Shui to Mao's Villages: City Plans, Urban Politics & the",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2590",
+                  "title": "The Making of the Modern World: Renaissance to the Present",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2640",
+                  "title": "Unofficial China: Social History 1800s-1930s",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2660",
+                  "title": "Introduction to Chinese Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2661",
+                  "title": "Chinese Oil Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2670",
+                  "title": "Understanding Western Painting",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2680",
+                  "title": "Understanding Western Architecture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3430",
+                  "title": "Reading Modern Chinese History Historically",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3660",
+                  "title": "Tradition & Modernity: Chinese Ink Painting in 20th Century",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3680",
+                  "title": "Contemporary Architecture: The Pritzker Prize Winners",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4520",
+                  "title": "History of US-China Relations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Integrated Humanities and Social Science Track with CGA of 3.3 or above may apply for enrollment in the History Research Option. In addition, they should take Honors Thesis or Honors Research with a primary focus in history to complete the requirement of SHSS 4992 OR (SHSS 4991 AND"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Language and Literature Research Option",
+      "sections": [
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "HUMA",
+              "note": "Language and Literature Electives (3 courses, which should include two courses at 3000-level or above, from the specified elective list. Courses taken as Major Elective Courses may not be counted towards this elective requirement.)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 1020",
+                  "title": "Chinese Writing and Culture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1030",
+                  "title": "Structure of the Chinese Language",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1060",
+                  "title": "Introduction to Mandarin Chinese Grammar",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2010",
+                  "title": "Metaphors in English and Chinese",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2031",
+                  "title": "The Cantonese Language",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2050",
+                  "title": "Classical Chinese",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2240",
+                  "title": "Reading Chinese Literature: Dreams of the Red Chamber",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2250",
+                  "title": "Modern Chinese Fiction (1917-1949)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2260",
+                  "title": "Contemporary Chinese Fiction (1949-present)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2300",
+                  "title": "Traditional Chinese Poetry: Early Chinese Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2310",
+                  "title": "Traditional Chinese Fiction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2320",
+                  "title": "Chinese Drama",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3030",
+                  "title": "Language, Communication and Culture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3201",
+                  "title": "Animation: A Global Perspective",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3210",
+                  "title": "Traditional Chinese Poetry: Tang and Song Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3220",
+                  "title": "Modern Chinese Poetry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4020",
+                  "title": "Language and Literature in Modern China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 4220",
+                  "title": "Verbal and Visual Representation of China",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Integrated Humanities and Social Science Track with CGA of 3.3 or above may apply for enrollment in the Language and Literature Research Option. In addition, they should take Honors Thesis or Honors Research with a primary focus in language and literature to complete the requirement of SHSS 4992 OR (SHSS 4991 AND SHSS 4993) as specified in the major requirements."
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Politics Research Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "SHSS",
+              "note": "4993) as specified in the major requirements.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "HUMA/SOSC",
+              "note": "Politics Electives (3 courses, which should include two courses at 3000-level or above, from the specified elective list. Courses taken as Major Elective Courses may not be counted towards this elective requirement.) Comparative Perspectives",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "HUMA 4520",
+                  "title": "History of US-China Relations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1190",
+                  "title": "China and the World: China's Development in Historical and",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1270",
+                  "title": "International Law",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1300",
+                  "title": "The World of Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1661",
+                  "title": "Contemporary Hong Kong: Government & Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1840",
+                  "title": "Government, Law and Society in China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2290",
+                  "title": "Understanding Globalization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3520",
+                  "title": "Understanding Comparative Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3630",
+                  "title": "Democracy and Democratization around the World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4280",
+                  "title": "China in the Global Political Economy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4600",
+                  "title": "Understanding Chinese Politics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Integrated Humanities and Social Science Track with CGA of 3.3 or above may apply for enrollment in the Politics Research Option. In addition, they should take Honors Thesis or Honors Research with a primary focus in politics to complete the requirement of SHSS 4992 OR (SHSS 4991 AND"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Sociology Research Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "AND",
+              "note": "SHSS 4993) as specified in the major requirements.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "SOSC",
+              "note": "Sociology Electives (3 courses, which should include two courses at 3000-level or above, from the specified elective list. Courses taken as Major Elective Courses may not be counted towards this elective requirement.)",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SOSC 1662",
+                  "title": "Contemporary Hong Kong Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1780",
+                  "title": "Population and Development in China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1850",
+                  "title": "Understanding Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2740",
+                  "title": "Gender and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3130",
+                  "title": "Hong Kong Culture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3880",
+                  "title": "Social Inequality and Social Mobility",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Integrated Humanities and Social Science Track with CGA of 3.3 or above may apply for enrollment in the Sociology Research Option. In addition, they should take Honors Thesis or Honors Research with a primary focus in sociology to complete the requirement of SHSS 4992 OR (SHSS 4991"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "Social Science Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 1100",
+                  "title": "Quantitative Data Analysis for Social Research I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 1300",
+                  "title": "The World of Politics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 1440",
+                  "title": "Introduction to Economics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 1850",
+                  "title": "Understanding Society",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SOSC 2140",
+                  "title": "Research Methods in the Social Sciences",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "SOSC",
+              "note": "Disciplinary Foundation Electives (2 courses from the specified elective list, of which the courses should be taken from different areas.) Introductory Demography Introductory Psychology",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SOSC 1780",
+                  "title": "Population and Development in China",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1860",
+                  "title": "Population and Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1960",
+                  "title": "Introduction to Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1980",
+                  "title": "Psychology of Personal Growth",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SOSC",
+              "note": "SOSC Electives (9 courses from the specified elective list, of which at least 4 courses must come from the list under \"Restricted Electives\".) Restricted Electives Others",
+              "credits": "27",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "SOSC 3120",
+                  "title": "Economic Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3520",
+                  "title": "Understanding Comparative Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3530",
+                  "title": "Social Movements and Contentious Politics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3540",
+                  "title": "Environmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3630",
+                  "title": "Democracy and Democratization around the World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3880",
+                  "title": "Social Inequality and Social Mobility",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4260",
+                  "title": "China's Economic Transformation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4280",
+                  "title": "China in the Global Political Economy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4290",
+                  "title": "China's Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4310",
+                  "title": "Chinese Capitalism: Historical and Comparative Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4600",
+                  "title": "Understanding Chinese Politics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SOSC",
+              "note": "Any SOSC courses",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

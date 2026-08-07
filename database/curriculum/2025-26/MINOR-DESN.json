@@ -1,0 +1,528 @@
+{
+  "program": "MINOR-DESN",
+  "intake_year": "2025-26",
+  "school": "Academy of Interdisciplinary Studies",
+  "title": "Undergraduate Minor Program in Design",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\MINOR-DESN.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "ISDN/ENGG",
+              "note": "Note: Design Fundamentals: ISDN 1001 OR ISDN 1002 OR",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "ISDN 1006 OR ISDN 1007 OR ENGG 1300",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISDN 1006",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1007",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1300",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISDN 1001",
+                  "title": "Introduction to Integrative Systems and Design",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISDN 1002",
+                  "title": "Redefining Problems for the Real Needs",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISDN 1006",
+                  "title": "Human-centered Innovation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISDN 1007",
+                  "title": "From Design Thinking to Design Action: Defining Problems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 1300",
+                  "title": "Design Thinking for Health Innovation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ISDN",
+              "note": "Note: Design: ISDN 2000 OR ISDN 2200 OR ISDN 2300 OR ISDN 2400 (any 2 courses)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISDN 2000",
+                  "title": "What is Design and Why Design?",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2200",
+                  "title": "Systems Thinking and Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2300",
+                  "title": "Introduction to 3D Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2400",
+                  "title": "Physical Prototyping",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ISDN/ENTR",
+              "note": "Note: Design Project Experience: ISDN 3350 OR ISDN 3360 Start a Business",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISDN 3350",
+                  "title": "Global Product Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3360",
+                  "title": "From Product Innovations to Successful Technology Startups",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 4910",
+                  "title": "Independent Project for Minor in Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENTR 3030",
+                  "title": "Social Innovations and Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENTR 3100",
+                  "title": "Industrial Landscape: Understanding the Elements to",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "AIS",
+              "note": "Design Electives (Courses from the specified list. Students are required to take a minimum total of 6 credits. At least 3 credits must be at 3000-level or above and no more than 3 credits can be taken at 1000-level. Courses taken as Required courses may not be counted toward the elective requirement.) Courses offered by the Academy of Interdisciplinary Studies for Better Solutions System the Product Label Courses offered by the School of Science Courses offered by the School of Engineering Courses offered by the School of Business and Management Courses offered by the School of Humanities and Social Science",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ISDN 1002",
+                  "title": "Redefining Problems for the Real Needs",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1006",
+                  "title": "Human-centered Innovation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1007",
+                  "title": "From Design Thinking to Design Action: Defining Problems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1130",
+                  "title": "Introduction to Eco-Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2000",
+                  "title": "What is Design and Why Design?",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2110",
+                  "title": "From Ideas to Assets: Practice of the Creative Economy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2200",
+                  "title": "Systems Thinking and Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2210",
+                  "title": "Introduction to Brand Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2300",
+                  "title": "Introduction to 3D Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 2400",
+                  "title": "Physical Prototyping",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3000D",
+                  "title": "Maker",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3004",
+                  "title": "Advanced Sketching",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3150",
+                  "title": "AI for Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3200",
+                  "title": "Graphic Communication",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3300",
+                  "title": "Interaction Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3350",
+                  "title": "Global Product Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3360",
+                  "title": "From Product Innovations to Successful Technology Startups",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 4200",
+                  "title": "Product Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 1080",
+                  "title": "The Smart Consumer - Uncovering the Hidden Story behind",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3004",
+                  "title": "Life Cycle Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3110",
+                  "title": "Life Cycle Assessment for Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENVR 3210",
+                  "title": "Environmental Technology for Impact Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1002",
+                  "title": "Introduction to Chemistry of Cosmetics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1003",
+                  "title": "Energy and Related Environmental Issues",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1110",
+                  "title": "Introduction to Chemical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1600",
+                  "title": "Biotechnology and Its Business Opportunities",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1943",
+                  "title": "Creative Sound and Video Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3711",
+                  "title": "Design and Analysis of Algorithms",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4451",
+                  "title": "Game Programming",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4461",
+                  "title": "Human-Computer Interaction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4521",
+                  "title": "Mobile Application Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1100",
+                  "title": "Introduction to Electro-Robot Design",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3300",
+                  "title": "Introduction to Embedded Systems",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3500",
+                  "title": "Integrated Circuit Devices",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1300",
+                  "title": "Design Thinking for Health Innovation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2100",
+                  "title": "Computing in Industrial Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 3130",
+                  "title": "Ergonomics and Safety Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 2520",
+                  "title": "Design and Manufacturing I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 3510",
+                  "title": "Computer-Aided Design and Manufacturing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 3620",
+                  "title": "Aircraft Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 3907",
+                  "title": "Mechatronic Design and Prototyping",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 1380",
+                  "title": "Technology and Innovation: Social and Business Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2030",
+                  "title": "Business Protections for Innovations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3210",
+                  "title": "Information Systems Analysis and Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 2120",
+                  "title": "Marketing Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3220",
+                  "title": "Marketing Research",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MARK 3420",
+                  "title": "Consumer Behavior",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 2680",
+                  "title": "Understanding Western Architecture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 3201",
+                  "title": "Animation: A Global Perspective",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2025-26 under the 4-year degree) Undergraduate Minor Program in Design Except for those studying in the BSc program in Integrative Systems and Design, any undergraduate students with an overall CGA of 2.5 or above may enroll in this Minor Program. Students must declare their intention to enroll in the Minor Program no earlier than the first regular term of their second year of study but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the Minor Program should apply before the last day of the add/drop period in the last regular term of their final year of study. Minor Requirements To graduate with a minor in Design, the students must have enrolled in the Minor Program and completed a minimum total of 18 credits and all of its requirements, as well as all the requirements of their major program of study. For credit transfer, students can transfer a maximum total of 6 credits to the Minor Program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. Some courses in the curriculum have been previously coded with CORE-prefix where the special CORE-prefix has been replaced by the domain code of courses starting from Fall 2023-24. Students who have registered with these CORE- coded courses may look up their latest course codes by consulting the conversion table published on the Common Core website.",
+        "for Better Solutions 2026-27 MINOR-DESN (4Y) (2025-26 intake)                                                                                            Page 1 OR ISDN 4910 OR ENTR 3030 OR ENTR 3100",
+        "2026-27 MINOR-DESN (4Y) (2025-26 intake)                                                                           Page 2 2026-27 MINOR-DESN (4Y) (2025-26 intake)                                                                       Page 3"
+      ]
+    }
+  ]
+}

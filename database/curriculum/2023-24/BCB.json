@@ -1,0 +1,542 @@
+{
+  "program": "BCB",
+  "intake_year": "2023-24",
+  "school": "School of Science",
+  "title": "BSc in Biochemistry and Cell Biology",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\BCB.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "BIPH 3010:          The course was last offered in 2020-21 and was deleted subsequently.",
+    "BIPH 4010:          The course was last offered in 2020-21 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "pre_major",
+          "name": "Major Pre-requisite course(s)",
+          "groups": [
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1902",
+                  "title": "General Biology II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "LIFS",
+              "note": "Note: Students with level 3 or above in HKDSE 1x Biology are",
+              "credits": "0-1",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 1903",
+                  "title": "Laboratory for General Biology I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 1904",
+                  "title": "Laboratory for General Biology II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2010",
+                  "title": "Modern Approaches to Biochemical and Cell Biological",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2040",
+                  "title": "Cell Biology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2210",
+                  "title": "Biochemistry I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2220",
+                  "title": "Biochemistry II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2240",
+                  "title": "Cell Biology Laboratory",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2720",
+                  "title": "Biochemistry Laboratory",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 2820",
+                  "title": "Biochemical Laboratory Techniques",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3010",
+                  "title": "Molecular and Cellular Biology I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3020",
+                  "title": "Molecular and Cellular Biology II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3140",
+                  "title": "General Genetics",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LIFS/SCIE",
+              "note": "Note: LIFS 4961 OR (LIFS 4971 AND LIFS 4981) OR (SCIE 4500 AND LIFS 4981) (Students following IRE Track can only use (SCIE 4500 AND LIFS 4981) to fulfill the requirement.)",
+              "credits": "3-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 4961",
+                  "title": "Biochemistry and Cell Biology Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4971",
+                  "title": "Biochemistry and Cell Biology Project Research I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4981",
+                  "title": "Biochemistry and Cell Biology Project Research II",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "SCIE 4500",
+                  "title": "IRE Research Project II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1011",
+                  "title": "General Chemistry A: Reactions, Thermodynamics, and",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1051",
+                  "title": "Laboratory for General Chemistry A",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "CHEM 1052",
+                  "title": "Laboratory for General Chemistry B",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "CHEM",
+              "note": "Note: CHEM 2111 OR CHEM 2311",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 2111",
+                  "title": "Fundamentals of Organic Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2311",
+                  "title": "Analytical Chemistry",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "CHEM",
+              "note": "Note: CHEM 2155 OR CHEM 2355",
+              "credits": "1",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 2155",
+                  "title": "Fundamental Organic Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 2355",
+                  "title": "Fundamental Analytical Chemistry Laboratory",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "LANG",
+              "note": "Note: LANG 3024 OR LANG 3027 (Students following IRE Track should take LANG 3027 to fulfill the requirement.)",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LANG 3024",
+                  "title": "Science Communication in English (Life Science)",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LANG 3027",
+                  "title": "Science Communication in English for Research Students",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "PHYS",
+              "note": "to take a minimum of 12 credits; while others should either take a minimum of 20 credits (for those opting for LIFS 4971 & LIFS 4981), or 24 credits (for those opting for LIFS 4961). Courses taken as Major/Track Required Courses may not be counted towards the elective requirement.) LIFS                    Any LIFS courses at 3000/4000-level",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "LIFS 2060",
+                  "title": "Biodiversity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2070",
+                  "title": "Introduction to Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2080",
+                  "title": "Plant Biology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIPH 3010",
+                  "title": "Advanced Biological Physics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIPH 4010",
+                  "title": "Principles of Quantitative Instrumentation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 3120",
+                  "title": "Organic Chemistry II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 3320",
+                  "title": "Instrumental Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 4140",
+                  "title": "Intermediate Organic Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 1010",
+                  "title": "Principles and Applications of Environmental Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 2010",
+                  "title": "Introductory Biological Physics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) BSc in Biochemistry and Cell Biology In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Students MUST take the following courses prior to enrollment into the major",
+        "are exempted from taking LIFS 1901",
+        "exempted from taking LIFS 1903 Research Reaction Kinetics Theories"
+      ]
+    },
+    {
+      "block": "track",
+      "name": "International Research Enrichment Track",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3070",
+                  "title": "Introduction to Biophysical Instrumentation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 3110",
+                  "title": "Biotechnological Application of Recombinant DNA Techniques",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SCIE 3500",
+                  "title": "IRE Research Project I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "LIFS/BIPH/                 Biochemistry and Cell Biology Electives (Courses from the             12-24 CHEM/OCES/                 specified elective list. Students following IRE Track are required",
+        "Students in the IRE Track should also take SCIE 4500 and LIFS 4981 as specified in the major requirements."
+      ]
+    }
+  ]
+}

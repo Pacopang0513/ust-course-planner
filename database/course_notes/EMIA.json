@@ -1,0 +1,18 @@
+{
+  "$schema": "../templates/schemas/course_notes.schema.json",
+  "subject": "EMIA",
+  "source": "https://prog-crs.hkust.edu.hk/ugcourse/2026-27/EMIA/",
+  "fetched_at": "2026-08-07",
+  "rules": [
+    {
+      "codes": ["EMIA 4990", "EMIA 4991"],
+      "rule": "ext_capstone_pairing",
+      "description": "EXT AI 顶点项目二选一，但选择取决于学生是否修主修 FYP/顶点课程",
+      "logic": "学生 first_major 必修中含 major_capstone 标记课程（如 PHYS 4291）→ 只允许 EMIA 4990（0 学分 P/F，与主修 FYP 并行，需 EMIA 批准整合 AI）；无主修 FYP → 才可选 EMIA 4991（3 学分独立项目）"
+    }
+  ],
+  "notes": {
+    "EMIA 4990": "Interdisciplinary Capstone Design，0 学分，P/F（可 PP）。与主修 Final Year / Capstone Project 同时修（to be taken simultaneously with a Final Year or Capstone Project offered by a student's enrolled Major）；需 EMIA 批准确保 FYP 整合 EXT AI 知识；若 FYP 项目不属于第一主修，还需第一主修批准。",
+    "EMIA 4991": "Interdisciplinary Capstone Project，3 学分，可 PP。独立的跨学科顶点项目（教师指导）；仅限不参加任何主修 FYP/顶点课程的 EXT 学生（for extended major students who do not take Final Year or Capstone Projects offered by any majors only）。"
+  }
+}

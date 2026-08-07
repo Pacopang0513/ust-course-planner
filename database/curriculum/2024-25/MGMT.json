@@ -1,0 +1,300 @@
+{
+  "program": "MGMT",
+  "intake_year": "2024-25",
+  "school": "School of Business and Management",
+  "title": "BBA in Management",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\MGMT.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "MGMT 4300:          The course was last offered in 2022-23 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "BBA",
+              "note": "in Management In addition to the requirements of their major programs, students are required to complete the University and School requirements for graduation. For details please refer to the respective sections on this website. Unless approved by the Dean or the Dean's designate, students are not allowed to reuse courses that are counted towards the School Requirements to also fulfill the Major or Option requirements. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MGMT",
+              "note": "Note: MGMT 3110 OR MGMT 3120 (Students in the Human Resources Option must take MGMT 3110 to fulfill this requirement. Students in the Consulting Option must take MGMT 3120 to fulfill this requirement.)",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MGMT 3110",
+                  "title": "Human Resources Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3120",
+                  "title": "Managerial Leadership",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MGMT",
+              "note": "Note: MGMT 3130 OR MGMT 3140 (Students in the Consulting Option must take MGMT 3140 to fulfill this requirement.)",
+              "credits": "4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MGMT 3130",
+                  "title": "Judgement and Decision Making in Organizations",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3140",
+                  "title": "Negotiation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MGMT",
+              "note": "Note: MGMT 4210 OR MGMT 4220 (Students in the Consulting Option or in the Corporate Social Responsibility and Sustainability Option must take MGMT 4210 to fulfill this requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MGMT 4210",
+                  "title": "Corporate Strategy",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4220",
+                  "title": "Entrepreneurship and Innovation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "MGMT",
+              "note": "MGMT 3000-level or above Electives (Any 3 courses of the subject and level as specified. Courses taken as Option Required Courses may not be counted towards the elective requirement.) Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "9",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree)"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Consulting Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MGMT",
+              "note": "cannot be reused to count towards this Option.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MGMT",
+              "note": "Note: MGMT 3110 OR MGMT 3160 OR MGMT 4230",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MGMT 3110",
+                  "title": "Human Resources Management",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3160",
+                  "title": "Environmental Business Strategies",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4230",
+                  "title": "International Management",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 4250",
+                  "title": "Management Consulting",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Consulting Option should also take MGMT 3120, MGMT 3140, and MGMT 4210 as specified in the major requirements. Courses used to fulfill the requirements of another option under"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Corporate Social Responsibility and Sustainability Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MGMT",
+              "note": "cannot be reused to count towards this Option.",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 3160",
+                  "title": "Environmental Business Strategies",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 3170",
+                  "title": "Managing CSR (Corporate Social Responsibility)",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Corporate Social Responsibility and Sustainability Option should also take MGMT 4210 as specified in the major requirements. Courses used to fulfill the requirements of another option under"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Human Resources Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "MGMT",
+              "note": "Note: MGMT 4270 OR MGMT 4280 OR MGMT 4290 OR MGMT 4300 (2 courses out of 4)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MGMT 4270",
+                  "title": "Training and Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4280",
+                  "title": "Transnational Legal Issues and Dispute Settlement",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4290",
+                  "title": "HR Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4300",
+                  "title": "Knowing and Managing Your Social Networks for Careers and Business",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Human Resources Option should also take MGMT 3110 as specified in the major requirements. Courses used to fulfill the requirements of another option under MGMT cannot be reused to count towards this Option."
+      ]
+    }
+  ]
+}

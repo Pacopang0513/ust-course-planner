@@ -1,0 +1,570 @@
+{
+  "program": "EXTM-AI",
+  "intake_year": "2025-26",
+  "school": "Academy of Interdisciplinary Studies",
+  "title": "Extended Major Program in Artificial Intelligence",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\EXTM-AI.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "ELEC 4230:            The course was last offered in 2020-21 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "EMIA 2010A",
+                  "title": "Cross-disciplinary Seminar: Artificial Intelligence",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "EMIA 2020",
+                  "title": "Cross-disciplinary Design Thinking",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "EMIA 4110",
+                  "title": "Practical Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4211",
+                  "title": "Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 4432",
+                  "title": "Statistical Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "EMIA",
+              "note": "Note: EMIA 4990 OR EMIA 4991",
+              "credits": "0-3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "EMIA 4990",
+                  "title": "Interdisciplinary Capstone Design",
+                  "credits": "0",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 4991",
+                  "title": "Interdisciplinary Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 1023",
+                  "title": "Introduction to Python Programming",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 2211",
+                  "title": "Introduction to Artificial Intelligence",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "SHSS",
+              "note": "same course groups of COMP 1944/CTDL 1902/HUMA 1930, COMP 4462/DASC 3240 and IEDA 3250/MATH 3425 to count should take a minimum of 6 credits.) of Viu International",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CTDL 1902",
+                  "title": "AI and Society: Ethics, Cognition, and Critical Analysis",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 1901",
+                  "title": "Introduction to Smart City Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "EMIA 3500A",
+                  "title": "AI and Design in Sci-Fi",
+                  "credits": "2",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 3150",
+                  "title": "AI for Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 4000S",
+                  "title": "Applied Generative AI for Interdisciplinary Projects",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ACCT 4720",
+                  "title": "Equity Investment with Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 3300",
+                  "title": "Data Science for Molecular Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 3310",
+                  "title": "Data Science for Neural Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 3320",
+                  "title": "Data Science for Biology and Medicine",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 3300",
+                  "title": "Data Science for Molecular Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 3030",
+                  "title": "Introduction to AI for Chemistry",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4100T",
+                  "title": "Applications of Artificial Intelligence in Remote Sensing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4210",
+                  "title": "Advanced Construction with AI and Robotics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4220",
+                  "title": "Scientific Machine Learning for Infrastructure Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4360",
+                  "title": "Implementing Artificial Intelligence in Smart Buildings",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1944",
+                  "title": "Artificial Intelligence Ethics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 3211",
+                  "title": "Learning, Reasoning, and Decision Making in AI",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4212",
+                  "title": "Reinforcement Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4221",
+                  "title": "Introduction to Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4222",
+                  "title": "Machine Learning with Structured Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4321",
+                  "title": "Search Engines for Web and Enterprise Data",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4331",
+                  "title": "Data Mining",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4332",
+                  "title": "Big Data Mining and Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4421",
+                  "title": "Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4441",
+                  "title": "Music Video Creation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4451",
+                  "title": "Game Programming",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4461",
+                  "title": "Human-Computer Interaction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4462",
+                  "title": "Data Visualization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4471",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4531",
+                  "title": "IoT and Smart Sensing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4551",
+                  "title": "Large-Scale Machine Learning System for Foundation Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4641",
+                  "title": "Social Information Network Analysis and Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4651",
+                  "title": "Cloud Computing and Big Data Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4901B",
+                  "title": "Large Language Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4901L",
+                  "title": "Foundations of Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5211",
+                  "title": "Advanced Artificial Intelligence",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 5214",
+                  "title": "Advanced Deep Learning Architectures",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "DASC 3240",
+                  "title": "Data Visualization in Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "DASC 3250",
+                  "title": "Numerical Methods for Data Analytics in Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "DASC 4010",
+                  "title": "Practical Artificial Intelligence in Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "DASC 4400",
+                  "title": "Data Analytics in Information Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 4305",
+                  "title": "Applied Machine Learning for Economic and Financial Analysis",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3130",
+                  "title": "Digital Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3350",
+                  "title": "Principles of Machine Learning",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 3810",
+                  "title": "Data Science for Neural Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4230",
+                  "title": "Deep Learning for Natural Language Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4240",
+                  "title": "Deep Learning in Computer Vision",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4350",
+                  "title": "AI Processor Architecture",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "FINA 4713",
+                  "title": "Introduction to Artificial Intelligence and Big Data in Finance",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "HUMA 1930",
+                  "title": "Introduction to the Ethics of Artificial Intelligence and Data Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 3010",
+                  "title": "Prescriptive Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 3250",
+                  "title": "Stochastic Models",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 3560",
+                  "title": "Predictive Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3340",
+                  "title": "Developing AI Applications",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3360",
+                  "title": "Data Mining for Business Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 3390",
+                  "title": "Business Programming in R",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 4320",
+                  "title": "Data Science for Biology and Medicine",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 3425",
+                  "title": "Stochastic Modeling",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4335",
+                  "title": "Introduction to Optimization",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 4336",
+                  "title": "Introduction to Mathematics of Image Processing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 3510",
+                  "title": "Computer-Aided Design and Manufacturing",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4000P",
+                  "title": "AI in Mechanical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4000S",
+                  "title": "Intelligent Control and Data-Driven Modeling of Dynamic Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4058",
+                  "title": "Information Physics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 4811",
+                  "title": "Contemporary Applications of Physics: Machine Learning in Physics",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "TEMG 4950N",
+                  "title": "T&M Corporate Consulting Project: Meta LLM for Digital Transformation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2025-26 under the 4-year degree) Extended Major Program in Artificial Intelligence Extended Major is an add-on element to enrich the existing majors. Students should declare their Extended Major upon admission to HKUST or via the Opt-in Arrangement after they have been admitted to HKUST for guaranteed enrollment in the Extended Major with a Major. Students who wish to withdraw from the Extended Major should apply before the last day of the add/drop period in the first regular term of their final year of study. The Extended Major in Artificial Intelligence is available for combination with Majors offered by School of Science (BSc programs in Chemistry, Mathematics, Ocean Science and Technology, and Physics excluding the International Research Enrichment Track of these programs), Majors offered by School of Engineering (BEng programs in Aerospace Engineering, Bioengineering, Chemical Engineering, Civil Engineering, Civil and Environmental Engineering, Decision Analytics, Electronic Engineering, Energy and Environmental Engineering, Industrial Engineering and Engineering Management, Mechanical Engineering, Microelectronics and Integrated Circuits), Majors offered by School of Business and Management (BBA/BSc programs in Economics, Economics and Finance, Finance, Global Business, Information Systems, Marketing, Management, Operations Management, Professional Accounting, Quantitative Finance, Risk Management and Business Intelligence, Sustainable and Green Finance), and BSc program in Integrative Systems and Design offered by the Academy of Interdisciplinary Studies. It is designed for students with fundamental knowledge in calculus, programming and statistics, but also open to other students, given that they may be required to take one or two additional courses to acquire relevant foundation. To graduate with an Extended Major, students must have enrolled in the Extended Major, complete a minimum of 22 credits and all of its requirements, as well as the requirements of the major program of study; and have attained an average grade point of at least 2.15 in courses taken within the Extended Major. All courses counted towards the Extended Major Requirements, as well as those used to fulfill the Major Requirements, will be included in the calculation of the Major Cumulative Grade Average (MCGA). Students must take all the Extended Major requirement, within which they must complete at least 12 single- counted credits. These 12 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. For credit transfer, students can transfer a maximum total of 6 credits to the Extended Major program. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards School and/or Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Extended Major Requirements",
+        "EMIA/COMP/                    Note: EMIA 4110 OR COMP 4211 OR MATH 4432                                    3 MATH 2026-27 EXTM-AI (4Y) (2025-26 intake)                                                                             Page 1",
+        "AIS/SSCI/                     Artificial Intelligence Electives (Courses from the specified      6-9 SENG/SBM/                     elective list. Students may use at most one course from the towards this elective requirement.) (Students taking EMIA 4990 should take a minimum of 9 credits. Students taking EMIA 4991 2026-27 EXTM-AI (4Y) (2025-26 intake)                                                                      Page 2 2026-27 EXTM-AI (4Y) (2025-26 intake)                                                                        Page 3"
+      ]
+    }
+  ]
+}

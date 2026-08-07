@@ -1,0 +1,703 @@
+{
+  "program": "EVMT",
+  "intake_year": "2023-24",
+  "school": "Academy of Interdisciplinary Studies",
+  "title": "BSc in Environmental Management and Technology",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2023-24\\EVMT.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:         The course was last offered in 2024-25 and was deleted subsequently.",
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently.",
+    "SOSC 2170:          The course was last offered in 2018-19 and was deleted subsequently.",
+    "SOSC 2780:          The course was last offered in 2018-19 and was deleted subsequently.",
+    "SOSC 3260:          The course was last offered in 2019-20 and was deleted subsequently.",
+    "SOSC 4290:          The course was last offered in 2023-24 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "COMP/ISOM",
+              "note": "Note: COMP 1021 OR COMP 1022P OR ISOM 2010",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2010",
+                  "title": "Introduction to Information Systems",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LANG 2082",
+                  "title": "Communication for Environmental Management and",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LANG 2083",
+                  "title": "Communication for Environmental Management and",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: MATH 1003 OR MATH 1012 OR MATH 1013 OR",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "MATH 1020 OR MATH 1023",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1020",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1003",
+                  "title": "Calculus and Linear Algebra",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 1170",
+                  "title": "Science, Environment and Society - From Big Bang to Big Data",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 2001",
+                  "title": "Academic and Professional Development I",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 2010",
+                  "title": "Environmental Science Fundamentals",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 2030",
+                  "title": "Material and Energy Balance for Environmental Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 2090",
+                  "title": "Environmental Laboratory",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3001",
+                  "title": "Academic and Professional Development II",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3110",
+                  "title": "Life Cycle Assessment for Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3210",
+                  "title": "Environmental Technology for Impact Assessment",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3220",
+                  "title": "Energy Sources and Usage",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3310",
+                  "title": "Green Business Strategy",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3410",
+                  "title": "Economics for Environmental Policy and Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 3420",
+                  "title": "Environmental Law and Regulations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 4001",
+                  "title": "Academic and Professional Development III",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 4320",
+                  "title": "ESG Management and Reporting",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 4980",
+                  "title": "Environmental Management and Technology Capstone Project I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENVR 4990",
+                  "title": "Environmental Management and Technology Capstone Project",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ECON",
+              "note": "Note: ECON 2103 OR ECON 2113",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ECON 2103",
+                  "title": "Principles of Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2113",
+                  "title": "Microeconomics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2203",
+                  "title": "Fundamentals of Business Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2500",
+                  "title": "Business Statistics",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LANG 3081",
+                  "title": "Communication for Environmental Management and",
+                  "credits": "2",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2110",
+                  "title": "Organizational Behavior",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "EVMT",
+              "note": "Environmental Management and Technology Electives (Courses from the specified elective list, of which at least 9 credits must be at 3000-level or above.) ENVR Courses ENVR                     All ENVR elective courses Environmental Science Courses Theories Environmental Control Courses Environmental Business Courses Social Science Courses",
+              "credits": "12",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "CHEM 1008",
+                  "title": "Introductory Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1010",
+                  "title": "Introduction to Biological Sciences",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 2060",
+                  "title": "Biodiversity",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "OCES 3160",
+                  "title": "Ecology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 4720",
+                  "title": "Environmental Impact Assessment and Management Systems",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4310",
+                  "title": "Energy System Modeling for Buildings and Cities",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4430",
+                  "title": "Environmental Impact Assessment",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4450",
+                  "title": "Carbon Footprint Analysis and Reduction",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 4640",
+                  "title": "Introduction to Smart City Economics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 4350",
+                  "title": "Indoor Air Quality in Buildings",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ECON 2123",
+                  "title": "Macroeconomics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 2700",
+                  "title": "Operations Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISOM 4750",
+                  "title": "Business Project Management",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3120",
+                  "title": "Managerial Leadership",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 3140",
+                  "title": "Negotiation",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MGMT 4220",
+                  "title": "Entrepreneurship and Innovation",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 1850",
+                  "title": "Understanding Society",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2170",
+                  "title": "Environment, Sustainability and Business: A Design Approach",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2250",
+                  "title": "Cognitive Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2780",
+                  "title": "Modernization and Social Change",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 2980",
+                  "title": "Personality Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3250",
+                  "title": "Gender and Development",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3260",
+                  "title": "Sustainability Science: Policy Problems and Perspectives",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3540",
+                  "title": "Environmental Psychology",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 3880",
+                  "title": "Social Inequality and Social Mobility",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "SOSC 4290",
+                  "title": "China's Sustainable Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2023-24 under the 4-year degree) BSc in Environmental Management and Technology In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements Fundamental Course(s)",
+        "Technology I Technology II",
+        "II Technology III"
+      ]
+    }
+  ]
+}

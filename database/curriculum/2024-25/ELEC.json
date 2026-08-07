@@ -1,0 +1,578 @@
+{
+  "program": "ELEC",
+  "intake_year": "2024-25",
+  "school": "School of Engineering",
+  "title": "BEng in Electronic Engineering",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2024-25\\ELEC.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "COMP 1022P:           The course was last offered in 2024-25 and was deleted subsequently.",
+    "ELEC 2600H:           The course was last offered in 2021-22 and was deleted subsequently.",
+    "MATH 1012:            The course was last offered in 2024-25 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "fundamental",
+          "name": "Engineering Fundamental Course(s)",
+          "groups": [
+            {
+              "subject": "ELEC/MATH",
+              "note": "Note: (ELEC 2600 OR ELEC 2600H) OR MATH 2011 OR MATH 2111 OR MATH 2350 OR MATH 2351 (3 courses out of 6)",
+              "credits": "9-10",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ELEC 2600",
+                  "title": "Probability and Random Processes in Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 2600H",
+                  "title": "Honors Probability and Random Processes in Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2011",
+                  "title": "Introduction to Multivariable Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2111",
+                  "title": "Matrix Algebra and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2350",
+                  "title": "Applied Linear Algebra and Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2351",
+                  "title": "Introduction to Differential Equations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "COMP",
+              "note": "Note: COMP 2011 OR COMP 2012H",
+              "credits": "4-5",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 2011",
+                  "title": "Programming with C++",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 2012H",
+                  "title": "Honors Object-Oriented Programming and Data Structures",
+                  "credits": "5",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "MATH",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1013",
+                  "title": "Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1014",
+                  "title": "Calculus II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1020",
+                  "title": "Accelerated Calculus",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1023",
+                  "title": "Honors Calculus I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 1024",
+                  "title": "Honors Calculus II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1112 OR PHYS 1312",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "PHYS",
+              "note": "Note: PHYS 1114 OR PHYS 1314",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "PHYS 1114",
+                  "title": "General Physics II",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1314",
+                  "title": "Honors General Physics II",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SENG",
+              "note": "Engineering Introduction course (If the students take an introduction course included in their major, this course can be counted towards their major requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ELEC 1100",
+                  "title": "Introduction to Electro-Robot Design",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1200",
+                  "title": "A System View of Communications: from Signals to Packets",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 1010",
+                  "title": "Introduction to Biomedical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1000",
+                  "title": "Foundations of Chemical and Biological Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1500",
+                  "title": "A First Course on Materials Science and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1700",
+                  "title": "Introduction to Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1100",
+                  "title": "Discovering Civil and Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1210",
+                  "title": "Fundamental of Green Buildings",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1100",
+                  "title": "First Year Cornerstone Engineering Design Project Course",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2010",
+                  "title": "Introduction of Industrial Engineering and Decision Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1902",
+                  "title": "Energy Systems in a Sustainable World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1906",
+                  "title": "Mechanical Engineering for Modern Life",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1907",
+                  "title": "Introduction to Aerospace Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 1100",
+                  "title": "Introduction to Electro-Robot Design",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 1200",
+                  "title": "A System View of Communications: from Signals to Packets",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2100",
+                  "title": "Signals and Systems",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2350",
+                  "title": "Introduction to Computer Organization and Design",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2400",
+                  "title": "Electronic Circuits",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 2910",
+                  "title": "Academic and Professional Development II",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ELEC",
+              "note": "Note: [ELEC 2991 AND (ELEC 4900 OR ELEC 4901)] OR [ELEC 4910] (Students taking the Research Option must take ELEC 4901)",
+              "credits": "6",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ELEC 2991",
+                  "title": "Industrial Experience (Electronic Engineering)",
+                  "credits": "0",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4900",
+                  "title": "Final Year Design Project",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4901",
+                  "title": "Final Year Thesis",
+                  "credits": "6",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 4910",
+                  "title": "Co-op Program",
+                  "credits": "6",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 3910",
+                  "title": "Academic and Professional Development III",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 2010",
+                  "title": "Engineering Seminar Series",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "ELEC",
+              "note": "ELEC 3000-level or above Electives (Courses of the subject and level as specified, out of which at least 2 courses must be at 4000-level. ELEC 4940 cannot be used to count towards this elective requirement) Students may opt to graduate with or without an option. Students who take an option MUST complete all requirements specified in addition to the major requirements.",
+              "credits": "21",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "(For students admitted in 2024-25 under the 4-year degree) BEng in Electronic Engineering In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements"
+      ]
+    },
+    {
+      "block": "option",
+      "name": "Research Option",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ELEC 5900",
+                  "title": "Modern Engineering Research Methodologies",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective Course(s)",
+          "groups": [
+            {
+              "subject": "UROP",
+              "note": "course taken prior to the commencement of Final Year Thesis, and one PG-level course)",
+              "credits": "",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "UROP 1000",
+                  "title": "Undergraduate Research Opportunities",
+                  "credits": "0",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "UROP 1100",
+                  "title": "Undergraduate Research Opportunities Series 1",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "UROP 2100",
+                  "title": "Undergraduate Research Opportunities Series 2",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "UROP 3100",
+                  "title": "Undergraduate Research Opportunities Series 3",
+                  "credits": "1",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Students in the Research Option should also take ELEC 4901 as specified in the major requirements.",
+        "Advanced Elective Courses approved by advisor (at least one                    6"
+      ]
+    }
+  ]
+}

@@ -1,15 +1,19 @@
 {
   "program": "COMP",
-  "intake_year": "2026-27",
+  "intake_year": "2023-24",
   "school": "School of Engineering",
   "title": "BEng in Computer Science",
   "source": {
-    "file": "cache\\prog-crs\\raw\\2026-27\\COMP.txt",
+    "file": "cache\\prog-crs\\raw\\2023-24\\COMP.txt",
     "parsed_at": ""
   },
   "notes": [],
   "remarks": [
-    "ELEC 2600H:          The course was last offered in 2021-22 and was deleted subsequently."
+    "COMP 1022P:         The course was last offered in 2024-25 and was deleted subsequently.",
+    "COMP 4111:          The course was last offered in 2019-20 and was deleted subsequently.",
+    "COMP 4511:          The course was last offered in 2020-21 and was deleted subsequently.",
+    "ELEC 2600H:         The course was last offered in 2021-22 and was deleted subsequently.",
+    "MATH 1012:          The course was last offered in 2024-25 and was deleted subsequently."
   ],
   "requirements": [
     {
@@ -21,14 +25,89 @@
           "name": "Engineering Fundamental Course(s)",
           "groups": [
             {
+              "subject": "COMP",
+              "note": "Note: COMP 1021 OR COMP 1022P PHYS                          1101 OR PHYS 1112 OR PHYS 1312 Theories",
+              "credits": "3",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 1022P",
+                  "title": "Introduction to Computing with Java",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1101",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1008",
+                  "title": "Introductory Chemistry",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CHEM 1012",
+                  "title": "General Chemistry B: Atomic Structure, Molecules, and Bonding",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "LIFS 1901",
+                  "title": "General Biology I",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1101",
+                  "title": "Introductory Physics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1112",
+                  "title": "General Physics I with Calculus",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "PHYS 1312",
+                  "title": "Honors General Physics I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
               "subject": "",
               "note": "",
               "credits": "",
               "kind": "single",
               "courses": [
                 {
-                  "code": "COMP 1023",
-                  "title": "Introduction to Python Programming",
+                  "code": "LANG 2030",
+                  "title": "Technical Communication I",
                   "credits": "3",
                   "area": ""
                 }
@@ -37,10 +116,16 @@
             },
             {
               "subject": "MATH",
-              "note": "Note: [(MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
-              "credits": "4-6",
+              "note": "Note: [(MATH 1012 OR MATH 1013 OR MATH 1023) AND (MATH 1014 OR MATH 1024)] OR [MATH 1020]",
+              "credits": "4-7",
               "kind": "pool",
               "courses": [
+                {
+                  "code": "MATH 1012",
+                  "title": "Calculus IA",
+                  "credits": "4",
+                  "area": ""
+                },
                 {
                   "code": "MATH 1013",
                   "title": "Calculus I",
@@ -96,6 +181,117 @@
                   "code": "MATH 2131",
                   "title": "Honors in Linear and Abstract Algebra I",
                   "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "SENG",
+              "note": "Engineering Introduction course (COMP students may also use COMP 1022P to fulfill this requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 1010",
+                  "title": "Introduction to Biomedical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1000",
+                  "title": "Foundations of Chemical and Biological Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1500",
+                  "title": "A First Course on Materials Science and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1700",
+                  "title": "Introduction to Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1100",
+                  "title": "Discovering Civil and Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1210",
+                  "title": "Fundamental of Green Buildings",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1100",
+                  "title": "Introduction to Electro-Robot Design",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1200",
+                  "title": "A System View of Communications: from Signals to Packets",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1100",
+                  "title": "First Year Cornerstone Engineering Design Project Course",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2010",
+                  "title": "Introduction of Industrial Engineering and Decision Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1001",
+                  "title": "Introduction to Integrative Systems and Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1002",
+                  "title": "Redefining Problems for the Real Needs",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1006",
+                  "title": "Human-centered Innovation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1902",
+                  "title": "Energy Systems in a Sustainable World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1906",
+                  "title": "Mechanical Engineering for Modern Life",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1907",
+                  "title": "Introduction to Aerospace Engineering",
+                  "credits": "3",
                   "area": ""
                 }
               ],
@@ -262,13 +458,94 @@
             },
             {
               "subject": "COMP",
-              "note": "Note: Students are required to take COMP 4900 for every regular term in which they are in residency at HKUST with major in COMP",
+              "note": "Note: Students are required to take COMP 4900 for every regular term in which they are in residency at HKUST with major in COMP MATH                            2540 OR MATH 2411 OR MATH 2421 OR MATH 2431",
               "credits": "0",
               "kind": "pool",
               "courses": [
                 {
                   "code": "COMP 4900",
                   "title": "Academic and Professional Development",
+                  "credits": "0",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2540",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2421",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 2600",
+                  "title": "Probability and Random Processes in Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 2600H",
+                  "title": "Honors Probability and Random Processes in Engineering",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2520",
+                  "title": "Probability for Engineers",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2540",
+                  "title": "Statistics for Engineers",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "Applied Statistics",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2421",
+                  "title": "Probability",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "Honors Probability",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENGG 2010",
+                  "title": "Engineering Seminar Series",
                   "credits": "0",
                   "area": ""
                 }
@@ -282,99 +559,9 @@
               "kind": "single",
               "courses": [
                 {
-                  "code": "ELEC 2600",
-                  "title": "Probability and Random Processes in Engineering",
-                  "credits": "4",
-                  "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
-                {
-                  "code": "ELEC 2600H",
-                  "title": "Honors Probability and Random Processes in Engineering",
-                  "credits": "4",
-                  "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
-                {
-                  "code": "IEDA 2520",
-                  "title": "Probability for Engineers",
+                  "code": "LANG 4030",
+                  "title": "Technical Communication II for CSE, CPEG & DSCT",
                   "credits": "3",
-                  "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
-                {
-                  "code": "IEDA 2540",
-                  "title": "Statistics for Engineers",
-                  "credits": "3",
-                  "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
-                {
-                  "code": "MATH 2411",
-                  "title": "Applied Statistics",
-                  "credits": "4",
-                  "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
-                {
-                  "code": "MATH 2421",
-                  "title": "Probability",
-                  "credits": "4",
-                  "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
-                {
-                  "code": "MATH 2431",
-                  "title": "Honors Probability",
-                  "credits": "4",
                   "area": ""
                 }
               ],
@@ -527,6 +714,12 @@
                   "area": ""
                 },
                 {
+                  "code": "COMP 5213",
+                  "title": "Introduction to Bayesian Networks",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
                   "code": "COMP 5214",
                   "title": "Advanced Deep Learning Architectures",
                   "credits": "3",
@@ -665,6 +858,12 @@
                   "area": ""
                 },
                 {
+                  "code": "COMP 4111",
+                  "title": "Software Engineering Practices",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
                   "code": "COMP 4121",
                   "title": "Modern Compiler Construction",
                   "credits": "3",
@@ -733,6 +932,12 @@
                 {
                   "code": "COMP 3631",
                   "title": "Cryptography",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "COMP 4511",
+                  "title": "System and Kernel Programming in Linux",
                   "credits": "3",
                   "area": ""
                 },
@@ -815,6 +1020,12 @@
                   "area": ""
                 },
                 {
+                  "code": "COMP 5622",
+                  "title": "Advanced Computer Communications and Networking",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
                   "code": "COMP 5631",
                   "title": "Cryptography and Security",
                   "credits": "3",
@@ -833,7 +1044,8 @@
         }
       ],
       "notes": [
-        "(For students admitted in 2026-27 under the 4-year degree) BEng in Computer Science In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "(For students admitted in 2023-24 under the 4-year degree) BEng in Computer Science In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "CHEM/LIFS/                    Note: CHEM 1008 OR CHEM 1012 OR LIFS 1901 OR PHYS                            3-4",
         "ELEC/IEDA/                      Note: ELEC 2600 OR ELEC 2600H OR IEDA 2520 OR IEDA                         3-4"
       ]
     }

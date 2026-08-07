@@ -1,14 +1,15 @@
 {
   "program": "COMP",
-  "intake_year": "2026-27",
+  "intake_year": "2025-26",
   "school": "School of Engineering",
   "title": "BEng in Computer Science",
   "source": {
-    "file": "cache\\prog-crs\\raw\\2026-27\\COMP.txt",
+    "file": "cache\\prog-crs\\raw\\2025-26\\COMP.txt",
     "parsed_at": ""
   },
   "notes": [],
   "remarks": [
+    "COMP 4511:           The course was last offered in 2020-21 and was deleted subsequently.",
     "ELEC 2600H:          The course was last offered in 2021-22 and was deleted subsequently."
   ],
   "requirements": [
@@ -262,7 +263,7 @@
             },
             {
               "subject": "COMP",
-              "note": "Note: Students are required to take COMP 4900 for every regular term in which they are in residency at HKUST with major in COMP",
+              "note": "Note: Students are required to take COMP 4900 for every regular term in which they are in residency at HKUST with major in COMP MATH                            2540 OR MATH 2411 OR MATH 2421 OR MATH 2431",
               "credits": "0",
               "kind": "pool",
               "courses": [
@@ -271,106 +272,67 @@
                   "title": "Academic and Professional Development",
                   "credits": "0",
                   "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
+                },
+                {
+                  "code": "MATH 2540",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2411",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2421",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
+                {
+                  "code": "MATH 2431",
+                  "title": "",
+                  "credits": "",
+                  "area": ""
+                },
                 {
                   "code": "ELEC 2600",
                   "title": "Probability and Random Processes in Engineering",
                   "credits": "4",
                   "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
+                },
                 {
                   "code": "ELEC 2600H",
                   "title": "Honors Probability and Random Processes in Engineering",
                   "credits": "4",
                   "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
+                },
                 {
                   "code": "IEDA 2520",
                   "title": "Probability for Engineers",
                   "credits": "3",
                   "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
+                },
                 {
                   "code": "IEDA 2540",
                   "title": "Statistics for Engineers",
                   "credits": "3",
                   "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
+                },
                 {
                   "code": "MATH 2411",
                   "title": "Applied Statistics",
                   "credits": "4",
                   "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
+                },
                 {
                   "code": "MATH 2421",
                   "title": "Probability",
                   "credits": "4",
                   "area": ""
-                }
-              ],
-              "areas": []
-            },
-            {
-              "subject": "",
-              "note": "",
-              "credits": "",
-              "kind": "single",
-              "courses": [
+                },
                 {
                   "code": "MATH 2431",
                   "title": "Honors Probability",
@@ -737,6 +699,12 @@
                   "area": ""
                 },
                 {
+                  "code": "COMP 4511",
+                  "title": "System and Kernel Programming in Linux",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
                   "code": "COMP 4521",
                   "title": "Mobile Application Development",
                   "credits": "3",
@@ -833,7 +801,7 @@
         }
       ],
       "notes": [
-        "(For students admitted in 2026-27 under the 4-year degree) BEng in Computer Science In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses delivered in online mode, including HKUST self-paced online [SPO] courses and other online credits approved through the University's credit transfer procedures, to satisfy the graduation requirements of a degree program. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
+        "(For students admitted in 2025-26 under the 4-year degree) BEng in Computer Science In addition to the requirements of their major programs, students are required to complete the University requirements for graduation. For details please refer to the respective section on this website. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. For students graduating with an additional major, they must take all the requirements specified for that major, within which they must complete at least 20 single-counted credits. These 20 credits cannot be used to fulfill any other requirements for graduation except for the 120-credit degree requirement. Under the new 30-credit Common Core Program which is applicable to students admitted to the University in 2022-23 and thereafter, courses that have been counted towards Major Requirements are not allowed to be reused for fulfilment of the University Common Core Requirements. Students should look up the details of the Common Core Program including the general and School-/program-specific distributional requirements posted on the Common Core website where the link to it is available on this website. Major Requirements",
         "ELEC/IEDA/                      Note: ELEC 2600 OR ELEC 2600H OR IEDA 2520 OR IEDA                         3-4"
       ]
     }

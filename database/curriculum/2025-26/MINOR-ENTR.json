@@ -1,0 +1,434 @@
+{
+  "program": "MINOR-ENTR",
+  "intake_year": "2025-26",
+  "school": "",
+  "title": "",
+  "source": {
+    "file": "cache\\prog-crs\\raw\\2025-26\\MINOR-ENTR.txt",
+    "parsed_at": ""
+  },
+  "notes": [],
+  "remarks": [
+    "IEDA 2150:              The course was last offered in 2020-21 and was deleted subsequently.",
+    "IEDA 2200:            The course was last offered in 2021-22 and was deleted subsequently."
+  ],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "Major Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENTR 1001",
+                  "title": "Entrepreneurship 1001: Designing Your Future",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        },
+        {
+          "type": "elective",
+          "name": "Elective(s)",
+          "groups": [
+            {
+              "subject": "AIS",
+              "note": "area. Students may use at most 6 credits from ENTR 4901-4904 to count towards this elective requirement.) Area A: Entrepreneurship Electives - Fundamentals Schools of Science, Engineering, Business & Management, and Academy of Interdisciplinary Studies - Undergraduate Minor Program in Entrepreneurship Start a Business",
+              "credits": "",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "ENTR 2010",
+                  "title": "Entrepreneurship Mentorship and Readings",
+                  "credits": "1",
+                  "area": ""
+                },
+                {
+                  "code": "ENTR 3030",
+                  "title": "Social Innovations and Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ENTR 3100",
+                  "title": "Industrial Landscape: Understanding the Elements to",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "ENTR",
+              "note": "4901-       Student-led Entrepreneurship Acceleration Project",
+              "credits": "1-4",
+              "kind": "pool",
+              "courses": [],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 1380",
+                  "title": "Technology and Innovation: Social and Business Perspectives",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 2011",
+                  "title": "New Venture Creation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENTR 3012",
+                  "title": "Tech startup and entrepreneurs ecosystem: growth and",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENTR 3013",
+                  "title": "Prototyping Skills for Entrepreneurs",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENTR 3350",
+                  "title": "Global Product Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENTR 3360",
+                  "title": "From Product Innovations to Successful Technology Startups",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ENTR 4911",
+                  "title": "IT Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "BIBU 4820",
+                  "title": "Biotechnology Entrepreneurship and Business Operations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "COMP 4911",
+                  "title": "IT Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2203",
+                  "title": "Fundamentals of Business Finance",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "FINA 2303",
+                  "title": "Financial Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "IEDA 2150",
+                  "title": "Product Design",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "IEDA 2200",
+                  "title": "Engineering Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISDN 3350",
+                  "title": "Global Product Development",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISDN 3360",
+                  "title": "From Product Innovations to Successful Technology Startups",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 2030",
+                  "title": "Business Protections for Innovations",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "ISOM 4020",
+                  "title": "Innovation Management and Technology Entrepreneurship",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LIFS 4820",
+                  "title": "Entrepreneurship in Biotechnology",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MARK 2120",
+                  "title": "Marketing Management",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 3140",
+                  "title": "Negotiation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "MGMT 4220",
+                  "title": "Entrepreneurship and Innovation",
+                  "credits": "4",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "OCES 4301",
+                  "title": "Environmental Conservation",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "SCIE 4860",
+                  "title": "Young Entrepreneurial Syndicate in Applied Sciences",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Schools of Science, Engineering, Business & Management, and Academy of Interdisciplinary Studies - Undergraduate Minor Program in Entrepreneurship (For students admitted in 2025-26 under the 4-year degree) Undergraduate Minor Program in Entrepreneurship The Minor Program in Entrepreneurship is designed mainly for engineering, business, and science students, but is also open to all students to apply. Any undergraduate students with an overall CGA of 2.7 or above may enroll in this Minor Program. Students must declare their intention to enroll in the Minor Program no earlier than the first regular term of their second year of study but no later than the last day of the add/drop period in the first regular term of their final year of study. Students who wish to withdraw from the Minor Program should apply before the last day of the add/drop period in the last regular term of their final year of study. Minor Requirements To graduate with a minor in Entrepreneurship, the students must have enrolled in the Minor Program and completed a minimum total of 18 credits and all of its requirements, as well as all the requirements of their major program of study. For students admitted in 2016-17 or after, they are also required to attain an average grade point of at least 2.5 in courses taken within the Minor Program. For credit transfer, students can transfer a maximum total of 6 credits to the Minor Program. Out of the total credits required by the minor program, at least 9 credits should be single-counted within the minor and are not used to fulfill any other requirements for graduation except the 120-credit degree requirement. Students may use no more than 9 credits earned from courses offered in self-paced online delivery mode to satisfy the graduation requirements of a degree program. This 9-credit limit does not apply to credits obtained through the credit transfer procedures of the University. Some courses in the curriculum have been previously coded with CORE-prefix where the special CORE-prefix has been replaced by the domain code of courses starting from Fall 2023-24. Students who have registered with these CORE- coded courses may look up their latest course codes by consulting the conversion table published on the Common Core website.",
+        "ENTR/SSCI/                 Entrepreneurship Electives (Courses from the specified                                        15 SENG/SBM/                  elective list, of which at least 6 credits from each 2026-27 MINOR-ENTR (4Y) (2025-26 intake)                                                                                              Page 1 4904 Area B: Entrepreneurship Electives - Skillsets innovation Project 2026-27 MINOR-ENTR (4Y) (2025-26 intake)                                                                      Page 2"
+      ]
+    }
+  ]
+}
