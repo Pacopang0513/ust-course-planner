@@ -29,10 +29,8 @@ scripts/
 │   ├── final.py               #   Step 5 合成排名（规则分+USTspace 口碑 → 吸引力+置信度）
 │   ├── review_summary_build.py#   Step 4 基架：ustspace_reviews → review_summary（AI 精读覆盖关键字段）
 │   └── planner.py             #   Step 6 课程表编排（必修强制入池/TBA 计学分/--exclude 备选）
-├── mapper/                    # AR↔curriculum 映射
-│   ├── run.py                 #   主入口：AR 未满足条目 → 候选课程 + 置信度
-│   ├── generic.py             #   策略链（override / 代码交集 / 文本 / 结构 / 回退）
-│   └── registry.py            #   每系覆盖规则（database/mappings/{PROG}.json）
+├── enroll/                     # 选课写入（enrollment-commit skill）
+│   └── cart.py                 #   方案 → 选课清单（TBA 标注）/ admlu65 可达探测 / 提交引导
 ├── harness/                   # R1-R6 testcase 基础设施
 │   ├── hash_check.py          #   R1 只读完整性检查（snapshot / verify）
 │   ├── schema_validate.py     #   R2 产物 schema 校验（basename + 父目录链回退）
@@ -65,9 +63,9 @@ python3 scripts/cookies_setup.py --print-bookmarklet   # 登录页一键复制 c
 python3 scripts/sis/parser.py --fetch --cookie-file credentials/cookies.txt
 python3 scripts/sis/parser.py --selftest            # 解析器自测（含 pre-enroll）
 
-# WCQ Class Schedule（公开，无需 cookie；2610 = 2026-27 Fall）
-python3 scripts/wcq/crawler.py --session 2610
-python3 scripts/wcq/crawler.py --admission-year 2026-27 --session 2610   # Common Core 课程池
+# WCQ Class Schedule（公开，无需 cookie；session 如 2610 = 2026-27 Fall）
+python3 scripts/wcq/crawler.py --session <SESSION>
+python3 scripts/wcq/crawler.py --admission-year <YEAR> --session <SESSION>  # Common Core 课程池
 python3 scripts/wcq/conflict.py --session 2610 --courses "COMP 2011:L1" "ACCT 2010:L01"
 
 # USTspace 评论（运行时，需 credentials/cookies.txt 中的 ustspace_session）
@@ -87,16 +85,15 @@ python3 scripts/rank/planner.py --scores data/course_scores.json --session 2610 
 python3 scripts/rank/filter.py --selftest                       # pre-req 解析器自测
 
 # prog-crs 预构建（按入学年份；harness 按 profile.admission_year 决定年份）
-python3 scripts/prog_crs/build.py --year 2026-27
-python3 scripts/prog_crs/parser.py --selftest          # 解析器自测
-
-# AR↔curriculum 映射（自动定位 database/curriculum/{year}/{PROG}.json）
-python3 scripts/mapper/run.py --program PHYS --intake-year 2026-27 \
-    --ar cache/sis/sis_academic_req.json
+python3 scripts/prog_crs/build.py --year <YEAR>
 
 # 运行时产物统计汇总（机械性分析；--only 单看一项，--scores-top 指定排名条数）
 python3 scripts/report/stats.py
 python3 scripts/report/stats.py --only filter --scores-top 15
+
+# 选课写入（enrollment-commit skill；session 由运行中 ustplan status 决定）
+python3 scripts/enroll/cart.py build --session <SESSION>
+python3 scripts/enroll/cart.py check --session <SESSION>
 
 # R1-R6 testcase
 python3 scripts/harness/test_runner.py --case scripts/tests/demo
@@ -114,8 +111,8 @@ python3 scripts/harness/test_runner.py --case scripts/tests/rank
   无 cookie 时 SIS 会返回 200 壳页面，负特征判定不可靠
 - WCQ 输出：`data/courses_{session}.json`、`data/cc_courses_{session}.json`（Common Core 课程池）；SIS 输出：`cache/sis/`；prog-crs 原始输出：`cache/prog-crs/raw/{year}/`
 - USTspace 输出：`cache/ustspace/raw/{code}.json`（原始 API JSON）+ `data/ustspace_reviews.json`（汇总）+ `data/review_summary.json`（AI 精读总结，Step 4 skill 产出）
-- 运行时产物：`data/mapping_result.json`、`data/unmet_courses.json`、`data/candidate_rank.json`、`data/filter_report.json`、`data/course_scores.json`
-- 预构建数据：`database/curriculum/{year}/`、`database/course_catalog/{year}/`、`database/mappings/`、`database/build.json`
-- **年份版本化**：curriculum/课程目录都按入学年份分目录；schedule 按 session（2610）分文件；构建标记 `database/build.json`
+- 运行时产物：`data/unmet_courses.json`、`data/candidate_rank.json`、`data/filter_report.json`、`data/course_scores.json`、`output/timetable_plan.json`、`output/enroll_cart.json`
+- 预构建数据：`database/curriculum/{year}/`、`database/course_catalog/{year}/`、`database/course_notes/`、`database/build.json`
+- **年份版本化**：curriculum/课程目录都按入学年份分目录；schedule 按 session（4 位代码）分文件；构建标记 `database/build.json`
 - 只读集（R1）：skills/ database/ templates/ user/ scripts/ opencode.json
 - 新脚本按域放入对应子目录；testcase 放 `tests/<case>/`
