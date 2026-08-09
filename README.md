@@ -26,6 +26,7 @@
 - **Opencode 怎么用**：
   - 在官网https://opencode.ai/zh/download下载Opencode桌面版；
   - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
+  - 记得手动选择内置的Deepseek V4 flash模型；
 - **为什么选择 Opencode**：
   - **免费**：内置免费的DeepSeek V4 Flash(0731)模型，不用花钱；
   - **易用**：UI界面简单，无需配置环境；
@@ -33,11 +34,12 @@
 ### USTSpace
 - **USTSpace是什么**：一个非官方的社群，能在上面看到所有UST课程的评论及评分；
 - **USTSpace怎么使用**：
-  - 登录网站https://ust.space/home；
+  - 登录网站https://ust.space/home ；
   - 获取阅读全部评论的权限，需要你至少评论一次后解锁；
   - 此Agent需要通过分析USTSpace的评论以对课程进行排序，因此请确认已获取此权限；
 
 ### 事前输入
+- 0.部署模型
 - 1. **登录令牌**：
   - 在浏览器分别登录SIS教务系统中的Student Center、以及USTSpace；
   - 按键盘F12，打开"开发者工具"；
