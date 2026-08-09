@@ -10,6 +10,14 @@
     "credits_max": 18,
     "candidate_pool": 50
   },
+  "planner": {
+    "prefer_day_off": true,
+    "prefer_meal_free": true,
+    "meal_windows": [
+      { "label": "午餐", "start": "12:00", "end": "14:00" },
+      { "label": "晚餐", "start": "18:00", "end": "20:00" }
+    ]
+  },
   "scoring": {
     "baseline": 2.5,
     "weights": { "a": 30.0, "b": 20.0, "c": 25.0, "d": 25.0 },

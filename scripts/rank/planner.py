@@ -31,6 +31,13 @@ TBA 有学分课程（如 UROP 3200 仅 TBA section）：允许占位排入并�
 diversity_swap 换入同桶/同类高分候选（不动必修与 must-take），无候选可换时
 vary_sections 换用不同 section 组合（课程不变、时段变化）。
 
+排课偏好（config → planner，产品参数）：
+- prefer_day_off（高权重）：section 组合优先复用已有上课日，尽力把每周上课
+  压缩到更少天数（如 5 天 → 4 天，空出整天）；组合无法再少时输出提示。
+- prefer_meal_free（低权重）：同等天数前提下，优先选择不占用午餐/晚餐
+  保护时段（默认 12:00-14:00 / 18:00-20:00）的 section。
+  排课后输出 days_used / free_days / meal_conflicts 供展示与提醒。
+
 pre-req 处理（新工作流）：评分与排课均不因 pre-req 剔除课程；排课后输出
 waiver_required[]（placed 课程中 pre-req 未满足 / 无法判定者，附 missing 清单），
 提醒用户写教授豁免申请。
@@ -66,7 +73,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts" / "rank"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from wcq.conflict import parse_slots, _overlap  # noqa: E402  (复用 schedule 时间槽解析)
+from wcq.conflict import parse_slots, _overlap, DAY_NAMES  # noqa: E402  (复用 schedule 时间槽解析)
 from filter import passed_set as filter_passed_set  # noqa: E402 (已修白名单：挂科/旁听不计)
 from harness.config import load as load_config  # noqa: E402
 
@@ -78,6 +85,26 @@ MIN_CREDITS = float(CFG_DEFAULTS.get("credits_min", 12))  # 低于仅提示
 CREDIT_TOLERANCE = 3  # 目标 ±3 学分（一门课粒度）内视为达标
 CATEGORY_ORDER = {"cc_required": 0, "cc_elective": 1,
                   "major_elective": 2, "free_elective": 3}
+
+# 排课偏好（config/ustplan.json → planner）：整天空闲优先（高权重）+
+# 正餐时段避让（低权重）；meal_windows 分钟化，缺省 午餐 12:00-14:00 / 晚餐 18:00-20:00
+_PLANNER_CFG = load_config().get("planner", {})
+PREFER_DAY_OFF = bool(_PLANNER_CFG.get("prefer_day_off", True))
+PREFER_MEAL_FREE = bool(_PLANNER_CFG.get("prefer_meal_free", True))
+
+
+def _parse_hhmm(t: str) -> int:
+    hh, _, mm = str(t).partition(":")
+    return int(hh) * 60 + int(mm)
+
+
+MEAL_WINDOWS = []
+for _mw in _PLANNER_CFG.get("meal_windows") or [
+        {"label": "午餐", "start": "12:00", "end": "14:00"},
+        {"label": "晚餐", "start": "18:00", "end": "20:00"}]:
+    MEAL_WINDOWS.append({"label": _mw.get("label", "餐"),
+                         "start": _parse_hhmm(_mw.get("start", "12:00")),
+                         "end": _parse_hhmm(_mw.get("end", "14:00"))})
 
 # 组件类型展示顺序（L=lecture 优先；其余按字母序）
 TYPE_ORDER = {"L": 0, "LA": 1, "T": 2}
@@ -208,22 +235,48 @@ def _slots_conflict(slots: list, occupied: list) -> bool:
     return any(_overlap(sa, sb) for sa in slots for sb in occupied)
 
 
+def _days_used(slots: list) -> set:
+    """槽 → 使用天数集合（slot[0] = day 0-6）"""
+    return {s[0] for s in slots}
+
+
+def _meal_hits(slots: list) -> set:
+    """槽 → 被占用的（天, 餐次）集合：与保护时段重叠即计入"""
+    hits = set()
+    for day, s, e, *_ in slots:
+        for m in MEAL_WINDOWS:
+            if s < m["end"] and m["start"] < e:
+                hits.add((day, m["label"]))
+    return hits
+
+
+def _combo_rank(combo: list, occupied: list) -> tuple:
+    """section 组合偏好评分（越小越优）：
+    1) 高权重 prefer_day_off：加课后总上课天数最少（复用已有日，空出整天）；
+    2) 低权重 prefer_meal_free：占用正餐时段最少；
+    3) 确定性兜底：section 名升序（防随机、可复现）。"""
+    combo_slots = [s for c in combo for s in c["slots"]]
+    days = len(_days_used(occupied) | _days_used(combo_slots))
+    meals = len(_meal_hits(combo_slots))
+    names = tuple(sorted(c["section"].get("section", "") for c in combo))
+    return (days if PREFER_DAY_OFF else 0,
+            meals if PREFER_MEAL_FREE else 0, names)
+
+
 def place_course(pool_item: dict, occupied: list):
     """为课程选一组 section：每个组件类型各一节（如 L+T），类型间不冲突、
     与已占用槽不冲突；组件序号无需对应（L1+T2 亦可）。
+    在所有可行组合中按偏好取最优（少占天数 → 避正餐时段 → section 名序）。
     返回 [{section, slots}, ...]；None = 无可用组合（时间冲突）。"""
     groups = pool_item["groups"]
     if not groups:
         return None
-    best = []
+    combos = []
     chosen = []
 
     def dfs(i: int, used: list):
-        nonlocal best
-        if best:
-            return
         if i == len(groups):
-            best = list(chosen)
+            combos.append(list(chosen))
             return
         for cand in groups[i]:
             if _slots_conflict(cand["slots"], used) or \
@@ -234,7 +287,9 @@ def place_course(pool_item: dict, occupied: list):
             chosen.pop()
 
     dfs(0, [])
-    return best or None
+    if not combos:
+        return None
+    return min(combos, key=lambda c: _combo_rank(c, occupied))
 
 
 def detail_sections(placed: list) -> list:
@@ -481,19 +536,16 @@ def _section_names(placed: list) -> tuple:
 
 
 def _place_variant(groups: list, occupied: list, exclude_combo: tuple):
-    """DFS 枚举 section 组合：返回与 exclude_combo（当前方案）不同的首个无冲突
-    组合（课程不变、时段变化）；无其它组合返回 None。"""
-    best = []
+    """DFS 枚举 section 组合：返回与 exclude_combo（当前方案）不同的最优无冲突
+    组合（课程不变、时段变化；偏好同 place_course）；无其它组合返回 None。"""
+    combos = []
     chosen = []
 
     def dfs(i: int, used: list):
-        nonlocal best
-        if best:
-            return
         if i == len(groups):
             combo = tuple(sorted(c["section"]["section"] for c in chosen))
             if combo != exclude_combo:
-                best = list(chosen)
+                combos.append(list(chosen))
             return
         for cand in groups[i]:
             if _slots_conflict(cand["slots"], used) or \
@@ -504,7 +556,9 @@ def _place_variant(groups: list, occupied: list, exclude_combo: tuple):
             chosen.pop()
 
     dfs(0, [])
-    return best or None
+    if not combos:
+        return None
+    return min(combos, key=lambda c: _combo_rank(c, occupied))
 
 
 def vary_sections(plan: dict, pool: list):
@@ -595,6 +649,37 @@ def waiver_list(plan: dict) -> list:
     return out
 
 
+def _fmt_min(m: int) -> str:
+    return f"{m // 60:02d}:{m % 60:02d}"
+
+
+def _plan_comfort(plan: dict) -> tuple:
+    """方案舒适度统计（不影响排课结果）：
+    - days_used：有课天数（含预选课占用的天）；
+    - free_days：无课的工作日（周一至周五；周末默认无课不算）；
+    - meal_conflicts：占用正餐时段的（天, 餐次, 课程）清单。"""
+    occupied_days = {s[0] for s in plan["slots"]}
+    days_used = [DAY_NAMES[d] for d in sorted(occupied_days)]
+    free_days = [DAY_NAMES[d] for d in range(5) if d not in occupied_days]
+    meals = []
+    for d in plan["details"]:
+        for sec in d.get("sections", []):
+            for day, s, e, *_ in parse_slots(sec.get("datetime", "")):
+                for m in MEAL_WINDOWS:
+                    if s < m["end"] and m["start"] < e:
+                        entry = next((x for x in meals if x["day"] == DAY_NAMES[day]
+                                      and x["meal"] == m["label"]), None)
+                        if entry is None:
+                            entry = {"day": DAY_NAMES[day], "meal": m["label"],
+                                     "window": f"{_fmt_min(m['start'])}-{_fmt_min(m['end'])}",
+                                     "courses": []}
+                            meals.append(entry)
+                        item = {"code": d["code"], "times": f"{_fmt_min(s)}-{_fmt_min(e)}"}
+                        if item not in entry["courses"]:
+                            entry["courses"].append(item)
+    return days_used, free_days, meals
+
+
 def emit(plans: list, session: str, target_credits: float) -> dict:
     out_plans = []
     for p in plans:
@@ -603,6 +688,19 @@ def emit(plans: list, session: str, target_credits: float) -> dict:
         major = sum(d["credits"] for d in p["details"]
                     if d["category"] in ("major_required", "major_elective"))
         elec = sum(d["credits"] for d in p["details"] if d["category"] == "free_elective")
+        days_used, free_days, meal_conflicts = _plan_comfort(p)
+        notes = list(p["notes"])
+        if PREFER_DAY_OFF:
+            if free_days:
+                notes.insert(0, f"整天空闲：{'、'.join(free_days)} 无课"
+                                f"（每周上课 {len(days_used)} 天）")
+            else:
+                notes.insert(0, f"未能实现整天空闲：{', '.join(days_used)} 均有课")
+        if PREFER_MEAL_FREE:
+            for mc in meal_conflicts:
+                notes.append(f"{mc['day']} {mc['meal']}（{mc['window']}）被占用："
+                             + "、".join(f"{c['code']}（{c['times']}）"
+                                         for c in mc["courses"]))
         out_plans.append({
             "plan_id": p["plan_id"] if "plan_id" in p else "",
             "label": p["label"],
@@ -614,11 +712,14 @@ def emit(plans: list, session: str, target_credits: float) -> dict:
             "cc_credits": round(cc, 1),
             "major_credits": round(major, 1),
             "elective_credits": round(elec, 1),
+            "days_used": days_used,
+            "free_days": free_days,
+            "meal_conflicts": meal_conflicts,
             "no_conflict": True,
             "must_take_inserted": p["must_take"],
             "waiver_required": waiver_list(p),
             "pre_enroll_advice": p.get("pre_enroll_advice", []),
-            "notes": p["notes"],
+            "notes": notes,
         })
     return {"session": session, "target_credits": target_credits, "plans": out_plans,
             "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
@@ -803,6 +904,14 @@ def main():
     for p in out["plans"]:
         print(f"  {p['plan_id']}: {p['total_credits']} 学分 ({p['workload']}) "
               f"CC {p['cc_credits']} / major {p['major_credits']} / 选修 {p['elective_credits']}")
+        if p.get("free_days"):
+            print(f"      整天空闲: {'、'.join(p['free_days'])} 无课"
+                  f"（每周上课 {len(p['days_used'])} 天）")
+        else:
+            print(f"      无整天空闲（{', '.join(p['days_used'])} 均有课）")
+        for mc in p.get("meal_conflicts", []):
+            print(f"      ! {mc['day']} {mc['meal']}（{mc['window']}）被占用: "
+                  + "、".join(f"{c['code']} {c['times']}" for c in mc["courses"]))
         for d in p["course_details"]:
             print(f"      {d['code']:10} [{d['section']:4}] {d['datetime']:28} "
                   f"{', '.join(d['instructors'])}")

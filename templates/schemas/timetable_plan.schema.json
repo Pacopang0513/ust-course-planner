@@ -30,6 +30,39 @@
           "cc_credits": { "type": "number", "minimum": 0 },
           "major_credits": { "type": "number", "minimum": 0 },
           "elective_credits": { "type": "number", "minimum": 0 },
+          "days_used": {
+            "type": "array",
+            "description": "每周有课的天（含预选课占用的天），如 ['Mon','Tue','Wed','Thu']",
+            "items": { "type": "string" }
+          },
+          "free_days": {
+            "type": "array",
+            "description": "无课的工作日（周一至周五；周末默认无课不算），空 = 无法实现整天空闲",
+            "items": { "type": "string" }
+          },
+          "meal_conflicts": {
+            "type": "array",
+            "description": "占用正餐保护时段的课程清单（prefer_meal_free 低权重偏好，仍可能发生）",
+            "items": {
+              "type": "object",
+              "required": ["day", "meal"],
+              "properties": {
+                "day": { "type": "string", "examples": ["Wed"] },
+                "meal": { "type": "string", "examples": ["午餐", "晚餐"] },
+                "window": { "type": "string", "examples": ["12:00-14:00"] },
+                "courses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": { "type": "string" },
+                      "times": { "type": "string", "examples": ["12:00-13:20"] }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "no_conflict": { "type": "boolean", "default": true },
           "must_take_inserted": { "type": "array", "items": { "type": "string" } },
           "pre_enroll_advice": {

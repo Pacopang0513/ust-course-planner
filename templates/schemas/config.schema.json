@@ -29,6 +29,37 @@
       },
       "additionalProperties": false
     },
+    "planner": {
+      "type": "object",
+      "description": "step6 排课偏好（产品参数，可调）",
+      "properties": {
+        "prefer_day_off": {
+          "type": "boolean",
+          "default": true,
+          "description": "整天空闲优先（高权重）：section 组合优先少用天数，尽力压缩出至少 1 个工作日无课"
+        },
+        "prefer_meal_free": {
+          "type": "boolean",
+          "default": true,
+          "description": "正餐时段避让（低权重）：同等天数前提下优先避开午餐/晚餐时段"
+        },
+        "meal_windows": {
+          "type": "array",
+          "description": "正餐保护时段（分钟级解析 'HH:MM'）；与课程重叠即视为占用",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string", "examples": ["午餐", "晚餐"] },
+              "start": { "type": "string", "examples": ["12:00"] },
+              "end": { "type": "string", "examples": ["14:00"] }
+            },
+            "required": ["label", "start", "end"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "scoring": {
       "type": "object",
       "description": "评分公式 A+B+C+D 全部参数（产品参数，可调）",

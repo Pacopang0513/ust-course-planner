@@ -41,6 +41,14 @@ python3 scripts/ustplan.py grid --plan 1 [--html]         # 周历展示（ASCII
 - **方案多样性**：phase2 取课顺序按方案变体轮转（分数/CC 优先/按桶轮转）；
   多套方案课程相同时自动换课（只换非必修非 must-take 的低分课，尊重配额与
   互斥）；无课可换时自动换用不同 section 时段；
+- **排课偏好（config → planner，产品参数）**：
+  - `prefer_day_off`（高权重）：section 组合优先复用已有上课日，尽力压缩
+    每周上课天数、空出整天空闲（如 5 天 → 4 天）；无法压缩时 notes 说明；
+  - `prefer_meal_free`（低权重）：同等天数前提下优先避开午餐/晚餐保护时段
+    （默认 12:00-14:00 / 18:00-20:00，`meal_windows` 可调）；无备选时段时
+    可接受占用并在 notes/meal_conflicts 提醒；
+  - 输出 days_used / free_days / meal_conflicts 字段（free_days 空 = 无法
+    实现整天空闲），AI 展示方案时**必须向用户说明空闲日与用餐冲突**；
 - **waiver_required[]**：placed 课程 pre-req 未满足/无法判定 → 提醒写豁免申请。
 
 ## AI 职责
@@ -51,7 +59,8 @@ python3 scripts/ustplan.py grid --plan 1 [--html]         # 周历展示（ASCII
 ## 方案展示（P5 弱化，不强制中断）
 
 - 展示（产品化）：N 套方案（学分/workload/CC-major 配比/课程清单/notes 摘要）
-  + 周历（`ustplan grid`）；pre-req/waiver 提醒清单单独呈现；
+  + 周历（`ustplan grid`，含整天空闲与用餐冲突提示）；pre-req/waiver 提醒
+  清单单独呈现；
 - 用户要求修改 → 记录：`ustplan decisions set P5 chosen_plan=plan-N must_take=...`
   （或 exclude/target），重跑后再展示；
 - 用户无异议即视为通过，直接推进：`ustplan phase done phase3-course-analysis`；

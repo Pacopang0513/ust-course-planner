@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from wcq.conflict import parse_slots  # noqa: E402
 from rank.planner import (build_plan, build_pre_enroll_advice,  # noqa: E402
-                          diversity_swap, vary_sections, norm_code)
+                          diversity_swap, vary_sections, norm_code, emit)
 
 
 def mk(code, score=50.0, credits=3.0, category="major_required", bucket=None,
@@ -333,7 +333,68 @@ class TestGrading(unittest.TestCase):
         self.assertIsNone(ok)
 
 
-class TestSemestersLeft(unittest.TestCase):
+class TestDayOffAndMeals(unittest.TestCase):
+    """排课偏好：整天空闲优先（高权重）+ 正餐时段避让（低权重）"""
+
+    def test_section_reuses_existing_days_for_day_off(self):
+        """已有课在 Mon/Tue：候选有 We 与其他天时，优先复用已有天（少 1 天 → 空出整天）"""
+        occupied = parse_slots("Mo 09:00AM - 10:20AM") + \
+            parse_slots("Tu 09:00AM - 10:20AM")
+        pool = [mk("COMP 2011", score=90, dt="We 09:00AM - 10:20AM",
+                   extra_sections=[("L2", "Mo 01:30PM - 02:50PM"),
+                                   ("L3", "Tu 01:30PM - 02:50PM")])]
+        plan = build_plan("t", 3.0, pool, pre_slots=occupied)
+        secs = plan["details"][0]["sections"]
+        self.assertEqual([s["section"] for s in secs], ["L2"])  # 复用 Mon，不开 We
+
+    def test_section_avoids_lunch_window_when_days_equal(self):
+        """同天数下避开午餐保护时段（12:00-14:00）"""
+        pool = [mk("COMP 2011", score=90, dt="Mo 12:00PM - 01:20PM",
+                   extra_sections=[("L2", "Mo 03:00PM - 04:20PM")])]
+        plan = build_plan("t", 3.0, pool)
+        secs = plan["details"][0]["sections"]
+        self.assertEqual([s["section"] for s in secs], ["L2"])
+
+    def test_meal_conflict_accepted_when_no_alternative(self):
+        """无备选时段时，正餐冲突可接受（低权重偏好，不硬性剔除）"""
+        pool = [mk("COMP 2011", score=90, dt="We 12:00PM - 01:20PM")]
+        plan = build_plan("t", 3.0, pool)
+        self.assertIn("COMP 2011", plan["courses"])
+
+    def test_emit_reports_days_free_days_meal_conflicts(self):
+        """输出含 days_used / free_days / meal_conflicts 与提示 notes"""
+        pool = [mk("COMP 2011", score=90, dt="We 12:00PM - 01:20PM"),
+                mk("MATH 2011", score=50, dt="Mo 09:00AM - 10:20AM",
+                   category="major_elective")]
+        plan = build_plan("t", 6.0, pool)
+        plan["plan_id"] = "plan-1"
+        out = emit([plan], "2610", 6.0)["plans"][0]
+        self.assertEqual(out["days_used"], ["Mon", "Wed"])
+        self.assertEqual(out["free_days"], ["Tue", "Thu", "Fri"])
+        meals = {m["meal"]: m for m in out["meal_conflicts"]}
+        self.assertIn("午餐", meals)
+        self.assertEqual(meals["午餐"]["courses"][0]["code"], "COMP 2011")
+        self.assertTrue(any("整天空闲" in n for n in out["notes"]))
+        self.assertTrue(any("午餐" in n for n in out["notes"]))
+
+    def test_no_day_off_note_when_all_weekdays_used(self):
+        pool = [mk("COMP 2011", score=90, dt="Mo 09:00AM - 10:20AM"),
+                mk("COMP 2211", score=80, dt="Tu 09:00AM - 10:20AM",
+                   category="major_elective"),
+                mk("COMP 2711", score=70, dt="We 09:00AM - 10:20AM",
+                   category="major_elective"),
+                mk("COMP 3111", score=60, dt="Th 09:00AM - 10:20AM",
+                   category="major_elective"),
+                mk("MATH 2011", score=50, dt="Fr 09:00AM - 10:20AM",
+                   category="major_elective")]
+        plan = build_plan("t", 15.0, pool)
+        plan["plan_id"] = "plan-1"
+        out = emit([plan], "2610", 15.0)["plans"][0]
+        self.assertEqual(out["free_days"], [])
+        self.assertTrue(any("未能实现整天空闲" in n for n in out["notes"]))
+
+
+
     """剩余学期估算（4 年制 8 个主学期含当前）"""
 
     def _left(self, year, session):

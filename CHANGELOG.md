@@ -1,5 +1,15 @@
 # 变更记录（CHANGELOG）
 
+## 2026-08-09（六）— 排课偏好：整天空闲优先 + 正餐时段避让
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **排课偏好（config → planner）** | `prefer_day_off`（高权重：section 组合优先复用已有上课日，压缩每周上课天数、尽力空出整天空闲；无法压缩时 notes 说明）+ `prefer_meal_free`（低权重：同等天数下优先避开午餐/晚餐保护时段，默认 12:00-14:00 / 18:00-20:00，`meal_windows` 可调）；`place_course`/`_place_variant` 从"首组可行解"改为全组合枚举按偏好取优（天数字典序 → 正餐冲突数 → section 名序，确定性可复现） | config/ustplan.json, rank/planner.py, templates/schemas/config.schema.json |
+| **方案舒适度输出** | 每套方案新增 `days_used`（有课天，含预选课占用）/ `free_days`（无课工作日，空 = 无法整天空闲）/ `meal_conflicts`（占用正餐时段的 天×餐次×课程 清单）；notes 前置"整天空闲/未实现"提示、追加用餐冲突提醒；控制台、ASCII 周历、最终报告同步展示（GBK 控制台用纯文本，弃 ✓ 字符） | rank/planner.py, report/render.py, report/render_grid.py, templates/schemas/timetable_plan.schema.json |
+| **step6 skill 同步** | 展示方案时**必须向用户说明空闲日与用餐冲突**（free_days 空 = 无法实现整天空闲） | skills/step6-timetable-planning/SKILL.md |
+
+配套：单测新增 5 例（复用已有日空出整天 / 同天数避午餐 / 无备选时餐冲突可接受 / emit 三字段与 notes / 五天有课无法空闲）；106 例全过。
+
 ## 2026-08-09（五）— 松弛度修复（学期语义统一）+ 环境清理
 
 | 变更 | 说明 | 文件 |

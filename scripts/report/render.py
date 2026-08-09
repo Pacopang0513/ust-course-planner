@@ -169,6 +169,15 @@ def _plan_table(p: dict) -> str:
              f"{p.get('total_credits')} cr（{p.get('workload')}）"
              f"　CC {p.get('cc_credits')} / major {p.get('major_credits')} / "
              f"选修 {p.get('elective_credits')}"]
+    free = p.get("free_days") or []
+    if free:
+        lines.append(f"  - ✓ 整天空闲：{'、'.join(free)} 无课"
+                     f"（每周上课 {len(p.get('days_used') or [])} 天）")
+    elif p.get("days_used"):
+        lines.append(f"  - ! 无整天空闲（{', '.join(p['days_used'])} 均有课）")
+    for mc in p.get("meal_conflicts") or []:
+        lines.append(f"  - ! {mc['day']} {mc['meal']}（{mc['window']}）被占用："
+                     + "、".join(f"{c['code']}（{c['times']}）" for c in mc.get("courses", [])))
     for d in p.get("course_details", []):
         instructors = ", ".join(d.get("instructors") or []) or "-"
         lines.append(f"  - {d['code']} [{d.get('section', '')}] "

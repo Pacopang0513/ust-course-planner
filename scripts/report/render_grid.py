@@ -67,7 +67,7 @@ def _fmt_min(m: int) -> str:
     return f"{m // 60:02d}:{m % 60:02d}"
 
 
-def render_ascii(cells: dict, details: list) -> str:
+def render_ascii(cells: dict, details: list, plan: dict = None) -> str:
     days = [d for d in range(5) if any((d, s) in cells for s in
                                        range(GRID_START, GRID_END, SLOT_MIN))]
     if not days:
@@ -105,6 +105,16 @@ def render_ascii(cells: dict, details: list) -> str:
     tba = [d.get("code") for d in details if "TBA" in (d.get("section") or "")]
     if tba:
         out.append(f"\n! 无时间（TBA，不计入周历）: {', '.join(tba)}")
+    if plan is not None:
+        free = plan.get("free_days") or []
+        if free:
+            out.append(f"\n空闲日: {'、'.join(free)} 无课"
+                       f"（每周上课 {len(plan.get('days_used') or [])} 天）")
+        elif plan.get("days_used"):
+            out.append(f"\n无整天空闲（{', '.join(plan['days_used'])} 均有课）")
+        for mc in plan.get("meal_conflicts") or []:
+            out.append(f"! {mc['day']} {mc['meal']}（{mc['window']}）被占用: "
+                       + "、".join(f"{c['code']}（{c['times']}）" for c in mc.get("courses", [])))
     return "\n".join(out)
 
 
@@ -182,7 +192,7 @@ def main():
     cells = build_grid(details)
     label = f"{plan.get('label', plan['plan_id'])}（{plan.get('total_credits')} cr）"
     print(f"\n===== {label} =====")
-    print(render_ascii(cells, details))
+    print(render_ascii(cells, details, plan))
 
     if args.html:
         dest = Path(args.output) if args.output else \
