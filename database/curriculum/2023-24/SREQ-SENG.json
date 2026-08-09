@@ -1,0 +1,156 @@
+{
+  "program": "SREQ-SENG",
+  "intake_year": "2023-24",
+  "school": "School of Engineering",
+  "title": "School Requirements",
+  "source": {
+    "file": "database/curriculum/2023-24/COMP.json（SENG 入门课池 + LANG 2030 提取）",
+    "parsed_at": ""
+  },
+  "notes": [
+    "SENG School Requirement（工程部分）：1 门 Engineering Introduction course + LANG 2030 Technical Communication I。",
+    "英语要求（LANG 1402/LANG 1407，University English Language Requirement）与豁免以 SIS AR 判定为准，不在此文件。"
+  ],
+  "remarks": [],
+  "requirements": [
+    {
+      "block": "major",
+      "name": "School Requirements",
+      "sections": [
+        {
+          "type": "required",
+          "name": "Required Course(s)",
+          "groups": [
+            {
+              "subject": "SENG",
+              "note": "Engineering Introduction course (COMP students may also use COMP 1022P to fulfill this requirement.)",
+              "credits": "3-4",
+              "kind": "pool",
+              "courses": [
+                {
+                  "code": "COMP 1021",
+                  "title": "Introduction to Computer Science",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "BIEN 1010",
+                  "title": "Introduction to Biomedical Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1000",
+                  "title": "Foundations of Chemical and Biological Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1500",
+                  "title": "A First Course on Materials Science and Applications",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CENG 1700",
+                  "title": "Introduction to Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1100",
+                  "title": "Discovering Civil and Environmental Engineering",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "CIVL 1210",
+                  "title": "Fundamental of Green Buildings",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1100",
+                  "title": "Introduction to Electro-Robot Design",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ELEC 1200",
+                  "title": "A System View of Communications: from Signals to Packets",
+                  "credits": "4",
+                  "area": ""
+                },
+                {
+                  "code": "ENGG 1100",
+                  "title": "First Year Cornerstone Engineering Design Project Course",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "IEDA 2010",
+                  "title": "Introduction of Industrial Engineering and Decision Analytics",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1001",
+                  "title": "Introduction to Integrative Systems and Design",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1002",
+                  "title": "Redefining Problems for the Real Needs",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "ISDN 1006",
+                  "title": "Human-centered Innovation",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1902",
+                  "title": "Energy Systems in a Sustainable World",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1906",
+                  "title": "Mechanical Engineering for Modern Life",
+                  "credits": "3",
+                  "area": ""
+                },
+                {
+                  "code": "MECH 1907",
+                  "title": "Introduction to Aerospace Engineering",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            },
+            {
+              "subject": "",
+              "note": "",
+              "credits": "",
+              "kind": "single",
+              "courses": [
+                {
+                  "code": "LANG 2030",
+                  "title": "Technical Communication I",
+                  "credits": "3",
+                  "area": ""
+                }
+              ],
+              "areas": []
+            }
+          ]
+        }
+      ],
+      "notes": []
+    }
+  ]
+}

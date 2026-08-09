@@ -25,6 +25,8 @@ import argparse
 from pathlib import Path
 from html import unescape
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import requests
 
 # ── 配置 ──────────────────────────────────────────────
@@ -697,7 +699,9 @@ def main():
     parser.add_argument("--fetch-grades", action="store_true",
                         help="只抓取 Grades 页（value=1030，Transcript 不全时的补充路径）")
     parser.add_argument("--session", type=str, default="",
-                        help="目标学期代码（默认 2610；用于 pre-enroll 页 STRM 参数，SIS term code 与 wcq 一致）")
+                        help="目标学期代码（如 2610；SIS term code 与 wcq 一致，"
+                             "用于 pre-enroll 页 STRM 参数——空 STRM 页面不渲染，"
+                             "--fetch 时自动从 wcq 探测最近学期）")
     parser.add_argument("--cookie-file", type=str,
                         default=str(ROOT / "credentials" / "cookies.txt"),
                         help="Cookie 文件路径 (默认: credentials/cookies.txt)")
@@ -734,6 +738,18 @@ def main():
             if not args.fetch:
                 print("Grades 页抓取完成（仅 --fetch-grades）。")
         if args.fetch:
+            # session 为空时自动探测最近学期（Pre-Enroll 页 STRM 必须有效，
+            # 空 STRM 返回 JS 空壳无数据——2026-08 实测；SIS term code 与 wcq 一致）
+            if not args.session:
+                try:
+                    from wcq.crawler import latest_session
+                    sess = latest_session()
+                    if sess:
+                        args.session = sess
+                        print(f"自动探测最近学期: {args.session}（--session 未指定）")
+                except Exception:
+                    print("提示: 未指定 --session 且 wcq 探测失败，"
+                          "Pre-Enroll 页可能无法渲染（可显式传 --session）")
             sc_html = fetch_student_center(cookies)
             raw_dir.mkdir(parents=True, exist_ok=True)
             (raw_dir / "raw_student_center.html").write_text(sc_html, encoding="utf-8")
@@ -839,6 +855,12 @@ def main():
         pe_data = parse_pre_enroll(pe_path.read_text(encoding="utf-8"))
         with open(OUTPUT_PATH / "sis_pre_enroll.json", "w", encoding="utf-8") as f:
             json.dump(pe_data, f, ensure_ascii=False, indent=2)
+        # 同步写 data/pre_enrolled.json（step1/step5/step6 直接消费的运行期产物，
+        # 与 cache 版同构同 schema；预选课视为已确定：不重复推荐、评分 +20%、占用时段）
+        data_dir = ROOT / "data"
+        data_dir.mkdir(parents=True, exist_ok=True)
+        with open(data_dir / "pre_enrolled.json", "w", encoding="utf-8") as f:
+            json.dump(pe_data, f, ensure_ascii=False, indent=2)
         total = pe_data["total_unit_load"]
         print(f"  ✅ Pre-Enroll（{pe_data['term'] or '?'}）: "
               f"confirmed {len(pe_data['confirmed'])} 门 / "
@@ -847,6 +869,7 @@ def main():
         for c in pe_data["confirmed"] + pe_data["pending"]:
             print(f"     - {c['code']:12} [{c['section']:5}] {c['title'][:40]}")
         print(f"  📄 已保存: {OUTPUT_PATH / 'sis_pre_enroll.json'}")
+        print(f"  📄 已保存: {data_dir / 'pre_enrolled.json'}")
     else:
         print(f"  ⚠️  未找到或文件太小: {pe_path}")
 

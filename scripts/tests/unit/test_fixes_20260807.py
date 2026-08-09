@@ -68,18 +68,20 @@ class TestNewestSession(unittest.TestCase):
 class TestCreditsOverride(unittest.TestCase):
     def _pool(self, overrides):
         from rank.planner import build_pool
-        scores = {"courses": [{"code": "PHYS 4291", "name": "Capstone Research",
+        # 用非全年课（COMP 1944）验证 override 优先级与默认 schedule units；
+        # PHYS 4291 等 year_long 课会按 course_notes 自动折算 units/2（另有测试）
+        scores = {"courses": [{"code": "COMP 1944", "name": "Intro to Computing",
                                "category": "major_required",
                                "bucket_id": "major-required-16",
                                "bucket_quota": 1, "score": 0.0}]}
-        schedule = {"courses": [{"code": "PHYS", "number": "4291", "units": 6.0,
+        schedule = {"courses": [{"code": "COMP", "number": "1944", "units": 6.0,
                                  "attributes": {},
                                  "sections": [{"section": "R1", "datetime": "TBA",
                                                "room": "TBA", "instructors": []}]}]}
         return build_pool(scores, schedule, set(), top=50, credits_overrides=overrides)
 
     def test_override_applies(self):
-        pool = self._pool({"PHYS 4291": 3})
+        pool = self._pool({"COMP 1944": 3})
         self.assertEqual(pool[0]["credits"], 3.0)
 
     def test_no_override_keeps_schedule_units(self):

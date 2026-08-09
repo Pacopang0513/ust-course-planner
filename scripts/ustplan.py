@@ -23,6 +23,7 @@ AI 只调用本入口，不再直接拼底层脚本命令。
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -68,6 +69,11 @@ def _job_default_cmd(ctx, job_id: str) -> list:
                          "--cookie-file", str(ROOT / "credentials" / "cookies.txt")],
     }
     cmd = cmds.get(job_id) or []
+    # sis_fetch：已知真实 session 时注入（Pre-Enroll 页 STRM 必须为有效 term code，
+    # 空 STRM 返回 JS 空壳无网格数据——2026-08 实测）
+    if job_id == "sis_fetch" and c.get("session") and \
+            re.fullmatch(r"\d{4}", str(c["session"])):
+        cmd = cmd + ["--session", str(c["session"])]
     # wcq_full：入学年份已知时注入 --admission-year，顺带抓 Common Core 池
     # （否则只抓 subject 页，cc_courses 缺失需人工补跑）
     if job_id == "wcq_full":

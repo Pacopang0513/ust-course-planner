@@ -1,5 +1,78 @@
 # 变更记录（CHANGELOG）
 
+## 2026-08-09（五）— 松弛度修复（学期语义统一）+ 环境清理
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **学期编码修正（重要，两轮）** | 第一轮实测 wcq subject 页误判（模板固定显示当前学期）；第二轮以 wcq **索引页学期下拉**逐项确认（2026-08-09 复核，用户质疑触发）：**2610=2026-27 Fall(10)、2520=2025-26 Winter(20)、2530=2025-26 Spring(30)、2540=2025-26 Summer(40)** → 正确映射 **Fall=10/Winter=20/Spring=30/Summer=40**（config 原 Fall:0 错误，且首轮"修正"的 Winter:5/Spring:20 亦错）；subject 页模板不可作为学期依据 | config/ustplan.json, harness/config.py |
+| **学期语义统一** | 新增 `harness.config.semester_of_session()`（config semesters 映射唯一权威）；buckets `estimate_semesters_left` 与 report `semester_label` 弃用硬编码尾号字典，改调该函数（支持明年 2710/2720 等任意学年，未知尾号如 2540 安全降级） | harness/config.py, rank/buckets.py, report/render.py |
+| **学分上下限/默认参数统一** | planner MAX/MIN_CREDITS（原硬编码 12/18）、--target/--plans/--top 默认值全部改从 config defaults 读取（credits_min/max/target_credits/plans/candidate_pool）；buckets `graduation_target_credits`（原硬编码 120）改读 config `defaults.graduation_credits`（schema 同步） | rank/planner.py, rank/buckets.py, templates/schemas/config.schema.json |
+| **SIS fetch 学期探测** | sis/parser.py 帮助文本修正（原"默认 2610"与 default="" 不符）；`--fetch` 未指定 session 时自动从 wcq 探测最近学期（Pre-Enroll STRM 必须有效），探测失败降级提示；补 scripts/ 到 sys.path | scripts/sis/parser.py |
+| **环境清理** | 删除全部运行时产物（credentials/cache/data/output/user 恢复为仅 README；含开发用 cookie 与 SIS 个人数据如姓名/成绩单）、__pycache__；扫描确认无测试痕迹残留（仅 fixtures 中的 mock 占位） | 运行时目录（gitignored） |
+
+配套：单测新增 5 例（明年 session 回归 + semester_of_session + 未知尾号安全）；101 例全过；doctor 全绿（cookie 缺失为预期——凭据已按要求删除）。
+
+## 2026-08-09（四）— 学分指导 + 特殊规则知识库 + pre-req 成绩要求
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **未修学分统计（P3 目标学分参考）** | step1 产物新增 `unmet_credits`（未修学分总和）/ `estimated_semesters_left`（剩余学期估算，4 年制 8 学期含当前）/ `credits_per_semester_estimate`（平均每学期建议）；P3 问目标学分前展示建议值，目标明显偏低时提示毕业风险（Agent 指导义务；双主修 double count 会高估，以 AR 为准）；报告模板第 2 节同步展示 | rank/buckets.py, templates/schemas/unmet_courses.schema.json, report/render.py, skills/step1-unmet-calculation |
+| **特殊规则知识库（RULES.json）** | 全局规则落盘：`h_course_equivalence`（COMP 2012H = 2011+2012 组合等价，学分差额补足；2711H/3111H/3711H 单门升级等价）、`double_count`（COSC 双主修 20 single-counted）、`year_long`（PHYS 4291）、`ext_capstone_pairing`（EMIA 4990/4991）、`grading_prereq`（PHYS 1314 需 1312 成绩）；AGENTS.md 固定认知 + harness skill 检查清单（每次流程 AI 必须过一遍知识库）；course_notes schema 支持全局文件（subject 空） | database/course_notes/RULES.json, templates/schemas/course_notes.schema.json, AGENTS.md, skills/harness |
+| **pre-req 成绩要求（grading）** | filter 解析 "Grade X or above in CODE" / "Pass grade in CODE"（三状态：不存在 / 需要某 grading / 未填入需复核）；对照 passed_courses.json 成绩逐条判定（等级序 A+>A>…>Pass）；**成绩判定与 OR/AND 分支绑定**（分支内不达标不影响已满足分支；未修课程的成绩要求由课程层面覆盖）；不达标 → `grading_not_met` 标记 + step6 waiver 提醒"成绩不达标需豁免"；grading 沿 filter → bucket_score → planner 透传（prereq_grading） | rank/filter.py, rank/bucket_score.py, rank/planner.py, templates/schemas/filter_report/course_scores/timetable_plan, skills/step3-schedule-filter |
+| schema_validate 漏检 course_notes 目录（RULES/EMIA/PHYS 从未过 schema） | DIR_SCHEMA 增加 course_notes | harness/schema_validate.py |
+
+配套：单测新增 11 例（剩余学期 5 + grading 7 中 6 例与既有合并后共 96 例全过）；
+filter selftest 更新（grading 用例）；demo R1-R6 全绿；RULES.json schema 校验通过。
+
+## 2026-08-09（三）— 报表复核修复（对照外部错误报表逐项核实）
+
+| # | 报表问题 | 核实结果 | 处理 |
+|---|---|---|---|
+| 1 | sis/parser.py fetch_pre_enroll NameError（emplid 未定义） | **已修复**（2026-08-07，URL 已去变量） | 无 |
+| 2 | wcq latest 抓 0 门课 | **已修复**（main 先 latest_session() 再 run） | 无 |
+| 3 | planner `--must-take` 重复 flag 只保留最后一个（nargs="+" + store 静默吞值） | **真实存在** | `--must-take/--exclude/--credits-override` 改 `action="append"` + 扁平化，兼容单次多值与重复 flag |
+| 4 | "MATH 2000-level" 假课 + "Any 3 courses of" 配额误判 1 | 假课**已修**（B1 负向前瞻）；配额句式**真实存在** | `RE_ANY_N` 支持 `any N courses of`；**级别池（SUBJ N000-level or above）从本学年课表生成真实候选**（限定 subject、排除必修占用），根治 MATH/COSC 选修池静默缺失；嵌套级别池（2000/3000/4000）自动合并为最低级别池 + P3 复核提示 |
+| 5 | 已修抵扣没过滤 subject（COMP 课计进 MATH 池） | 我们仓库生成时按 subject 过滤 + 排除必修占用，**无此问题**；新生成逻辑已内置该防护 | 无（防护随 #4 实现） |
+| 6 | COSC 选修被波段过滤丢 3xxx/4xxx | **不存在**（无波段过滤代码）；级别池生成全量（≥N 千位） | 无 |
+| 7 | doctor cookie 全绿报 FAIL | **已修复**（按 EXPIRED/MISSING/UNREACHABLE 关键词判定） | 无 |
+| 8 | 双专业不支持 | **已修复**（2026-08-09 二轮 B4） | 无 |
+| 9 | pre_enroll.json 命名不一致 | **不存在**（统一 pre_enrolled.json） | 无 |
+| 10 | top_per_bucket=3 截候选、must-take 救不回 | must-take 可从 ranked_out 硬插（build_pool extra），**不成立**；放宽属调参 | 无 |
+
+配套：新增单测 9 例（配额句式 5 + 级别池 4）；84 例全过；demo R1-R6 全绿。
+另修：级别池生成 1 门候选时误走 single 分支（quota 退化为 1）→ 强制 pool 分支；
+空组警告引用残留 note 变量（显示上一组的 note）→ 用当前组 note。
+
+## 2026-08-09（二）— 普适性问题修复（COSC+MATH 场景）
+
+| 问题 | 修复 | 文件 |
+|---|---|---|
+| **note 课程码误提取**：`_note_courses`/`RE_CODE` 把描述性课号 "COMP 2000-level" 提成假课 COMP 2000（`RE_VALID_CODE` 恰好放行）→ 假课进清单 | 课号正则加负向前瞻（`-level`/`or above`/`or below`/`or equivalent` 不提取）；filter.py 的 RE_CODE（pre-req/EXCLUSION 提取）同步加固 | rank/buckets.py, rank/filter.py |
+| **空课程池静默跳过**：COSC 选修池 courses=[] 且 note 无真实课码 → 整组跳过且无警告（18 学分专业选修静默缺失） | 空组跳过时显式警告（含组名与 note 摘要）；提取补录课仍校验描述性课号 | rank/buckets.py |
+| **status 不过滤**：passed_set 把 incomplete（挂科需重修）/audit/unknown 当已修扣除 → 挂科课漏出清单 | 白名单 PASSED_STATUSES（taken/transferred/exempted/in_progress）；planner 的 passed 计算同步走白名单（原为独立实现不过滤）；phase2 skill 转录规则同步 | rank/filter.py, rank/planner.py, skills/phase2-profile |
+| **单主修限制**：buckets 只加载 first_major，double major（COSC+MATH）第二主修全部漏算；minor 仅提示 | P1 major/minor 改数组（schema 兼容旧单值）；contracts 校验改数组；buckets 加载 additional_major[]（prefix `add{CODE}` 防 bucket_id 冲突，track 分支按无分支）；phase1/phase2 skills 同步 | templates/schemas/decisions.schema.json, harness/contracts.py, rank/buckets.py, skills/phase1-input, skills/phase2-profile |
+| **School Requirement 缺失**：SENG 无 SREQ 预构建（SBM/SSCI 四年齐全、SENG 全缺）；COSC 专业页无 SENG 入门池 | 从 COMP.json 提取 SENG 入门课池 + LANG 2030 → 生成 SREQ-SENG.json（2023-24/2024-25；2025-26 起官方取消 SENG 入门课，实测 PDF 确认改版，不生成）；buckets 按 profile.school 加载 SREQ-{SCHOOL}.json 并**与专业课程去重**（COMP 学生不重复），缺失时提示以 AR 为准 | database/curriculum/{year}/SREQ-SENG.json, rank/buckets.py |
+| **池配额误判**：`_group_quota` 只认 "any N of"/"N courses out of M"，学院池 "8 courses from the specified list" 被误判 quota=1 | 增加 "N courses from" 模式 | rank/buckets.py |
+| planner 缺少 rank 目录 sys.path（测试环境 `from filter import` 失败，顺带暴露 year_long 折算在测试环境从未生效） | planner 补 `sys.path.insert(0, scripts/rank)`；credits-override 单测改用非全年课 | rank/planner.py, scripts/tests/unit/test_fixes_20260807.py |
+
+配套：单测 75 例全过（demo R1-R6 全绿）；COSC+MATH mock 全链路验证
+（SREQ 去重合并 16 门、第二主修合并 15 门、incomplete 挂科课保留在未修清单、
+已修 school req 桶正确移除）；filter selftest 通过。
+
+## 2026-08-09 — 预选课（Pre-Enroll）全链路固化
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| SIS 预选课定位验证 | 用真实 PS_TOKEN 实测 Enrollment Summary 页：STRM 必须为有效 term code（空 STRM 返回 JS 空壳无网格）；未预选时网格无行 + `Total Unit Load: 0`（浏览器提示 "You are not enrolled in classes"），解析为空列表属正常 | skills/web-crawl-guide §2c, sis/parser.py |
+| 扫描即落盘 | sis_fetch job 抓取预选课后**同步写 `data/pre_enrolled.json`**（与 cache 版同构同 schema），phase2 不再人工手写；job 已知真实 session 时自动注入 `--session`（STRM 有效） | sis/parser.py, harness/contracts.py, ustplan.py |
+| step1 登记 bucket 归属 | buckets 记录预选课到 unmet `pre_enrolled[]`（带 bucket_id/category；课程池外记空桶）——预选课仍计入已确定，不重复推荐 | rank/buckets.py, templates/schemas/unmet_courses.schema.json |
+| **评分 +20%** | step5 对预选课评分 ×（1+`scoring.pre_enroll_boost`，默认 0.2），加入所在栏位排名（无归属 → 独立 "pre_enrolled" 栏位）；score_reason/score_components 可追溯 | rank/bucket_score.py, rank/scoring.py, config/ustplan.json, templates/schemas/course_scores.schema.json, harness/contracts.py |
+| **低优先级 drop 建议** | step6：预选课不重复入池（固定选课、占用时段）；若预选课即便 +20% 加权后评分仍低于方案已选最低分 → `pre_enroll_advice[]` 建议 drop，**提前告知风险**（学校一般不建议 drop 预选课，坚持需 waiver，可能影响下学期预选资格）；报告模板新增小节 | rank/planner.py, templates/schemas/timetable_plan.schema.json, report/render.py, templates/reports/final_report.md.tpl |
+| 概念固化 | AGENTS.md 新增"预选课（Pre-Enroll）概念（固定认知）"；harness/phase2/step5/step6/phase4 skills 同步 | AGENTS.md, skills/* |
+
+配套：`_pre_summary` 修复（读 confirmed/pending 格式）；新增单测（预选课加分 /
+drop 建议）；rank testcase 增加预选课 mock 数据。
+
 ## 2026-08-07 — 全流程实测第二轮修复（PHYS+EXT AI 实排）
 
 | 问题 | 修复 | 文件 |

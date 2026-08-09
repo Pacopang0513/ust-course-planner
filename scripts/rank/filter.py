@@ -32,8 +32,73 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
-RE_CODE = re.compile(r"([A-Z]{3,4})\s*(\d{4}[A-Z]?)")
+# 课号提取（PRE-REQUISITE/EXCLUSION/note 文本）：负向前瞻排除描述性课号
+# （'COMP 2000-level' / '2000 or above' → 不提取，防假课混入——2026-08 实测）
+RE_CODE = re.compile(
+    r"([A-Z]{3,4})\s*(\d{4}[A-Z]?)(?!\s*(?:-\s*level|or\s+above|or\s+below|"
+    r"and\s+above|or\s+equivalent))",
+    re.I)
 RESTRICTED = re.compile(r"For ([A-Z /-]+) students only", re.I)
+
+# ── pre-req 成绩要求（grading）──
+# 三状态：不存在（无要求）/ 需要某 grading（逐条判定 met）/ 未填入（有 grading
+# 语义但解析不出课程码或成绩，如 "Level 3 or above in HKDSE ..." → 需 AI 复核）
+GRADE_ORDER = {"A+": 12, "A": 11, "A-": 10, "B+": 9, "B": 8, "B-": 7,
+               "C+": 6, "C": 5, "C-": 4, "D": 3, "P": 2, "PASS": 2,
+               "F": 0}
+RE_GRADE_REQ = re.compile(
+    r"(?:grade|level)(?:\s+of)?\s+([A-Z][+-]?|pass)\s+"
+    r"(?:or\s+(?:above|better|higher)|above|better|higher)\s+in\s+"
+    r"([A-Z]{3,4}\s*\d{4}[A-Z]?)",
+    re.I)
+RE_GRADE_PASS = re.compile(
+    r"pass\s+grade\s+in\s+([A-Z]{3,4}\s*\d{4}[A-Z]?)", re.I)
+RE_GRADE_SEMANTIC = re.compile(r"grade|level", re.I)
+
+
+def grade_met(actual, required) -> bool:
+    """成绩满足性：actual ≥ required（等级序 A+ > A > … > P/Pass > F）。
+    无成绩记录（actual 空）或格式未知 → 返回 None（无法判定）。"""
+    if not str(actual or "").strip():
+        return None
+    a = GRADE_ORDER.get(str(actual).strip().upper())
+    r = GRADE_ORDER.get(str(required or "").strip().upper())
+    if a is None or r is None:
+        return None
+    return a >= r
+
+
+def parse_grading(text: str, passed_grades: dict, passed: set = None) -> list:
+    """从 pre-req 文本提取成绩要求 → [{code, required, actual, met}]。
+    passed_grades：{规范化课号: 成绩}（仅白名单状态且有成绩的课）。
+    passed：已修课码集合（未修的课标注 not_taken=true、met=None——其成绩要求
+    由课程层面 missing 覆盖，不参与成绩判定）。
+    met：True 达标 / False 未达标 / None 无法判定（无成绩记录、格式未知）。"""
+    out = []
+    seen = set()
+    for m in RE_GRADE_REQ.finditer(text or ""):
+        req, code = m.group(1), re.sub(r"\s+", " ", m.group(2)).upper()
+        key = (norm_code(code), req.upper())
+        if key in seen:
+            continue
+        seen.add(key)
+        ncode = norm_code(code)
+        actual = passed_grades.get(ncode)
+        out.append({"code": code, "required": req, "actual": actual or "",
+                    "met": grade_met(actual, req),
+                    "not_taken": bool(passed is not None and ncode not in passed)})
+    for m in RE_GRADE_PASS.finditer(text or ""):
+        code = re.sub(r"\s+", " ", m.group(1)).upper()
+        key = (norm_code(code), "PASS")
+        if key in seen:
+            continue
+        seen.add(key)
+        ncode = norm_code(code)
+        actual = passed_grades.get(ncode)
+        out.append({"code": code, "required": "Pass", "actual": actual or "",
+                    "met": grade_met(actual, "Pass"),
+                    "not_taken": bool(passed is not None and ncode not in passed)})
+    return out
 
 _SEP_RE_CACHE = {}
 
@@ -103,10 +168,22 @@ def lookup_main(args) -> int:
     return 0
 
 
+# 计入"已修/已确定"的状态白名单（2026-08 加固：挂科/旁听/异常不得当已修）：
+#   taken          已修
+#   transferred    转学分（满足要求）
+#   exempted       豁免（视同满足）
+#   in_progress    在读（视为已确定，不再推荐）
+# 排除：incomplete（挂科需重修，应保留在未修清单）、audit（旁听不计学分）、
+#       unknown（解析异常，保守不扣）。status 缺失时按 taken 兼容旧数据。
+PASSED_STATUSES = {"taken", "transferred", "exempted", "in_progress"}
+
+
 def passed_set(passed: dict) -> set:
-    """已修课程代码集合（去空格归一，兼容 'COMP2011' / 'COMP 2011'）"""
+    """已修课程代码集合，去空格统一大写 'COMP2011' / 'COMP 2011'；
+    仅收录 PASSED_STATUSES 白名单内的课程。"""
     return {re.sub(r"\s+", "", c.get("code", ""))
-            for c in passed.get("courses", []) if c.get("code")}
+            for c in passed.get("courses", [])
+            if c.get("code") and c.get("status", "taken") in PASSED_STATUSES}
 
 
 def _split_top(text: str, sep: str) -> list:
@@ -147,12 +224,15 @@ def _outer_parens(text: str) -> bool:
     return False
 
 
-def _eval_expr(text: str, passed: set) -> tuple:
+def _eval_expr(text: str, passed: set, passed_grades: dict = None) -> tuple:
     """递归解析 pre-req 表达式 → (met: bool|None, missing)。
     - 顶层先按 OR 切分（OR 优先级最低，任一分支满足即可）——与 UST 真实文本
       格式一致（如 "(COMP 2012 OR COMP 2012H) AND COMP 2211"）
     - 分支内再按 AND 切分，必须全部满足；括号组递归求值
-    - 无法解析（无课程代码的段/文本结构异常）→ None，需 AI 复核（不删除）"""
+    - 无法解析（无课程代码的段/文本结构异常）→ None，需 AI 复核（不删除）
+    - 成绩要求（grading）在叶子内判定（与 OR/AND 分支绑定）：
+      课程已修但成绩不达标 → 该叶子不满足（如 PHYS 1314 要求 PHYS 1312 达某成绩）
+    """
     text = text.strip()
     if not text:
         return True, []
@@ -162,8 +242,8 @@ def _eval_expr(text: str, passed: set) -> tuple:
     def ev(t: str) -> tuple:
         t = t.strip()
         if t.startswith("(") and t.endswith(")") and _outer_parens(t):
-            return _eval_expr(t[1:-1], passed)
-        return _eval_expr(t, passed)
+            return _eval_expr(t[1:-1], passed, passed_grades)
+        return _eval_expr(t, passed, passed_grades)
 
     or_parts = _split_top(text, " OR ")
     if len(or_parts) > 1:
@@ -188,31 +268,55 @@ def _eval_expr(text: str, passed: set) -> tuple:
         return (None if has_unknown else True), sorted(set(miss_all))
 
     if text.startswith("(") and text.endswith(")") and _outer_parens(text):
-        return _eval_expr(text[1:-1], passed)
+        return _eval_expr(text[1:-1], passed, passed_grades)
 
     core = re.sub(r"\([^()]*\)", " ", text)
     codes = {a + b for a, b in RE_CODE.findall(core)}
     if not codes:
         return None, []
     miss = sorted(codes - passed)
-    return (True, []) if not miss else (False, miss)
+    if miss:
+        return False, miss
+    # 课程层面已满足 → 叶子内成绩要求逐条判定（与分支绑定）
+    gs = parse_grading(core, passed_grades or {})
+    unk = [g for g in gs if g["met"] is None]
+    if unk:
+        return None, []
+    bad = [g for g in gs if g["met"] is False]
+    if bad:
+        return False, [f"{g['code']}(成绩需{g['required']})" for g in bad]
+    return True, []
 
 
-def prereq_met(attr_text: str, passed: set) -> tuple:
+def prereq_met(attr_text: str, passed: set, passed_grades: dict = None) -> tuple:
     """解析 pre-requisite 文本 → (判定, 详情)。
     - 返回 met: bool | None（None=无法解析，需 AI 复核，不删除）
-    - 详情含 missing / note"""
+    - 详情含 missing / grading（成绩要求逐条）/ note
+    - grading 三状态：无要求（不存在）、有要求（逐条 met True/False）、
+      grading 语义存在但无法解析（未填入 → None，需 AI 复核）"""
     if not attr_text:
-        return True, {"missing": [], "note": "无 pre-req 约束"}
-    if not RE_CODE.search(attr_text):
-        return None, {"missing": [], "note": "pre-req 文本无课程代码，需 AI 复核"}
+        return True, {"missing": [], "grading": [], "note": "无 pre-req 约束"}
     clean = re.sub(r"\s+", " ", attr_text.strip())
-    met, missing = _eval_expr(clean, passed)
+    if not RE_CODE.search(clean):
+        if RE_GRADE_SEMANTIC.search(clean):
+            return None, {"missing": [], "grading": [],
+                          "note": "pre-req 含成绩/等级要求但无课程代码，需 AI 复核"}
+        return None, {"missing": [], "grading": [],
+                      "note": "pre-req 文本无课程代码，需 AI 复核"}
+    met, missing = _eval_expr(clean, passed, passed_grades)
+    grading = parse_grading(clean, passed_grades or {}, passed)
     if met is True:
-        return True, {"missing": [], "note": "全部满足"}
+        return True, {"missing": [], "grading": grading, "note": "全部满足"}
     if met is None:
-        return None, {"missing": missing, "note": "含无法解析段，需 AI 复核"}
-    return False, {"missing": missing, "note": "存在未满足的课程"}
+        return None, {"missing": missing, "grading": grading,
+                      "note": "含无法解析段（课程或成绩要求），需 AI 复核"}
+    bad = [g for g in grading if g["met"] is False and not g.get("not_taken")]
+    note = "存在未满足的课程或成绩要求"
+    if bad:
+        note += "：" + "; ".join(
+            f"{g['code']} 需{g['required']} 实得{g['actual'] or '无记录'}"
+            for g in bad)
+    return False, {"missing": missing, "grading": grading, "note": note}
 
 
 def _resolve_catalog(args) -> Path:
@@ -251,7 +355,18 @@ def selftest() -> int:
     check("COMP 1023 OR COMP 1028", True)                      # COMP 2011 的 pre-req
     check("COMP 1021 OR COMP 1022P (prior to 2025-26) OR COMP 1023 OR ISOM 3230 OR ISOM 3320 OR ISOM 3400", True)
     check("(COMP 2012 OR COMP 2012H) AND COMP 2211", False)    # COMP 3211：括号 OR 组 + AND
-    check("(Grade A or above in COMP 1023) OR (Grade A or above in COMP 1021 AND Pass grade in COMP 1028)", True)  # COMP 2012H
+    # 成绩要求：无成绩数据 → 无法对照（None，需复核）；带成绩 → 逐条判定
+    check("(Grade A or above in COMP 1023) OR (Grade A or above in COMP 1021 AND Pass grade in COMP 1028)", None)
+    met_g, info_g = prereq_met(
+        "Grade A or above in COMP 1023", passed, {"COMP1023": "B"})
+    st = "OK" if met_g is False else "FAIL"
+    print(f"  [{st}] 'Grade A or above in COMP 1023（已修 B）' → met={met_g} {info_g['note']}")
+    ok = ok and met_g is False
+    met_g2, _ = prereq_met(
+        "Grade A or above in COMP 1023", passed, {"COMP1023": "A"})
+    st = "OK" if met_g2 is True else "FAIL"
+    print(f"  [{st}] 'Grade A or above in COMP 1023（已修 A）' → met={met_g2}")
+    ok = ok and met_g2 is True
     check("Level 3 or above in HKDSE Mathematics Extended Module M1/M2", None)  # 无课程代码 → 复核
     print("== OR 优先（无括号混写） ==")
     check("COMP 2011 AND COMP 2012 OR MATH 1013", True)        # (2011 AND 2012) OR M1013 → True
@@ -323,6 +438,11 @@ def main():
     schedule = load_json(ROOT / "data" / f"courses_{args.session}.json")
     passed = load_json(Path(args.passed)) if Path(args.passed).exists() else {"courses": []}
     done = passed_set(passed)
+    # 已修课程成绩表（grading 检查用）：仅白名单状态且有成绩的课
+    passed_grades = {re.sub(r"\s+", "", c.get("code", "")).upper(): c.get("grade")
+                     for c in passed.get("courses", [])
+                     if c.get("code") and c.get("grade")
+                     and c.get("status", "taken") in PASSED_STATUSES}
     catalog_dir = _resolve_catalog(args)
 
     sched = schedule_index(schedule)
@@ -356,20 +476,30 @@ def main():
                         if cc.get("code", "").replace(" ", "") == code.replace(" ", ""):
                             pre = _preq_text(cc)
                             break
-            ok, info = prereq_met(pre, done)
+            ok, info = prereq_met(pre, done, passed_grades)
             if ok is False:
                 reasons.append(f"prereq_not_met:{','.join(info['missing'])}")
             elif ok is None:
                 reasons.append(f"prereq_unknown:{info['note'][:60]}")
+            if info.get("grading"):
+                for g in info["grading"]:
+                    if g["met"] is False:
+                        reasons.append(
+                            f"grading_not_met:{g['code']}需{g['required']}"
+                            f"实得{g['actual'] or '无记录'}")
+                    elif g["met"] is None:
+                        reasons.append(
+                            f"grading_unknown:{g['code']}需{g['required']}"
+                            f"（无成绩记录可对照）")
             # 仅限特定专业提示
             rem = (sc.get("attributes") or {}).get("REMARKS", "")
             m = RESTRICTED.search(rem)
             if m:
                 reasons.append(f"restricted:{m.group(1).strip()}")
-        return code, sc, reasons, pre
+        return code, sc, reasons, pre, info.get("grading", [])
 
     for c in candidates.get("courses", []):
-        code, sc, reasons, pre_text = eval_one(c)
+        code, sc, reasons, pre_text, grading = eval_one(c)
         entry = {
             "code": code,
             "name": c.get("name", ""),
@@ -380,11 +510,16 @@ def main():
             "schedule_found": sc is not None,
             "sections": len(sc.get("sections") or []) if sc else 0,
             "prereq": {"text": pre_text,
-                       "met": (None if any(r.startswith("prereq_unknown") for r in reasons)
-                               else False if any(r.startswith("prereq_not_met") for r in reasons)
+                       "met": (None if any(r.startswith("prereq_unknown")
+                                           or r.startswith("grading_unknown")
+                                           for r in reasons)
+                               else False if any(r.startswith("prereq_not_met")
+                                                 or r.startswith("grading_not_met")
+                                                 for r in reasons)
                                else True),
                        "missing": [m for r in reasons if r.startswith("prereq_not_met:")
-                                   for m in r.split(":", 1)[1].split(",")]},
+                                   for m in r.split(":", 1)[1].split(",")],
+                       "grading": grading},
             "exclusion": {"text": (sc.get("attributes") or {}).get("EXCLUSION", "") if sc else "",
                           "codes": [f"{a} {b}" for a, b in RE_CODE.findall(
                               (sc.get("attributes") or {}).get("EXCLUSION", ""))] if sc else [],

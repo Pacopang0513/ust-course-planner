@@ -23,7 +23,8 @@
     ],
     "min_reviews_for_score": 5,
     "weight_penalty_per_missing": 0.2,
-    "level_bonus": { "1": 5, "2": 3, "3": 1 }
+    "level_bonus": { "1": 5, "2": 3, "3": 1 },
+    "pre_enroll_boost": 0.2
   },
   "jobs": {
     "wcq_full": { "timeout_minutes": 25 },
@@ -31,5 +32,5 @@
     "sis_fetch": { "timeout_minutes": 10 },
     "ustspace_pre": { "timeout_minutes": 15 }
   },
-  "semesters": { "Fall": 0, "Winter": 5, "Spring": 20, "Summer": 30 }
+  "semesters": { "Fall": 10, "Winter": 20, "Spring": 30, "Summer": 40 }
 }

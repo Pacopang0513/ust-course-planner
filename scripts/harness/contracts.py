@@ -51,7 +51,8 @@ JOBS = {
                     ("cache/sis/sis_course_history.json", None),
                     ("cache/sis/sis_transcript.json", None),
                     ("cache/sis/sis_academic_req.json", None),
-                    ("cache/sis/sis_pre_enroll.json", None)],
+                    ("cache/sis/sis_pre_enroll.json", None),
+                    ("data/pre_enrolled.json", "pre_enroll")],
     },
     "ustspace_pre": {
         "title": "USTspace 评论抓取",
@@ -110,14 +111,16 @@ STEPS = {
     },
     "step5": {
         "phase": PHASE3,
-        "title": "Bucket 评分合成（A+B+C+D）",
+        "title": "Bucket 评分合成（A+B+C+D，预选课 +20%）",
         "inputs": [("data/filter_report.json", "filter_report"),
                    ("data/ustspace_reviews.json", "ustspace_reviews")],
-        "optional": [("data/review_summary.json", "review_summary")],
+        "optional": [("data/review_summary.json", "review_summary"),
+                     ("data/pre_enrolled.json", "pre_enroll")],
         "cmd": lambda ctx: [
             str(ctx["root"] / "scripts" / "rank" / "bucket_score.py"),
             "--session", ctx["session"],
-        ],
+        ] + (["--pre-enrolled", str(ctx["root"] / "data" / "pre_enrolled.json")]
+             if ctx["pre_enrolled"] else []),
         "outputs": [("data/course_scores.json", "course_scores")],
         "summary": "scores",
         "produced_by": "step5",
@@ -211,16 +214,30 @@ def ctx_for(root=None):
     }
 
 
+def _as_list(v) -> list:
+    """P1 多值字段兼容：数组原样；旧单值字符串转单元素（'NA' → 空）。"""
+    if isinstance(v, list):
+        return [str(x).strip() for x in v if str(x).strip() and str(x).strip().upper() != "NA"]
+    if isinstance(v, str) and v.strip() and v.strip().upper() != "NA":
+        return [v.strip()]
+    return []
+
+
 def _phase1_checks(ctx) -> list:
     errs = []
     d = decisions.load(ctx["root"])
     p1 = d.get("P1") or {}
-    # P1 程序字段三状态：缺失=空置（不通过）；'NA'=明确无；否则=课程代码。
-    # 必须显式填写 major/minor/extended_major 三个字段（防漏读扩展主修/副修）。
-    for f in ("major", "minor", "extended_major"):
-        v = str(p1.get(f) or "").strip()
-        if not v:
-            errs.append(f"P1 未确认：缺少 {f}（三状态：填入代码 / NA=没有，空置不通过）")
+    # P1 程序字段（2026-08 起支持多主修/多副修）：
+    #   major 必填（数组 ≥1；兼容旧单值）；minor 可多个（[]=明确没有，字段必须存在）；
+    #   extended_major 单值（'' 或 'NA' = 没有，字段必须存在）。
+    # 防漏读：缺任一字段不通过（扩展主修/副修漏填会导致培养方案算漏）。
+    majors = _as_list(p1.get("major"))
+    if not majors:
+        errs.append("P1 未确认：缺少 major（至少一个主修，可多个如 COSC+MATH；空置不通过）")
+    if "minor" not in p1 or p1.get("minor") is None:
+        errs.append("P1 未确认：缺少 minor（[]=没有；可多个；空置不通过）")
+    if not str(p1.get("extended_major") or "").strip():
+        errs.append("P1 未确认：缺少 extended_major（NA=没有；空置不通过）")
     if not p1.get("session"):
         errs.append("P1 未确认：缺少目标学期 session")
     return errs

@@ -1,0 +1,56 @@
+{
+  "$schema": "../templates/schemas/course_notes.schema.json",
+  "subject": "",
+  "source": "database/curriculum/{2023-24..2026-27}/*.json（官方培养方案 note）+ UST 课程目录",
+  "fetched_at": "2026-08-09",
+  "rules": [
+    {
+      "codes": ["COMP 2012H", "COMP 2011", "COMP 2012"],
+      "rule": "h_course_equivalence",
+      "description": "Honors 课程等价替代（2023-24 COMP/COSC：'(COMP 2011 AND COMP 2012) OR COMP 2012H'）。修 COMP 2012H 一门即满足 COMP 2011+COMP 2012 两门要求。",
+      "logic": "note 表达式 '(A AND B) OR H' 已由 note_eval 处理：已修 H → 整桶满足。学分差额（2012H=5 vs 2011+2012=8）不自动补齐，学生需以自由选课补足 120 总学分，P3/报告提示。"
+    },
+    {
+      "codes": ["COMP 2711H", "COMP 3111H", "COMP 3711H", "COMP 2711", "COMP 3111", "COMP 3711"],
+      "rule": "h_course_equivalence",
+      "description": "Honors 升级版单门等价（'COMP 2711 OR COMP 2711H' 等）：H 版满足普通版要求，二者互斥（EXCLUSION），不会同修。",
+      "logic": "note 表达式 OR 处理已覆盖；EXCLUSION 互斥由 planner 强制检查。"
+    },
+    {
+      "codes": [],
+      "rule": "double_count",
+      "description": "Double Major 学分制度：课程可同时计入两个主修（double count），但存在最低 single-counted 学分限制（COSC 2023-24：additional major 至少 20 学分 single-counted）。",
+      "logic": "不自动改变清单（两个主修的要求分别生成 bucket）；unmet_credits 统计为两套要求之和（double count 会高估），P3 展示时说明可 double count 的课程，最终以 AR 学位审计为准。"
+    },
+    {
+      "codes": ["PHYS 4291", "PHYS 4191"],
+      "rule": "year_long",
+      "description": "全年课程：schedule units 为全年总学分，每学期注册 = units/2（如 PHYS 4291 全年 6 → 每学期 3，'extended over two regular terms'）。",
+      "logic": "planner 按 course_notes tags.year_long 自动折算（--credits-override 手动优先）。"
+    },
+    {
+      "codes": ["EMIA 4990", "EMIA 4991"],
+      "rule": "ext_capstone_pairing",
+      "description": "EXT AI 顶点项目二选一，选择取决于是否修主修 FYP/顶点课程（PHYS 4291 等 major_capstone）。",
+      "logic": "buckets 消费：first_major 含 major_capstone → 移除 EMIA 4991，仅保留 4990。"
+    },
+    {
+      "codes": ["PHYS 1314", "PHYS 1312"],
+      "rule": "grading_prereq",
+      "description": "pre-req 可含成绩要求（如 PHYS 1314 要求 PHYS 1312 达到某成绩）。成绩要求与课程要求并列，不达标需 waiver。",
+      "logic": "filter 运行时解析（'Grade X or above in CODE' / 'Pass grade in CODE'）并对照已修成绩（三状态：不存在/需要某 grading/未填入需复核）；不达标 → prereq_not_met → step6 waiver_required 提醒。"
+    }
+  ],
+  "notes": {
+    "COMP 2012H": "Honors OOP and Data Structures（5 学分）。等价替代 COMP 2011 + COMP 2012 两门（8 学分），学分差额 3 需以其他课程补足总学分。",
+    "COSC": "BSc in Computer Science 为 additional-major 型专业：第一主修学生需同时申报 additional major；additional major 要求中至少 20 学分 single-counted（不可与主修重复计数），其余可 double count。",
+    "PHYS 1314": "pre-req 含成绩要求（PHYS 1312 需达到指定成绩）——成绩不达标需教授 waiver。",
+    "H 课程": "Honors 版课程（2711H/3111H/3711H/2012H）满足普通版要求；2012H 为组合替代（2011+2012），其余为单门升级。"
+  },
+  "tags": {
+    "COMP 2012H": ["h_course_equivalence"],
+    "COMP 2711H": ["h_course_equivalence"],
+    "COMP 3111H": ["h_course_equivalence"],
+    "COMP 3711H": ["h_course_equivalence"]
+  }
+}

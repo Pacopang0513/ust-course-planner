@@ -56,9 +56,16 @@ D = 本学期任课教授最近 5 条评论 AI 精读（0~25，来自 review_sum
 
 major_required 低阶加分：level_bonus 按课号千位（1xxx +5% / 2xxx +3% / 3xxx +1%）
     （对当前总分，负分不乘）
+预选课加分：pre_enroll_boost（默认 0.2）= 上述总分 ×20%（负分不乘）
 ```
 
 纯函数实现 `scripts/rank/scoring.py`（可单测）；`bucket_score.py` 只做编排。
+**预选课（Pre-Enroll）**：SIS 扫描（sis_fetch job）同步写 `data/pre_enrolled.json`
+（cache/sis/sis_pre_enroll.json 同构）；step1 登记到 unmet `pre_enrolled[]`（带
+bucket 归属，视为已确定不重复推荐）；step5 评分 ×（1+pre_enroll_boost）加入所在
+栏位排名（无归属 → 独立 "pre_enrolled" 栏位）；step6 视为固定选课（时段占用、
+不重复入排），若加权后仍低于方案已选最低分 → `pre_enroll_advice[]` 建议 drop
+（学校一般不建议 drop 预选课，坚持需 waiver，提前告知风险）。
 每栏位取 `top_per_bucket` 门（默认 3）；栏位之间**并列不混排**（防选重/选多，
 配额由 planner 消费）；其余进 `ranked_out` 备选池（must-take/多样性换课用）。
 

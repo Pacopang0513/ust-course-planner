@@ -24,7 +24,8 @@
         "top_per_bucket": { "type": "integer", "minimum": 1, "description": "每栏位取 Top N 进入总表" },
         "credits_min": { "type": "number", "description": "Regular Term 学分下限" },
         "credits_max": { "type": "number", "description": "学分上限（overload 需 Dean 批准）" },
-        "candidate_pool": { "type": "integer", "minimum": 1, "description": "选课池取排名前 N" }
+        "candidate_pool": { "type": "integer", "minimum": 1, "description": "选课池取排名前 N" },
+        "graduation_credits": { "type": "number", "minimum": 0, "description": "毕业总学分（4 年制默认 120；双主修等以 AR 为准）" }
       },
       "additionalProperties": false
     },
@@ -67,7 +68,8 @@
           "type": "object",
           "description": "低阶必修加分百分比（课号千位 → %）",
           "additionalProperties": { "type": "number" }
-        }
+        },
+        "pre_enroll_boost": { "type": "number", "minimum": 0, "maximum": 1, "description": "预选课加分比例（默认 0.2 = 评分 ×1.2）" }
       },
       "additionalProperties": false
     },

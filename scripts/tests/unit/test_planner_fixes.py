@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from wcq.conflict import parse_slots  # noqa: E402
-from rank.planner import (build_plan, diversity_swap,  # noqa: E402
-                          vary_sections, norm_code)
+from rank.planner import (build_plan, build_pre_enroll_advice,  # noqa: E402
+                          diversity_swap, vary_sections, norm_code)
 
 
 def mk(code, score=50.0, credits=3.0, category="major_required", bucket=None,
@@ -123,6 +123,275 @@ class TestPreEnrolled(unittest.TestCase):
         plan = build_plan("t", 6.0, pool, pre_slots=pre_slots)
         self.assertNotIn("COMP 2011", plan["courses"])
         self.assertIn("MATH 2011", plan["courses"])
+
+
+class TestPreEnrollAdvice(unittest.TestCase):
+    def test_low_priority_pre_enrolled_advised_drop(self):
+        plan = {
+            "details": [{"code": "COMP 2011"}, {"code": "MATH 2011"}],
+        }
+        pre_scored = {"PHYS 1007": {"code": "PHYS 1007", "name": "G",
+                                    "score": 30.0}}  # 已 +20% 加权仍低
+        pool_by_code = {"COMP 2011": 90.0, "MATH 2011": 70.0}
+        advice = build_pre_enroll_advice(plan, pre_scored, pool_by_code)
+        self.assertEqual(len(advice), 1)
+        a = advice[0]
+        self.assertEqual(a["code"], "PHYS 1007")
+        self.assertEqual(a["min_plan_score"], 70.0)
+        self.assertIn("waiver", a["note"])
+
+    def test_competitive_pre_enrolled_no_advice(self):
+        plan = {"details": [{"code": "COMP 2011"}]}
+        pre_scored = {"PHYS 1007": {"code": "PHYS 1007", "name": "G",
+                                    "score": 85.0}}  # 加权后高于方案最低
+        pool_by_code = {"COMP 2011": 70.0}
+        self.assertEqual(build_pre_enroll_advice(plan, pre_scored, pool_by_code), [])
+
+    def test_no_placed_courses_no_advice(self):
+        plan = {"details": []}
+        pre_scored = {"PHYS 1007": {"code": "PHYS 1007", "score": 10.0}}
+        self.assertEqual(build_pre_enroll_advice(plan, pre_scored, {}), [])
+
+
+class TestGroupQuota(unittest.TestCase):
+    """池配额句式解析（2026-08 修复 'Any 3 courses of' 不匹配 → quota=1）"""
+
+    def _quota(self, note):
+        from rank.buckets import _group_quota
+        return _group_quota(note)
+
+    def test_any_n_of(self):
+        self.assertEqual(self._quota("Note: any 2 of"), 2)
+
+    def test_any_n_courses_of(self):
+        self.assertEqual(self._quota("MATH 2000-level or above Electives "
+                                     "(Any 3 courses of the subject)"), 3)
+
+    def test_n_courses_out_of(self):
+        self.assertEqual(self._quota("(2 courses out of 5)"), 2)
+
+    def test_n_courses_from(self):
+        self.assertEqual(self._quota("8 courses from the specified list"), 8)
+
+    def test_default_one(self):
+        self.assertEqual(self._quota("Note: COMP 2011 OR COMP 2012"), 1)
+
+
+class TestLevelPool(unittest.TestCase):
+    """描述性级别池（'MATH 2000-level or above'）从课表生成真实候选"""
+
+    def _blocks(self, note, kind="pool"):
+        return [{
+            "block": "major", "name": "Major Requirements",
+            "sections": [{
+                "type": "elective", "name": "Elective Course(s)",
+                "groups": [{"subject": "MATH", "kind": kind, "note": note,
+                            "courses": []}],
+            }],
+        }]
+
+    def _sched(self):
+        return {"MATH 2011": {"title": "Multivariable Calculus", "units": 3.0},
+                "MATH 3312": {"title": "Real Analysis II", "units": 3.0},
+                "MATH 4432": {"title": "Algebra II", "units": 3.0},
+                "COMP 3211": {"title": "Fundamentals of AI", "units": 3.0}}
+
+    def test_generates_candidates_from_schedule(self):
+        from rank.buckets import major_buckets
+        courses, buckets = major_buckets(
+            self._blocks("MATH 2000-level or above Electives (Any 2 courses "
+                         "of the subject and level as specified)"),
+            sched_idx=self._sched())
+        pool = [c["code"] for c in courses]
+        self.assertIn("MATH 2011", pool)   # 非必修的 2xxx 课应保留
+        self.assertIn("MATH 3312", pool)
+        self.assertIn("MATH 4432", pool)
+        self.assertNotIn("COMP 3211", pool)  # subject 不符排除
+        self.assertEqual(buckets[0]["quota"], 2)
+
+    def test_level_pool_excludes_required_courses(self):
+        """必修已占用的课（同 subject 同 level）不得混入级别池（防重复推荐）"""
+        from rank.buckets import major_buckets
+        blocks = [{
+            "block": "major", "name": "Major Requirements",
+            "sections": [
+                {"type": "required", "name": "Required Course(s)",
+                 "groups": [{"subject": "MATH", "kind": "single", "note": "",
+                             "courses": [{"code": "MATH 2011",
+                                          "title": "Multivariable Calculus",
+                                          "credits": "3", "area": ""}]}]},
+                {"type": "elective", "name": "Elective Course(s)",
+                 "groups": [{"subject": "MATH", "kind": "pool",
+                             "note": "MATH 2000-level or above Electives "
+                                     "(Any 2 courses of the subject and "
+                                     "level as specified)",
+                             "courses": []}]},
+            ],
+        }]
+        courses, buckets = major_buckets(blocks, sched_idx=self._sched())
+        pool = [c["code"] for c in courses if c.get("bucket_id") == buckets[-1]["bucket_id"]]
+        self.assertNotIn("MATH 2011", pool)  # 必修占用排除
+        self.assertIn("MATH 3312", pool)
+
+    def test_level_pool_keeps_pool_quota_with_single_candidate(self):
+        from rank.buckets import major_buckets
+        sched = {"MATH 3312": {"title": "Real Analysis II", "units": 3.0}}
+        courses, buckets = major_buckets(
+            self._blocks("MATH 3000-level or above Elective (Any 1 course "
+                         "of the subject and level as specified)"),
+            sched_idx=sched)
+        self.assertEqual(len(courses), 1)
+        self.assertEqual(buckets[0]["quota"], 1)
+        self.assertIn("-pool-", buckets[0]["bucket_id"])
+
+    def test_nested_level_pools_merged_to_lowest(self):
+        from rank.buckets import major_buckets
+        blocks = [{
+            "block": "major", "name": "Major Requirements",
+            "sections": [{
+                "type": "elective", "name": "Elective Course(s)",
+                "groups": [
+                    {"subject": "MATH", "kind": "pool",
+                     "note": "MATH 2000-level or above Electives (Any 3 courses "
+                             "of the subject and level as specified)",
+                     "courses": []},
+                    {"subject": "MATH", "kind": "pool",
+                     "note": "MATH 3000-level or above Electives (Any 2 courses "
+                             "of the subject and level as specified)",
+                     "courses": []},
+                    {"subject": "MATH", "kind": "pool",
+                     "note": "MATH 4000-level or above Electives (Any 2 courses "
+                             "of the subject and level as specified)",
+                     "courses": []},
+                ],
+            }],
+        }]
+        courses, buckets = major_buckets(blocks, sched_idx=self._sched())
+        self.assertEqual(len(buckets), 1)  # 嵌套合并为最低级别池
+        self.assertEqual(buckets[0]["quota"], 3)
+        pool = [c["code"] for c in courses]
+        self.assertIn("MATH 3312", pool)
+
+
+class TestGrading(unittest.TestCase):
+    """pre-req 成绩要求（grading）三状态 + 分支绑定判定"""
+
+    def _met(self, pre, passed, grades):
+        from rank.filter import prereq_met
+        ok, info = prereq_met(pre, passed, grades)
+        return ok, info
+
+    def test_grade_met_comparison(self):
+        from rank.filter import grade_met
+        self.assertTrue(grade_met("A", "A"))
+        self.assertFalse(grade_met("B+", "A"))
+        self.assertFalse(grade_met("A-", "A"))
+        self.assertTrue(grade_met("B", "Pass"))
+        self.assertIsNone(grade_met(None, "A"))      # 无成绩记录
+        self.assertIsNone(grade_met("X", "A"))       # 格式未知
+
+    def test_grading_not_met_waiver_path(self):
+        ok, info = self._met("Grade A or above in PHYS 1312",
+                             {"PHYS1312"}, {"PHYS1312": "B"})
+        self.assertFalse(ok)
+        self.assertIn("成绩", info["note"])
+        self.assertEqual(info["grading"][0]["met"], False)
+
+    def test_grading_met(self):
+        ok, info = self._met("Grade A or above in PHYS 1312",
+                             {"PHYS1312"}, {"PHYS1312": "A"})
+        self.assertTrue(ok)
+
+    def test_grading_unknown_needs_review(self):
+        ok, info = self._met("Grade A or above in PHYS 1312",
+                             {"PHYS1312"}, {})  # 已修但无成绩记录
+        self.assertIsNone(ok)
+
+    def test_grading_or_branch_binding(self):
+        """OR 分支内成绩判定绑定：一个分支不达标、另一分支满足 → 整体满足"""
+        ok, _ = self._met(
+            "(Grade A or above in COMP 1023) OR "
+            "(Grade A or above in COMP 1021 AND Pass grade in COMP 1028)",
+            {"COMP1023", "COMP1021", "COMP1028"},
+            {"COMP1023": "B", "COMP1021": "A", "COMP1028": "P"})
+        self.assertTrue(ok)
+
+    def test_grading_not_taken_ignored_for_grading(self):
+        """未修课程的成绩要求由课程层面 missing 覆盖，不参与成绩判定"""
+        ok, info = self._met(
+            "(Grade A or above in COMP 1023) OR "
+            "(Grade A or above in COMP 1021 AND Pass grade in COMP 1028)",
+            {"COMP1021", "COMP1028"},   # 1023 未修
+            {"COMP1021": "A", "COMP1028": "P"})
+        self.assertTrue(ok)
+        g = {x["code"]: x for x in info["grading"]}
+        self.assertTrue(g["COMP 1023"]["not_taken"])
+
+    def test_grading_level_no_code_unknown(self):
+        ok, _ = self._met("Level 3 or above in HKDSE Mathematics Extended Module M1/M2",
+                          set(), {})
+        self.assertIsNone(ok)
+
+
+class TestSemestersLeft(unittest.TestCase):
+    """剩余学期估算（4 年制 8 个主学期含当前）"""
+
+    def _left(self, year, session):
+        from rank.buckets import estimate_semesters_left
+        return estimate_semesters_left(year, session)
+
+    def test_year3_fall(self):
+        self.assertEqual(self._left(3, "2610"), 4)   # 大三上 → 剩 4
+
+    def test_year3_spring(self):
+        self.assertEqual(self._left(3, "2630"), 3)   # 大三下（Spring=30）→ 剩 3
+
+    def test_year1_fall(self):
+        self.assertEqual(self._left(1, "2610"), 8)
+
+    def test_year4_fall(self):
+        self.assertEqual(self._left(4, "2610"), 2)
+
+    def test_missing_or_out_of_range(self):
+        self.assertEqual(self._left(None, "2610"), 0)
+        self.assertEqual(self._left(5, "2610"), 0)
+
+    def test_next_year_session_works(self):
+        """明年 session（2710/2730）不因硬编码 2610 失效（松弛度回归）"""
+        self.assertEqual(self._left(3, "2710"), 4)
+        self.assertEqual(self._left(3, "2730"), 3)
+
+    def test_unknown_session_safe(self):
+        """未知尾号（如 2650）→ 按第 1 学期保守计，不崩溃"""
+        self.assertEqual(self._left(3, "2650"), 4)
+
+
+class TestSemesterOfSession(unittest.TestCase):
+    """session → 学期名（config semesters 映射；2026-08 实测 wcq 索引页下拉：
+    2610=2026-27 Fall、2520=2025-26 Winter、2530=2025-26 Spring、
+    2540=2025-26 Summer → Fall=10/Winter=20/Spring=30/Summer=40）"""
+
+    def _sem(self, session):
+        from harness.config import semester_of_session
+        return semester_of_session(session)
+
+    def test_known_sessions(self):
+        self.assertEqual(self._sem("2610"), "Fall")
+        self.assertEqual(self._sem("2620"), "Winter")
+        self.assertEqual(self._sem("2630"), "Spring")
+        self.assertEqual(self._sem("2640"), "Summer")
+        self.assertEqual(self._sem("2520"), "Winter")
+        self.assertEqual(self._sem("2530"), "Spring")
+        self.assertEqual(self._sem("2540"), "Summer")
+
+    def test_next_year_sessions(self):
+        self.assertEqual(self._sem("2710"), "Fall")
+        self.assertEqual(self._sem("2720"), "Winter")
+        self.assertEqual(self._sem("2730"), "Spring")
+
+    def test_unknown_returns_empty(self):
+        self.assertEqual(self._sem("2650"), "")
+        self.assertEqual(self._sem(""), "")
 
 
 if __name__ == "__main__":

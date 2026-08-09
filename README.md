@@ -1,77 +1,95 @@
-# UST 课表 — 自动选课 Agent
+# UST 自动选课助手
+> The AI course-planning assistant for UST students；
+> 基于Opencode harness与Deepseek V4 Flash(0731)开发的Agent；
+> 仍在测试阶段，结果仅供参考。（因为过程中可能会有很多很多奇怪的BUG是有限样本测不出来的）；
 
-基于我校排课流程的自动选课辅助工具（opencode skills + Python 脚本混合实现），
-由 **ustplan 统一入口**驱动：后台并行抓取、checkpoint 强顺序、人工确认点、
-schema 校验、凭据隔离。
+---
 
-## 快速开始（3 步）
+## 简介
+- 考虑到同学们天天问什么CC好，以及为了节省对照USTspace评论、编排时间表的时间，所以写了用户友好优先的"简易Agent"；
+- 这是一个面向香港科技大学学生的选课辅助工具。它由Claude Code、opencode等AI编程助手平台运行；
+- 同时也是两位作者第一次尝试Agent harness，技术与流程并不成熟，若有优化建议还请提出；
+- 能做到的事情：
+  - 半自动化：只需要手动输入两个cookie、以及你希望选择的track，便能自动进行分析，无需编程基础；
+  - 算清还差什么课：通过SIS系统对照你的专业毕业要求，逐项列出还没修的课程；
+  - 看口碑再选课：参考ustspace中学生们对每门课的真实评价（给分、教学、内容、工作量），排出综合最优的课程；
+  - 排出不冲突的课表：自动生成多套无时间冲突的课程表方案，供你挑选；
 
-```bash
-# 1. 装依赖
-python3 -m pip install -r requirements.txt
+---
 
-# 2. 初始化 + 预检（doctor 只报状态，不接触明文）
-python3 scripts/ustplan.py init
-python3 scripts/ustplan.py doctor          # 依赖/配置/cookie/database/schema 全查
+## 使用说明
 
-# 3. 开始新一轮运行（t0 立即后台抓取 WCQ 全量）
-python3 scripts/ustplan.py start
-# 之后按确认点 P1→P5 逐项与 AI 确认即可；断点续跑用 `ustplan status / resume`
+### 开始之前
+
+### Opencode
+- **Opencode 是什么**：一个开源的 AI 编程助手，通过对话的方式，自行读写文件、执行脚本、运行项目；
+- **Opencode 怎么用**：
+  - 在官网https://opencode.ai/zh/download下载Opencode桌面版；
+  - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
+- **为什么选择 Opencode**：
+  - **免费**：内置免费的DeepSeek V4 Flash(0731)模型，不用花钱；
+  - **易用**：UI界面简单，无需配置环境；
+
+### USTSpace
+- **USTSpace是什么**：一个非官方的社群，能在上面看到所有UST课程的评论及评分；
+- **USTSpace怎么使用**：
+  - 登录网站https://ust.space/home；
+  - 获取阅读全部评论的权限，需要你至少评论一次后解锁；
+  - 此Agent需要通过分析USTSpace的评论以对课程进行排序，因此请确认已获取此权限；
+
+### 事前输入
+- 1. **登录令牌**：
+  - 在浏览器分别登录SIS教务系统中的Student Center、以及USTSpace；
+  - 按键盘F12，打开"开发者工具"；
+  - 点击顶部栏的"应用程序"（Application）标签；
+  - 左侧栏展开点击"Cookie"；
+  - 找到名称为 `PS_TOKEN`（SIS）及 `ustspace_session`（USTSpace）的登录令牌；
+  - 双击"值"一列，全选复制（Ctrl+C），粘贴给 AI 即可；
+- 2. **专业信息**：
+  - 你必须向Agent提供你希望就读的major track；
+  - 除此之外，若能提供major/extend major/minor等信息，能提高Agent准确性；
+
+### 使用流程
+- **第一步**：打开 opencode 进入本项目，说一句"帮我排下学期的课"；
+- **第二步**：提供两个网站的登录令牌，并提供个人专业信息；
+- **第三步**：确认未修清单及目标学分，以获取完整分析报告；
+
+> 中途你可以随时要求Agent回答你希望了解的问题；
+
+---
+
+## 工作流
+
+```
+开始
+  │
+  ▼
+① 读取你的信息 ── 从 SIS 拉取专业、已修学分、毕业要求、学校预选课
+  │
+  ▼
+② 计算未修课程 ── 对照专业培养方案，把"还差什么"按必修/选修/通识分栏位列出
+  │
+  ▼
+③ 核对本学期开课 ── 对照本学年课程表：没开的课移除，先修课没满足的进行标记
+  │
+  ▼
+④ 查课程口碑 ── 从 USTspace 拉取评分、热度、任课教授口碑
+  │
+  ▼
+⑤ 量化打分排序 ── 四维评分（A+B+C+D+额外权重），每类课程排出优先级
+  │
+  ▼
+⑥ 编排课表方案 ── 生成多套无时间冲突的方案（学分、课程组合各有侧重）
+  │
+  ▼
+⑦ 输出报告 ── 完整报告 + 周历 + 选课时间提醒 + 导入Timetable plannar
 ```
 
-> Windows：命令统一写 `python3`，Windows 用 `python`（或 `py`）代替。
 
-## 统一入口（AI 与用户共用，不再直接拼底层命令）
 
-| 命令 | 作用 |
-|---|---|
-| `ustplan.py init / doctor` | 环境初始化 / 预检 |
-| `ustplan.py start / status / resume` | 开始运行 / 总览（阶段+任务+产物+决策+下一步）/ 断点续跑建议 |
-| `ustplan.py step <step1/3/4/5/6> [--finalize]` | Step 合约执行（前置校验→命令→后置校验→摘要） |
-| `ustplan.py phase begin/done <phase>` | 阶段推进（确认点通过后，含数据检查） |
-| `ustplan.py job start/status/wait/clean <job-id>` | 后台任务（并行时间线，超时/孤儿自动处理） |
-| `ustplan.py plan [--must-take …] [--target N]` | 重排（硬插/备选/学分覆盖，自动记录决策） |
-| `ustplan.py report [--plan plan-N]` | 渲染 final_report.md（机械段落自动填） |
-| `ustplan.py grid [--plan 1] [--html]` | 课程表周历（终端 ASCII / 单文件 HTML 导出） |
-| `ustplan.py decisions set/show` | 用户决策日志（P1-P5 审计） |
+## 附录：开发者与深入阅读
 
-## 流程与确认点（P1-P5，强制中断）
-
-```
-t0 start → 后台 wcq 全量抓取（--session latest）
-phase1-input   [P1] 两个登录凭证 + major + track + 目标学期
-phase2-profile [P2] 画像确认 + 未修清单预览（后台 SIS/USTSPACE 并行）
-phase3-course-analysis（step1 未修(bucket化) → step3 过滤 → step4 评论精读
-  → step5 bucket 评分 A+B+C+D → step6 课表编排）
-               [P3] 未修清单确认 + 目标学分（一次问清）
-               [P4] 过滤确认（移除/waiver/复核项）
-               [P5] 方案选择
-phase4-report  最终报告（含选课时间提醒）→ phase4.5-must-take 必选课（可选）
-```
-
-- 后台任务不阻塞确认：提问前 `ustplan job start`，用户回复后 `status` 取结果；
-- 无确认不推进 checkpoint（`ustplan phase done` 会校验完成条件）；
-- 全部参数（评分权重/TOP N/超时/学分上下限）在 `config/ustplan.json`，改配置即改行为。
-
-## 目录总览
-
-| 目录 | 用途 | git |
-|---|---|---|
-| `config/` | 统一产品参数（评分权重/超时/默认学分） | 跟踪 |
-| `user/` | 用户输入资料（major 手册、CC Curriculum） | 忽略 |
-| `credentials/` | cookie 凭据（AI 不可读） | 忽略 |
-| `database/` | Agent 统一数据库（政策/CC/curriculum 预构建） | 跟踪 |
-| `skills/` | 流程 skills（harness → phase1/2/4 → step1-6） | 跟踪 |
-| `scripts/` | Python（ustplan 入口/抓取/解析/打分/合约/校验/统计） | 跟踪 |
-| `cache/` | 原始抓取缓存 | 忽略 |
-| `data/` | 运行时个人产物（交付态为空，真实运行从 phase1 重建） | 忽略 |
-| `output/` | 课程总结、课程表方案、周历 HTML | 忽略 |
-| `templates/` | 产物 schema（版本化）+ 报告模板 | 跟踪 |
-| `docs/` | 架构设计与排障手册 | 跟踪 |
-
-## 文档导航
-
-- 架构设计（并行时间线/评分公式/bucket 化/数据源分工）：`docs/ARCHITECTURE.md`
-- 排障（异常矩阵/后台任务表/常见问题）：`docs/RUNBOOK.md`
-- 变更记录：`CHANGELOG.md`
-- 联网抓取规范：`skills/web-crawl-guide/SKILL.md`
+- 命令行版说明（快速开始 / 命令表 / 目录结构）：[`docs/DEVELOPER.md`](docs/DEVELOPER.md)
+- 架构设计：[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+- 排障手册：[`docs/RUNBOOK.md`](docs/RUNBOOK.md)
+- 变更记录：[`CHANGELOG.md`](CHANGELOG.md)

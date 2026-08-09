@@ -30,7 +30,14 @@ python3 scripts/ustplan.py grid --plan 1 [--html]         # 周历展示（ASCII
   COMP 1991 实习挡 FYP）→ 按分数补足（最高档方案优先 CC）；
 - **0 学分课程**（如 COMP 1991 实习）：无时间 section 时仅标注占位
   （course_details.zero_credit=true），不占排课时间；
-- 预选课时段进入占用槽；TBA 课程计学分占位不排时间；
+- **预选课（Pre-Enroll）固定认知**：预选课视为**已确定**——不重复选入
+  （pool 排除 `pre_enrolled: true` 条目）、其 section 时段进入占用槽（选课不得
+  与其冲突）；评分已在 step5 +20% 加权（pre_enroll_boost）；
+- TBA 课程计学分占位不排时间；
+- **预选课 drop 建议（pre_enroll_advice[]）**：若某门预选课即便 +20% 加权后
+  评分仍低于本方案全部已选课程的最低分（仅凭分数不会入选 → 优先级低），
+  输出建议 drop，附**提前告知的风险与原因**：学校预选课一般不建议 drop，
+  坚持 drop 需申请 waiver，且可能影响下学期预选资格；此提示同时写入 notes；
 - **方案多样性**：phase2 取课顺序按方案变体轮转（分数/CC 优先/按桶轮转）；
   多套方案课程相同时自动换课（只换非必修非 must-take 的低分课，尊重配额与
   互斥）；无课可换时自动换用不同 section 时段；

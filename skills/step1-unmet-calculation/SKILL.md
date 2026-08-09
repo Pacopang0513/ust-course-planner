@@ -42,6 +42,12 @@ python3 scripts/ustplan.py step step1
 
 - 展示（产品化）：必修按 bucket 全列；CC/选修仅列未满足栏位；review_pending 列表；
   pre-req 参考课程；
+- **未修学分统计（指导建议）**：产物含 `unmet_credits`（未修学分总和）/
+  `estimated_semesters_left`（剩余学期估算，4 年制 8 学期含当前）/
+  `credits_per_semester_estimate`（平均每学期建议学分）。P3 问目标学分前
+  展示建议值："按剩余 X 个学期，每学期平均约 Y 学分即可按时毕业"——
+  若用户目标明显低于该值，提示后续学期压力/毕业风险（Agent 有义务指导，
+  双主修 double count 会使统计偏高，以 AR 审计为准）；
 - **同回合问目标学分**（默认 15，一次问清）；
 - **同回合顺带展示 step3 过滤结果**（今年未开设移除 / waiver 课程 / 复核项），
   用户有异议（教授豁免/等效课）→ 记录 `overrides` 重跑 step3；

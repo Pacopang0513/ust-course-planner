@@ -15,8 +15,9 @@ checkpoint 强顺序、人工确认点、schema 校验、凭据隔离。
 
 ## 第一步：读 README
 
-动手前**先读 `README.md`**：它包含快速开始（3 步）、ustplan 统一入口命令表、
-完整流程与确认点、目录总览、文档导航。
+动手前**先读 `README.md`**（面向学生用户的简介/使用说明/工作流）与
+**`docs/DEVELOPER.md`**（开发者版：快速开始（3 步）、ustplan 统一入口命令表、
+完整流程与确认点、目录总览、文档导航）。
 更深层需要时再读 `docs/ARCHITECTURE.md`（架构设计）与 `docs/RUNBOOK.md`（排障）。
 
 ## 触发规则（固定）
@@ -74,6 +75,39 @@ P4 过滤确认已并入 P3；P5 方案选择弱化为展示（用户主动要�
 ## 异常处理
 
 全部异常场景按 `docs/RUNBOOK.md` §2 异常处理矩阵处理，禁止临场发挥。
+
+## 特殊规则知识库（固定认知）
+
+选课/学分存在大量"就事论事"的特殊规则，**每次流程 AI 必须过一遍**
+`database/course_notes/`（含全局 `RULES.json` 与分 subject 文件）再决策，
+禁止凭常识臆断：
+
+| 规则 | 内容 | 消费方 |
+|---|---|---|
+| `year_long` 全年课程 | schedule units 为全年总学分，每学期注册 = units/2（PHYS 4291：全年 6 → 每学期 3） | planner 自动折算 |
+| `h_course_equivalence` Honors 等价 | COMP 2012H = COMP 2011 + COMP 2012 组合替代（5 学分 vs 8 学分，差额需自由选修补足 120）；2711H/3111H/3711H = 单门升级等价 | note_eval + planner EXCLUSION |
+| `double_count` 双主修 | 课程可同时计入两个主修，但 additional major 至少 20 学分 single-counted（COSC 2023-24）；未修学分统计会因 double count 高估，P3 展示说明，以 AR 学位审计为准 | P3 展示 |
+| `ext_capstone_pairing` | EXT 顶点 4990/4991 选择取决于主修是否含 major_capstone（如 PHYS 4291） | buckets 规则消费 |
+| `grading_prereq` | pre-req 可含成绩要求（如 PHYS 1314 要求 PHYS 1312 达某成绩），不达标需 waiver | filter 运行时解析 + step6 waiver |
+| `major_capstone` | 主修顶点课程标记（4291/4191 等） | 触发 EXT 顶点规则 |
+
+**新增规则流程**：发现新的特殊规则（专业/课程/学分）→ 上网核实官方来源 →
+写入 `database/course_notes/{SUBJ}.json` 或 `RULES.json`（rules[] 带机器可读
+logic）→ 需要脚本消费的同步实现，禁止只写文档不消费。
+
+## 预选课（Pre-Enroll）概念（固定认知）
+
+学校会为部分学生（尤其低年级）预选课程（SIS Enrollment Summary 页，
+Confirmed/Pending 两档）。预选课视为**已确定**：
+
+- 一开始扫描 SIS（sis_fetch job）时自动抓取并同步写 `data/pre_enrolled.json`
+  （`cache/sis/sis_pre_enroll.json` 同构）；未到预选季时为空列表，属正常；
+- step1 不重复推荐（计入已确定）；step5 评分 **+20%**（config → scoring →
+  `pre_enroll_boost`，可追溯进 score_reason）；step6 视为固定选课（占用其
+  section 时段、不重复入排）；
+- 若某门预选课即便 +20% 加权后优先级仍很低（低于方案已选最低分），输出
+  pre_enroll_advice 建议 drop，**须提前告知学生风险**：学校一般不建议 drop
+  预选课，坚持 drop 需申请 waiver，且可能影响下学期预选资格。
 
 ## 一年制课程概念（固定认知）
 

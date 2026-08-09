@@ -24,7 +24,16 @@ python3 scripts/ustplan.py step step3
   提示；排课阶段 planner 做强制互斥检查）；
 - 用户豁免放回：`ustplan decisions set P4 overrides=PHYS4191`（或追加后）重跑
   `step step3 --force`，课程标 `user_overridden`；
-- 每门 kept 课程附 `prereq {text, met, missing[]}` → step6 据此输出 waiver_required[]。
+- 每门 kept 课程附 `prereq {text, met, missing[], grading[]}` → step6 据此输出
+  waiver_required[]；
+- **pre-req 成绩要求（grading，2026-08）**：pre-req 文本可含成绩要求
+  （"Grade A or above in PHYS 1312" / "Pass grade in COMP 1028"）。filter 解析
+  出逐条 `grading {code, required, actual, met}` 并对照已修成绩（对照
+  passed_courses.json 的 grade）；三状态：无要求（不存在）/ 需要某 grading
+  （met True/False）/ 有 grading 语义但无法解析（如 "Level 3 or above in
+  HKDSE ..." 无课程码 → met=null，AI 复核）。成绩不达标 → `grading_not_met`
+  标记，同 pre-req 未满足一样走 waiver 路径（step6 提醒"成绩不达标需豁免"）；
+  成绩判定与 OR/AND 分支绑定（分支内不达标不影响其他已满足分支）。
 
 ## AI 职责
 

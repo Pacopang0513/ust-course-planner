@@ -36,7 +36,7 @@ FILE_SCHEMA = {
     "checkpoint.json": "checkpoint.schema.json",
     "pre_enrolled.json": "pre_enroll.schema.json",
 }
-DIR_SCHEMA = {"curriculum", "course_catalog"}
+DIR_SCHEMA = {"curriculum", "course_catalog", "course_notes"}
 # 前缀匹配：courses_{session}.json → courses.schema.json（session 动态）
 PREFIX_SCHEMA = {"courses_": "courses", "cc_courses_": "cc_courses"}
 

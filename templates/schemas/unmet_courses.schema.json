@@ -11,6 +11,25 @@
     "intake_year": { "type": "string" },
     "track": { "type": "string", "description": "所选 track/option 块名（无分支为空）" },
     "graduation_target_credits": { "type": "number", "minimum": 0 },
+    "unmet_credits": {
+      "type": "number",
+      "minimum": 0,
+      "description": "未修课程学分总和（不含 pre-req 参考课；学分缺失的课不计入）"
+    },
+    "unmet_credits_unknown_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "学分缺失（未标学分）的未修课程数"
+    },
+    "estimated_semesters_left": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "估算剩余学期数（4 年制 8 学期含当前学期；无法估算为 0）"
+    },
+    "credits_per_semester_estimate": {
+      "type": ["number", "null"],
+      "description": "未修学分 / 剩余学期（P3 目标学分参考建议；学分缺失或无法估算为 null）"
+    },
     "buckets": {
       "type": "array",
       "description": "栏位元数据（bucket_id → 标签/类别/配额）",
@@ -59,6 +78,25 @@
             "type": "string",
             "description": "AI 对 Note 语义的解析结果（必修/候选池/计数）"
           }
+        }
+      }
+    },
+    "pre_enrolled": {
+      "type": "array",
+      "description": "学校预选课（Pre-Enroll，视为已确定不重复推荐）：带 bucket 归属，供 Step 5 评分 +20% 与 drop 建议",
+      "items": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP 2011"] },
+          "name": { "type": "string" },
+          "credits": { "type": ["number", "null"], "minimum": 0 },
+          "category": {
+            "type": "string",
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", ""]
+          },
+          "bucket_id": { "type": "string", "description": "所属栏位（curriculum/CC 池内才有；否则空=自由选修）" },
+          "bucket_quota": { "type": ["integer", "null"], "minimum": 1 }
         }
       }
     }

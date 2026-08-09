@@ -28,10 +28,25 @@ python3 scripts/ustplan.py job status sis_fetch       # 用户回复后先查任
    source/confirmed_by_user）与 `data/passed_courses.json`（status 映射：
    T→transferred、EX→exempted、AU→audit、I→incomplete、无成绩+term→in_progress；
    EX 视同满足 pre-req）；
-   **programs 必须完整回写 P1 三字段**：first_major=P1.major；
-   extended_major=P1.extended_major（"NA" → 省略）；minor=P1.minor
-   （"NA" → 空数组 []，否则为数组 [代码]）；
-3. 预选课写入 `data/pre_enrolled.json`（预选课视为已确定：不重复推荐、占用时段）；
+   **status 判定（2026-08 加固，全链路统一白名单）**：只有
+   taken/transferred/exempted/in_progress 计入"已修/已确定"；**incomplete（挂科）
+   不算已修**（保留在未修清单、允许推荐重修）、audit（旁听）不算、unknown
+   （解析异常）不算——脚本侧由 filter.PASSED_STATUSES 兜底，AI 转录时同样
+   遵守，并在 P2 展示时提示挂科课程需重修；
+   **programs 必须完整回写 P1 程序字段（2026-08 支持多主修/多副修）**：
+   first_major=P1.major 数组第 1 个；**additional_major=P1.major[1:]**（单主修
+   → []）；extended_major=P1.extended_major（"NA"/"" → 省略）；minor=P1.minor
+   数组（[]=没有，原样回写）；P1 双主修（如 COSC+MATH）时 two majors 都必须
+   体现，step1 会自动合并两个培养方案；
+   **school 字段（学院）**：从 AR 组名/专业归属推断（如 COMP/COSC→SENG、
+   MATH/PHYS→SSCI），step1 据此加载学院 School Requirement（SREQ-{SCHOOL}.json，
+   如 SREQ-SENG；2025-26 起 SENG 无独立 school req，缺失属正常，以 AR 为准）；
+3. **预选课（Pre-Enroll）自动落盘**：sis_fetch job 抓取 SIS Enrollment Summary
+   （SA_LEARNER_SERVICES.ZR_SSENRL_SUM_CMP.GBL）→ `cache/sis/sis_pre_enroll.json`
+   **并同步写 `data/pre_enrolled.json`**（同构同 schema，无需 AI 手写）。
+   预选课视为已确定：不重复推荐（step1 计入已确定）、评分 +20%（step5
+   pre_enroll_boost）、占用 section 时段（step6）。AI 职责=核对 term 与清单，
+   P2 展示预选课摘要；列表为空（如非预选季 "Total Unit Load: 0"）属正常；
 4. major 与 AR requirement-group 名交叉确认，冲突时 AR 优先并询问用户；
    AR 中出现 P1 未声明的需求组（如 EXT (AI)/minor 组）→ 回查 P1 三字段并
    **回问用户确认**（防漏读扩展主修/副修）；

@@ -4,14 +4,14 @@
   "version": 1,
   "title": "课程语义说明 course_notes（database/course_notes/{SUBJ}.json）",
   "type": "object",
-  "required": ["subject", "notes"],
+  "required": ["notes"],
   "properties": {
-    "subject": { "type": "string", "examples": ["EMIA"] },
+    "subject": { "type": "string", "examples": ["EMIA"], "description": "课程所属 subject；空串 = 全局规则文件（RULES.json，跨课程特殊规则）" },
     "source": { "type": "string", "description": "信息来源（官方课程目录/AR 等）" },
     "fetched_at": { "type": "string", "examples": ["2026-08-07"] },
     "rules": {
       "type": "array",
-      "description": "课程组合决策规则（脚本可消费）",
+      "description": "课程组合决策规则（脚本可消费）。已知 rule 类型：ext_capstone_pairing（EXT 顶点配对）/ year_long（全年课程折算）/ h_course_equivalence（Honors 等价，2012H=2011+2012）/ double_count（双主修学分重复计数）/ grading_prereq（pre-req 成绩要求，filter 运行时解析）",
       "items": {
         "type": "object",
         "required": ["codes", "rule", "logic"],
@@ -30,7 +30,7 @@
     },
     "tags": {
       "type": "object",
-      "description": "课程标签：code → tags[]。已知标签：major_capstone（主修顶点课程，触发 EXT 顶点 4990 规则）；year_long（全年课程，schedule units 为全年总学分，每学期注册 = units/2，planner 自动折算）",
+      "description": "课程标签：code → tags[]。已知标签：major_capstone（主修顶点课程，触发 EXT 顶点 4990 规则）；year_long（全年课程，schedule units 为全年总学分，每学期注册 = units/2，planner 自动折算）；h_course_equivalence（Honors 等价课程）",
       "additionalProperties": {
         "type": "array",
         "items": { "type": "string" }

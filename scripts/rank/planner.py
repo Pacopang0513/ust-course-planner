@@ -35,6 +35,12 @@ pre-req 处理（新工作流）：评分与排课均不因 pre-req 剔除课程
 waiver_required[]（placed 课程中 pre-req 未满足 / 无法判定者，附 missing 清单），
 提醒用户写教授豁免申请。
 
+预选课（Pre-Enroll）处理：预选课视为已确定——不重复选入（pool 排除）、
+其 section 时段计入占用槽；评分已在 step5 +20% 加权（pre_enroll_boost）。
+排课后若某门预选课即便加权后评分仍低于本方案最低分已选课（优先级低），
+输出 pre_enroll_advice[] 建议 drop（学校不建议 drop 预选课，坚持需 waiver，
+提前告知风险与原因）。
+
 硬约束：不重复 / 不含已修课 / 每 bucket 不超过配额 / 无 EXCLUSION 互斥 /
 无时间冲突。学分软约束：目标 ±3 内取近似（一门课 3 学分粒度），
 <12 或 >18 仅提示（overload 需 Dean 批准，写入报告说明）。
@@ -57,12 +63,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "scripts" / "rank"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from wcq.conflict import parse_slots, _overlap  # noqa: E402  (复用 schedule 时间槽解析)
+from filter import passed_set as filter_passed_set  # noqa: E402 (已修白名单：挂科/旁听不计)
+from harness.config import load as load_config  # noqa: E402
 
-MAX_CREDITS = 18  # 软约束参考：超过仅提示（overload 需 Dean 批准）
-MIN_CREDITS = 12  # 软约束参考：低于仅提示
+# 常规学期学分上下限：唯一权威 = config/ustplan.json → defaults.credits_min/max
+# （2026-08 松弛度修复：此前硬编码 12/18，与 config 双份定义易失同步）
+CFG_DEFAULTS = load_config().get("defaults", {})
+MAX_CREDITS = float(CFG_DEFAULTS.get("credits_max", 18))  # 超过仅提示（overload 需 Dean 批准）
+MIN_CREDITS = float(CFG_DEFAULTS.get("credits_min", 12))  # 低于仅提示
 CREDIT_TOLERANCE = 3  # 目标 ±3 学分（一门课粒度）内视为达标
 CATEGORY_ORDER = {"cc_required": 0, "cc_elective": 1,
                   "major_elective": 2, "free_elective": 3}
@@ -125,6 +137,8 @@ def build_pool(scores: dict, schedule: dict, passed: set, top: int,
              for c in schedule.get("courses", [])}
 
     def entry(c: dict) -> dict:
+        if c.get("pre_enrolled"):
+            return None  # 预选课已确定（固定选课），排课不重复选取；仅参与评分排序
         sc = sched.get(c.get("code", ""))
         if sc is None:
             return None
@@ -154,7 +168,7 @@ def build_pool(scores: dict, schedule: dict, passed: set, top: int,
             "category": c.get("category") or "free_elective",
             "bucket_id": c.get("bucket_id") or c.get("code", ""),
             "bucket_quota": int(c.get("bucket_quota") or 1),
-            "credits": float(credits), "passed": c.get("code", "") in passed,
+            "credits": float(credits), "passed": norm_code(c.get("code", "")) in passed,
             "zero_credit": float(credits) <= 0,
             "sections": secs, "groups": ordered, "all_tba": len(secs) == 0,
             "exclusions": sorted({norm_code(f"{a} {b}")
@@ -163,6 +177,7 @@ def build_pool(scores: dict, schedule: dict, passed: set, top: int,
             "prerequisites": c.get("prerequisites", "") or "",
             "prereq_met": c.get("prereq_met"),
             "prereq_missing": c.get("prereq_missing", []),
+            "prereq_grading": c.get("prereq_grading", []),
         }
 
     pool = [e for e in (entry(c) for c in scores.get("courses", [])[:top]) if e]
@@ -248,6 +263,7 @@ def make_detail(item: dict, placed: list) -> dict:
         "prerequisites": item["prerequisites"],
         "prereq_met": item["prereq_met"],
         "prereq_missing": item["prereq_missing"],
+        "prereq_grading": item.get("prereq_grading", []),
         "exclusions": sorted(item.get("exclusions") or []),
         "zero_credit": bool(item.get("zero_credit")),
     }
@@ -520,21 +536,62 @@ def vary_sections(plan: dict, pool: list):
     return False
 
 
+def build_pre_enroll_advice(plan: dict, pre_scored: dict,
+                            pool_by_code: dict) -> list:
+    """预选课 drop 建议：预选课评分已 +20% 加权（step5），若仍低于本方案
+    已选课程的最低分（= 仅凭分数不会入选），建议 drop。学校预选课一般
+    不建议 drop，坚持 drop 需申请 waiver（提前告知风险与原因）。"""
+    placed_scores = [pool_by_code.get(d["code"]) for d in plan["details"]
+                     if d["code"] in pool_by_code]
+    placed_scores = [s for s in placed_scores if s is not None]
+    if not placed_scores:
+        return []
+    min_placed = min(placed_scores)
+    advice = []
+    for code, c in sorted(pre_scored.items()):
+        if c.get("score", 0.0) >= min_placed:
+            continue
+        advice.append({
+            "code": code,
+            "name": c.get("name", ""),
+            "score": round(float(c.get("score") or 0.0), 2),
+            "min_plan_score": round(min_placed, 2),
+            "reason": ("即便 +20% 预选课加权，评分仍低于本方案全部已选"
+                       "课程的最低分，仅凭分数不会入选"),
+            "note": ("学校预选课一般不建议 drop；若坚持 drop 需申请 "
+                     "waiver，并注意可能影响下学期预选资格"),
+        })
+    return advice
+
+
 def waiver_list(plan: dict) -> list:
-    """placed 课程中 pre-req 未满足/无法判定者 → waiver 提醒清单"""
+    """placed 课程中 pre-req 未满足/无法判定/成绩不达标者 → waiver 提醒清单"""
     out = []
     for d in plan["details"]:
         if not d.get("prerequisites"):
             continue
         met = d.get("prereq_met")
+        grading_bad = [g for g in d.get("prereq_grading", [])
+                       if g.get("met") is False]
+        grading_unknown = [g for g in d.get("prereq_grading", [])
+                           if g.get("met") is None]
         if met is False:
+            note = "pre-req 未满足，需教授/系豁免（waiver）"
+            if grading_bad:
+                note += "；" + "；".join(
+                    f"{g['code']} 成绩不达标（需 {g['required']}，实得 "
+                    f"{g['actual'] or '无记录'}）" for g in grading_bad)
             out.append({"code": d["code"], "prerequisites": d["prerequisites"],
                         "missing": d.get("prereq_missing", []),
-                        "note": "pre-req 未满足，需教授/系豁免（waiver）"})
+                        "grading": d.get("prereq_grading", []), "note": note})
         elif met is None:
+            note = "pre-req 文本需人工确认是否满足，不满足则申请 waiver"
+            if grading_unknown:
+                note += "；成绩要求无法对照（" + "、".join(
+                    f"{g['code']} 需 {g['required']}" for g in grading_unknown) + "）"
             out.append({"code": d["code"], "prerequisites": d["prerequisites"],
                         "missing": [],
-                        "note": "pre-req 文本需人工确认是否满足，不满足则申请 waiver"})
+                        "grading": d.get("prereq_grading", []), "note": note})
     return out
 
 
@@ -560,6 +617,7 @@ def emit(plans: list, session: str, target_credits: float) -> dict:
             "no_conflict": True,
             "must_take_inserted": p["must_take"],
             "waiver_required": waiver_list(p),
+            "pre_enroll_advice": p.get("pre_enroll_advice", []),
             "notes": p["notes"],
         })
     return {"session": session, "target_credits": target_credits, "plans": out_plans,
@@ -573,31 +631,42 @@ def main():
     ap.add_argument("--session", default="",
                     help="学期代码，对应 data/courses_{session}.json")
     ap.add_argument("--passed", default=str(ROOT / "data" / "passed_courses.json"))
-    ap.add_argument("--target-credits", type=float, default=15.0,
-                    help="用户目标学分（默认 15；<12 或 >18 仅提示，不夹边界）")
-    ap.add_argument("--plans", type=int, default=3, help="方案数量（默认 3）")
-    ap.add_argument("--top", type=int, default=50, help="选课池取排名前 N（默认 50）")
-    ap.add_argument("--must-take", nargs="+", default=[],
-                    help="硬插课程（phase4.5），如 'COMP 3111' 'MATH 2023'")
-    ap.add_argument("--exclude", nargs="+", default=[],
-                    help="从选课池排除的课程（如未选的 Capstone 备选）")
-    ap.add_argument("--credits-override", nargs="+", default=[],
+    ap.add_argument("--target-credits", type=float,
+                    default=float(CFG_DEFAULTS.get("target_credits", 15)),
+                    help="用户目标学分（默认取 config；<12 或 >18 仅提示，不夹边界）")
+    ap.add_argument("--plans", type=int,
+                    default=int(CFG_DEFAULTS.get("plans", 3)),
+                    help="方案数量（默认取 config）")
+    ap.add_argument("--top", type=int,
+                    default=int(CFG_DEFAULTS.get("candidate_pool", 50)),
+                    help="选课池取排名前 N（默认取 config）")
+    ap.add_argument("--must-take", action="append", default=[],
+                    help="硬插课程（phase4.5），如 'COMP 3111' 'MATH 2023'；"
+                         "可重复 flag 或一次传多个")
+    ap.add_argument("--exclude", action="append", default=[],
+                    help="从选课池排除的课程（如未选的 Capstone 备选）；可重复 flag")
+    ap.add_argument("--credits-override", action="append", default=[],
                     help="学分覆盖 'CODE=学分'（可多个；如全年课按学期计："
-                         "'PHYS 4291=3'）")
+                         "'PHYS 4291=3'）；可重复 flag")
     ap.add_argument("--pre-enrolled", default="",
                     help="SIS 预选课文件（data/pre_enrolled.json）；预选课 section 时段"
                          "进入占用槽，选课不得与其冲突")
     ap.add_argument("--output", default=str(ROOT / "output" / "timetable_plan.json"))
     args = ap.parse_args()
+    # action=append 兼容：重复 flag 与单次多值都扁平化为列表（2026-08 修复
+    # nargs='+' 重复 flag 只保留最后一个的静默吞值）
+    args.must_take = [x for g in args.must_take for x in g]
+    args.exclude = [x for g in args.exclude for x in g]
+    args.credits_override = [x for g in args.credits_override for x in g]
     if not args.session:
         sys.exit("错误: 缺少 --session（学期代码；运行中的学期可由 ustplan status 查询）")
 
     scores = load_json(Path(args.scores))
     schedule = load_json(ROOT / "data" / f"courses_{args.session}.json")
-    passed = {c.get("code", "").replace(" ", "")
-              for c in load_json(Path(args.passed)).get("courses", [])} \
+    # 已修白名单（filter.PASSED_STATUSES）：taken/transferred/exempted/in_progress；
+    # 挂科（incomplete）/旁听（audit）/异常（unknown）不算已修 → 可重修/可推荐
+    passed_norm = filter_passed_set(load_json(Path(args.passed))) \
         if Path(args.passed).exists() else set()
-    passed_norm = {norm_code(c) for c in passed}
 
     target = args.target_credits
     if target > MAX_CREDITS:
@@ -617,7 +686,7 @@ def main():
     if credits_overrides:
         print("学分覆盖:", ", ".join(f"{k}={v}" for k, v in credits_overrides.items()))
 
-    pool = build_pool(scores, schedule, passed, args.top, credits_overrides)
+    pool = build_pool(scores, schedule, passed_norm, args.top, credits_overrides)
     if args.exclude:
         exclude = set(args.exclude)
         pool = [p for p in pool if p["code"] not in exclude]
@@ -702,6 +771,29 @@ def main():
                 vary_sections(p, pool)
         seen.add(tuple(sorted(p["courses"])))
 
+    # 预选课 drop 建议：预选课评分已 +20% 加权（step5），若仍低于本方案
+    # 已选课程的最低分（= 仅凭分数不会入选），提示学生考虑 drop——学校预选课
+    # 一般不建议 drop，坚持 drop 需申请 waiver（提前告知风险与原因）。
+    pre_scored = {c["code"]: c for c in
+                  scores.get("courses", []) + scores.get("ranked_out", [])
+                  if c.get("pre_enrolled")}
+    pool_by_code = {i["code"]: i["score"] for i in pool}
+    if pre_scored or pre_enrolled_codes:
+        tip = ("预选课（学校 Pre-Enroll）已视为固定选课：占用 section 时段、"
+               "不重复推荐；学校通常不建议 drop 预选课，若坚持 drop 需申请 "
+               "waiver（且可能影响下学期预选资格）")
+        for p in plans:
+            p["notes"].append(tip)
+    if pre_scored:
+        for p in plans:
+            advice = build_pre_enroll_advice(p, pre_scored, pool_by_code)
+            p["pre_enroll_advice"] = advice
+            for a in advice:
+                p["notes"].append(
+                    f"预选课 {a['code']} 优先级低（{a['score']:+.2f} < 方案最低 "
+                    f"{a['min_plan_score']:+.2f}）：可考虑 drop，需 waiver（见 "
+                    f"pre_enroll_advice）")
+
     out = emit(plans, args.session, args.target_credits)
     dest = Path(args.output)
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -716,6 +808,10 @@ def main():
                   f"{', '.join(d['instructors'])}")
         for w in p["waiver_required"]:
             print(f"      ! waiver: {w['code']}  pre-req: {w['prerequisites']}")
+        for a in p.get("pre_enroll_advice", []):
+            print(f"      ! 预选课 drop 建议: {a['code']}  "
+                  f"({a['score']:+.2f} < 方案最低 {a['min_plan_score']:+.2f})，"
+                  f"需 waiver")
         for n in p["notes"]:
             print(f"      ! {n}")
 

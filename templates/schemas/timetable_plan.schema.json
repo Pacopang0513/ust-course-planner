@@ -32,6 +32,22 @@
           "elective_credits": { "type": "number", "minimum": 0 },
           "no_conflict": { "type": "boolean", "default": true },
           "must_take_inserted": { "type": "array", "items": { "type": "string" } },
+          "pre_enroll_advice": {
+            "type": "array",
+            "description": "预选课 drop 建议：即便 +20% 加权评分仍低于本方案已选最低分（优先级低）；学校不建议 drop 预选课，坚持需 waiver",
+            "items": {
+              "type": "object",
+              "required": ["code"],
+              "properties": {
+                "code": { "type": "string" },
+                "name": { "type": "string" },
+                "score": { "type": "number", "description": "预选课加权后评分" },
+                "min_plan_score": { "type": "number", "description": "本方案已选课程最低分" },
+                "reason": { "type": "string" },
+                "note": { "type": "string", "description": "drop 风险提示（waiver / 预选资格）" }
+              }
+            }
+          },
           "waiver_required": {
             "type": "array",
             "description": "pre-req 未满足/待确认课程（需教授豁免）",
@@ -42,6 +58,11 @@
                 "code": { "type": "string" },
                 "prerequisites": { "type": "string" },
                 "missing": { "type": "array", "items": { "type": "string" } },
+                "grading": {
+                  "type": "array",
+                  "description": "pre-req 成绩要求（成绩不达标/无法对照时附上）",
+                  "items": { "type": "object" }
+                },
                 "note": { "type": "string" }
               }
             }

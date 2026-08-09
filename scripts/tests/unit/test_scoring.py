@@ -7,9 +7,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / ".." / "scripts"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from rank.scoring import (apply_level_bonus, b_weight, course_avg, heat_points,
-                          level_bonus_pct, linear, professor_rating,
-                          score_total)
+from rank.scoring import (apply_level_bonus, apply_pre_enroll_boost, b_weight,
+                          course_avg, heat_points, level_bonus_pct, linear,
+                          professor_rating, score_total)
 
 
 class TestLinear(unittest.TestCase):
@@ -98,6 +98,21 @@ class TestScoreTotal(unittest.TestCase):
 
     def test_none_ignored(self):
         self.assertAlmostEqual(score_total(None, 12.0, None, 0.0), 12.0)
+
+
+class TestPreEnrollBoost(unittest.TestCase):
+    def test_positive_score_boosted(self):
+        self.assertAlmostEqual(apply_pre_enroll_boost(80.0, 0.2), 16.0)  # ×20%
+
+    def test_negative_score_not_boosted(self):
+        self.assertEqual(apply_pre_enroll_boost(-10.0, 0.2), 0.0)  # 负分不乘
+
+    def test_zero_boost_noop(self):
+        self.assertEqual(apply_pre_enroll_boost(80.0, 0.0), 0.0)
+
+    def test_default_cfg_has_boost(self):
+        from rank.scoring import DEFAULT_CFG
+        self.assertEqual(DEFAULT_CFG["pre_enroll_boost"], 0.2)
 
 
 if __name__ == "__main__":

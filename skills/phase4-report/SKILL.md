@@ -17,7 +17,8 @@ python3 scripts/ustplan.py grid --plan 1 --html    # 周历 HTML 一并交付（
 ```
 
 - 模板：`templates/reports/final_report.md.tpl`（画像/未修栏位/过滤说明/评分总表/
-  方案明细/waiver 清单自动填充；第 4 节口碑摘要与第 7 节建议留占位）。
+  方案明细/waiver 清单/**预选课 drop 建议**自动填充；第 4 节口碑摘要与第 7 节
+  建议留占位）。
 
 ## AI 职责
 
@@ -25,6 +26,8 @@ python3 scripts/ustplan.py grid --plan 1 --html    # 周历 HTML 一并交付（
    （每栏位 TOP3：综合评分/推荐度/给分/工作量/今年导师口碑）；
 2. 填第 7 节"下一步建议"：选定方案锁定（validation period 尽早提交
    shopping cart）；waiver 申请（课程 + missing pre-req）；overload/低学分说明；
+   **预选课 drop 决策**（如 report 中 pre_enroll_section 有建议：学校预选课
+   一般不建议 drop，坚持 drop 需申请 waiver，且可能影响下学期预选资格）；
 3. **末尾附加选课时间提醒**（enrollment-dates-reminder 固定模板，不可删除）；
 4. 产物仅引用 artifact 数据（可追溯），不写脚本运行细节。
 

@@ -87,14 +87,16 @@ buckets.py 据此归档：基础层 → cc_required，其余 → cc_elective，�
 ### 2c. Pre-Enroll（学校预选课，HKUST 定制 Enrollment Summary）
 
 **用途**：Phase 2 获取学校为学生预选的课程（Confirmed/Pending），Step 1 排除推荐、
-Step 6 占用其 section 时段。
+Step 5 评分 +20%（pre_enroll_boost）、Step 6 占用其 section 时段 + drop 建议。
 
 | 项 | 值 |
 |---|---|
 | URL | `https://sisprod.psft.ust.hk/psc/SISPROD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.ZR_SSENRL_SUM_CMP.GBL?Page=ZR_SSENRL_SUM_PG&Action=A&ACAD_CAREER=UGRD&EMPLID=&ENRL_REQUEST_ID=&INSTITUTION=HKUST&STRM={session}` |
-| 结构 | `Confirmed Enrollment` 网格前缀 `ZR_ENRL_SUMC_VW`、`Pending Enrollment` 前缀 `ZR_ENRL_SUMP_VW`；字段 `ZR_CRSE_CODE/COURSE_TITLE_LONG/UNT_TAKEN/SECTION_NAME`（`$N` 行索引）；`Total Unit Load: x (Confirmed: y Pending Add: z Pending Drop: w)` |
-| 注意 | **term 由会话决定，URL STRM 仅触发渲染不切学期**（2026-08 实测）；抓取的是 SIS 当前默认学期，选课季通常即目标学期；`EMPLID` 可选（会话可识别用户） |
-| 产物 | `cache/sis/sis_pre_enroll.json`（term/confirmed[]/pending[]/total_unit_load） |
+| 结构 | `Confirmed Enrollment` 网格前缀 `ZR_ENRL_SUMC_VW`、`Pending Enrollment` 前缀 `ZR_ENRL_SUMP_VW`；字段 `ZR_CRSE_CODE/COURSE_TITLE_LONG/UNT_TAKEN/SECTION_NAME`（`$N` 行索引）；`Total Unit Load: x (Confirmed: y Pending Add: z Pending Drop: w)`；页尾 `Consolidate Timetable: View in Timetable Planner` |
+| **空状态（2026-08 实测）** | 未预选/非预选季时两网格均**无行**（页面仅 "Enrollment Summary" 标题 + `Total Unit Load: 0 (Confirmed: 0 ...)`）；浏览器可能展示 "You are not enrolled in classes" 提示，解析产物为空数组，属正常，不算失败 |
+| **STRM 必填（2026-08 实测）** | URL 的 STRM 必须为有效 term code（如 2610），否则页面返回 JS 空壳、**无网格无数据**（`ZR_ENRL_SUMC_VW` 出现 0 次）；`sis_fetch` job 已知真实 session 时自动注入 `--session` |
+| 注意 | **term 由会话决定，URL STRM 仅触发渲染不切学期**（2026-08 实测：STRM=2610 时页面显示 SIS 当前默认学期，如 2025-26 Summer）；选课季通常即目标学期；`EMPLID` 可选（会话可识别用户） |
+| 产物 | `cache/sis/sis_pre_enroll.json` + **`data/pre_enrolled.json`（同步写入，同构同 schema，step1/5/6 直接消费）**（term/confirmed[]/pending[]/total_unit_load） |
 
 > 会话建立：`--fetch` 先 GET Student Center 两次（首次拿 JSESSIONID，第二次带 PS_TOKEN 生效）再抓各页。
 

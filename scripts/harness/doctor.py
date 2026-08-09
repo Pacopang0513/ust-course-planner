@@ -7,7 +7,7 @@ database 预构建完整性 / schema 完整性 / 运行状态一致性 / 后台�
 
 用法:
   python scripts/harness/doctor.py           # 全量预检（exit 0/1）
-  python scripts/harness/doctor.py --check-cookies-only
+  python scripts/harness/doctor.py --cookies-only
 """
 
 import argparse

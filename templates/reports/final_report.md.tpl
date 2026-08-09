@@ -36,9 +36,13 @@
 
 {{waiver_section}}
 
+**预选课 drop 建议**（{{chosen_plan}}，评分已含 +20% 预选课加权）：
+
+{{pre_enroll_section}}
+
 ## 7. 下一步建议（AI 填写）
 
-<!-- AI 填写：validation period 尽早提交 shopping cart；waiver 申请（列出课程与 missing pre-req）；overload/低学分说明（如有） -->
+<!-- AI 填写：validation period 尽早提交 shopping cart；waiver 申请（列出课程与 missing pre-req）；overload/低学分说明（如有）；预选课 drop 决策（如适用，需申请 waiver） -->
 
 ---
 

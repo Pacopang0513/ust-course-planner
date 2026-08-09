@@ -18,6 +18,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from harness.config import semester_of_session  # noqa: E402
+
 TPL = ROOT / "templates" / "reports" / "final_report.md.tpl"
 OUT = ROOT / "output" / "final_report.md"
 
@@ -29,12 +33,17 @@ def load(p: Path):
 
 
 def semester_label(session: str) -> str:
+    """session → 学期显示名（2610 → '2026-27 Fall'）。学期名映射的唯一权威是
+    config/ustplan.json → semesters（2026-08 松弛度修复：此前硬编码尾号字典）。"""
     if not session or len(session) < 4:
         return f"session {session}"
     yy, tail = session[:2], session[2:]
-    year = f"20{yy}-20{int(yy) + 1}"
-    name = {"0": "Fall", "5": "Winter", "20": "Spring", "30": "Summer"}.get(tail, "")
-    return f"{year} {name}".strip()
+    try:
+        year = f"20{yy}-20{int(yy) + 1}"
+    except ValueError:
+        return f"session {session}"
+    name = semester_of_session(session)
+    return f"{year} {name}".strip() if name else f"session {session}"
 
 
 # ── 机械段落生成 ─────────────────────────────────────────
@@ -55,10 +64,16 @@ def sec_profile(profile: dict, passed: dict, pre: dict, decisions: dict) -> dict
 
 
 def _pre_summary(pre: dict) -> str:
-    if not pre or not pre.get("courses"):
+    """预选课摘要：schema 权威格式为 confirmed/pending（SIS 解析产物），
+    旧格式 courses 兜底。"""
+    if not pre:
         return "无"
-    n = len(pre["courses"])
-    codes = ", ".join(c.get("code", "") for c in pre["courses"][:6])
+    lst = (pre.get("confirmed", []) + pre.get("pending", [])) \
+        or pre.get("courses", [])
+    if not lst:
+        return "无"
+    n = len(lst)
+    codes = ", ".join(c.get("code", "") for c in lst[:6])
     more = "…" if n > 6 else ""
     return f"{n} 门（{codes}{more}）"
 
@@ -90,6 +105,21 @@ def sec_unmet(unmet: dict) -> str:
                              f"({c.get('credits')} cr){ref}")
     if not lines:
         return "（无未满足栏位）"
+    # 未修学分统计（P3 目标学分参考）
+    uc = unmet.get("unmet_credits")
+    sem = unmet.get("estimated_semesters_left")
+    per = unmet.get("credits_per_semester_estimate")
+    stat = ""
+    if uc is not None:
+        stat = f"\n- 未修学分 ≈ **{uc}**"
+        if unmet.get("unmet_credits_unknown_count"):
+            stat += f"（{unmet['unmet_credits_unknown_count']} 门学分未知）"
+        if sem:
+            stat += f"，剩约 {sem} 个学期"
+            if per is not None:
+                stat += f"，平均每学期约 **{per}** 学分可按时毕业"
+    if stat:
+        lines.insert(0, stat)
     return "\n".join(lines)
 
 
@@ -126,7 +156,8 @@ def sec_scores(scores: dict) -> str:
             if not c:
                 continue
             comp = c.get("score_components") or {}
-            lines.append(f"  - {code}（{c.get('credits')} cr）**{c.get('score', 0):+.2f}**"
+            pre = "（预选课 +20%）" if c.get("pre_enrolled") else ""
+            lines.append(f"  - {code}{pre}（{c.get('credits')} cr）**{c.get('score', 0):+.2f}**"
                          f"　A={comp.get('a', 0)} B={comp.get('b', 0)} "
                          f"C={comp.get('c', 0)} D={comp.get('d', 0)}"
                          f"　评论 n={c.get('review_count', 0)}")
@@ -148,6 +179,19 @@ def _plan_table(p: dict) -> str:
     return "\n".join(lines)
 
 
+def _pre_enroll_advice(p: dict) -> str:
+    advice = p.get("pre_enroll_advice", [])
+    if not advice:
+        return "（无：全部预选课加权后优先级足够）"
+    lines = []
+    for a in advice:
+        lines.append(f"  - **{a['code']}**（{a.get('name', '')}）：加权后评分 "
+                     f"{a['score']:+.2f}，低于本方案已选最低分 {a['min_plan_score']:+.2f}"
+                     f"　⚠️ 学校预选课一般不建议 drop，坚持 drop 需申请 waiver"
+                     f"（且可能影响下学期预选资格）")
+    return "\n".join(lines)
+
+
 def sec_plans(plans: dict, chosen: str) -> dict:
     all_plans = plans.get("plans", [])
     chosen_p = next((p for p in all_plans if p.get("plan_id") == chosen), None) \
@@ -163,7 +207,9 @@ def sec_plans(plans: dict, chosen: str) -> dict:
     else:
         wl = ["  （无，全部 pre-req 已满足或无需豁免）"]
     return {"plans_sections": overview, "chosen_plan_detail": detail,
-            "waiver_section": "\n".join(wl)}
+            "waiver_section": "\n".join(wl),
+            "pre_enroll_section": _pre_enroll_advice(chosen_p) if chosen_p
+                                  else "（无选定方案）"}
 
 
 def main():
@@ -202,6 +248,7 @@ def main():
         "plans_sections": pl["plans_sections"],
         "chosen_plan_detail": pl["chosen_plan_detail"],
         "waiver_section": pl["waiver_section"],
+        "pre_enroll_section": pl["pre_enroll_section"],
     }
 
     text = TPL.read_text(encoding="utf-8")
@@ -226,10 +273,12 @@ def main():
     text = fill("plans_sections", ctx["plans_sections"])
     text = fill("chosen_plan_detail", ctx["chosen_plan_detail"])
     text = fill("waiver_section", ctx["waiver_section"])
+    text = fill("pre_enroll_section", ctx["pre_enroll_section"])
 
     left = [m for m in ("{{" + s + "}}" for s in
                         ("unmet_sections", "filter_summary", "scores_sections",
-                         "plans_sections", "chosen_plan_detail", "waiver_section"))
+                         "plans_sections", "chosen_plan_detail", "waiver_section",
+                         "pre_enroll_section"))
             if m in text]
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8")

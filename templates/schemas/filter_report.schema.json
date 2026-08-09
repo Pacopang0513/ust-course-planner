@@ -35,11 +35,25 @@
           },
           "prereq": {
             "type": "object",
-            "description": "pre-req 状态（供 Step 6 waiver_required 与报告）",
+            "description": "pre-req 状态（Step 6 waiver_required 与报告）。含成绩要求（grading）：不存在（[]=无要求）/ 需要某 grading（逐条 met）/ 无法对照（met=null）",
             "properties": {
               "text": { "type": "string" },
-              "met": { "type": ["boolean", "null"], "description": "null = 无法解析，需 AI 复核" },
-              "missing": { "type": "array", "items": { "type": "string" } }
+              "met": { "type": ["boolean", "null"], "description": "null = 无法解析（课程或成绩要求），需 AI 复核" },
+              "missing": { "type": "array", "items": { "type": "string" } },
+              "grading": {
+                "type": "array",
+                "description": "成绩要求逐条（如 PHYS 1314 要求 PHYS 1312 达到某成绩）",
+                "items": {
+                  "type": "object",
+                  "required": ["code", "required", "met"],
+                  "properties": {
+                    "code": { "type": "string" },
+                    "required": { "type": "string", "description": "要求成绩（A/B/Pass 等）" },
+                    "actual": { "type": "string", "description": "已修实际成绩（无记录为空串）" },
+                    "met": { "type": ["boolean", "null"], "description": "null = 无成绩记录/格式未知，无法对照" }
+                  }
+                }
+              }
             }
           },
           "exclusion": {

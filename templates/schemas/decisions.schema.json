@@ -8,11 +8,19 @@
     "$schema": { "type": "string" },
     "P1": {
       "type": "object",
-      "description": "P1 凭证 + major/minor/extended_major + track + 目标学期。major/minor/extended_major 三状态：缺失=空置（不通过校验）；'NA'=没有；否则=课程代码",
+      "description": "P1 凭证 + major/minor/extended_major + track + 目标学期。2026-08 起支持多主修/多副修：major=数组（可多个，如 COSC+MATH 双主修），minor=数组（[]=没有）；extended_major 单值（''/NA=没有）。兼容旧单值字符串。",
       "properties": {
-        "major": { "type": "string", "description": "第一主修课程代码，如 PHYS；必填" },
-        "minor": { "type": "string", "description": "副修代码；无副修填 'NA'（必填）" },
-        "extended_major": { "type": "string", "description": "扩展主修代码；无则填 'NA'（必填）" },
+        "major": {
+          "type": ["array", "string"],
+          "description": "主修课程代码（数组，至少 1 个；如 [\"COSC\", \"MATH\"]；兼容旧单值字符串）",
+          "items": { "type": "string", "examples": ["PHYS"] }
+        },
+        "minor": {
+          "type": ["array", "string"],
+          "description": "副修代码数组（[]=没有；可多个；兼容旧单值 'NA'）",
+          "items": { "type": "string", "examples": ["MATH"] }
+        },
+        "extended_major": { "type": "string", "description": "扩展主修代码；无则填 'NA' 或 ''（必填）" },
         "track": { "type": ["string", "null"] },
         "session": { "type": "string" },
         "semester": { "type": "string" }

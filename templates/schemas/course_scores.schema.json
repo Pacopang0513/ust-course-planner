@@ -18,7 +18,7 @@
         "properties": {
           "bucket_id": { "type": "string" },
           "label": { "type": "string" },
-          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"] },
+          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled"] },
           "quota": { "type": "integer", "minimum": 1 },
           "note": { "type": "string" },
           "top_codes": { "type": "array", "items": { "type": "string" }, "description": "该栏位 TOP3 课程码（按分数降序）" }
@@ -37,12 +37,12 @@
           "credits": { "type": ["number", "null"], "minimum": 0 },
           "category": {
             "type": "string",
-            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled"]
           },
           "bucket_id": { "type": "string" },
           "bucket_quota": { "type": "integer", "minimum": 1 },
           "bucket_rank": { "type": "integer", "minimum": 1, "description": "栏位内名次（1-3）" },
-          "score": { "type": "number", "description": "A+B+C+D+低阶加分，可为负（差评倒扣）" },
+          "score": { "type": "number", "description": "A+B+C+D+低阶加分+预选课加权，可为负（差评倒扣）" },
           "score_reason": { "type": "string", "description": "各组件得分与依据（可追溯）" },
           "score_components": {
             "type": "object",
@@ -58,7 +58,8 @@
               "d_weight": { "type": ["number", "null"], "description": "AI 未精读时为 0" },
               "course_avg": { "type": ["number", "null"], "description": "课程四维均分（A 组件输入）" },
               "professor_rating": { "type": ["number", "null"], "description": "本学期教授评分综合（B 组件输入）" },
-              "professor_review_count": { "type": ["integer", "null"] }
+              "professor_review_count": { "type": ["integer", "null"] },
+              "pre_enroll_boost": { "type": ["number", "null"], "description": "预选课加分比例（总分 ×此值，config → scoring.pre_enroll_boost）" }
             }
           },
           "review_count": { "type": "integer", "minimum": 0 },
@@ -67,8 +68,14 @@
           "prerequisites": { "type": "string", "description": "pre-req 原文（空=无）" },
           "prereq_met": { "type": ["boolean", "null"] },
           "prereq_missing": { "type": "array", "items": { "type": "string" } },
+          "prereq_grading": {
+            "type": "array",
+            "description": "pre-req 成绩要求逐条（filter_report.prereq.grading 透传）",
+            "items": { "type": "object" }
+          },
           "prereq_reference": { "type": "boolean", "default": false },
-          "filter_reasons": { "type": "array", "items": { "type": "string" } }
+          "filter_reasons": { "type": "array", "items": { "type": "string" } },
+          "pre_enrolled": { "type": "boolean", "default": false, "description": "学校预选课（Pre-Enroll）：评分已 +20% 加权，排课不重复选取" }
         }
       }
     },
@@ -84,7 +91,7 @@
           "credits": { "type": ["number", "null"], "minimum": 0 },
           "category": {
             "type": "string",
-            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled"]
           },
           "bucket_id": { "type": "string" },
           "bucket_quota": { "type": "integer", "minimum": 1 },
@@ -98,8 +105,10 @@
           "prerequisites": { "type": "string" },
           "prereq_met": { "type": ["boolean", "null"] },
           "prereq_missing": { "type": "array", "items": { "type": "string" } },
+          "prereq_grading": { "type": "array", "items": { "type": "object" } },
           "prereq_reference": { "type": "boolean", "default": false },
-          "filter_reasons": { "type": "array", "items": { "type": "string" } }
+          "filter_reasons": { "type": "array", "items": { "type": "string" } },
+          "pre_enrolled": { "type": "boolean", "default": false }
         }
       }
     },

@@ -29,6 +29,7 @@ DEFAULTS = {
         "credits_min": 12,
         "credits_max": 18,
         "candidate_pool": 50,
+        "graduation_credits": 120,
     },
     "scoring": {
         "baseline": 2.5,
@@ -51,7 +52,7 @@ DEFAULTS = {
         "sis_fetch": {"timeout_minutes": 10},
         "ustspace_pre": {"timeout_minutes": 15},
     },
-    "semesters": {"Fall": 0, "Winter": 5, "Spring": 20, "Summer": 30},
+    "semesters": {"Fall": 10, "Winter": 20, "Spring": 30, "Summer": 40},
 }
 
 
@@ -76,6 +77,21 @@ def load(path=None, root=None) -> dict:
         except json.JSONDecodeError as e:
             sys.exit(f"错误: 配置文件 {p} 不是合法 JSON（{e}）")
     return cfg
+
+
+def semester_of_session(session: str, cfg: dict = None) -> str:
+    """session 尾号 → 学期名（2610→Fall / 2620→Winter / 2630→Spring / 2640→Summer）。
+    学期→尾号映射的唯一权威是 config/ustplan.json → semesters（默认
+    {Fall:10, Winter:20, Spring:30, Summer:40}——2026-08 实测 wcq 索引页下拉
+    逐项确认：2610=2026-27 Fall、2520=2025-26 Winter、2530=2025-26 Spring、
+    2540=2025-26 Summer；注意 subject 页模板固定显示当前学期，不可作为依据）；
+    未知尾号（如 2540 之外的奇数值）返回 ""（调用方降级）。"""
+    sem = (cfg or DEFAULTS).get("semesters") or DEFAULTS["semesters"]
+    tail = str(session or "")[2:]
+    for name, code in sem.items():
+        if str(code).zfill(2) == tail:
+            return name
+    return ""
 
 
 def validate_schema(cfg: dict, schema_dir=None) -> list:

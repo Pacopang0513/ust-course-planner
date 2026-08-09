@@ -17,6 +17,9 @@ Step 5 Bucket 评分 A+B+C+D 的纯函数实现（无 I/O，可单测）。
 
   major_required 低阶加分：level_bonus 按课号千位（1xxx +5% …）
   （对当前总分，负分不乘）
+
+  预选课加分：pre_enroll_boost（默认 0.2）——学校 Pre-Enroll 课程往往比普通
+  候选更重要，评分完成后对总分 ×(1+boost)（含低阶加分之后，负分不乘）。
 """
 
 import re
@@ -35,6 +38,7 @@ DEFAULT_CFG = {
     "min_reviews_for_score": 5,
     "weight_penalty_per_missing": 0.2,
     "level_bonus": {"1": 5, "2": 3, "3": 1},
+    "pre_enroll_boost": 0.2,
 }
 
 
@@ -101,6 +105,13 @@ def apply_level_bonus(score: float, pct: int) -> float:
     if not pct:
         return 0.0
     return round(max(0.0, score) * pct / 100, 2)
+
+
+def apply_pre_enroll_boost(score: float, boost: float) -> float:
+    """预选课加分点数：总分 × boost（负分不乘）。返回加分点数，由调用方叠加。"""
+    if not boost:
+        return 0.0
+    return round(max(0.0, score) * boost, 2)
 
 
 def score_total(a, b, c, d) -> float:
