@@ -23,10 +23,6 @@
 
 ### Opencode
 - **Opencode 是什么**：一个开源的 AI 编程助手，通过对话的方式，自行读写文件、执行脚本、运行项目；
-- **Opencode 怎么用**：
-  - 在官网https://opencode.ai/zh/download下载Opencode桌面版；
-  - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
-  - 记得手动选择内置的Deepseek V4 flash模型；
 - **为什么选择 Opencode**：
   - **免费**：内置免费的DeepSeek V4 Flash(0731)模型，不用花钱；
   - **易用**：UI界面简单，无需配置环境；
@@ -39,8 +35,12 @@
   - 此Agent需要通过分析USTSpace的评论以对课程进行排序，因此请确认已获取此权限；
 
 ### 事前输入
-- 0.部署模型
-- 1. **登录令牌**：
+- 0. **部署模型**:
+  - 【若你自己拥有api，可选择任意一个AI编程助手及任意一个模型作为代替，以下使用Opencode ＋ Deepseek V4 flash作免费使用参考】
+  - 在官网https://opencode.ai/zh/download下载Opencode桌面版；
+  - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
+  - 记得手动选择内置的Deepseek V4 flash模型；
+- 1. **获取登录令牌**：
   - 在浏览器分别登录SIS教务系统中的Student Center、以及USTSpace；
   - 按键盘F12，打开"开发者工具"；
   - 点击顶部栏的"+"，选择"应用程序"（Application）标签；
