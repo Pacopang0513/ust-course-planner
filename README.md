@@ -1,7 +1,7 @@
 # UST 自动选课助手
-> The AI course-planning assistant for UST students；
-> 基于Opencode harness与Deepseek V4 Flash(0731)开发的Agent；
-> 仍在测试阶段，结果仅供参考。（因为过程中可能会有很多很多奇怪的BUG是有限样本测不出来的）；
+- The AI course-planning assistant for UST students；
+- 基于Opencode harness与Deepseek V4 Flash(0731)开发的Agent；
+- 仍在测试阶段，结果仅供参考。（因为过程中可能会有很多很多奇怪的BUG是有限样本测不出来的）；
 
 ---
 
