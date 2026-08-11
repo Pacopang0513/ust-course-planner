@@ -43,7 +43,7 @@
 - 1. **登录令牌**：
   - 在浏览器分别登录SIS教务系统中的Student Center、以及USTSpace；
   - 按键盘F12，打开"开发者工具"；
-  - 点击顶部栏的"应用程序"（Application）标签；
+  - 点击顶部栏的"+"，选择"应用程序"（Application）标签；
   - 左侧栏展开点击"Cookie"；
   - 找到名称为 `PS_TOKEN`（SIS）及 `ustspace_session`（USTSpace）的登录令牌；
   - 双击"值"一列，全选复制（Ctrl+C），粘贴给 AI 即可；
