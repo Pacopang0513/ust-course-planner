@@ -30,14 +30,14 @@
 ### USTSpace
 - **USTSpace是什么**：一个非官方的社群，能在上面看到所有UST课程的评论及评分；
 - **USTSpace怎么使用**：
-  - 登录网站https://ust.space/home ；
+  - 登录网站 https://ust.space/home ；
   - 获取阅读全部评论的权限，需要你至少评论一次后解锁；
   - 此Agent需要通过分析USTSpace的评论以对课程进行排序，因此请确认已获取此权限；
 
 ### 事前输入
 - 0. **部署模型**:
   - 【若你自己拥有api，可选择任意一个AI编程助手及任意一个模型作为代替，以下使用Opencode ＋ Deepseek V4 flash作免费使用参考】
-  - 在官网https://opencode.ai/zh/download下载Opencode桌面版；
+  - 在官网 https://opencode.ai/zh/download 下载Opencode桌面版；
   - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
   - 记得手动选择内置的Deepseek V4 flash模型；
 - 1. **获取登录令牌**：
