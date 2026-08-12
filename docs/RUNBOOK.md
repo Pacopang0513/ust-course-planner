@@ -16,7 +16,7 @@
 - `ustplan job status/wait <id>` 完成后自动收录产物到 manifest（wcq_full 顺带解析 session）
 - 产物收录判定：status/wait 输出含 "done" 或 "完成" 且 exit 0 即收录（2026-08 修复）
 
-## 1.5 学分与 CC 规则（2026-08 固化）
+## 1.5 学分与 CC 产品规则（2026-08 固化，AI 排课决策前必读）
 
 - **学分软约束**：目标学分默认 15；planner 按目标 / +3 / −3 生成方案，
   >18 或 <12 仅提示（overload 需 Dean 批准 / 低于下限咨询学校），不夹边界不拒绝；
@@ -31,9 +31,7 @@
   --session X`；确认后写入 `database/course_notes/{SUBJ}.json` 的
   `tags: ["year_long"]`，planner 自动折算（`--credits-override` 手动覆盖优先）。
   用户口头说明的学分口径（如"每学期 3 学分"）应归因为全年课程语义，按描述
-  核实后落盘，勿直接改抓取产物；
-- **确认点 3 次**：P1 令牌+major/minor/extended_major、P2 画像、P3 未修+过滤+学分；
-  P4 并入 P3，P5 弱化为展示（用户要求修改才记录）。
+   核实后落盘，勿直接改抓取产物；
 
 ## 2. 异常处理矩阵（固定）
 
@@ -46,7 +44,7 @@
 | USTspace cookie 失效 | 同上引导；失败课程标记 failed[]（无评论 API 也返回 error 属正常），继续其余 |
 | 后台任务 failed(timeout/crashed) | 告知"数据抓取中断，正在重试"，`ustplan job start <id> --force` 重跑；仍失败按上两行；不携带坏数据前进 |
 | **后台任务 WinError 193（Windows）** | `.py` 不能直接作为可执行文件启动；jobs.py 已自动加解释器前缀（见 `_run_job`），若再出现检查 cmd[0] 是否为 `.py` 且经 `ustplan job start` 启动（勿绕过 jobs.py 直接 Popen） |
-| 本地 curriculum 缺失 | 二次匹配（web-crawl-guide §4）；旧入学年份走 SIS AR 回退（ar_to_unmet.py）；仍失败明确告知不可计算 |
+| 本地 curriculum 缺失 | 二次匹配（web-crawl-guide §4）；**优先 `prog_crs/build.py --year` 重建**；2022-23 及更早 prog-crs 已下线无法重建 → `ar_to_unmet.py` 生成基架（**人工工具，不接入 step 合约链**——step1 仍要求本地 curriculum，产物仅供人工核对，不得直接推进） |
 | track 未指定 | 停下询问（track 必填；影响必修/选修 bucket 范围） |
 | 用户目标学分 <12 或 >18 | **软约束**：不夹边界、不拒绝，按用户目标 ±3（一门课粒度）编排并提示（<12 建议咨询学校、>18 需 Dean 批准 overload 写入报告） |
 | 必修学分超单学期上限 18 | 必修先全排（不因学分拒绝），溢出课程列入 notes 提示 overload |
@@ -81,6 +79,15 @@
 
 **Q: cookie 过期？**
 `python3 scripts/cookies_setup.py` 交互重贴；`--check` 只显示状态不显示值。
+
+**Q: `decisions set` 传 JSON 在 PowerShell 总被引号吃掉？**
+用 `--value-file`：把 JSON 存成文件（如 `tmp_p1.json`），
+`ustplan decisions set P1 --value-file tmp_p1.json`（自动兼容带 BOM 的 UTF-8）。
+
+**Q: 预选课（pre_enrolled）抓到的学期与目标学期不符？**
+SIS 页面 term 由会话决定（URL STRM 不切学期），非选课季可能显示旧学期；
+`ustplan job status/wait sis_fetch` 会输出 WARN。此时预选课不视为目标学期
+固定选课，P2 展示时向用户说明核对。
 
 **Q: 想清理全部运行数据重新开始？**
 `python3 scripts/ustplan.py start --force` 重置 run；产物仍保留，

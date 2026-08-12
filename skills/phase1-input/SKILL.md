@@ -60,9 +60,14 @@ python3 scripts/ustplan.py job status wcq_full   # 用户回复后查抓取进�
    "NA"=没有）一律显式写入；缺任一字段 `phase done phase1-input` 会被
    contracts 校验拦截（空置不通过）。示例：
    `ustplan decisions set P1 '{"major": ["COSC", "MATH"], "minor": [], "extended_major": "NA", "track": "...", "session": "2610", "semester": "2026-27 Fall"}'`
+   Windows/PowerShell 引号易出错时，改把 JSON 写入临时文件后
+   `ustplan decisions set P1 --value-file <file>`（值从文件读取，不受 shell 引号影响）。
 
-## 确认点 P1（强制中断）
+## 确认点 P1（question 工具内联提问，不截断流程）
 
+- 交互：AI 在流程中到达本点即用 question 工具一次收集全部字段（选项含
+  NA 与自定义输入；两个令牌自由回答粘贴），用户作答后同一轮对话内继续，
+  不做流程截断等待；
 - 前置：两个凭证预检 OK + major 数组齐备（≥1，双主修全列）+ minor 字段
   存在（[]=没有）+ extended_major 存在（NA=没有）+ track 给出 + 目标学期确认
 - 记录：`ustplan decisions set P1 '<json>'`（见上文示例，JSON 值存储）

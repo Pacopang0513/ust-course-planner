@@ -34,6 +34,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from harness import contracts, decisions, manifest  # noqa: E402
 from harness.config import load as load_config  # noqa: E402
+from harness.config import semester_of_session  # noqa: E402
 
 PY = sys.executable
 JOBS_PY = ROOT / "scripts" / "harness" / "jobs.py"
@@ -83,6 +84,43 @@ def _job_default_cmd(ctx, job_id: str) -> list:
     return cmd
 
 
+def _session_term_label(session: str) -> str:
+    """2610 → '2026-27 Fall'（用于与 SIS pre-enroll 页 term 比对）"""
+    s = str(session or "")
+    if not re.fullmatch(r"\d{4}", s):
+        return ""
+    y = int(s[:2]) + 2000
+    sem = semester_of_session(s)
+    return f"{y}-{str(y + 1)[2:]} {sem}" if sem else ""
+
+
+def _warn_pre_enroll_term_mismatch(session: str):
+    """预选课学期校验：SIS 页面 term 由会话决定（URL STRM 不切学期），
+    非选课季抓到的 pre_enrolled 可能是旧学期数据 → 醒目 WARN 供 P2 核对。"""
+    pe_path = ROOT / "data" / "pre_enrolled.json"
+    if not pe_path.exists():
+        return
+    try:
+        pe = json.loads(pe_path.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError:
+        return
+    term = str(pe.get("term") or "").strip()
+    want = _session_term_label(session)
+    if term and want and term != want:
+        print(f"  ! 预选课学期 [{term}] ≠ 目标学期 [{want}]：SIS 页面显示的是"
+              f"会话默认学期，pre_enrolled 可能非目标学期数据。\n"
+              f"    P2 核对时说明：若页面 term 非目标学期，预选课不视为固定选课"
+              f"（评分 +{_pre_enroll_boost_pct()}% 与 drop 建议可能不适用）。")
+
+
+def _pre_enroll_boost_pct() -> str:
+    try:
+        cfg = load_config()
+        return f"{float(cfg['scoring']['pre_enroll_boost']) * 100:.0f}"
+    except Exception:
+        return "20"
+
+
 def _adopt_job_outputs(ctx, job_id: str):
     """job 完成后收录产物到 manifest；wcq_full 顺带解析 session"""
     spec = contracts.JOBS.get(job_id, {})
@@ -108,6 +146,8 @@ def _adopt_job_outputs(ctx, job_id: str):
                 manifest.record_artifact(ctx["root"],
                                          rel.format(session=newest),
                                          schema, job_id)
+    if job_id == "sis_fetch":
+        _warn_pre_enroll_term_mismatch(ctx.get("session"))
     if job_id == "ustspace_pre" or job_id == "buckets_pre":
         pass
 
@@ -441,7 +481,15 @@ def cmd_grid(args):
 
 def cmd_decisions(args):
     if args.action == "set":
-        value = _parse_decision_value(args.key, args.value)
+        if args.value_file:
+            try:
+                # utf-8-sig：兼容 PowerShell 5.1 写出的带 BOM UTF-8 文件
+                value = json.loads(
+                    Path(args.value_file).read_text(encoding="utf-8-sig"))
+            except (OSError, json.JSONDecodeError) as e:
+                sys.exit(f"[ustplan] decisions set: 无法读取 {args.value_file}（{e}）")
+        else:
+            value = _parse_decision_value(args.key, args.value)
         decisions.set_decision(ROOT, args.key, value)
         print(f"[ustplan] 决策已记录: {args.key} = {json.dumps(value, ensure_ascii=False)}")
     else:
@@ -576,6 +624,8 @@ def main():
     p.add_argument("key", nargs="?", default=None)
     p.add_argument("value", nargs="*", default=None,
                    help="值：JSON 字符串（{ 开头）或 k=v k=v 键值对（兼容 PowerShell）")
+    p.add_argument("--value-file", default=None,
+                   help="从 JSON 文件读取值（绕过 shell 引号；如 --value-file tmp_p1.json）")
     p.set_defaults(fn=cmd_decisions)
 
     args = ap.parse_args()

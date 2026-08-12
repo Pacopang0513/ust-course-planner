@@ -40,13 +40,13 @@ python3 scripts/ustplan.py step step3
 - 复核 `prereq_unknown` / `restricted` 标记（对照 remarks 文本），需要时向用户确认；
 - 不在这一步因 pre-req 删除任何课程（豁免路径固定）。
 
-## 确认点（并入 P3，不单独中断）
+## 确认点（并入 P3，不单独提问）
 
-- 过滤结果（移除清单 / waiver 课程 / 复核项）随 P3 确认点**同回合展示**
-  （见 step1-unmet-calculation skill 的 P3 小节）；
+- 过滤结果（移除清单 / waiver 课程 / 复核项）随 P3 确认点**同一 question 回合**
+  展示并收集异议；
 - 用户对移除有异议（教授豁免/等效课）→ 记录 `ustplan decisions set P3 overrides=...`
   重跑 `step step3 --force`；
-- 不再单独强制中断（P4 已并入 P3）。
+- 不再单独提问（P4 已并入 P3）。
 
 ## 交接
 

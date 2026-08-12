@@ -33,7 +33,7 @@ python3 scripts/ustplan.py grid --plan 1 --html    # 周历 HTML 一并交付（
 
 ## 确认点
 
-- 报告即交付物（无强制确认点）；用户确认后推进：
+- 报告即交付物（无独立确认点）；用户确认后推进：
   `ustplan phase done phase4-report`。
 
 ## 交接

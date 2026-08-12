@@ -38,8 +38,13 @@ python3 scripts/ustplan.py step step1
 4. 等效课（MATH 2011≡2023 类）→ 依据 AR/用户确认标注，可沉淀 database/mappings/；
 5. 无法判定 → 本步内解决（含问用户），不留到下一步；120 学分/credit-reuse → 注记。
 
-## 确认点 P3（强制中断，含过滤结果展示）
+## 确认点 P3（question 工具内联提问，含过滤结果展示）
 
+- 交互：AI 在流程中到达本点即用 question 工具一次问清（未修确认 + 目标学分，
+  选项含默认 15 与自定义输入），用户作答后同一轮对话内继续；
+- **P3 前 CC 满足性核查**：`python3 scripts/rank/cc_status.py --passed data/passed_courses.json
+  --admission-year <AY> --major <MAJOR>`（区域已修/未修 + Broadening 12 学分 4 区域结论，
+  脚本固化，AI 不自行推导）；
 - 展示（产品化）：必修按 bucket 全列；CC/选修仅列未满足栏位；review_pending 列表；
   pre-req 参考课程；
 - **未修学分统计（指导建议）**：产物含 `unmet_credits`（未修学分总和）/

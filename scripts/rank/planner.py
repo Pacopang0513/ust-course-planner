@@ -43,7 +43,7 @@ waiver_required[]（placed 课程中 pre-req 未满足 / 无法判定者，附 m
 提醒用户写教授豁免申请。
 
 预选课（Pre-Enroll）处理：预选课视为已确定——不重复选入（pool 排除）、
-其 section 时段计入占用槽；评分已在 step5 +20% 加权（pre_enroll_boost）。
+其 section 时段计入占用槽；评分已在 step5 按 pre_enroll_boost 加权。
 排课后若某门预选课即便加权后评分仍低于本方案最低分已选课（优先级低），
 输出 pre_enroll_advice[] 建议 drop（学校不建议 drop 预选课，坚持需 waiver，
 提前告知风险与原因）。
@@ -592,9 +592,10 @@ def vary_sections(plan: dict, pool: list):
 
 def build_pre_enroll_advice(plan: dict, pre_scored: dict,
                             pool_by_code: dict) -> list:
-    """预选课 drop 建议：预选课评分已 +20% 加权（step5），若仍低于本方案
-    已选课程的最低分（= 仅凭分数不会入选），建议 drop。学校预选课一般
-    不建议 drop，坚持 drop 需申请 waiver（提前告知风险与原因）。"""
+    """预选课 drop 建议：预选课评分已按 pre_enroll_boost 加权（step5），若仍低于
+    本方案已选课程的最低分（= 仅凭分数不会入选），建议 drop。学校预选课一般
+    不建议 drop，坚持 drop 需申请 waiver（提前告知风险与原因）。
+    必修预选课（major_required，如 FYP）不提示 drop——必修课不可 drop。"""
     placed_scores = [pool_by_code.get(d["code"]) for d in plan["details"]
                      if d["code"] in pool_by_code]
     placed_scores = [s for s in placed_scores if s is not None]
@@ -603,6 +604,8 @@ def build_pre_enroll_advice(plan: dict, pre_scored: dict,
     min_placed = min(placed_scores)
     advice = []
     for code, c in sorted(pre_scored.items()):
+        if c.get("category") == "major_required":
+            continue  # 必修预选课（如 FYP）不可 drop，不提示
         if c.get("score", 0.0) >= min_placed:
             continue
         advice.append({
@@ -610,8 +613,8 @@ def build_pre_enroll_advice(plan: dict, pre_scored: dict,
             "name": c.get("name", ""),
             "score": round(float(c.get("score") or 0.0), 2),
             "min_plan_score": round(min_placed, 2),
-            "reason": ("即便 +20% 预选课加权，评分仍低于本方案全部已选"
-                       "课程的最低分，仅凭分数不会入选"),
+            "reason": ("即便预选课加权（pre_enroll_boost）后，评分仍低于本方案"
+                       "全部已选课程的最低分，仅凭分数不会入选"),
             "note": ("学校预选课一般不建议 drop；若坚持 drop 需申请 "
                      "waiver，并注意可能影响下学期预选资格"),
         })
@@ -872,9 +875,10 @@ def main():
                 vary_sections(p, pool)
         seen.add(tuple(sorted(p["courses"])))
 
-    # 预选课 drop 建议：预选课评分已 +20% 加权（step5），若仍低于本方案
-    # 已选课程的最低分（= 仅凭分数不会入选），提示学生考虑 drop——学校预选课
-    # 一般不建议 drop，坚持 drop 需申请 waiver（提前告知风险与原因）。
+    # 预选课 drop 建议：预选课评分已按 pre_enroll_boost 加权（step5），若仍低于
+    # 本方案已选课程的最低分（= 仅凭分数不会入选），提示学生考虑 drop——学校
+    # 预选课一般不建议 drop，坚持 drop 需申请 waiver（提前告知风险与原因）。
+    # 必修预选课（major_required，如 FYP）不提示 drop。
     pre_scored = {c["code"]: c for c in
                   scores.get("courses", []) + scores.get("ranked_out", [])
                   if c.get("pre_enrolled")}

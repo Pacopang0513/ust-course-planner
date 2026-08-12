@@ -2,23 +2,22 @@
 
 ## 本文件是做什么的
 
-本文件是 AI 进入本仓库后的第一份指令：它说明本项目是什么、
-AI 在其中扮演什么角色、以及遇到用户请求时必须遵循的完整工作流。
-**规则冲突时，本文件优先于一般惯例。**
+- AI 进入本仓库的第一份指令：项目是什么、AI 角色、必须遵循的完整工作流。
+- **规则冲突时，本文件优先于一般惯例。**
 
 ## 项目是什么
 
-本仓库是「UST 自动选课 Agent」：基于我校排课流程的自动选课辅助工具，
-由 **ustplan 统一入口**（`scripts/ustplan.py`）驱动——后台并行抓取、
-checkpoint 强顺序、人工确认点、schema 校验、凭据隔离。
-流程细节封装在 `skills/` 的流程 skill 中，AI 按 skill 调用，不临场发挥。
+- 「UST 自动选课 Agent」：基于我校排课流程的自动选课辅助工具。
+- 由 **ustplan 统一入口**（`scripts/ustplan.py`）驱动：后台并行抓取 / checkpoint
+  强顺序 / 人工确认点 / schema 校验 / 凭据隔离。
+- 流程细节封装在 `skills/` 的流程 skill 中：AI 按 skill 调用，不临场发挥。
 
 ## 第一步：读 README
 
-动手前**先读 `README.md`**（面向学生用户的简介/使用说明/工作流）与
-**`docs/DEVELOPER.md`**（开发者版：快速开始（3 步）、ustplan 统一入口命令表、
-完整流程与确认点、目录总览、文档导航）。
-更深层需要时再读 `docs/ARCHITECTURE.md`（架构设计）与 `docs/RUNBOOK.md`（排障）。
+- 动手前先读 `README.md`（学生用户：简介/使用说明/工作流）与
+  `docs/DEVELOPER.md`（开发者：快速开始 3 步 / 命令表 / 流程与确认点 /
+  目录总览 / 文档导航）。
+- 更深层需要时再读 `docs/ARCHITECTURE.md`（架构设计）与 `docs/RUNBOOK.md`（排障）。
 
 ## 触发规则（固定）
 
@@ -49,8 +48,11 @@ phase4.5-must-take   → 必选课询问（可选）
 `ustplan phase done <phase>`（自动校验完成条件）；阶段间用
 `ustplan phase begin <phase>` 开始（前置未完成即失败）。
 
-## 确认点（固定 3 次，禁止额外中断）
+## 确认点（固定 3 次，question 工具内联提问，不截断流程）
 
+- 交互机制：AI 在流程思维到达关键信息点时，用 **question 工具**结构化提问
+  （选项 + 自由回答；opencode UI 在思维过程中暂停展示问题，用户作答后**同一轮
+  对话内继续推进**，不依赖用户另开回合、不做流程截断等待）。
 - **P1**：两个登录令牌（SIS 的 PS_TOKEN、ust.space 的 ustspace_session）+ major + track
 - **P2**：画像确认（SIS 权威 + 未修清单预览）
 - **P3**：未修清单确认 + 过滤结果展示（waiver/移除）+ 目标学分（一次问清）
@@ -91,30 +93,33 @@ P4 过滤确认已并入 P3；P5 方案选择弱化为展示（用户主动要�
 | `grading_prereq` | pre-req 可含成绩要求（如 PHYS 1314 要求 PHYS 1312 达某成绩），不达标需 waiver | filter 运行时解析 + step6 waiver |
 | `major_capstone` | 主修顶点课程标记（4291/4191 等） | 触发 EXT 顶点规则 |
 
-**新增规则流程**：发现新的特殊规则（专业/课程/学分）→ 上网核实官方来源 →
-写入 `database/course_notes/{SUBJ}.json` 或 `RULES.json`（rules[] 带机器可读
-logic）→ 需要脚本消费的同步实现，禁止只写文档不消费。
+**新增规则流程**：发现新的特殊规则 → 上网核实官方来源 → 写入
+`database/course_notes/{SUBJ}.json` 或 `RULES.json`（rules[] 带机器可读 logic）
+→ 需要脚本消费的同步实现，禁止只写文档不消费。
 
 ## 预选课（Pre-Enroll）概念（固定认知）
 
-学校会为部分学生（尤其低年级）预选课程（SIS Enrollment Summary 页，
-Confirmed/Pending 两档）。预选课视为**已确定**：
-
-- 一开始扫描 SIS（sis_fetch job）时自动抓取并同步写 `data/pre_enrolled.json`
+- 学校为部分学生（尤其低年级）预选课程（SIS Enrollment Summary 页，
+  Confirmed/Pending 两档）。预选课视为**已确定**。
+- sis_fetch job 自动抓取并同步写 `data/pre_enrolled.json`
   （`cache/sis/sis_pre_enroll.json` 同构）；未到预选季时为空列表，属正常；
-- step1 不重复推荐（计入已确定）；step5 评分 **+20%**（config → scoring →
-  `pre_enroll_boost`，可追溯进 score_reason）；step6 视为固定选课（占用其
-  section 时段、不重复入排）；
-- 若某门预选课即便 +20% 加权后优先级仍很低（低于方案已选最低分），输出
-  pre_enroll_advice 建议 drop，**须提前告知学生风险**：学校一般不建议 drop
-  预选课，坚持 drop 需申请 waiver，且可能影响下学期预选资格。
+  **注意 SIS 页面 term 为会话默认学期**——若与目标学期不符，预选课不视为
+  目标学期固定选课（ustplan 会 WARN，P2 需核对）。
+- step1 不重复推荐（计入已确定）；step5 评分按 `pre_enroll_boost` 加权
+  （config → scoring，默认 +40%，可追溯进 score_reason）；step6 视为固定选课
+  （占用其 section 时段、不重复入排）。
+- 若预选课即便加权后优先级仍很低（低于方案已选最低分），输出
+  pre_enroll_advice 建议 drop；**必修预选课（major_required，如 FYP）不提示
+  drop**。须提前告知学生风险：学校一般不建议 drop 预选课，坚持 drop 需申请
+  waiver，且可能影响下学期预选资格。
 
 ## 一年制课程概念（固定认知）
 
-描述含跨两学期语义的课程（"extended over two regular terms" / "one year
-long" / "lasts for one year" / "fall and spring" 等）是**全年课程**：schedule
-的 units 是全年总学分，每学期注册 = units/2（如 PHYS 4291：全年 6 → 每学期 3）。
-遇到用户说明某课"每学期 X 学分"而课程数据为全年总量时，按全年语义核实描述
-（`rank/year_courses.py --session <S>` 可检测候选）并写入
-`database/course_notes/{SUBJ}.json` 的 `tags: ["year_long"]`，planner 自动折算；
-**禁止直接修改抓取产物**（如 courses_*.json 的 units）。
+- 描述含跨两学期语义（"extended over two regular terms" / "one year long" /
+  "lasts for one year" / "fall and spring" 等）的课程是**全年课程**：schedule
+  units 为全年总学分，每学期注册 = units/2（如 PHYS 4291：全年 6 → 每学期 3）。
+- 检测：`rank/year_courses.py --session <S>`；确认后写入
+  `database/course_notes/{SUBJ}.json` 的 `tags: ["year_long"]`，planner 自动折算
+  （`--credits-override` 手动覆盖优先）。
+- 用户口头说明"每学期 X 学分"而课程数据为全年总量时，按全年语义核实后落盘；
+  **禁止直接修改抓取产物**（如 courses_*.json 的 units）。

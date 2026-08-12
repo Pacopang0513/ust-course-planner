@@ -604,8 +604,8 @@ def main():
     cur_file = cur_dir / f"{first_major}.json"
     if not cur_file.exists():
         sys.exit(f"错误: 本地 curriculum 缺失 {cur_file}"
-                 f"（可跑 scripts/prog_crs/build.py --year {admission_year}，"
-                 f"或旧年份走 AR 回退 scripts/rank/ar_to_unmet.py）")
+                 f"（先跑 scripts/prog_crs/build.py --year {admission_year} 重建；"
+                 f"2022-23 及更早 prog-crs 已下线无法重建，AR 回退仅人工工具）")
     prog = load_json(cur_file)
 
     # 副修（minor）：P1 显式收集（数组，[]=没有，可多个）。此处仅校验 curriculum
@@ -763,7 +763,7 @@ def main():
         for c in pre_ar:
             done.add(norm_code(c))
 
-    # 预选课记录（Step 5 评分 +20% 与 drop 建议的数据来源）：带 bucket 归属
+    # 预选课记录（Step 5 按 pre_enroll_boost 加权与 drop 建议的数据来源）：带 bucket 归属
     # （课程在校 curriculum/CC 池内 → 记其 bucket_id/category；否则记空桶）。
     # 预选课仍视为已确定（已计入 done，不重复推荐），此处仅登记供评分/报告使用。
     pre_codes_norm = {norm_code(c) for c in pre_ar}
@@ -791,7 +791,7 @@ def main():
                 "bucket_quota": None,
             })
     if pre_enrolled_out:
-        print("预选课（Pre-Enroll，视为已确定；评分 +20%）:")
+        print("预选课（Pre-Enroll，视为已确定；评分按 pre_enroll_boost 加权）:")
         for p in pre_enrolled_out:
             print(f"  - {p['code']:12} bucket={p['bucket_id'] or '—'} "
                   f"({p['category'] or '?'})")

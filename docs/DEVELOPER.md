@@ -19,7 +19,7 @@ python3 scripts/ustplan.py doctor          # 依赖/配置/cookie/database/schem
 
 # 3. 开始新一轮运行（t0 立即后台抓取 WCQ 全量）
 python3 scripts/ustplan.py start
-# 之后按确认点 P1→P5 逐项与 AI 确认即可；断点续跑用 `ustplan status / resume`
+# 之后按确认点 P1→P3 逐项与 AI 确认即可；断点续跑用 `ustplan status / resume`
 ```
 
 > Windows：命令统一写 `python3`，Windows 用 `python`（或 `py`）代替。
@@ -36,9 +36,12 @@ python3 scripts/ustplan.py start
 | `ustplan.py plan [--must-take …] [--target N]` | 重排（硬插/备选/学分覆盖，自动记录决策） |
 | `ustplan.py report [--plan plan-N]` | 渲染 final_report.md（机械段落自动填） |
 | `ustplan.py grid [--plan 1] [--html]` | 课程表周历（终端 ASCII / 单文件 HTML 导出） |
-| `ustplan.py decisions set/show` | 用户决策日志（P1-P5 审计） |
+| `ustplan.py decisions set/show` | 用户决策日志（P1-P5 审计；`set` 支持 `--value-file <json>` 读文件，绕开 shell 引号） |
+| `sis/build_profile.py` | Phase 2 画像基架（course_history → profile/passed_courses，机械转换固化） |
+| `rank/cc_status.py` | CC 区域满足性核查（已修/未修 + Broadening 12 学分 4 区域） |
+| `rank/review_scope.py` | Step 4 精读范围（必修全读 + 其余按评论数 TOP N）→ scope + digest |
 
-## 流程与确认点（P1-P5，强制中断）
+## 流程与确认点（P1-P3，question 工具内联提问；P4 并入 P3、P5 弱化为展示）
 
 ```
 t0 start → 后台 wcq 全量抓取（--session latest）
@@ -46,9 +49,8 @@ phase1-input   [P1] 两个登录凭证 + major + track + 目标学期
 phase2-profile [P2] 画像确认 + 未修清单预览（后台 SIS/USTSPACE 并行）
 phase3-course-analysis（step1 未修(bucket化) → step3 过滤 → step4 评论精读
   → step5 bucket 评分 A+B+C+D → step6 课表编排）
-               [P3] 未修清单确认 + 目标学分（一次问清）
-               [P4] 过滤确认（移除/waiver/复核项）
-               [P5] 方案选择
+               [P3] 未修清单确认 + 目标学分 + 过滤结果（一次问清）
+               [P5 弱化] 方案展示（用户要求修改才记录决策并重排）
 phase4-report  最终报告（含选课时间提醒）→ phase4.5-must-take 必选课（可选）
 ```
 
@@ -77,4 +79,6 @@ phase4-report  最终报告（含选课时间提醒）→ phase4.5-must-take 必
 - 架构设计（并行时间线/评分公式/bucket 化/数据源分工）：`docs/ARCHITECTURE.md`
 - 排障（异常矩阵/后台任务表/常见问题）：`docs/RUNBOOK.md`
 - 变更记录：`CHANGELOG.md`
+- 脚本索引（开发调试视角，底层命令）：`scripts/README.md`
+- 流程 skills 索引：`skills/README.md`（各 skill 详见 `skills/*/SKILL.md`）
 - 联网抓取规范：`skills/web-crawl-guide/SKILL.md`

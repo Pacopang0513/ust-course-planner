@@ -156,7 +156,7 @@ def sec_scores(scores: dict) -> str:
             if not c:
                 continue
             comp = c.get("score_components") or {}
-            pre = "（预选课 +20%）" if c.get("pre_enrolled") else ""
+            pre = "（预选课，按 pre_enroll_boost 加权）" if c.get("pre_enrolled") else ""
             lines.append(f"  - {code}{pre}（{c.get('credits')} cr）**{c.get('score', 0):+.2f}**"
                          f"　A={comp.get('a', 0)} B={comp.get('b', 0)} "
                          f"C={comp.get('c', 0)} D={comp.get('d', 0)}"

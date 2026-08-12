@@ -3,17 +3,19 @@
 候选课程过滤 — scripts/rank/filter.py
 =====================================
 Step 3：对照本学年 Class Schedule（data/courses_{session}.json，由
-scripts/wcq/crawler.py 产出）过滤 Top N 候选：
+scripts/wcq/crawler.py 产出）过滤候选：
   1. 今年未开设（不在 schedule）→ 删除
-  2. pre-requisite 未满足（对照 course_catalog + 已修课程）→ 删除
+  2. pre-requisite 未满足（对照 schedule 页内联 PRE-REQUISITE + 已修课程）→ 删除
   3. 仅限特定专业学生（Attributes/Remarks 中 "For ... students only"）→ 提示
 移除总结写入 data/filter_report.json（供 AI 复核后确认）。
 
 用法:
-  python3 scripts/rank/filter.py --candidates data/candidate_rank.json --session <SESSION>
-  python3 scripts/rank/filter.py --candidates data/candidate_rank.json \
-      --session <SESSION> --passed data/passed_courses.json --output data/filter_report.json
+  python3 scripts/rank/filter.py --session <SESSION>   # 默认读 data/unmet_courses.json（step1 产物）
+  python3 scripts/rank/filter.py --session <SESSION> \
+      --passed data/passed_courses.json --output data/filter_report.json
   python3 scripts/rank/filter.py --lookup "PHYS 3152" --session <SESSION>   # 本地查课（不联网）
+
+注：--candidates 参数名沿用旧链，默认已指向 unmet_courses.json（产品化输入）；
 
 本地匹配约定（效率固定，见 step1/step3 skill）：
   - 匹配对象是结构化 JSON（courses_{session}.json / cc_courses_{session}.json），
@@ -320,7 +322,8 @@ def prereq_met(attr_text: str, passed: set, passed_grades: dict = None) -> tuple
 
 
 def _resolve_catalog(args) -> Path:
-    """course-catalog 目录：默认取 database/course_catalog/ 下最新入学年份目录"""
+    """course-catalog 目录：默认取 database/course_catalog/ 下最新入学年份目录
+    （按 ARCHITECTURE 设计默认不预构建——目录不存在时返回原路径，兜底查询自然跳过）"""
     if args.course_catalog:
         return Path(args.course_catalog)
     base = ROOT / "database" / "course_catalog"
@@ -415,7 +418,7 @@ def main():
     ap.add_argument("--session", default="", help="学期代码，对应 data/courses_{session}.json")
     ap.add_argument("--passed", default=str(ROOT / "data" / "passed_courses.json"))
     ap.add_argument("--course-catalog", default="",
-                    help="课程目录目录（pre-req 兜底；默认取 database/course_catalog/ 最新年份）")
+                    help="课程目录目录（pre-req 兜底；默认不预构建，存在 database/course_catalog/ 时自动用）")
     ap.add_argument("--output", default=str(ROOT / "data" / "filter_report.json"))
     ap.add_argument("--fill", type=int, default=0,
                     help="kept 不足该数量时自动从候选池补位（默认 0=不补）")

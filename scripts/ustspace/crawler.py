@@ -17,7 +17,6 @@ USTspace 课程评论爬虫 — scripts/ustspace/crawler.py
 
 用法:
   python3 scripts/ustspace/crawler.py --codes "COMP 2011" "MATH 1013"
-  python3 scripts/ustspace/crawler.py --codes-file data/candidate_rank.json
   python3 scripts/ustspace/crawler.py --codes-file data/filter_report.json
   python3 scripts/ustspace/crawler.py --codes "COMP 2011" --cookie-file credentials/cookies.txt
   python3 scripts/ustspace/crawler.py --codes "COMP 2011" --force
@@ -128,7 +127,7 @@ def normalize_code(code: str) -> str:
 def main():
     ap = argparse.ArgumentParser(description="USTspace 课程评论爬虫")
     ap.add_argument("--codes", nargs="+", help="课程代码，如 'COMP 2011'")
-    ap.add_argument("--codes-file", help="JSON 文件（data/candidate_rank.json）中的课程代码列表")
+    ap.add_argument("--codes-file", help="JSON 文件（如 data/filter_report.json）中的课程代码列表")
     ap.add_argument("--cookie-file", default=str(ROOT / "credentials" / "cookies.txt"))
     ap.add_argument("--force", action="store_true", help="强制重新抓取")
     args = ap.parse_args()

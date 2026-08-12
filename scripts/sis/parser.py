@@ -856,7 +856,8 @@ def main():
         with open(OUTPUT_PATH / "sis_pre_enroll.json", "w", encoding="utf-8") as f:
             json.dump(pe_data, f, ensure_ascii=False, indent=2)
         # 同步写 data/pre_enrolled.json（step1/step5/step6 直接消费的运行期产物，
-        # 与 cache 版同构同 schema；预选课视为已确定：不重复推荐、评分 +20%、占用时段）
+        # 与 cache 版同构同 schema；预选课视为已确定：不重复推荐、评分按
+        # pre_enroll_boost 加权、占用时段）
         data_dir = ROOT / "data"
         data_dir.mkdir(parents=True, exist_ok=True)
         with open(data_dir / "pre_enrolled.json", "w", encoding="utf-8") as f:

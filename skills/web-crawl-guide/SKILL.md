@@ -87,7 +87,7 @@ buckets.py 据此归档：基础层 → cc_required，其余 → cc_elective，�
 ### 2c. Pre-Enroll（学校预选课，HKUST 定制 Enrollment Summary）
 
 **用途**：Phase 2 获取学校为学生预选的课程（Confirmed/Pending），Step 1 排除推荐、
-Step 5 评分 +20%（pre_enroll_boost）、Step 6 占用其 section 时段 + drop 建议。
+Step 5 评分按 pre_enroll_boost 加权（默认 +40%）、Step 6 占用其 section 时段 + drop 建议。
 
 | 项 | 值 |
 |---|---|
@@ -132,7 +132,13 @@ Step 5 评分 +20%（pre_enroll_boost）、Step 6 占用其 section 时段 + dro
 | 缓存 | `cache/ustspace/raw/{CODE}.json`（完整 API JSON） |
 | 产物 | `data/ustspace_reviews.json`（紧凑：ratings、heat_top5、instructor_top5、instructor_stats、instructor_recent、review_count） |
 | 脚本 | `scripts/ustspace/crawler.py --codes "COMP 2011" --cookie-file credentials/cookies.txt`（`--codes-file data/filter_report.json` 批量） |
-| 注意 | 2000+ 级课程评论需 contributor 等级；数据仅供教学分析，抓取限速（并发 ≤ 4）；**`{"error":true}` = 该课无评论数据（正常，非失败）**，记入 failed[] 继续 |
+| 注意 | 2000+ 级课程评论需 contributor 等级；数据仅供教学分析，抓取限速（并发 ≤ 4）；**`{"error":true}` = 该课无评论数据（正常，非失败）**，记入 failed[] 继续；**AI 禁止直接 webfetch ust.space 页面**（需登录返回空壳）——统一走 crawler.py |
+
+## 3.5 本地查课（勿重复构建）
+
+- 课程是否开设 / pre-req / EXCLUSION / 时间槽：`python3 scripts/rank/filter.py --lookup "COMP 4471" --session <S>`
+  （本地读 courses_{session}.json，O(1)，不联网）
+- 课程代码存疑时**先 `--lookup` 确认课号是否存在**，再决定是否抓取/排课
 
 ## 4. prog-crs 预构建（公开，无需 cookie）
 
@@ -144,7 +150,7 @@ Class Schedule（wcq）页内联 PRE-REQUISITE 为准；需要单课详情时按
 | 项 | 值 |
 |---|---|
 | 根 URL | `https://prog-crs.hkust.edu.hk/ugprog/{year}/`（year=入学年份；**索引取 `/ugprog/{year}/`，勿用主 `/ugprog`**——主索引只列当前年份） |
-| 年份可用性 | 2023-24 起公开；2022-23 及更早为 archive 已下线（401）→ 走 SIS AR 回退（ar_to_unmet.py） |
+| 年份可用性 | 2023-24 起公开且本地已预构建；2022-23 及更早为 archive 已下线（401）→ 无法重建，`ar_to_unmet.py` 可从 SIS AR 生成基架（**人工工具，不接入 step 合约链**） |
 | PDF 提取 | 专业页内 "Major Requirements" 链接 → 下载 PDF → `pdftotext -layout` |
 | 课程详情（按需） | `https://prog-crs.hkust.edu.hk/ugcourse/{year}/{SUBJ}/` |
 | 缓存 | `cache/prog-crs/raw/{year}/` |

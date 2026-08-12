@@ -32,7 +32,7 @@
     "min_reviews_for_score": 5,
     "weight_penalty_per_missing": 0.2,
     "level_bonus": { "1": 5, "2": 3, "3": 1 },
-    "pre_enroll_boost": 0.2
+    "pre_enroll_boost": 0.4
   },
   "jobs": {
     "wcq_full": { "timeout_minutes": 25 },

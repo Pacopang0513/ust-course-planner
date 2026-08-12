@@ -12,7 +12,7 @@
   python3 scripts/report/stats.py --scores-top 15 # 指定最终排名条数（默认 15）
 
 读取文件（均可覆盖）:
-  --unmet data/unmet_courses.json --candidates data/candidate_rank.json
+  --unmet data/unmet_courses.json
   --filter data/filter_report.json --reviews data/ustspace_reviews.json
   --summary data/review_summary.json --scores data/course_scores.json
   --plans output/timetable_plan.json
@@ -54,17 +54,6 @@ def stats_unmet(d: dict) -> str:
         lines.append("  major 明细:")
         for x in major:
             lines.append(f"    {x['category']:15} {x['code']:12} {x['name']} ({x['credits']} cr)")
-    return "\n".join(lines)
-
-
-def stats_candidates(d: dict) -> str:
-    c = Counter(x["category"] for x in d["courses"])
-    lines = [
-        f"候选排名（top_n={d.get('top_n')}，总候选 {d.get('total_candidates')}，"
-        f"保送后保留 {len(d['courses'])}）",
-        f"  分类: " + ", ".join(f"{k}={v}" for k, v in sorted(c.items())),
-        f"  候补池 truncated: {len(d.get('truncated', []))} 门",
-    ]
     return "\n".join(lines)
 
 
@@ -141,20 +130,18 @@ def stats_plans(d: dict) -> str:
 def main():
     ap = argparse.ArgumentParser(description="运行时产物统计汇总")
     ap.add_argument("--unmet", default=str(ROOT / "data" / "unmet_courses.json"))
-    ap.add_argument("--candidates", default=str(ROOT / "data" / "candidate_rank.json"))
     ap.add_argument("--filter", default=str(ROOT / "data" / "filter_report.json"))
     ap.add_argument("--reviews", default=str(ROOT / "data" / "ustspace_reviews.json"))
     ap.add_argument("--summary", default=str(ROOT / "data" / "review_summary.json"))
     ap.add_argument("--scores", default=str(ROOT / "data" / "course_scores.json"))
     ap.add_argument("--plans", default=str(ROOT / "output" / "timetable_plan.json"))
     ap.add_argument("--scores-top", type=int, default=15)
-    ap.add_argument("--only", choices=["unmet", "candidates", "filter", "reviews",
+    ap.add_argument("--only", choices=["unmet", "filter", "reviews",
                                        "summary", "scores", "plans"])
     args = ap.parse_args()
 
     sections = [
         ("unmet", "未修课程", stats_unmet, args.unmet),
-        ("candidates", "候选排名", stats_candidates, args.candidates),
         ("filter", "过滤报告", stats_filter, args.filter),
         ("reviews", "评论抓取", stats_reviews, args.reviews),
         ("summary", "口碑摘要", stats_summary, args.summary),

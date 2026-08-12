@@ -111,7 +111,7 @@ STEPS = {
     },
     "step5": {
         "phase": PHASE3,
-        "title": "Bucket 评分合成（A+B+C+D，预选课 +20%）",
+        "title": "Bucket 评分合成（A+B+C+D，预选课按 pre_enroll_boost 加权）",
         "inputs": [("data/filter_report.json", "filter_report"),
                    ("data/ustspace_reviews.json", "ustspace_reviews")],
         "optional": [("data/review_summary.json", "review_summary"),
@@ -288,7 +288,10 @@ def step_precheck(ctx, step: str, force: bool = False) -> list:
     if force:
         return errs
     cp = ctx["checkpoint"] or load_checkpoint()
-    if cp.get("current") != spec["phase"]:
+    # step6（planner 重排）在 phase4.5-must-take 阶段同样允许执行：
+    # must-take 硬插/重排发生在报告之后，无需 reopen phase3
+    allowed_extra = (step == "step6" and cp.get("current") == "phase4.5-must-take")
+    if cp.get("current") != spec["phase"] and not allowed_extra:
         errs.append(f"{step} 要求当前阶段为 {spec['phase']}（当前 "
                     f"current={cp.get('current')}）；先 ustplan phase begin "
                     f"{spec['phase']}")

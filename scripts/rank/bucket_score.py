@@ -14,7 +14,7 @@ data/course_scores.json（含 score_components 可追溯）。
   data/review_summary.json   Step 4 AI 精读（D 组件 d_rating，可选）
   data/courses_{session}.json 本学期 schedule（本学期任课教授名单）
   data/unmet_courses.json    桶元数据（quota/label）+ pre_enrolled[]（预选课清单）
-  data/pre_enrolled.json     （存在性门控）SIS 预选课 → 评分 +20%（pre_enroll_boost）
+  data/pre_enrolled.json     （存在性门控）SIS 预选课 → 评分按 pre_enroll_boost 加权
 
 用法:
   python3 scripts/rank/bucket_score.py --session <SESSION>
@@ -129,7 +129,7 @@ def score_one(e: dict, ctx: dict) -> dict:
         parts.append(f"低阶必修 +{pct}% → +{bonus_pts}")
     score = round(total + bonus_pts, 2)
 
-    # 预选课：评分后 ×(1+boost)（学校预选课往往比普通候选更重要，+20% 默认）
+    # 预选课：评分后 ×(1+boost)（学校预选课多为必修/必读，默认 +40%）
     boost_pts = 0.0
     if e.get("pre_enrolled") and boost:
         boost_pts = apply_pre_enroll_boost(score, boost)
@@ -169,7 +169,7 @@ def main():
     ap.add_argument("--summary", default=str(ROOT / "data" / "review_summary.json"))
     ap.add_argument("--unmet", default=str(ROOT / "data" / "unmet_courses.json"))
     ap.add_argument("--pre-enrolled", default=str(ROOT / "data" / "pre_enrolled.json"),
-                    help="SIS 预选课文件（存在则评分 +20% 并加入栏位排名）")
+                    help="SIS 预选课文件（存在则评分按 pre_enroll_boost 加权并加入栏位排名）")
     ap.add_argument("--session", default="")
     ap.add_argument("--output", default=str(ROOT / "data" / "course_scores.json"))
     ap.add_argument("--config", default=None, help="配置文件（默认 config/ustplan.json）")
@@ -216,8 +216,9 @@ def main():
         scored.append(item)
         by_bucket.setdefault(item["bucket_id"], []).append(item)
 
-    # 预选课：学校预选课程（confirmed/pending）参与所在栏位排名，评分 +20%
-    # （pre_enroll_boost，config → scoring）。优先级仍低 → 方案建议 drop（step6）。
+    # 预选课：学校预选课程（confirmed/pending）参与所在栏位排名，评分按
+    # pre_enroll_boost 加权（config → scoring，默认 +40%）。优先级仍低 → 方案建议
+    # drop（step6；必修预选课除外）。
     pre_scored = 0
     for e in pre_list:
         e = dict(e)
@@ -247,7 +248,7 @@ def main():
             "category": items[0]["category"],
             "quota": meta.get("quota", items[0].get("bucket_quota") or 1),
             "note": meta.get("note", "") or
-            ("学校预选课（Pre-Enroll），评分 +20% 加权" if bid == "pre_enrolled" else ""),
+            ("学校预选课（Pre-Enroll），评分按 pre_enroll_boost 加权" if bid == "pre_enrolled" else ""),
             "top_codes": [i["code"] for i in items[:top_n]],
         })
 

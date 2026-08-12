@@ -56,7 +56,7 @@ D = 本学期任课教授最近 5 条评论 AI 精读（0~25，来自 review_sum
 
 major_required 低阶加分：level_bonus 按课号千位（1xxx +5% / 2xxx +3% / 3xxx +1%）
     （对当前总分，负分不乘）
-预选课加分：pre_enroll_boost（默认 0.2）= 上述总分 ×20%（负分不乘）
+预选课加分：pre_enroll_boost（默认 0.4）= 上述总分 ×40%（负分不乘）
 ```
 
 纯函数实现 `scripts/rank/scoring.py`（可单测）；`bucket_score.py` 只做编排。
@@ -87,8 +87,9 @@ bucket 归属，视为已确定不重复推荐）；step5 评分 ×（1+pre_enro
   （无需联网）；不符/缺失时联网抓 prog-crs 比对（`scripts/prog_crs/README.md`）
 - 入学年份硬规则：curriculum / Common Core 框架（4Y/CC22/CC25/CC26）/
   历史 CC 区域表全部按 `profile.admission_year` 决定（buckets.py 缺失即报错）
-- AR 回退：2022-23 及更早 prog-crs 下线 → SIS Academic Requirements 作权威
-  （`ar_to_unmet.py` 生成未修基架，复杂语义 AI 精读补全）
+- AR 回退：2022-23 及更早 prog-crs 下线 → `ar_to_unmet.py` 从 SIS AR 生成未修基架
+  （**人工工具，不接入 step 合约链**：step1 固定跑 buckets.py 并要求本地
+  curriculum；旧年份无法重建时以 AR 人工核对，不自动推进）
 - **不预构建 course_catalog**：课程详情（pre-req）是动态数据，以运行时
   Class Schedule 页内联 PRE-REQUISITE 为准；单课详情按需
   `course_catalog.py --subject X --year Y` 临时查

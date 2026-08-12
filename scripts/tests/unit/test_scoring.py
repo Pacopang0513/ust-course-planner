@@ -104,15 +104,18 @@ class TestPreEnrollBoost(unittest.TestCase):
     def test_positive_score_boosted(self):
         self.assertAlmostEqual(apply_pre_enroll_boost(80.0, 0.2), 16.0)  # ×20%
 
+    def test_default_boost_0_4(self):
+        self.assertAlmostEqual(apply_pre_enroll_boost(80.0, 0.4), 32.0)  # 默认 +40%
+
     def test_negative_score_not_boosted(self):
-        self.assertEqual(apply_pre_enroll_boost(-10.0, 0.2), 0.0)  # 负分不乘
+        self.assertEqual(apply_pre_enroll_boost(-10.0, 0.4), 0.0)  # 负分不乘
 
     def test_zero_boost_noop(self):
         self.assertEqual(apply_pre_enroll_boost(80.0, 0.0), 0.0)
 
     def test_default_cfg_has_boost(self):
         from rank.scoring import DEFAULT_CFG
-        self.assertEqual(DEFAULT_CFG["pre_enroll_boost"], 0.2)
+        self.assertEqual(DEFAULT_CFG["pre_enroll_boost"], 0.4)
 
 
 if __name__ == "__main__":

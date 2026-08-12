@@ -32,12 +32,13 @@ python3 scripts/ustplan.py grid --plan 1 [--html]         # 周历展示（ASCII
   （course_details.zero_credit=true），不占排课时间；
 - **预选课（Pre-Enroll）固定认知**：预选课视为**已确定**——不重复选入
   （pool 排除 `pre_enrolled: true` 条目）、其 section 时段进入占用槽（选课不得
-  与其冲突）；评分已在 step5 +20% 加权（pre_enroll_boost）；
+  与其冲突）；评分已在 step5 按 pre_enroll_boost 加权（默认 +40%）；
 - TBA 课程计学分占位不排时间；
-- **预选课 drop 建议（pre_enroll_advice[]）**：若某门预选课即便 +20% 加权后
-  评分仍低于本方案全部已选课程的最低分（仅凭分数不会入选 → 优先级低），
-  输出建议 drop，附**提前告知的风险与原因**：学校预选课一般不建议 drop，
-  坚持 drop 需申请 waiver，且可能影响下学期预选资格；此提示同时写入 notes；
+- **预选课 drop 建议（pre_enroll_advice[]）**：若某门预选课即便加权后
+  （pre_enroll_boost）评分仍低于本方案全部已选课程的最低分（仅凭分数不会入选 →
+  优先级低），输出建议 drop，附**提前告知的风险与原因**：学校预选课一般不建议
+  drop，坚持 drop 需申请 waiver，且可能影响下学期预选资格；此提示同时写入 notes；
+  **必修预选课（major_required，如 FYP）不提示 drop**；
 - **方案多样性**：phase2 取课顺序按方案变体轮转（分数/CC 优先/按桶轮转）；
   多套方案课程相同时自动换课（只换非必修非 must-take 的低分课，尊重配额与
   互斥）；无课可换时自动换用不同 section 时段；
@@ -56,13 +57,16 @@ python3 scripts/ustplan.py grid --plan 1 [--html]         # 周历展示（ASCII
 - 读 notes 与 course_details 做合理性检查（换课原因、高分课被排除原因、
   未达目标说明）；需要时 `plan --target/--must-take/--exclude` 重跑。
 
-## 方案展示（P5 弱化，不强制中断）
+## 方案展示（P5 弱化，不单独提问）
 
 - 展示（产品化）：N 套方案（学分/workload/CC-major 配比/课程清单/notes 摘要）
   + 周历（`ustplan grid`，含整天空闲与用餐冲突提示）；pre-req/waiver 提醒
   清单单独呈现；
 - 用户要求修改 → 记录：`ustplan decisions set P5 chosen_plan=plan-N must_take=...`
   （或 exclude/target），重跑后再展示；
+- **P3/展示后改选课（如指定非 TOP 课程）**：直接 `ustplan plan --must-take "CODE"`
+  （phase3 或 phase4.5 均可执行；phase4.5 阶段已放行 step6 前置）→ 重排 → 重新
+  展示 → 确认后再 `ustplan phase done phase3-course-analysis`（勿先 done 再重排）；
 - 用户无异议即视为通过，直接推进：`ustplan phase done phase3-course-analysis`；
 - 用户指定的必选课（"把 X 加进去"）→ 走 phase4.5 流程（must-take-course-insertion）。
 

@@ -17,7 +17,11 @@
 - R4 阶段顺序 — checkpoint 链完整（phase1→phase2→phase3→phase4→phase4.5）；跳阶段负向用例必须失败
 - R5 幂等可续 — 两次运行产物（去时间戳）一致
 - R6 环境隔离 — 运行在临时副本，真实项目不受影响
+
 ## 现有用例
 
-- `demo/` — 模拟 phase1→phase4.5 全流程，写 schema 合规产物；`--tamper` 可演示 R1 失败
-- `rank/` — Step 1→5 数据链（unmet → local 打分 → schedule 过滤 → 评论 → 合成排名）
+- `demo/` — 产品化全流程用例：模拟 phase1→phase4.5，写 schema 合规产物；
+  `--tamper` 可演示 R1 失败
+- `rank/` — 旧打分链数据用例（unmet → local 打分 → filter 过滤 → 评论 → final
+  合成排名）；该链为历史实现，产品化流程（step1/3/4/5/6，见 contracts.py）不消费
+- `unit/` — 单测：评分公式边界 / planner 硬约束 / note_eval / pre-req 解析 / 合约 / 配置
