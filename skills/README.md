@@ -6,7 +6,7 @@ AI 职责 → 确认点 → 交接**。命令一律走 `scripts/ustplan.py`，�
 当前已有（按调用顺序）：
 
 - `harness` 主编排（固定顺序 + 确认点 P1-P3（P4 并入 P3、P5 弱化为展示）+ 后台任务纪律 + 异常矩阵指引）
-- `phase1-input` Phase 1（t0 ustplan start + 后台 wcq；P1 凭证 + major + track + 学期）
+- `phase1-input` Phase 1（先收 P1 凭证方式 + major + track + 学期，令牌预检 OK 后才 ustplan start + 后台 wcq）
 - `phase2-profile` Phase 2（SIS 权威画像 + 后台并行；P2 画像 + 未修预览）
 - `step1-unmet-calculation` Step 1（bucket 化未修；CC 满足性全脚本三层判定；P3 未修 + 学分 + 过滤结果同回合展示）
 - `step3-schedule-filter` Step 3（今年开设过滤；pre-req 只标记 → waiver；过滤结果并入 P3 展示）

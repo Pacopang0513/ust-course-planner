@@ -11,13 +11,17 @@ description: 主编排 skill。固定调用顺序 phase1-input → phase2-profil
 - 内容用简洁中文对话 + 表格呈现；后台脚本与产物用户不可见；
 - 等待期间告知"正在为你分析，稍等"，不静默；
 - **只问 3 次**：① 登录令牌 + major/track；② 画像确认；③ 目标学分。
-  全部用 question 工具内联提问（选项 + 自由回答），同一轮思维流程内完成；
+  全部内联提问，同一轮思维流程内完成；major 等程序字段用 question 工具
+  但**选项只留自由填入一项**（无预设选项，冒充填空）；其余用 question
+  工具（选项 + 自由回答）；
   其余（过滤结果/方案）随以上确认点顺带展示，不再单独提问。
 
 ## 固定调用顺序（R4 checkpoint 链 + 确认点 P1-P3）
 
 ```
-t0  用户首条消息 → ustplan start（manifest 初始化 + 后台 wcq_full 抓取）
+t0  用户首条消息 → 先问 P1（专业字段 + 令牌方式，question 工具内联收集）
+    → 令牌获取并预检（doctor）OK 后 ustplan start（manifest 初始化 + 后台
+    wcq_full 抓取）→ 记录 P1 决策
 phase1-input        → [P1] 两个登录令牌 + major/minor/extended_major（三状态：代码/NA，全必填）+ track + 目标学期
 phase2-profile      → [P2] 画像确认 + 预选课（Pre-Enroll）核对 + 未修清单预览
 phase3-course-analysis（checkpoint 容器）：
@@ -55,9 +59,11 @@ capstone 选择）、grading_prereq（pre-req 成绩要求，filter 解析 + wai
 major_capstone。发现新规则按 AGENTS.md 流程落库，禁止凭常识臆断。
 
 **确认点（P1-P3，内联提问，不截断流程）**：各 skill 的"确认点"小节规定提问
-内容；到达确认点时用 question 工具结构化收集（选项含 NA 与自定义输入，不临场
-组织长文本），opencode UI 在思维过程中暂停展示问题，用户作答后**同一轮对话内
-继续推进**；数据未确认前 `phase done` 校验仍会拦截（无用户响应禁止推进）。
+内容；到达确认点时用 question 工具结构化收集——**major/minor/extended_major/
+track 等程序字段选项只留自由填入一项（无预设选项，冒充填空）**，其余选项含
+NA 与自定义输入，不临场组织长文本，opencode UI 在思维过程中暂停展示问题，
+用户作答后**同一轮对话内继续推进**；数据未确认前 `phase done` 校验仍会
+拦截（无用户响应禁止推进）。
 P4 过滤确认已并入 P3（同回合提问）；
 P5 方案选择弱化为展示——方案生成后直接展示，用户主动要求修改时才记录
 决策并重排。后台任务不阻塞提问：提问前已 start 的任务在用户答复期间运行，
@@ -69,6 +75,9 @@ P5 方案选择弱化为展示——方案生成后直接展示，用户主动�
 
 ## 后台任务纪律（并行时间线）
 
+- **顺序铁律（2026-08 修订）**：先问用户（P1 输入）→ 获取/写入令牌 →
+  `doctor` 预检 OK → 才 `ustplan start`（启动 wcq_full）；**禁止先 start
+  抓取再问用户**；
 - **每次向用户提问前**：`ustplan job start <job-id>` 启动所有依赖就绪、
   未在跑/未完成的任务（已在跑/已完成会拒绝，`--force` 覆盖重跑）；
 - **每次用户回复后**：先 `ustplan job status <job-id>` 检查全部任务，

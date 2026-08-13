@@ -17,7 +17,8 @@ python3 -m pip install -r requirements.txt
 python3 scripts/ustplan.py init
 python3 scripts/ustplan.py doctor          # 依赖/配置/cookie/database/schema 全查
 
-# 3. 开始新一轮运行（t0 立即后台抓取 WCQ 全量）
+# 3. 开始新一轮运行（先收集 P1 输入，令牌预检 OK 后才后台抓取 WCQ 全量）
+#    AI 按 phase1-input 模板收集 P1 → 令牌写入 + doctor 预检 OK → 才执行下面命令
 python3 scripts/ustplan.py start
 # 之后按确认点 P1→P3 逐项与 AI 确认即可；断点续跑用 `ustplan status / resume`
 ```
@@ -45,7 +46,7 @@ python3 scripts/ustplan.py start
 ## 流程与确认点（P1-P3，question 工具内联提问；P4 并入 P3、P5 弱化为展示）
 
 ```
-t0 start → 后台 wcq 全量抓取（--session latest）
+P1 输入收集 → 令牌预检 OK → start → 后台 wcq 全量抓取（--session latest）
 phase1-input   [P1] 两个登录凭证 + major + track + 目标学期
 phase2-profile [P2] 画像确认 + 未修清单预览（后台 SIS/USTSPACE 并行）
 phase3-course-analysis（step1 未修(bucket化，含副修合并) → step3 过滤 → step4 评论精读

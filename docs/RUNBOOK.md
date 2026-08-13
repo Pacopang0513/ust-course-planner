@@ -6,7 +6,7 @@
 
 | job-id | 命令（ustplan job start 自动构建） | 启动时机 | 默认超时 | 产物 |
 |---|---|---|---|---|
-| wcq_full | `wcq/crawler.py --session … [--admission-year …]`（入学年份已知自动注入，顺带抓 CC 池） | t0（start 即启动） | 25 分钟 | data/courses_{s}.json + cc_courses_{s}.json |
+| wcq_full | `wcq/crawler.py --session … [--admission-year …]`（入学年份已知自动注入，顺带抓 CC 池） | P1 输入收集 + 令牌预检（doctor）OK 后（start 即启动） | 25 分钟 | data/courses_{s}.json + cc_courses_{s}.json |
 | buckets_pre | `rank/buckets.py --profile … --track …` | major+track 给出后 | 5 分钟 | data/unmet_courses.json（基架） |
 | sis_fetch | `sis/parser.py --fetch` | cookie 到位后 | 10 分钟 | cache/sis/*.json |
 | ustspace_pre | `ustspace/crawler.py --codes-file filter_report.json` | P2 提问前 | 15 分钟 | data/ustspace_reviews.json |

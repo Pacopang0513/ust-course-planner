@@ -25,14 +25,17 @@
 **立即**按以下固定流程执行，不等待用户明确说"开始"：
 
 1. 加载 `harness` skill（主编排）并按其固定调用顺序执行；
-2. t0 立即运行 `python3 scripts/ustplan.py start`（manifest 初始化 + 后台
-   wcq_full 全量抓取；若已 start 则跳过）；
-3. 按 phase1-input skill 的产品化模板收集输入。
+2. 先按 phase1-input skill 的产品化模板**收集 P1 输入**（专业字段 + 登录
+   令牌/获取方式），不等待用户明确说"开始"；
+3. 用户作答、令牌预检（doctor）OK 后，才运行 `python3 scripts/ustplan.py
+   start`（manifest 初始化 + 后台 wcq_full 全量抓取；若已 start 则跳过），
+   再记录 P1 决策推进。
 
 ## 完整工作流（固定调用顺序）
 
 ```
-t0  用户首条消息 → ustplan start（manifest 初始化 + 后台 wcq_full 抓取）
+t0  用户首条消息 → 先收集 P1 输入（专业字段 + 令牌方式）→ 令牌预检 OK 后
+    ustplan start（manifest 初始化 + 后台 wcq_full 抓取）
 phase1-input        → [P1] 两个登录令牌 + major + track + 目标学期（track 必填）
 phase2-profile      → [P2] 画像确认 + 未修清单预览
 phase3-course-analysis（checkpoint 容器，顺序不可调换）：

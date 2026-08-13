@@ -21,7 +21,7 @@ description: 联网抓取规范（固定流程）。AI 需要联网获取 Class 
 | 项 | 值 |
 |---|---|
 | URL 模板 | `https://w5.ab.ust.hk/wcq/cgi-bin/{session}/`（session 如 `2610` = 2026-27 Fall；`26`=学年 `10`=Fall） |
-| **session 自动检测** | `--session latest`：抓 `https://w5.ab.ust.hk/wcq/cgi-bin/` 索引页，正则 `cgi-bin/(\d{4})/` 取**数字最大** = 最近学期（harness t0 默认使用） |
+| **session 自动检测** | `--session latest`：抓 `https://w5.ab.ust.hk/wcq/cgi-bin/` 索引页，正则 `cgi-bin/(\d{4})/` 取**数字最大** = 最近学期（harness start 默认使用） |
 | 索引页 | 同上，含全部 subject 链接 `href="/wcq/cgi-bin/{session}/subject/{SUBJ}"` |
 | subject 页 | `https://w5.ab.ust.hk/wcq/cgi-bin/{session}/subject/{SUBJ}`（如 `/subject/COMP`） |
 | 方法 | GET，无 cookie，UA: `Mozilla/5.0 (course-arranger build script)` |
