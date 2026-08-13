@@ -53,8 +53,15 @@ import note_eval  # noqa: E402  （Note 表达式解析/求值：AND/方括号/a
 RE_VALID_CODE = re.compile(r"^[A-Z]{2,4}\s+\d{4}[A-Z]?$")
 # 'Any N of' / 'Any N courses of'（2026-08 修复：'Any 3 courses of' 此前不匹配 → quota=1）
 RE_ANY_N = re.compile(r"any\s+(\d+)\s+(?:courses?\s+)?of", re.I)
-# 描述性级别池：'MATH 2000-level or above Electives' → subject+最低千位
+# 描述性级别池：'MATH 2000-level or above' → subject+最低千位
 RE_LEVEL_POOL = re.compile(r"([A-Z]{3,4})\s+(\d)000[- ]level or above", re.I)
+# 描述性级别范围（minor 常见措辞）：'courses at 1000- and 2000- level' /
+# 'at 3000- level or above' / 'at 4000-level or above'（后者含 'or above' 语义）
+RE_LEVEL_AT = re.compile(
+    r"at\s+(\d{4})\s*-\s*(?:and\s+)?(\d{4})?\s*-?\s*level(?:\s+or\s+above)?", re.I)
+# 排除段：'except courses coded from 1000 to 1600' / 'courses coded from 1000 to 1600'
+RE_LEVEL_EXCLUDE = re.compile(
+    r"(?:except\s+)?courses?\s+coded\s+from\s+(\d{4})\s+to\s+(\d{4})", re.I)
 CC_REQUIRED_MARKERS = ("(HAIC)", "(HMW)", "(E-Comm)", "(C-Comm)", "(CTDL)")
 CC_UXOP_MARKERS = ("UxOP", "UROP", "UTOP", "UPOP", "UCOP")
 COURSE_NOTES_DIR = ROOT / "database" / "course_notes"
@@ -166,6 +173,42 @@ def _group_quota(note: str) -> int:
         return int(m.group(1))
     m = re.search(r"(\d+)\s+courses?\s+from\s+(?:the\s+)?", note or "", re.I)
     return int(m.group(1)) if m else 1
+
+
+def _level_pool_spec(note: str, fallback_subject: str = "") -> tuple:
+    """note 中描述性级别池规格 → (subject, ranges, excludes)。
+    ranges: [(lo, hi)]（hi=None 不限上界）；excludes: [(lo, hi)]。
+    级别带语义：'at 1000- and 2000- level' = 1000 与 2000 两个 level 带
+    （1000-2999），'at 3000- level or above' = 3000+，'courses coded from
+    1000 to 1600' = 数字区间（排除段）。
+    支持措辞（2026-08 实测 MINOR-MATH 等描述性 minor 池）：
+      'MATH 3000-level or above'（旧 RE_LEVEL_POOL 风格）
+      'Mathematics courses at 1000- and 2000- level (except courses coded from 1000 to 1600)'
+      'Mathematics courses at 3000- level or above'
+    无匹配返回 ("", [], [])。"""
+    note = note or ""
+    subj, ranges = fallback_subject or "", []
+    m = RE_LEVEL_POOL.search(note)
+    if m:
+        subj = m.group(1).upper()
+        ranges.append((int(m.group(2)) * 1000, None))
+    for am in RE_LEVEL_AT.finditer(note):
+        lo = int(am.group(1))
+        hi = None
+        if am.group(2):
+            hi = int(am.group(2)) + 999  # level 带：'1000- and 2000- level' → 1000-2999
+        elif not am.group(0).strip().endswith("or above"):
+            hi = lo + 999                # 单带：'at 2000- level' → 2000-2999
+        if (lo, hi) not in ranges:
+            ranges.append((lo, hi))
+        if not subj:
+            sm = re.search(r"([A-Z]{3,4})\s+(?:courses?|Mathematics|Physics|Computer|"
+                           r"Engineering|Science|Business|Economics)[a-z]*\s+at\s+"
+                           r"\d{4}", note)
+            if sm:
+                subj = sm.group(1).upper()
+    excludes = [(int(x), int(y)) for x, y in RE_LEVEL_EXCLUDE.findall(note)]
+    return subj, ranges, excludes
 
 
 RE_NOTE_CODE = re.compile(
@@ -336,20 +379,26 @@ def filter_blocks(prog: dict, track: str) -> list:
 
 
 def major_buckets(blocks: list, track: str = "", prefix: str = "major",
-                  sched_idx: dict = None) -> tuple:
+                  sched_idx: dict = None, cat_required: str = "major_required",
+                  cat_elective: str = "major_elective",
+                  credit_quota: bool = False) -> tuple:
     """curriculum 块/节/组 → 未修 courses（bucket 化）。
     返回 (courses, buckets_meta)。track 用于解析 note 中的 'can only use X' 限制；
-    prefix 区分来源（major=主修 / ext=扩展主修 / add{CODE}=第二主修 / school=学院），
-    避免 bucket_id 冲突；sched_idx（本学年课表 {code: course}）用于描述性级别池
-    （'MATH 2000-level or above'）从真实课表生成候选。"""
+    prefix 区分来源（major=主修 / ext=扩展主修 / add{CODE}=第二主修 / school=学院
+    / min=副修），避免 bucket_id 冲突；sched_idx（本学年课表 {code: course}）用于
+    描述性级别池（'MATH 2000-level or above' / 'courses at 1000- and 2000- level'）
+    从真实课表生成候选。
+    cat_required/cat_elective：类别名映射（副修用 minor_required/minor_elective）；
+    credit_quota：pool 无数量短语时按 note credits/3 推导配额（副修池如
+    MINOR-MATH 的 18 学分描述）。"""
     courses, buckets = [], []
     seq = 0
     required_codes = set()  # 必修已占课码（级别池生成时排除，防必修课混入选修池）
     for block in blocks:
         for section in block.get("sections", []):
             stype = section.get("type", "other")
-            category = ("major_required" if stype in ("pre_major", "fundamental", "required")
-                        else "major_elective")
+            category = (cat_required if stype in ("pre_major", "fundamental", "required")
+                        else cat_elective)
             # 预扫描：同 section 同 subject 的嵌套级别池（'MATH 2000-level or above' +
             # 'MATH 3000-level ...'）→ 只处理最低 level 池（候选最全），其余跳过
             # （2026-08 修复：多级别池互相抢占候选导致后池被抢空 + 独立配额超算）
@@ -398,6 +447,40 @@ def major_buckets(blocks: list, track: str = "", prefix: str = "major",
                     if group_courses:
                         print(f"  ~ 级别池 {lsubj} {lmin}000-level or above: "
                               f"从本学年课表生成 {len(group_courses)} 门候选")
+                # 描述性级别范围池（minor 常见，2026-08）：'Mathematics courses at
+                # 1000- and 2000- level (except courses coded from 1000 to 1600)' +
+                # 'at 3000- level or above' → 从课表生成候选（subject + 级别范围过滤，
+                # 排除 except 段；排除已被必修占用的课码）
+                elif group.get("kind") == "pool" and not group_courses and sched_idx:
+                    lsubj2, ranges, excludes = _level_pool_spec(
+                        group_note, group.get("subject", ""))
+                    if ranges:
+                        group_courses = []
+                        for code, sc in sorted(sched_idx.items()):
+                            csubj, _, cnum = code.partition(" ")
+                            if lsubj2 and csubj.upper() != lsubj2.upper():
+                                continue
+                            nm = re.match(r"(\d{4})", str(cnum or ""))
+                            if not nm:
+                                continue
+                            level = int(nm.group(1))
+                            if not any(lo <= level <= (hi or 9999)
+                                       for lo, hi in ranges):
+                                continue
+                            if any(xlo <= level <= xhi for xlo, xhi in excludes):
+                                continue
+                            if norm_code(code) in required_codes:
+                                continue
+                            group_courses.append({
+                                "code": code, "name": sc.get("title", ""),
+                                "credits": sc.get("units"), "area": ""})
+                        if group_courses:
+                            range_txt = ", ".join(
+                                f"{lo}-{hi if hi is not None else '9999'}"
+                                for lo, hi in ranges)
+                            print(f"  ~ 级别范围池 ({lsubj2 or '?'} {range_txt}"
+                                  + (f" 排除 {excludes}" if excludes else "")
+                                  + f"): 从本学年课表生成 {len(group_courses)} 门候选")
                 # 池 note 中引用但未列出的课程码（如 OR 列表折行）补入
                 elif group.get("kind") == "pool" and group.get("note"):
                     for extra in _note_courses(group.get("note")):
@@ -459,6 +542,14 @@ def major_buckets(blocks: list, track: str = "", prefix: str = "major",
                     bid = f"{prefix}-{stype}-pool-{seq}"
                     seq += 1
                     quota = _group_quota(note)
+                    # 副修池常见纯学分描述（'Mathematics Electives ... 18 credits'）：
+                    # 无数量短语时按 credits/3 推导配额（每门约 3 学分）
+                    if quota == 1 and credit_quota and group.get("credits"):
+                        cm = re.match(r"(\d+(?:\.\d+)?)", str(group.get("credits")))
+                        if cm and float(cm.group(1)) >= 3:
+                            quota = max(1, round(float(cm.group(1)) / 3))
+                            print(f"  ~ 副修池 {block.get('name', '')}/{section.get('name', '')}: "
+                                  f"按学分推导配额 {group.get('credits')} 学分 → {quota} 门")
                     # pool label：单课程池直接用课号；多课程池 subject 需与
                     # 池内课程前缀匹配才用（ext 选修池 subject 可能是 SHSS 等
                     # 旧元数据，与内容不符 → 用 section 名）
@@ -568,6 +659,40 @@ def add_prereq_references(courses: list, passed: set, sched_idx: dict) -> list:
     return courses + refs
 
 
+def bucket_credit_sum(courses: list, buckets: list,
+                      mode: str = "median") -> tuple:
+    """未修学分统计（按 bucket 配额聚合）→ (unmet_credits, unknown_count)。
+    公式：bucket_credits = quota × 桶内课程学分中位数（mode='min' 为保守下限）；
+    学分缺失课程按桶计数计入 unknown_count。pre-req 参考课不参与。"""
+    if mode not in ("median", "min"):
+        mode = "median"
+
+    def _rep_credit(vals: list):
+        vals = sorted(v for v in vals if isinstance(v, (int, float)) and v > 0)
+        if not vals:
+            return None
+        if mode == "min":
+            return vals[0]
+        n = len(vals)
+        return vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
+
+    by_bucket = {}
+    for c in courses:
+        if c.get("prereq_reference"):
+            continue
+        by_bucket.setdefault(c.get("bucket_id"), []).append(c)
+    quota = {b.get("bucket_id"): b.get("quota", 1) for b in buckets}
+    total, unknown = 0.0, 0
+    for bid, items in by_bucket.items():
+        q = max(1, int(quota.get(bid, 1) or 1))
+        rep = _rep_credit([c.get("credits") for c in items])
+        if rep is not None:
+            total += q * float(rep)
+        else:
+            unknown += len(items)
+    return round(total, 1), unknown
+
+
 def main():
     ap = argparse.ArgumentParser(description="未修清单生成（bucket 化，Step 1）")
     ap.add_argument("--profile", default=str(ROOT / "data" / "profile.json"))
@@ -608,21 +733,6 @@ def main():
                  f"2022-23 及更早 prog-crs 已下线无法重建，AR 回退仅人工工具）")
     prog = load_json(cur_file)
 
-    # 副修（minor）：P1 显式收集（数组，[]=没有，可多个）。此处仅校验 curriculum
-    # 存在并提示（记录用途）；合并 minor 必修桶为二期增强。
-    minors = ((profile.get("programs") or {}).get("minor") or [])
-    if isinstance(minors, str):
-        minors = [minors]
-    minors = [m.strip().upper() for m in minors if m and str(m).strip().upper() != "NA"]
-    for m in minors:
-        mfile = cur_dir / f"{m}.json"
-        if not mfile.exists():
-            print(f"提示: 副修 {m} 的本地 curriculum 缺失 {mfile}"
-                  f"（可跑 scripts/prog_crs/build.py --year {admission_year}；"
-                  f"副修暂不参与排课，仅记录）")
-        else:
-            print(f"副修 {m}: curriculum 已就绪（暂不合并排课，二期增强）")
-
     # SIS AR 产物（CC 区域判定 + 扩展主修过滤的权威来源）
     ar = None
     ar_path = Path(args.ar) if args.ar else \
@@ -642,6 +752,38 @@ def main():
     else:
         print(f"提示: 未找到 {sched_path}（级别选修池无法从课表生成，pre-req 补录跳过）")
     courses, buckets = major_buckets(blocks, args.track, sched_idx=sched_idx)
+
+    # 副修（minor）：P1 显式收集（数组，[]=没有，可多个）。合并其要求桶进未修
+    # 清单（category minor_required/minor_elective，prefix min 防 bucket_id 冲突）。
+    # 2026-08 修复：此前按 {m}.json 查文件名（实际是 MINOR-{m}.json）永远报缺失，
+    # 且即使找到也仅打印不合并（"二期增强"未实现）；描述性级别池（如 MINOR-MATH
+    # 的 "courses at 1000- and 2000- level"）此前无候选生成。
+    minors = ((profile.get("programs") or {}).get("minor") or [])
+    if isinstance(minors, str):
+        minors = [minors]
+    minors = [m.strip().upper() for m in minors if m and str(m).strip().upper() != "NA"]
+    for m in minors:
+        mfile = cur_dir / f"MINOR-{m}.json"
+        if not mfile.exists():
+            print(f"提示: 副修 {m} 的本地 curriculum 缺失 {mfile}"
+                  f"（可跑 scripts/prog_crs/build.py --year {admission_year}；"
+                  f"副修要求不纳入未修清单）")
+            continue
+        mprog = load_json(mfile)
+        mc, mbk = major_buckets(mprog.get("requirements", []), "",
+                                prefix=f"min", sched_idx=sched_idx,
+                                cat_required="minor_required",
+                                cat_elective="minor_elective",
+                                credit_quota=True)
+        if mc:
+            courses.extend(mc)
+            buckets.extend(mbk)
+            print(f"副修 {m}: 合并 {len(mc)} 门（{len(mbk)} 个 bucket；"
+                  f"category=minor_required/minor_elective；学分可与主修重复计数，"
+                  f"以 AR 学位审计为准）")
+        else:
+            print(f"副修 {m}: curriculum 已加载，但无可生成候选"
+                  f"（级别范围无课表支撑或要求已由其他栏位覆盖）")
 
     # 学院 School Requirement（SREQ-{SCHOOL}.json，如 SREQ-SENG）：学校级要求
     # （如 SENG 入门课 + TC I）并入清单。若课程已存在于专业课程（如 COMP 的
@@ -877,22 +1019,18 @@ def main():
         if note_eval.complex_note(note):
             b["note_semantics"] = note_eval.shape(note_eval.parse(note))
 
-    # 未修学分统计（P3 目标学分建议参考）：未修课程学分总和 + 剩余学期估算
-    # （4 年制 8 学期；按年级 + 目标学期 Fall/Spring 推算，含当前学期）。
-    # 学分缺失的课程（prog-crs 未标学分）单独计数，不参与平均估算。
-    def _credit_sum(items):
-        total, unknown = 0.0, 0
-        for c in items:
-            if c.get("prereq_reference"):
-                continue
-            v = c.get("credits")
-            if isinstance(v, (int, float)) and v > 0:
-                total += float(v)
-            else:
-                unknown += 1
-        return total, unknown
+    # 未修学分统计（P3 目标学分建议参考）：按 bucket 配额聚合（修复 2026-08：
+    # 此前逐课程累加，pool 桶 100 门候选全加 → 3 学分选修桶误算 300）。
+    # 公式：bucket_credits = quota × 桶内课程学分中位数（config →
+    # defaults.unmet_credit_mode: median，可切 min 保守）；学分缺失课程按桶计数，
+    # 计入 unmet_credits_unknown_count（不参与估算）。
+    cfg_credits = load_config().get("defaults", {})
+    credit_mode = cfg_credits.get("unmet_credit_mode", "median")
+    if credit_mode not in ("median", "min"):
+        print(f"提示: defaults.unmet_credit_mode 非法值 {credit_mode!r}，回退 median")
+        credit_mode = "median"
 
-    unmet_credits, unknown_count = _credit_sum(courses)
+    unmet_credits, unknown_count = bucket_credit_sum(courses, buckets, credit_mode)
     semesters_left = estimate_semesters_left(profile.get("year_of_study"), args.session)
     per_sem = round(unmet_credits / semesters_left, 1) if semesters_left else None
     # 毕业总学分（4 年制默认 120；config → defaults.graduation_credits 可调，

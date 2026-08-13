@@ -423,20 +423,12 @@ def parse_academic_requirements(html: str) -> dict:
     }
 
 
-# ── 文件加载器 ────────────────────────────────────────
+# ── 文件加载器（统一走 scripts/credentials.py，2026-08 收敛三处重复实现）──
 
 def load_cookies_from_file(path: str) -> dict:
-    """从 cookie 文件加载 cookie 字典（兼容 UTF-8 BOM，Windows 记事本产物）"""
-    cookies = {}
-    with open(path, "r", encoding="utf-8-sig", errors="ignore") as f:
-        for line in f:
-            line = line.strip().lstrip("\ufeff")
-            if not line or line.startswith("#"):
-                continue
-            if "=" in line:
-                key, value = line.split("=", 1)
-                cookies[key.strip()] = value.strip()
-    return cookies
+    """从 cookie 文件加载 cookie 字典（统一实现，兼容 UTF-8 BOM）"""
+    from credentials import load_cookies
+    return load_cookies(Path(path))
 
 
 # ── 入学年份推断 ──────────────────────────────────────────

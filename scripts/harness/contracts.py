@@ -58,6 +58,11 @@ JOBS = {
         "title": "USTspace 评论抓取",
         "outputs": [("data/ustspace_reviews.json", "ustspace_reviews")],
     },
+    "wcq_history": {
+        "title": "历史学期课表抓取（前两学期，候选 subject）",
+        "outputs": [("data/courses_{prev1}.json", "courses"),
+                    ("data/courses_{prev2}.json", "courses")],
+    },
 }
 
 STEPS = {

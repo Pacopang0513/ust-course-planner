@@ -14,12 +14,12 @@
     "unmet_credits": {
       "type": "number",
       "minimum": 0,
-      "description": "未修课程学分总和（不含 pre-req 参考课；学分缺失的课不计入）"
+      "description": "未修学分估算（按 bucket 配额聚合：quota × 桶内学分中位数，config → defaults.unmet_credit_mode 可切 min；不含 pre-req 参考课；学分缺失的桶不计入）"
     },
     "unmet_credits_unknown_count": {
       "type": "integer",
       "minimum": 0,
-      "description": "学分缺失（未标学分）的未修课程数"
+      "description": "学分缺失（未标学分）的未修课程数（按桶计数）"
     },
     "estimated_semesters_left": {
       "type": "integer",
@@ -39,7 +39,7 @@
         "properties": {
           "bucket_id": { "type": "string", "examples": ["major-required-0", "cc-47"] },
           "label": { "type": "string", "description": "如 'Common Core (A)' / 课程 code / pool subject" },
-          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"] },
+          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "minor_required", "minor_elective"] },
           "quota": { "type": "integer", "minimum": 1, "description": "该栏位需选的课程数（默认 1）" },
           "note": { "type": "string", "description": "requirement Note 原文" },
           "note_semantics": { "type": "string", "description": "note_eval 解析出的 Note 表达式形状（复杂 Note 如 FYP 组才有；AI 复核用，禁止手写求值器）" }
@@ -55,11 +55,8 @@
           "code": { "type": "string", "examples": ["COMP 2011"] },
           "name": { "type": "string" },
           "credits": { "type": ["number", "null"], "minimum": 0 },
-          "category": {
-            "type": "string",
-            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective"]
-          },
-          "bucket_id": { "type": "string", "description": "所属栏位（必修一门一桶 / 选修一 pool 一桶 / CC 一区域一桶）" },
+          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "minor_required", "minor_elective"] },
+          "bucket_id": { "type": "string", "description": "所属栏位（必修一门一桶 / 选修一 pool 一桶 / CC 一区域一桶 / 副修一池一桶）" },
           "bucket_quota": { "type": "integer", "minimum": 1 },
           "prereq_reference": { "type": "boolean", "default": false, "description": "pre-req 引用补录（仅参考，不评分不排课）" },
           "source_groups": {
@@ -93,7 +90,7 @@
           "credits": { "type": ["number", "null"], "minimum": 0 },
           "category": {
             "type": "string",
-            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", ""]
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "minor_required", "minor_elective", ""]
           },
           "bucket_id": { "type": "string", "description": "所属栏位（curriculum/CC 池内才有；否则空=自由选修）" },
           "bucket_quota": { "type": ["integer", "null"], "minimum": 1 }

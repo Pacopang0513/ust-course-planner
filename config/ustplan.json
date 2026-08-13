@@ -8,7 +8,8 @@
     "top_per_bucket": 3,
     "credits_min": 12,
     "credits_max": 18,
-    "candidate_pool": 50
+    "candidate_pool": 50,
+    "unmet_credit_mode": "median"
   },
   "planner": {
     "prefer_day_off": true,
@@ -34,11 +35,19 @@
     "level_bonus": { "1": 5, "2": 3, "3": 1 },
     "pre_enroll_boost": 0.4
   },
+  "history": {
+    "threshold": 0.5,
+    "penalty_pct": 10
+  },
   "jobs": {
     "wcq_full": { "timeout_minutes": 25 },
     "buckets_pre": { "timeout_minutes": 5 },
     "sis_fetch": { "timeout_minutes": 10 },
-    "ustspace_pre": { "timeout_minutes": 15 }
+    "ustspace_pre": { "timeout_minutes": 15 },
+    "wcq_history": { "timeout_minutes": 15 }
+  },
+  "credentials": {
+    "ttl_hours": 12
   },
   "semesters": { "Fall": 10, "Winter": 20, "Spring": 30, "Summer": 40 }
 }

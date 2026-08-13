@@ -34,7 +34,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from harness import contracts, decisions, manifest  # noqa: E402
 from harness.config import load as load_config  # noqa: E402
-from harness.config import semester_of_session  # noqa: E402
+from harness.config import previous_sessions, semester_of_session  # noqa: E402
 
 PY = sys.executable
 JOBS_PY = ROOT / "scripts" / "harness" / "jobs.py"
@@ -50,6 +50,27 @@ def _run(args: list, cwd=ROOT, capture=True):
     return subprocess.run([PY, *args], cwd=cwd, capture_output=capture,
                           env=UTF8_ENV, text=True, encoding="utf-8",
                           errors="replace")
+
+
+def _history_subjects_file(ctx: dict) -> Path:
+    """step5 产物 course_scores.json 的候选课程 → subject 名单
+    （data/history_subjects.json，wcq_history job 的 --subjects-file 输入）。"""
+    p = Path(str(ctx["root"])) / "data" / "history_subjects.json"
+    subjects = set()
+    scores_path = Path(str(ctx["root"])) / "data" / "course_scores.json"
+    if scores_path.exists():
+        try:
+            scores = json.loads(scores_path.read_text(encoding="utf-8"))
+            for c in list(scores.get("courses", [])) + \
+                    list(scores.get("ranked_out", [])):
+                code = str(c.get("code", "")).split()
+                if code and code[0].isalpha():
+                    subjects.add(code[0].upper())
+        except (OSError, json.JSONDecodeError):
+            pass
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(sorted(subjects), ensure_ascii=False), encoding="utf-8")
+    return p
 
 
 def _job_default_cmd(ctx, job_id: str) -> list:
@@ -68,6 +89,9 @@ def _job_default_cmd(ctx, job_id: str) -> list:
         "ustspace_pre": [str(ROOT / "scripts" / "ustspace" / "crawler.py"),
                          "--codes-file", str(ROOT / "data" / "filter_report.json"),
                          "--cookie-file", str(ROOT / "credentials" / "cookies.txt")],
+        "wcq_history": [str(ROOT / "scripts" / "wcq" / "history_fetch.py"),
+                        "--session", c["session"] or "latest",
+                        "--subjects-file", str(_history_subjects_file(ctx))],
     }
     cmd = cmds.get(job_id) or []
     # sis_fetch：已知真实 session 时注入（Pre-Enroll 页 STRM 必须为有效 term code，
@@ -123,6 +147,16 @@ def _pre_enroll_boost_pct() -> str:
 
 def _adopt_job_outputs(ctx, job_id: str):
     """job 完成后收录产物到 manifest；wcq_full 顺带解析 session"""
+    # wcq_history：产物按前两个学期展开（data/courses_{prev}.json）
+    if job_id == "wcq_history":
+        prevs = previous_sessions(ctx.get("session") or "")
+        for p in prevs:
+            ok, errs = manifest.record_artifact(ctx["root"],
+                                                f"data/courses_{p}.json",
+                                                "courses", job_id)
+            if not ok:
+                print(f"  ! 产物 data/courses_{p}.json 未收录: {'; '.join(errs)}")
+        return
     spec = contracts.JOBS.get(job_id, {})
     for rel_tpl, schema in spec.get("outputs", []):
         rel = rel_tpl.format(session=ctx["session"] or "")
@@ -261,6 +295,16 @@ def cmd_status(args):
             print(f"  {rel:44} ✓{ver:4} by {info.get('produced_by', '?')}")
 
     print(f"\n决策: {decisions.track()}")
+    # 凭据有效期提醒（TTL，config → credentials.ttl_hours；警告级别）
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from credentials import ttl_warning
+        warn = ttl_warning(float((cfg.get("credentials") or {}).get("ttl_hours", 12)))
+        if warn:
+            print(f"  ~ {warn}（运行 `python3 scripts/cookies_setup.py --check` 查看，"
+                  f"`--listen` 一键刷新）")
+    except Exception:  # noqa: BLE001  TTL 提醒为附加信息，失败不影响
+        pass
     print("\n下一步: " + resume_text(m, cp, d, cfg))
 
 

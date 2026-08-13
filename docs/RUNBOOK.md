@@ -40,7 +40,7 @@
 | 选课写入（enrollment-commit）学期未开放 | `cart.py check` 探测 + 产品化告知等待学校通知（26-27 Fall 通常 8 月中下旬）；不重复尝试、不猜测 |
 | 选课清单含 TBA 课程 | 不提交，等 Class Schedule 公布时间后重跑 `cart.py build` 补选 |
 | 缺少 admlu_session（admlu65 会话） | 引导用户浏览器登录后复制会话 cookie 写入 cookies.txt（AI 不接触明文）；提交始终由用户人工执行 |
-| SIS cookie 失效 / 抓取失败 | 固定模板报错（产品化），引导重跑 `cookies_setup.py` 交互粘贴失效键，回退等待；不猜测数据；major+track 路径继续并行 |
+| SIS cookie 失效 / 抓取失败 | 固定模板报错（产品化），引导 `cookies_setup.py --listen` 一键刷新（或交互粘贴失效键），回退等待；不猜测数据；major+track 路径继续并行 |
 | USTspace cookie 失效 | 同上引导；失败课程标记 failed[]（无评论 API 也返回 error 属正常），继续其余 |
 | 后台任务 failed(timeout/crashed) | 告知"数据抓取中断，正在重试"，`ustplan job start <id> --force` 重跑；仍失败按上两行；不携带坏数据前进 |
 | **后台任务 WinError 193（Windows）** | `.py` 不能直接作为可执行文件启动；jobs.py 已自动加解释器前缀（见 `_run_job`），若再出现检查 cmd[0] 是否为 `.py` 且经 `ustplan job start` 启动（勿绕过 jobs.py 直接 Popen） |
@@ -78,7 +78,10 @@
 `ustplan job clean <id>` 清理（自动击杀残留进程）。
 
 **Q: cookie 过期？**
-`python3 scripts/cookies_setup.py` 交互重贴；`--check` 只显示状态不显示值。
+推荐一键刷新：`python3 scripts/cookies_setup.py --listen`（终端显示端口与 6 位
+连接码 → 浏览器扩展按钮发送 → 自动验证）；或交互重贴（`cookies_setup.py`
+无参数粘贴）；`--check` 只显示状态不显示值，并提示凭据年龄（TTL，config →
+`credentials.ttl_hours` 默认 12 小时）。
 
 **Q: `decisions set` 传 JSON 在 PowerShell 总被引号吃掉？**
 用 `--value-file`：把 JSON 存成文件（如 `tmp_p1.json`），
@@ -95,8 +98,18 @@ SIS 页面 term 由会话决定（URL STRM 不切学期），非选课季可能�
 
 ## 4. 凭据与安全约定
 
-- cookie 文件 `credentials/cookies.txt`：**不要手建**，用 `cookies_setup.py` 交互引导
-  （粘贴 → 自动写文件 → 自动验证）；SIS 用 `PS_TOKEN` 行，USTspace 用 `ustspace_session` 行
+- cookie 文件 `credentials/cookies.txt`：**不要手建**，用 `cookies_setup.py` 获取
+  （三种方式等价）：
+  1. **一键获取（推荐）**：`cookies_setup.py --listen` 启动本机接收端（仅
+     `127.0.0.1` 回环 + 一次性 6 位连接码）→ 浏览器扩展 `extensions/ust-cookie`
+     （unpacked 加载，可读 **httpOnly 的 PS_TOKEN**）→ 在 SIS / ust.space 登录页
+     各点一次按钮 → 自动写入并验证；
+  2. 交互引导：粘贴（bookmarklet JSON 或 key=value）→ 自动写文件 → 自动验证；
+  3. F12 → Network → 复制 Cookie 请求头 → 粘贴（bookmarklet 读不到 httpOnly 时）。
+- **凭据有效期（TTL）**：`credentials/meta.json` 记录获取时间；超过
+  `config → credentials.ttl_hours`（默认 12h）后 `--check` / `doctor` /
+  `ustplan status` 提示"建议刷新"（SIS 会话通常数小时过期，提前提醒避免
+  流程中途失败；警告级别，不阻断）。
 - **AI 收到用户令牌的固定流程**（见 phase1-input skill）：直接以 `PS_TOKEN=…` /
   `ustspace_session=…` 两行写入 cookies.txt（URL 编码如 `%3D` 先还原）→ `ustplan doctor`
   验证 → 不读文档/代码探索；AI 上下文不得出现 cookie 值

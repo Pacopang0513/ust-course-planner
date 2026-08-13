@@ -371,13 +371,24 @@ async def run(args) -> int:
         cc_dest.write_text(json.dumps(cc_out, ensure_ascii=False, indent=2),
                            encoding="utf-8")
         print(f"CC 课程汇总 {sum(a['course_count'] for a in cc_all)} 门 -> {cc_dest}")
-        if not args.subject:
+        if not args.subject and not args.subjects_file:
             return 0
 
     if args.subject:
         targets = [s for s in subjects if s == args.subject.upper()]
         if not targets:
             sys.exit(f"错误: subject {args.subject} 不在列表中")
+    elif args.subjects_file:
+        p = Path(args.subjects_file)
+        if not p.exists():
+            sys.exit(f"错误: subjects 文件不存在 {p}")
+        want = [s.strip().upper() for s in
+                json.loads(p.read_text(encoding="utf-8")) if str(s).strip()]
+        targets = [s for s in subjects if s in want]
+        print(f"按 subjects 文件抓取 {len(targets)}/{len(subjects)} 个 subject"
+              f"（未命中: {', '.join(sorted(set(want) - set(targets))) or '无'}）")
+        if not targets:
+            sys.exit(f"错误: subjects 文件 {p} 中的 subject 均不在列表")
     elif args.list_only:
         print("\n".join(subjects) if subjects else "(无 subject)")
         return 0
@@ -493,6 +504,9 @@ def main():
     ap = argparse.ArgumentParser(description="WCQ Class Schedule 爬虫（async）")
     ap.add_argument("--session", default="latest", help="学期代码（2610 = 2026-27 Fall）")
     ap.add_argument("--subject", help="只抓单个 subject")
+    ap.add_argument("--subjects-file",
+                    help="按 JSON 数组文件抓取多个 subject（每行/每元素一个 subject 名；"
+                         "配合历史学期对照 job 使用，如 data/history_subjects.json）")
     ap.add_argument("--cc-group", choices=["4Y", "CC22", "CC25", "CC26"],
                     help="抓指定入学年份组的 Common Core 课程（不抓 subject）")
     ap.add_argument("--admission-year", help="入学年份（如 2023-24）→ 自动选 CC 组")

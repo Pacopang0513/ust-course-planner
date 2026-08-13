@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ustplan.local/schemas/history_compare.schema.json",
+  "version": 1,
+  "title": "历史学期教授对照 history_compare（step5.5 产物，step6 可选输入）",
+  "type": "object",
+  "required": ["session", "checked", "matched", "advice"],
+  "properties": {
+    "generated_at": { "type": "string" },
+    "session": { "type": "string", "examples": ["2610"] },
+    "threshold": { "type": "number", "description": "触发降权的往期-本学期教授评分差阈值（config → history.threshold）" },
+    "previous_sessions": {
+      "type": "array",
+      "description": "对照的前两个学期（目标学期往前倒序）",
+      "items": { "type": "string" }
+    },
+    "data_sources": {
+      "type": "object",
+      "description": "各前序学期课表数据来源（缺失 = 该学期未抓取，对应学期跳过）"
+    },
+    "checked": { "type": "integer", "minimum": 0, "description": "参与对照的候选课程数（TOP3 + ranked_out）" },
+    "matched": { "type": "integer", "minimum": 0, "description": "触发降权的课程数" },
+    "advice": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": { "type": "string", "examples": ["COMP 2011"] },
+          "offered_prev": { "type": "boolean", "description": "前两学期至少一学期开设" },
+          "prev_sessions": {
+            "type": "array",
+            "description": "开设且可对照的往期学期明细",
+            "items": {
+              "type": "object",
+              "properties": {
+                "session": { "type": "string" },
+                "label": { "type": "string", "examples": ["2025-26 Spring"] },
+                "professors": { "type": "array", "items": { "type": "string" } },
+                "rating": { "type": ["number", "null"], "description": "该学期授课教授在这门课的评分" },
+                "review_count": { "type": "integer" }
+              }
+            }
+          },
+          "this_year": {
+            "type": "object",
+            "description": "本学期授课教授在这门课的评分（无评论数据则整个条目不输出）",
+            "properties": {
+              "session": { "type": "string" },
+              "label": { "type": "string" },
+              "professors": { "type": "array", "items": { "type": "string" } },
+              "rating": { "type": ["number", "null"] },
+              "review_count": { "type": "integer" }
+            }
+          },
+          "best_prev": {
+            "type": "object",
+            "description": "往期评分最高的学期",
+            "properties": {
+              "session": { "type": "string" },
+              "label": { "type": "string" },
+              "professors": { "type": "array", "items": { "type": "string" } },
+              "rating": { "type": ["number", "null"] },
+              "review_count": { "type": "integer" }
+            }
+          },
+          "delta": { "type": ["number", "null"], "description": "best_prev.rating − this_year.rating" },
+          "penalty_pct": {
+            "type": ["number", "null"],
+            "description": "本年度课程权重降低百分比（delta ≥ threshold 才设置，step6 按 score×(1−penalty_pct) 排序）"
+          },
+          "next_occurrence": {
+            "type": "object",
+            "description": "best_prev 学期同序下一轮（四学期循环），如 2530 Spring → 2630 Spring",
+            "properties": {
+              "session": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          },
+          "note": { "type": "string", "description": "人类可读的降权/延后建议文案" }
+        }
+      }
+    }
+  }
+}

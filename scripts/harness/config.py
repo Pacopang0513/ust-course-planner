@@ -13,6 +13,7 @@
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -30,6 +31,7 @@ DEFAULTS = {
         "credits_max": 18,
         "candidate_pool": 50,
         "graduation_credits": 120,
+        "unmet_credit_mode": "median",
     },
     "scoring": {
         "baseline": 2.5,
@@ -46,11 +48,19 @@ DEFAULTS = {
         "weight_penalty_per_missing": 0.2,
         "level_bonus": {"1": 5, "2": 3, "3": 1},
     },
+    "history": {
+        "threshold": 0.5,
+        "penalty_pct": 10,
+    },
     "jobs": {
         "wcq_full": {"timeout_minutes": 25},
         "buckets_pre": {"timeout_minutes": 5},
         "sis_fetch": {"timeout_minutes": 10},
         "ustspace_pre": {"timeout_minutes": 15},
+        "wcq_history": {"timeout_minutes": 15},
+    },
+    "credentials": {
+        "ttl_hours": 12,
     },
     "semesters": {"Fall": 10, "Winter": 20, "Spring": 30, "Summer": 40},
 }
@@ -92,6 +102,33 @@ def semester_of_session(session: str, cfg: dict = None) -> str:
         if str(code).zfill(2) == tail:
             return name
     return ""
+
+
+def previous_sessions(session: str, cfg: dict = None, n: int = 2) -> list:
+    """目标 session 的前 N 个学期（日历倒序，返回越早越靠后）。
+    按 4 位学期码（YYSS，SS∈{10,20,30,40}=Fall/Winter/Spring/Summer）回退：
+      Fall   2610 → [2540(Summer), 2530(Spring)]
+      Winter 2620 → [2610(Fall),   2540(Summer)]
+      Spring 2630 → [2620(Winter), 2610(Fall)]
+      Summer 2640 → [2630(Spring), 2620(Winter)]
+    未知/非法 session 返回 []（调用方降级跳过历史对照）。"""
+    s = str(session or "")
+    if not re.fullmatch(r"\d{4}", s):
+        return []
+    sem = (cfg or DEFAULTS).get("semesters") or DEFAULTS["semesters"]
+    codes = sorted(sem.values())
+    tail = int(s[2:])
+    if tail not in codes:
+        return []
+    steps = []
+    yy, tt = int(s[:2]), tail
+    for _ in range(max(1, n)):
+        tt -= 10
+        if tt < codes[0]:
+            tt = codes[-1]
+            yy -= 1
+        steps.append(f"{yy:02d}{tt:02d}")
+    return steps[:n]
 
 
 def validate_schema(cfg: dict, schema_dir=None) -> list:

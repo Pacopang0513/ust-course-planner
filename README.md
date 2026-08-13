@@ -57,13 +57,15 @@
   - 在官网 https://opencode.ai/zh/download 下载Opencode桌面版；
   - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
   - 记得手动选择内置的Deepseek V4 flash模型；
-- 1. **获取登录令牌**：
-  - 在浏览器分别登录SIS教务系统中的Student Center、以及USTSpace；
-  - 按键盘F12，打开"开发者工具"；
-  - 点击顶部栏的"+"，选择"应用程序"（Application）标签；
-  - 左侧栏展开点击"Cookie"；
-  - 找到名称为 `PS_TOKEN`（SIS）及 `ustspace_session`（USTSpace）的登录令牌；
-  - 双击"值"一列，全选复制（Ctrl+C），粘贴给 AI 即可；
+- 1. **提供登录信息（一键方式，推荐）**：
+  - 一次性安装：浏览器打开"扩展管理"（Chrome 输 `chrome://extensions`，Edge 输
+    `edge://extensions`）→ 开启"开发者模式" → "加载已解压的扩展程序" →
+    选择项目内 `extensions/ust-cookie` 文件夹；
+  - 之后每次排课：对 AI 说"帮我排课" → 按提示在浏览器分别登录
+    SIS（ustportal/学号登录）与 ust.space → 各点一下扩展按钮即可，
+    无需复制粘贴任何内容（连接码由 AI 侧自动生成，首次填入扩展一次）。
+  - 备用方式：手动复制两个网站登录后的 Cookie（`PS_TOKEN` / `ustspace_session`）
+    粘贴给 AI 即可；
 - 2. **专业信息**：
   - 你必须向Agent提供你希望就读的major track；
   - 除此之外，若能提供major/extend major/minor等信息，能提高Agent准确性；

@@ -42,14 +42,10 @@ GET_PARAMS = {
 
 
 def load_cookies(path: Path) -> dict:
-    cookies = {}
-    for line in path.read_text(encoding="utf-8", errors="ignore").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        k, v = line.split("=", 1)
-        cookies[k.strip()] = v.strip()
-    return cookies
+    """统一凭据读取（scripts/credentials.py；收敛重复实现，2026-08）"""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from credentials import load_cookies as _load
+    return _load(path)
 
 
 def fetch_csrf(sess: requests.Session, code: str) -> str:

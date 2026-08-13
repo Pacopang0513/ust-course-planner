@@ -165,10 +165,11 @@ def sec_scores(scores: dict) -> str:
 
 
 def _plan_table(p: dict) -> str:
+    minor_txt = f" / 副修 {p.get('minor_credits')}" if p.get("minor_credits") else ""
     lines = [f"- **{p.get('label', p.get('plan_id', ''))}**："
              f"{p.get('total_credits')} cr（{p.get('workload')}）"
-             f"　CC {p.get('cc_credits')} / major {p.get('major_credits')} / "
-             f"选修 {p.get('elective_credits')}"]
+             f"　CC {p.get('cc_credits')} / major {p.get('major_credits')}"
+             f"{minor_txt} / 选修 {p.get('elective_credits')}"]
     free = p.get("free_days") or []
     if free:
         lines.append(f"  - ✓ 整天空闲：{'、'.join(free)} 无课"
