@@ -7,6 +7,7 @@
   "host_permissions": [
     "https://sisprod.psft.ust.hk/*",
     "https://ust.space/*",
+    "https://*.ust.space/*",
     "http://127.0.0.1/*"
   ],
   "action": {

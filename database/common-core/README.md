@@ -21,6 +21,7 @@
 | home area 映射 | SSCI 全部→S；SENG 多数→T；BIEN/CENG/EEEN→S+T；COSC/COMP→T；SBM 多数→SA；GCS→H+SA；QSA→SA；EVMT→SA；ISDN→T |
 | Experiencing | UxOP 四选一（选修 0-3 学分）；UROP 需预备课 + UROP 3200 |
 | 通用 | 课程须在列出的学年内修读才计入 CC；跨区域课只能计入一个区域；计入 School/Major 的课程不可重复计 CC（credit reuse） |
+| **缺口核算（v1/v2）** | CTDL 与 UxOP(Experiencing) 均为选修，未修时缺额由任意区域 CC 课程替代（SIS AR 明文）；口诀"UROP/CTDL + CC 五个类别 = 18 学分"（12 Broadening + 3 CTDL + 3 UxOP）；替代课可搜**已完成区域**（如 S/SA 的第二门），优先按主修相关区域选择（如 PHYS+AI → T/S，grading 优势）→ buckets.py `cc_substitute_quota` + `cc-extra` 桶（配额 = UxOP 未修 1 + CTDL 未修且本年无开课 1；候选 = 全部 CC 池） |
 
 **核查脚本（不用 AI 手写比对）**：`python3 scripts/rank/cc_status.py --passed data/passed_courses.json
 --admission-year <AY> --major <MAJOR>` → 输出各区域已修/未修 + Broadening 12 学分

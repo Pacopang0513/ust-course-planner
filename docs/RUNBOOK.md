@@ -40,8 +40,9 @@
 | 选课写入（enrollment-commit）学期未开放 | `cart.py check` 探测 + 产品化告知等待学校通知（26-27 Fall 通常 8 月中下旬）；不重复尝试、不猜测 |
 | 选课清单含 TBA 课程 | 不提交，等 Class Schedule 公布时间后重跑 `cart.py build` 补选 |
 | 缺少 admlu_session（admlu65 会话） | 引导用户浏览器登录后复制会话 cookie 写入 cookies.txt（AI 不接触明文）；提交始终由用户人工执行 |
-| SIS cookie 失效 / 抓取失败 | 固定模板报错（产品化），引导 `cookies_setup.py --listen` 一键刷新（或交互粘贴失效键），回退等待；不猜测数据；major+track 路径继续并行 |
+| SIS cookie 失效 / 抓取失败 | 固定模板报错（产品化），引导 `cookies_setup.py --listen` 一键刷新（分段式：`--gen-code` 生成连接码 → 连步骤清单告知用户 → 用户确认就绪后 `--listen --code <同一码> --user-ready`；或交互粘贴失效键），回退等待；不猜测数据；major+track 路径继续并行 |
 | USTspace cookie 失效 | 同上引导；失败课程标记 failed[]（无评论 API 也返回 error 属正常），继续其余 |
+| 扩展报"可见 cookie: (空)" / No host permissions | **不是未登录**：即使未登录，ust.space 也会设置 `XSRF-TOKEN`/`ustspace_session` 访客 cookie——报空说明扩展对该域权限未生效（cookies API 对无权限 URL 静默过滤）。处理：`chrome://extensions`（Edge 同）对该扩展点「重新加载」→ 重启浏览器仍不行则检查扩展「网站访问权限」；扩展代码更新后必须重载才生效 |
 | 后台任务 failed(timeout/crashed) | 告知"数据抓取中断，正在重试"，`ustplan job start <id> --force` 重跑；仍失败按上两行；不携带坏数据前进 |
 | **后台任务 WinError 193（Windows）** | `.py` 不能直接作为可执行文件启动；jobs.py 已自动加解释器前缀（见 `_run_job`），若再出现检查 cmd[0] 是否为 `.py` 且经 `ustplan job start` 启动（勿绕过 jobs.py 直接 Popen） |
 | 本地 curriculum 缺失 | 二次匹配（web-crawl-guide §4）；**优先 `prog_crs/build.py --year` 重建**；2022-23 及更早 prog-crs 已下线无法重建 → `ar_to_unmet.py` 生成基架（**人工工具，不接入 step 合约链**——step1 仍要求本地 curriculum，产物仅供人工核对，不得直接推进） |
@@ -78,9 +79,11 @@
 `ustplan job clean <id>` 清理（自动击杀残留进程）。
 
 **Q: cookie 过期？**
-推荐一键刷新：`python3 scripts/cookies_setup.py --listen`（终端显示端口与 6 位
-连接码 → 浏览器扩展按钮发送 → 自动验证）；或交互重贴（`cookies_setup.py`
-无参数粘贴）；`--check` 只显示状态不显示值，并提示凭据年龄（TTL，config →
+推荐一键刷新：AI 先 `python3 scripts/cookies_setup.py --gen-code` 生成 4 位
+连接码，把端口（默认 8765）与连接码告诉用户 → 用户确认就绪后
+`cookies_setup.py --listen --code <连接码> --user-ready --timeout 600` → 浏览器扩展按钮
+发送 → 自动验证）；或交互重贴（`cookies_setup.py` 无参数粘贴）；
+`--check` 只显示状态不显示值，并提示凭据年龄（TTL，config →
 `credentials.ttl_hours` 默认 12 小时）。
 
 **Q: `decisions set` 传 JSON 在 PowerShell 总被引号吃掉？**
@@ -100,10 +103,15 @@ SIS 页面 term 由会话决定（URL STRM 不切学期），非选课季可能�
 
 - cookie 文件 `credentials/cookies.txt`：**不要手建**，用 `cookies_setup.py` 获取
   （三种方式等价）：
-  1. **一键获取（推荐）**：`cookies_setup.py --listen` 启动本机接收端（仅
-     `127.0.0.1` 回环 + 一次性 6 位连接码）→ 浏览器扩展 `extensions/ust-cookie`
-     （unpacked 加载，可读 **httpOnly 的 PS_TOKEN**）→ 在 SIS / ust.space 登录页
-     各点一次按钮 → 自动写入并验证；
+  1. **一键获取（推荐）**：AI 先 `--gen-code` 生成 4 位连接码，把安装/登录
+     步骤清单 + **端口（默认 8765）与连接码** 一起给用户（用户可预填扩展
+     设置）→ **用户确认就绪后** → `cookies_setup.py --listen --code <连接码>
+     --user-ready --timeout 600` 启动本机接收端（仅 `127.0.0.1` 回环 +
+     连接码校验；`--listen --code` 必须带 `--user-ready` 且码为 `--gen-code`
+     刚生成，否则拒绝启动——防止 AI 跳过"先给码+教程、等用户确认"）→
+     在 SIS / ust.space 登录页各点一次按钮 → 自动写入并验证；
+     **必须用户确认后再启动接收端**（用户操作浏览器期间接收端空转会
+     超时，造成双方互相等待；连接码提前固定才能让用户预填）；
   2. 交互引导：粘贴（bookmarklet JSON 或 key=value）→ 自动写文件 → 自动验证；
   3. F12 → Network → 复制 Cookie 请求头 → 粘贴（bookmarklet 读不到 httpOnly 时）。
 - **凭据有效期（TTL）**：`credentials/meta.json` 记录获取时间；超过

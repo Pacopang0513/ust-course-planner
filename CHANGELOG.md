@@ -1,11 +1,82 @@
 # 变更记录（CHANGELOG）
 
+## 2026-08-14（五）— 报告末尾新增"关闭开发者模式"安全提醒 + 环境清理
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **安全提醒固定段落** | 报告模板末尾（选课时间提醒之后）新增固定段落：提醒用户自行关闭浏览器"开发者模式"（扩展已不再需要，预防风险），附 1-2-3 操作步骤（chrome://extensions 关开关 / 可选移除扩展），并说明不影响已生成方案 | templates/reports/final_report.md.tpl |
+| **skill 同步** | phase4-report AI 职责第 3 条：末尾提醒含"开发者模式关闭提醒"（不可删除，用户面输出同样带）；harness 流程行与对照表同步 | skills/phase4-report/SKILL.md, skills/harness/SKILL.md |
+| **环境清理** | 删除测试遗留 `credentials/connect_code.json`、全部 `__pycache__`，恢复无产物状态（data/cache/output 为 gitignore 目录，运行前不存在） | 仓库清理 |
+
+## 2026-08-14（五）— cookies_setup.py 专业重构轮（统一职责、删除冗余）
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **职责分离统一** | 语法层与语义层各管一事：`--listen` 必带 `--code`/`--user-ready` 由解析器强制（usage 错误）；`listen_gate` 只校验"码等于最近一次 `--gen-code` 生成的码"（顺序门禁），删除其重复的 user_ready 检查 | scripts/cookies_setup.py |
+| **指引文案单源** | 分段式流程说明收敛为常量 `SEGMENTED_FLOW`，--gen-code 输出 / 解析器报错 / 门禁报错三处共用，消除三份重复表述 | scripts/cookies_setup.py |
+| **删除冗余** | ①未使用常量 `REQUIRED_KEYS`（credentials.py 已有）删除；②`run_listen` 的 `code` 改为必填参数并删除 None 抛错兜底与 `token` 临时变量（修一处残留 `{token}` 引用）；③`meta_update` 冗余 `Path()` 包装删除 | scripts/cookies_setup.py |
+| **文案订正** | 文档头模式数"七种"→"六种"；run_check 失败提示不再裸写 `--listen`（该形态已被语法层禁用） | scripts/cookies_setup.py |
+| **配套单测** | 删除 listen_gate 的 user_ready 用例（已归解析器），gate 测试与纯函数签名同步；全量 168 例通过 | scripts/tests/unit/test_cookies.py |
+
+## 2026-08-14（五）— 裸 --listen 禁用（根治"未先给码+教程就直接启动接收端"复发）
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **裸 --listen 从语法层删除** | 根因：`--listen` 不带 `--code` 走"独立模式"随机生成新码并打印，完全绕过 `--gen-code` + `--user-ready` 门禁——AI 反复直接启动接收端、用户看不到码、双方互等的 bug 源头。改为**语法层强制**：`--listen` 必须同时带 `--code` 与 `--user-ready`，缺失即解析器 usage 错误（exit 2），运行时不存在裸 listen 分支；`run_listen` 不再生成/兜底连接码（传入 None 直接抛错）；`--code` 必须等于最近一次 `--gen-code` 生成的码且带 `--user-ready` 的校验保留为顺序门禁（先取码 → 告知 → 确认 → 才启动） | scripts/cookies_setup.py |
+| **--gen-code 输出步骤清单** | `--gen-code` 除 4 位码外，一并输出"先告知用户 → 停下等确认 → 才 --listen"的固定步骤提醒，AI 直接转发给用户 | scripts/cookies_setup.py |
+| **配套单测** | 原"无 --code 独立模式不受影响"用例反转为"裸 --listen 解析器拒绝（exit 2）"；新增"有 --code 缺 --user-ready 同样语法拒绝"；--gen-code 输出含步骤清单断言 | scripts/tests/unit/test_cookies.py |
+| **排障文案同步** | 扩展 README"连接码不正确"行：裸 `--listen` 不存在合法调用形态，一律以 AI 告知的码为准 | extensions/ust-cookie/README.md |
+
+历史 CHANGELOG 旧条目（含"无 --code 独立模式不受影响"）如实保留。
+
+## 2026-08-14（五）— 一键扩展流程复查统一轮（消除残存矛盾表述）
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **超时数值统一** | phase1-input 禁启说明原"300s 超时"与命令 `--timeout 600`、脚本默认 120 均不符 → 改 600s | skills/phase1-input/SKILL.md |
+| **扩展弹窗文案** | 标签/校验提示原"连接码（--listen 终端显示）"会误导用户去找 AI 终端；分段式流程中码由 AI 提前生成并直接告知 → 改"连接码（AI 会告诉你 4 位数字，保存一次即可）" | extensions/ust-cookie/popup.html, popup.js |
+| **GUIDE 顺序统一** | 交互引导原"运行 --listen 后用扩展按钮"（先收后发）→ 改为分段式："先告诉用户该怎么做（--gen-code + 步骤清单，扩展预填）→ 等用户备好码确认就绪 → --listen --code <同一码> --user-ready → 用户点按钮获取" | scripts/cookies_setup.py |
+| **简写引导补全门禁** | RUNBOOK 异常矩阵 SIS cookie 失效行、web-crawl-guide TTL 超期引导补分段式（--gen-code → 告知 → --user-ready），与完整版一致 | docs/RUNBOOK.md, skills/web-crawl-guide/SKILL.md |
+| **docstring 用法行** | `--listen` 用法行补 `[--user-ready]` | scripts/cookies_setup.py |
+
+历史 CHANGELOG 旧条目（无 --user-ready 的旧命令、300s 历史描述）如实保留。
+
+## 2026-08-14（五）— 一键扩展门禁加固（根治"AI 跳过教程+连接码直接启动接收端"）
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **脚本硬门禁（防复发核心）** | 原 `--listen --code` 可被 AI 直接启动：不传 `--code` 时随机生成并打印（用户看不到终端），跳过"先给码+教程、等用户确认"也不会报错（静默空转超时）。新增：`--gen-code` 将码写入状态文件 `connect_code.json`（随 cookie 文件目录）；`--listen --code` 必须满足①码等于最近一次 `--gen-code` 生成的码、②显式传 `--user-ready`，否则拒绝启动并输出分段式流程提示。独立交互模式（`--listen` 不带 `--code`）不受影响 | scripts/cookies_setup.py |
+| **skill 矛盾表述清除** | 根因：phase1-input SKILL.md 原句"AI 才运行 `--listen --code <同一连接码>` 给出连接码，再引导用户点按钮"把"给出连接码"接在 `--listen` 之后，读作"先跑接收端再给码"。重写为固定三步：(1) `--gen-code` 取码；(2) 完整步骤清单+端口+**4 位码本体**一次告知用户，停下用 question 问"准备好了？"；(3) 确认后才 `--listen --code <同一码> --user-ready --timeout 600`。另禁止"只说生成一个连接码你点按钮即可"的缩略话术 | skills/phase1-input/SKILL.md, skills/harness/SKILL.md, skills/web-crawl-guide/SKILL.md, docs/RUNBOOK.md, scripts/README.md, extensions/ust-cookie/README.md |
+| **思维自检清单加项** | harness"输出前思维自检"新增"一键扩展门禁"：连接码+端口是否已随清单显式告知（码本体写出来）？用户是否已确认"准备好了"？未确认禁止 `--listen` | skills/harness/SKILL.md |
+| 配套单测 | 新增 10 例（状态文件写读 2 / gate 纯函数 4 / CLI 子进程门禁 4：缺 --user-ready 拒绝、未 --gen-code 拒绝、码不一致拒绝、无 --code 独立模式不受影响）；test_cookies 共 27 例通过，全量 167 例通过 | scripts/tests/unit/test_cookies.py |
+
+## 2026-08-14（五）— 一键扩展连接码提前生成（分段式流程补齐：端口+连接码随步骤清单先给用户）
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **`--gen-code` / `--listen --code`** | 原流程连接码只能在 `--listen` 启动时随机生成，用户无法提前在扩展里预填，导致"AI 启动接收端 → 用户还在装扩展/登录 → 空转超时、双方互等"。新增：`--gen-code` 输出 4 位连接码（AI 提前生成）；`--listen --code NNNN` 固定使用该码（不传则维持随机）；`validate_code` 校验格式。端到端验证：固定码两源 POST 均 200 写盘 | scripts/cookies_setup.py |
+| **分段式流程更新** | AI 流程改为：先 `--gen-code` 拿连接码 → **步骤清单 + 端口（默认 8765）+ 连接码一次告知**（用户可提前装扩展、预填保存、登录两站）→ 停下问"准备好了" → 确认后才 `--listen --code <同一码> --timeout 600`；修复用户不知如何获取扩展/不知端口连接码的问题 | skills/phase1-input/SKILL.md, skills/web-crawl-guide/SKILL.md, skills/harness/SKILL.md, README.md, docs/RUNBOOK.md, extensions/ust-cookie/README.md, scripts/README.md |
+| 配套单测 | `validate_code` 新增 2 例（4 位数字接受 / 空、位数错、非数字、None 拒绝），test_cookies 共 17 例通过 | scripts/tests/unit/test_cookies.py |
+
+## 2026-08-14（五）— 扩展 cookie 读取权限修复（"可见 cookie: (空)"误报）
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **权限缺失误报修复** | 根因：`chrome.cookies.getAll({url})` 在扩展缺少该域 host permission 时**静默返回空数组**，被误报为"未登录"。修复：改为逐键 `cookies.get({url,name})`（权限缺失时明确抛错）+ 发送前 `permissions.contains` 预检 + catch 归一化提示"重载扩展/重启浏览器"；`detectSource` 改精确域名匹配；manifest 补 `https://*.ust.space/*`（覆盖子域）。实测未登录的 ust.space 也会设置 `XSRF-TOKEN`/`ustspace_session` 访客 cookie，"可见 cookie: (空)" 基本可断定是权限未生效 | extensions/ust-cookie/popup.js, manifest.json, README.md（排障表）, docs/RUNBOOK.md（异常矩阵） |
+
+## 2026-08-14（五）— 一键扩展获取改分段式交互 + 连接码 4 位
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **一键扩展改分段式** | 用户选择扩展方式后，AI 先输出安装/登录步骤清单（装扩展 → 登录 SIS → 登录 ust.space）→ 停下用 question 工具等用户确认"装好了" → **确认后才启动 `--listen` 接收端**；修复原流程"AI 直接启动接收端、用户仍在操作浏览器 → 300s 空转超时、双方互相等待"的交互 bug | skills/phase1-input/SKILL.md, skills/web-crawl-guide/SKILL.md, skills/harness/SKILL.md, README.md, docs/RUNBOOK.md |
+| **连接码 6 位 → 4 位** | `make_token()` 改 4 位（`10**4`/`:04d`），扩展端校验 `^\d{4}$`、输入框 maxlength=4，测试与文档同步（test_make_token_four_digits，15 例通过） | scripts/cookies_setup.py, extensions/ust-cookie/popup.js, popup.html, scripts/tests/unit/test_cookies.py, docs/RUNBOOK.md, extensions/ust-cookie/README.md |
+
 ## 2026-08-13（二）— cookie 一键获取 + 凭据有效期（TTL）提醒
 
 | 变更 | 说明 | 文件 |
 |---|---|---|
 | **浏览器扩展一键获取** | 新增 `extensions/ust-cookie/`（Chrome/Edge Manifest V3，unpacked 加载）：`chrome.cookies` 读取当前站点 cookie（**含 httpOnly 的 PS_TOKEN**，bookmarklet 做不到）→ 仅经本机回环 POST 到接收端；cookie 不落扩展存储；只发送当前站点已知键（SIS: PS_TOKEN/JSESSIONID/PS_TOKENEXPIRE；USTspace: ustspace_session） | extensions/ust-cookie/*（新） |
-| **`cookies_setup.py --listen` 接收端** | 绑定 127.0.0.1 + 随机 token（6 位连接码，secrets 生成），收齐 SIS+USTspace 两源或超时自动退出；协议纯函数 `handle_submit_payload`（连接码校验 → 按源过滤已知键 → 写盘 + meta）；错误响应不携带 cookie 值；bookmarklet / F12 粘贴保留为降级通道；`--token-test` 离线自测（用临时文件，不触碰真实凭据） | scripts/cookies_setup.py |
+| **`cookies_setup.py --listen` 接收端** | 绑定 127.0.0.1 + 随机 token（4 位连接码，secrets 生成），收齐 SIS+USTspace 两源或超时自动退出；协议纯函数 `handle_submit_payload`（连接码校验 → 按源过滤已知键 → 写盘 + meta）；错误响应不携带 cookie 值；bookmarklet / F12 粘贴保留为降级通道；`--token-test` 离线自测（用临时文件，不触碰真实凭据） | scripts/cookies_setup.py |
 | **凭据有效期（TTL）提醒** | 新增 `credentials/meta.json`（fetched_at/sources，跟随 cookie 文件目录）；`config → credentials.ttl_hours`（默认 12h，schema 同步）；`--check` / `doctor` / `ustplan status` 输出"凭据已 X 小时，建议刷新"（警告级别不阻断）；失效引导指向 `--listen` | scripts/credentials.py（新）, config/ustplan.json, templates/schemas/config.schema.json, scripts/ustplan.py, harness/doctor.py |
 | **统一凭据模块** | 收敛三处重复 load_cookies（cookies_setup / ustspace crawler / sis parser）→ `scripts/credentials.py`（load/save/filter_known/meta/TTL；utf-8-sig 兼容 BOM；写盘后 icacls 收窄当前用户权限）；接口按可替换存储后端设计（二期 DPAPI 加密插槽） | scripts/credentials.py（新）, scripts/ustspace/crawler.py, scripts/sis/parser.py |
 | 文档同步 | README 使用说明改推荐一键方式；RUNBOOK §2/§4（获取三方式 + TTL）；web-crawl-guide 通用规则；phase1-input skill（P1 收集支持一键/粘贴两种） | README.md, docs/RUNBOOK.md, skills/web-crawl-guide, skills/phase1-input |

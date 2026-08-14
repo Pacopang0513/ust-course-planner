@@ -5,12 +5,24 @@ cookie 获取与预检 — scripts/cookies_setup.py
 解决 credentials/cookies.txt 的获取与有效期问题。约束：AI 不接触 cookie 明文，
 本脚本负责全部用户交互与验证闭环，只向 AI 输出"状态"。
 
-五种模式:
+六种模式:
   python3 scripts/cookies_setup.py --check              # 预检（含有效期 TTL 提醒）
   python3 scripts/cookies_setup.py                      # 交互引导：粘贴 → 写入 → 自动验证
-  python3 scripts/cookies_setup.py --listen [--timeout N]  # 一键获取：本机接收端（浏览器扩展推送）
+  python3 scripts/cookies_setup.py --gen-code           # 生成 4 位连接码 + 步骤清单（供提前告知用户）
+  python3 scripts/cookies_setup.py --listen --code NNNN --user-ready [--timeout N]  # 一键获取：本机接收端（浏览器扩展推送）
   python3 scripts/cookies_setup.py --print-bookmarklet  # 输出书签代码（一键复制当前域 cookie）
   python3 scripts/cookies_setup.py --token-test         # 自测（协议纯函数，无需浏览器）
+
+分段式流程（--listen 唯一合法形态，语法层强制）：
+  1. --gen-code 生成 4 位连接码（自动写入状态文件 connect_code.json）；
+  2. 把端口（默认 8765）+ 连接码 + 步骤清单一起告知用户，停下等用户确认
+     "已装好扩展、端口/连接码已保存、两站已登录"；
+  3. 用户确认后才 --listen --code <同一连接码> --user-ready，引导用户在两站
+     各点一次扩展按钮。连接码提前固定，用户可在扩展里预填保存。
+  --listen 必须同时带 --code 与 --user-ready，缺失即解析器 usage 错误——运行时
+  不存在裸 --listen 分支（run_listen 不生成/兜底连接码），防止 AI 跳过
+  "先给码+教程、等用户确认"直接启动接收端；--code 须等于最近一次 --gen-code
+  生成的码（顺序门禁校验）。
 
 --check 输出每项状态（OK / EXPIRED / MISSING / UNREACHABLE）+ TTL 提醒，
 绝不打印任何 cookie 值；全部 OK 退出 0，否则退出 1。
@@ -47,13 +59,62 @@ SIS_OK_MARKERS = ["icsid", "derived_sss_scl_sss_more_academics", "derived_sstsna
 USTSPACE_URL = "https://ust.space/review/COMP2011"
 CSRF_RE = re.compile(r'<meta name=["\']csrf_token["\'] content=["\']([^"\']*)["\']')
 
-REQUIRED_KEYS = ["PS_TOKEN", "ustspace_session"]
-
 # 一键获取接收端（--listen）
 LISTEN_HOST = "127.0.0.1"
 LISTEN_PORT_DEFAULT = 8765
 LISTEN_PORT_RANGE = 10        # 端口占用时递增尝试
 DEFAULT_TIMEOUT = 120         # 秒；无请求自动退出
+
+# 分段式流程指引（唯一合法形态）：--gen-code 输出、解析器与门禁报错共用同一份。
+SEGMENTED_FLOW = """\
+分段式流程（唯一合法形态）：
+  1) python3 scripts/cookies_setup.py --gen-code
+     生成 4 位连接码（自动写入状态文件 connect_code.json）
+  2) 把端口（默认 8765）+ 连接码 + 步骤清单告知用户，停下等用户确认
+     "已装好扩展、端口/连接码已保存、两站已登录"
+  3) 用户确认后才运行：
+     python3 scripts/cookies_setup.py --listen --code <同一连接码> --user-ready
+"""
+
+# 连接码状态文件（与 cookie 文件同目录）：--gen-code 写入，--listen 顺序门禁校验。
+# 作用：连接码必须由 --gen-code 生成过（AI 手里才有码可提前告知用户）；
+# 语法层（--code/--user-ready 必填）由解析器负责，此处只校验状态语义。
+CONNECT_CODE_STATE_NAME = "connect_code.json"
+
+
+def state_path(path: Path) -> Path:
+    """连接码状态文件：跟随 cookie 文件目录（测试隔离）。"""
+    return Path(path).with_name(CONNECT_CODE_STATE_NAME)
+
+
+def write_code_state(code: str, path: Path) -> None:
+    """--gen-code 写状态：记录最近一次生成码与时间。"""
+    state_path(path).write_text(json.dumps({
+        "code": code,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+    }, ensure_ascii=False), encoding="utf-8")
+
+
+def read_code_state(path: Path) -> dict:
+    """读连接码状态（不存在/损坏 → 空 dict）。"""
+    p = state_path(path)
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return {}
+
+
+def listen_gate(path: Path, code: str) -> tuple:
+    """--listen 顺序门禁（纯函数可单测）→ (ok: bool, message: str)。
+    code 必须等于最近一次 --gen-code 写入的码（AI 手里才有码可提前告知用户）。
+    语法层（--code/--user-ready 必填）由解析器强制，此处只校验状态语义。"""
+    state = read_code_state(path)
+    if not state or state.get("code") != code:
+        return False, (f"错误: 连接码 {code} 与 --gen-code 生成的不一致（或未生成）。\n"
+                       + SEGMENTED_FLOW)
+    return True, ""
 
 
 def check_sis(cookies: dict) -> tuple:
@@ -131,7 +192,8 @@ def run_check(cookies: dict, path: Path = None) -> int:
         print("OK: 凭据就绪，可以开始流程")
         return 0
     print("未全部就绪：运行 `python3 scripts/cookies_setup.py` 交互引导，"
-          "或 `--listen` 一键获取（浏览器扩展按钮），或只重贴失效键。")
+          "或一键扩展获取（浏览器扩展按钮，分段式：先 --gen-code 取码告知、"
+          "用户确认就绪后 --listen --code --user-ready），或只重贴失效键。")
     return 1
 
 
@@ -164,8 +226,13 @@ Cookie 手动复制。
 # ── 一键获取接收端（--listen）─────────────────────────────
 
 def make_token() -> str:
-    """6 位数字连接码（secrets 随机）。"""
-    return f"{secrets.randbelow(10**6):06d}"
+    """4 位数字连接码（secrets 随机）。"""
+    return f"{secrets.randbelow(10**4):04d}"
+
+
+def validate_code(code: str) -> bool:
+    """连接码格式校验（4 位数字，兼容 0000）。"""
+    return bool(re.fullmatch(r"\d{4}", code or ""))
 
 
 def handle_submit_payload(payload: dict, header_token: str,
@@ -185,7 +252,7 @@ def handle_submit_payload(payload: dict, header_token: str,
     existing = load_cookies(path)
     existing.update(cookies)
     save_cookies(existing, path)
-    meta_update(source, Path(path))
+    meta_update(source, path)
     return True, f"{source} 已接收并写入（{len(cookies)} 个键）", cookies
 
 
@@ -231,9 +298,12 @@ class ListenHandler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
 
-def run_listen(cookie_file: Path, timeout: int = DEFAULT_TIMEOUT) -> int:
+def run_listen(cookie_file: Path, code: str,
+               timeout: int = DEFAULT_TIMEOUT) -> int:
     """启动本机接收端：等待浏览器扩展推送 SIS/USTspace cookie。
-    收齐两源或超时自动退出。返回退出码（0=至少收到一个源）。"""
+    收齐两源或超时自动退出。返回退出码（0=至少收到一个源）。
+    code 为必填参数（CLI 语法强制：--listen 必须带 --code）——本函数不生成、
+    不兜底连接码，杜绝"先启动再给码"的错误形态。"""
     port = LISTEN_PORT_DEFAULT
     server = None
     for _ in range(LISTEN_PORT_RANGE):
@@ -246,17 +316,16 @@ def run_listen(cookie_file: Path, timeout: int = DEFAULT_TIMEOUT) -> int:
         print(f"错误: 端口 {LISTEN_PORT_DEFAULT}-{port} 均被占用，"
               f"无法启动接收端（先关闭占用进程）")
         return 1
-    token = make_token()
-    ListenHandler.token = token
+    ListenHandler.token = code
     ListenHandler.cookie_file = str(cookie_file)
     ListenHandler.received = set()
     server.timeout = 1.0
 
     print("== cookie 一键获取（--listen）==", flush=True)
     print(f"本机接收服务: http://{LISTEN_HOST}:{port}（仅本机可访问，{timeout} 秒无请求自动退出）", flush=True)
-    print(f"连接码: {token}", flush=True)
+    print(f"连接码: {code}", flush=True)
     print(f"""
-浏览器扩展（ust-cookie）设置：端口 {port}，连接码 {token}。
+浏览器扩展（ust-cookie）设置：端口 {port}，连接码 {code}。
 然后：
   1. 登录 https://sisprod.psft.ust.hk （含 MFA）→ 点扩展按钮 → 页面显示"已发送"
   2. 登录 https://ust.space → 再点扩展按钮 → 页面显示"已发送"
@@ -288,7 +357,9 @@ def run_listen(cookie_file: Path, timeout: int = DEFAULT_TIMEOUT) -> int:
 GUIDE = """\
 SIS cookie（PS_TOKEN）：
   1. 浏览器打开 https://sisprod.psft.ust.hk 并完成登录（含 MFA）
-  2. 推荐：运行 `--listen` 后用扩展按钮一键获取（可读 httpOnly cookie）
+  2. 推荐：先告诉用户该怎么做（--gen-code 生成连接码 + 步骤清单，扩展里预填
+     保存）→ 等用户备好码、确认就绪后 --listen --code <同一码> --user-ready，
+     用户在浏览器点扩展按钮一键获取（可读 httpOnly cookie）
      或 F12 → Network → 刷新页面 → 点第一个请求 → 复制 Cookie 请求头
 USTspace cookie（ustspace_session）：
   1. 浏览器打开 https://ust.space 并完成登录
@@ -331,8 +402,19 @@ def main():
         pass
     ap = argparse.ArgumentParser(description="cookie 获取与预检（AI 不接触明文）")
     ap.add_argument("--check", action="store_true", help="预检当前凭据有效性（含 TTL 提醒）")
+    ap.add_argument("--gen-code", action="store_true",
+                    help="生成 4 位连接码并输出（自动写入状态文件；"
+                         "--listen --code --user-ready 校验同一码）")
     ap.add_argument("--listen", action="store_true",
-                    help="一键获取：启动本机接收端（浏览器扩展推送，可读 httpOnly）")
+                    help="一键获取：启动本机接收端（浏览器扩展推送，可读 httpOnly）。"
+                         "必须同时带 --code 与 --user-ready，否则解析器直接拒绝"
+                         "（不带 --code 的裸 --listen 不存在合法调用形态）")
+    ap.add_argument("--code", default=None,
+                    help="--listen 必填：4 位连接码，必须等于最近一次 --gen-code "
+                         "生成的码（连接码提前固定，用户可预填保存）")
+    ap.add_argument("--user-ready", action="store_true",
+                    help="--listen 必填：AI 已把端口+连接码随步骤清单告知用户、"
+                         "用户确认'准备好了'后，才允许启动接收端")
     ap.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT,
                     help=f"--listen 等待秒数（默认 {DEFAULT_TIMEOUT}）")
     ap.add_argument("--print-bookmarklet", action="store_true",
@@ -343,6 +425,10 @@ def main():
                     help="cookie 文件路径（默认 credentials/cookies.txt）")
     args = ap.parse_args()
 
+    if args.listen and (args.code is None or not args.user_ready):
+        ap.error("--listen 必须同时带 --code 与 --user-ready"
+                 "（裸 --listen 不存在合法调用形态）:\n" + SEGMENTED_FLOW)
+
     path = Path(args.cookie_file)
 
     if args.token_test:
@@ -351,18 +437,32 @@ def main():
         tmpf = Path(tempfile.mkdtemp(prefix="ust_cred_")) / "cookies.txt"
         ok, msg, _ = handle_submit_payload(
             {"source": "sis", "cookies": {"PS_TOKEN": "x", "junk": "y"}},
-            "000000", "000000", tmpf)
+            "0000", "0000", tmpf)
         print("协议自测:", "PASS" if ok and msg.startswith("sis") else f"FAIL {msg}")
         bad, bmsg, _ = handle_submit_payload(
             {"source": "sis", "cookies": {"PS_TOKEN": "x"}},
-            "wrong", "000000", tmpf)
+            "wrong", "0000", tmpf)
         print("连接码拒收:", "PASS" if not bad else "FAIL")
         return 0 if ok and not bad else 1
     if args.print_bookmarklet:
         print_bookmarklet()
         return 0
+    if args.gen_code:
+        code = make_token()
+        write_code_state(code, path)
+        print(code)
+        print(SEGMENTED_FLOW)
+        return 0
     if args.listen:
-        return run_listen(path, args.timeout)
+        if not validate_code(args.code):
+            print(f"错误: 连接码 {args.code!r} 格式不对，应为 4 位数字"
+                  f"（用 --gen-code 生成）")
+            return 1
+        ok, msg = listen_gate(path, args.code)
+        if not ok:
+            print(msg)
+            return 1
+        return run_listen(path, args.code, args.timeout)
     if args.check:
         return run_check(load_cookies(path), path)
     interactive(path)

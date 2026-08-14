@@ -22,6 +22,11 @@ description: 主编排 skill。固定调用顺序 phase1-input → phase2-profil
 t0  用户首条消息 → 先问 P1（专业字段 + 令牌方式，question 工具内联收集）
     → 令牌获取并预检（doctor）OK 后 ustplan start（manifest 初始化 + 后台
     wcq_full 抓取）→ 记录 P1 决策
+    （一键扩展方式为分段式：AI 先用 --gen-code 生成连接码，把步骤清单 +
+    端口 + 连接码一起给用户，停下等用户确认"准备好了"后再启动
+    --listen --code <同一码> --user-ready——见 phase1-input skill；
+    脚本硬门禁：未带 --user-ready 或码非 --gen-code 生成的会拒绝启动，
+    禁止先启动接收端）
 phase1-input        → [P1] 两个登录令牌 + major/minor/extended_major（三状态：代码/NA，全必填）+ track + 目标学期
 phase2-profile      → [P2] 画像确认 + 预选课（Pre-Enroll）核对 + 未修清单预览
 phase3-course-analysis（checkpoint 容器）：
@@ -31,7 +36,7 @@ phase3-course-analysis（checkpoint 容器）：
   → step6 课表编排（预选课固定/低优先级 drop 建议；历史教授对照降权+延后建议）
   → [P3] 未修清单确认 + 过滤结果展示（waiver/移除）+ 目标学分，一次问清
   → 方案展示（P5 弱化：展示 N 套方案，用户可要求修改，不单独提问）
-phase4-report        → 报告即交付物（含选课时间提醒 + 预选课 drop 建议）
+phase4-report        → 报告即交付物（含选课时间提醒 + 预选课 drop 建议 + 开发者模式关闭提醒）
 phase4.5-must-take   → 必选课询问（可选）
 enrollment-commit    → 选课写入（可选）：方案确认后询问是否写入 admlu65.ust.hk；
                       学期开放检查 → 清单生成（TBA 标注）→ 用户人工提交
@@ -92,6 +97,9 @@ P5 方案选择弱化为展示——方案生成后直接展示，用户主动�
 - **问题匹配**：本次输出对应哪个确认点（P1/P2/P3）？问题用 question 工具
   一次问清、不重复提问、中间状态（step 完成/后台进度）不向用户提问；
 - **任务纪律**：提问前该 start 的任务是否已 start？用户回复后是否先 status 取产物？
+- **一键扩展门禁**（P1 选一键方式时）：4 位连接码与端口是否已随完整步骤清单
+  显式告知用户（码本体写出来）？用户是否已确认"准备好了"？**未确认前禁止
+  运行 `--listen`**（脚本 `--user-ready` 会拒绝启动，但必须在思维层先拦住）；
 - **可追溯**：展示的每个数字/结论是否来自产物字段（score_reason/notes/过滤标记），
   不凭记忆输出；
 - **规则库**：涉及专业/课程/学分的决策是否已过 `database/course_notes/` 特殊规则
@@ -108,7 +116,7 @@ P5 方案选择弱化为展示——方案生成后直接展示，用户主动�
 | phase1-input | phase1-input | P1 | manifest/decisions（P1） |
 | phase2-profile | phase2-profile | P2 | profile/passed_courses/pre_enrolled |
 | phase3-course-analysis | step1→step3→step4→step5→step6 + job wcq_history | P3（含过滤展示）+ 方案展示 | unmet（含 pre_enrolled）/filter/review_summary/course_scores（预选课按 boost 加权）/history_compare（可选）/timetable_plan（含 pre_enroll_advice + defer_advice） |
-| phase4-report | phase4-report + enrollment-dates-reminder | — | final_report.md |
+| phase4-report | phase4-report + enrollment-dates-reminder | — | final_report.md（含选课时间 + 开发者模式关闭提醒） |
 | phase4.5-must-take | must-take-course-insertion | 用户指定课程 | 调整后 timetable_plan（可选） |
 | enrollment-commit | enrollment-commit（可选） | 用户同意写入 | enroll_cart.json + 人工提交流程 |
 

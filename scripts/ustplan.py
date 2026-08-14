@@ -523,6 +523,15 @@ def cmd_grid(args):
     sys.exit(r.returncode)
 
 
+def cmd_coverage(args):
+    """五类别覆盖率硬检查（P3 确认前必跑；step1 后置自动执行）"""
+    ctx = contracts.ctx_for()
+    session = args.session or ctx["session"]
+    r = _run([str(ROOT / "scripts" / "harness" / "coverage_check.py"),
+              "--session", session], capture=False)
+    sys.exit(r.returncode)
+
+
 def cmd_decisions(args):
     if args.action == "set":
         if args.value_file:
@@ -671,6 +680,10 @@ def main():
     p.add_argument("--value-file", default=None,
                    help="从 JSON 文件读取值（绕过 shell 引号；如 --value-file tmp_p1.json）")
     p.set_defaults(fn=cmd_decisions)
+
+    p = sub.add_parser("coverage", help="五类别覆盖率硬检查（P3 前必跑）")
+    p.add_argument("--session", default=None, help="目标学期（默认 config.session）")
+    p.set_defaults(fn=cmd_coverage)
 
     args = ap.parse_args()
     try:

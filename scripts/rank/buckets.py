@@ -583,6 +583,33 @@ def major_buckets(blocks: list, track: str = "", prefix: str = "major",
     return courses, buckets
 
 
+CC_REQUIRED_MARKERS = ("HAIC", "HMW", "E-Comm", "C-Comm", "CTDL")
+CC_UXOP_MARKERS = ("UxOP", "UROP", "UTOP", "UPOP", "UCOP")
+
+
+def cc_substitute_quota(done: set, code_area: dict, cc_pool: dict,
+                        uxop_area_codes: tuple = ("29", "30", "31", "32"),
+                        ctdl_area_code: str = "20") -> tuple:
+    """CC 替代学分核算（CC22/v1~v2 规则，2026-08 用户规则落库）→ (quota, 说明)。
+    30 学分制中 CTDL（3 学分）与 UxOP/Experiencing（3 学分）均为选修，未修时
+    缺额由任意其他区域 CC 课程替代（SIS AR 明文：'CTDL and Experiencing common
+    core courses can be substituted by any ... course'）。此前只按区域桶算缺口
+    （如 A/H/T 各 1 门），漏算 6 学分替代课——用户口诀：'UROP/CTDL 以及 CC
+    五个类别加起来要上 18 学分'（12 Broadening + 3 CTDL + 3 UxOP）。
+    已修区域表（areas_{group}.json code_area）含该区域课程 → 视为已修；
+    CTDL 本年有开课（池内存在 CTDL 区域）→ 由区域桶覆盖，不再加替代配额。"""
+    taken_areas = {str(a) for code, a in code_area.items() if norm_code(code) in done}
+    missing = []
+    if not any(a in taken_areas for a in uxop_area_codes):
+        missing.append("UxOP(Experiencing) 未修 → 需 3 学分替代")
+    pool_has_ctdl = any(str(a.get("area_code", "")) == ctdl_area_code
+                        and (a.get("course_count") or 0) > 0
+                        for a in (cc_pool.get("areas") or []))
+    if ctdl_area_code not in taken_areas and not pool_has_ctdl:
+        missing.append("CTDL 未修且本年无 CTDL 开课 → 需 3 学分替代")
+    return len(missing), missing
+
+
 def cc_buckets(cc_pool: dict) -> tuple:
     """cc_courses_{session}.json 区域 → 未修 courses + buckets（每区一个 bucket）。
     基础层（HAIC/HMW/E-Comm/C-Comm/CTDL）→ cc_required；其余（A/H/S/T/SA/SUS/UxOP）→ cc_elective。
@@ -785,9 +812,22 @@ def main():
             print(f"副修 {m}: curriculum 已加载，但无可生成候选"
                   f"（级别范围无课表支撑或要求已由其他栏位覆盖）")
 
+    # 已修集合提前计算：学院 School Requirement 去重需要区分"与专业重复但已修"
+    # （学校要求与专业要求允许双计数，仍计入学院桶配额满足度）与"未修重复课"
+    # （去重防重复推荐）。
+    passed = load_json(Path(args.passed)) if Path(args.passed).exists() else {"courses": []}
+    done = passed_set(passed)
+
     # 学院 School Requirement（SREQ-{SCHOOL}.json，如 SREQ-SENG）：学校级要求
     # （如 SENG 入门课 + TC I）并入清单。若课程已存在于专业课程（如 COMP 的
     # fundamental 已含 SENG 池）→ 去重跳过，防重复推荐；AR 为权威兜底。
+    # 2026-08 修复：
+    #  - 与专业重复但已修的课程保留在学院桶：漏留会低估学院配额满足度
+    #    （如 SSCI 科学基础 8 门池，学生已修的 MATH 2023/2121 等同时属专业
+    #    要求，此前全部去重后学院桶只数到 5 门已修，误判"还差 8 门"）；
+    #  - 仅限特定 track 的组（如 SREQ-SSCI 的 "Additional Required Courses
+    #    for IRE Track"）对非该 track 学生剔除（filter_blocks 只对主修生效，
+    #    学院 SREQ 无 track 块概念，此处按 note 中显式 track 名过滤）。
     school = ((profile.get("school") or "").strip().upper() or "")
     if school:
         sreq_file = cur_dir / f"SREQ-{school}.json"
@@ -795,9 +835,21 @@ def main():
             sreq_prog = load_json(sreq_file)
             sc, sb = major_buckets(sreq_prog.get("requirements", []), "",
                                    prefix="school", sched_idx=sched_idx)
+            track_low = (args.track or "").lower()
+            for b in list(sb):
+                gnote = str(b.get("note", "") or "")
+                m = re.search(r"\bfor\s+([A-Za-z0-9 ()]+?)\s+Track\b", gnote, re.I)
+                if m and m.group(1).strip().lower() not in track_low:
+                    n_drop = sum(1 for c in sc if c.get("bucket_id") == b["bucket_id"])
+                    sc = [c for c in sc if c.get("bucket_id") != b["bucket_id"]]
+                    sb = [x for x in sb if x["bucket_id"] != b["bucket_id"]]
+                    print(f"School Requirement ({school}): 剔除仅限 "
+                          f"{m.group(1).strip()} Track 的组 {b['bucket_id']}"
+                          f"（{n_drop} 门，所选 track 不含该分支）")
             existing = {norm_code(c["code"]) for c in courses}
             dup = [c for c in sc if norm_code(c["code"]) in existing]
-            sc = [c for c in sc if norm_code(c["code"]) not in existing]
+            sc = [c for c in sc if (norm_code(c["code"]) not in existing
+                                    or norm_code(c["code"]) in done)]
             if dup:
                 print(f"School Requirement ({school}): 跳过与专业课程重复 "
                       f"{len(dup)} 门（{', '.join(sorted({c['code'] for c in dup})[:8])}）")
@@ -885,8 +937,10 @@ def main():
 
     cc_pool_path = ROOT / "data" / f"cc_courses_{args.session}.json"
     cc_used = False
+    cc_pool = None
     if cc_pool_path.exists():
-        cc_courses, cc_meta = cc_buckets(load_json(cc_pool_path))
+        cc_pool = load_json(cc_pool_path)
+        cc_courses, cc_meta = cc_buckets(cc_pool)
         courses.extend(cc_courses)
         buckets.extend(cc_meta)
         cc_used = True
@@ -894,9 +948,7 @@ def main():
         print(f"提示: 未找到 CC 课程池 {cc_pool_path}"
               f"（先跑 scripts/wcq/crawler.py --admission-year {admission_year} --session {args.session}）")
 
-    # 已修 / 预选课扣除
-    passed = load_json(Path(args.passed)) if Path(args.passed).exists() else {"courses": []}
-    done = passed_set(passed)
+    # 已修 / 预选课扣除（passed/done 已提前计算，见学院 School Requirement 合并处）
     pre_ar = []
     pre_path = Path(args.pre_enrolled)
     if pre_path.exists():
@@ -955,6 +1007,48 @@ def main():
     if ar or code_area:
         buckets, courses = apply_cc_satisfaction(buckets, courses, done, ar, code_area)
 
+    # CC 替代学分（2026-08 新增，用户规则落库）：CTDL/UxOP 选修未修 → 缺额由
+    # 任意区域 CC 课程替代（AR 明文）。候选 = 全部 CC 池课程（允许搜已完成区域，
+    # 如 S/SA 的第二门）；note 提示按主修相关区域优先（如 PHYS+AI → T/S，
+    # grading 优势）。此前只按区域桶算缺口，漏算替代学分。
+    if cc_used and code_area:
+        extra_q, extra_missing = cc_substitute_quota(done, code_area, cc_pool)
+        if extra_q:
+            extra_courses = []
+            for area in (cc_pool.get("areas") or []):
+                for c in area.get("courses", []):
+                    code = f"{c.get('code', '')} {c.get('number', '')}".strip()
+                    if not RE_VALID_CODE.match(code):
+                        continue
+                    if norm_code(code) in done:
+                        continue
+                    extra_courses.append({
+                        "code": code, "name": c.get("title", ""),
+                        "credits": c.get("units"),
+                        "category": "cc_elective",
+                        "bucket_id": "cc-extra",
+                        "bucket_quota": extra_q,
+                        "source_groups": [{
+                            "block": "common_core", "section": "cc",
+                            "group": f"CC 替代（{'；'.join(extra_missing)}）",
+                            "note": f"CC 替代学分（{'；'.join(extra_missing)}）",
+                        }],
+                        "note_interpretation": "CTDL/UxOP 选修未修的替代学分",
+                        "prereq_reference": False,
+                    })
+            if extra_courses:
+                courses.extend(extra_courses)
+                buckets.append({
+                    "bucket_id": "cc-extra", "label": "CC 替代学分",
+                    "category": "cc_elective", "quota": extra_q,
+                    "note": ("CTDL/UxOP 选修未修，缺额由任意区域 CC 课程替代"
+                             "（SIS AR 规则）；优先建议按主修相关区域选择"
+                             "（如 PHYS+AI → T/S，grading 优势）"),
+                })
+                print(f"CC 替代学分: {len(extra_missing)} 项缺额"
+                      f"（{'；'.join(extra_missing)}）→ 配额 {extra_q} 门，"
+                      f"候选 {len(extra_courses)} 门（任意区域）")
+
     # bucket 满足性（OR 语义）：池内已修课程数 ≥ 配额 → 整桶满足，整桶移除。
     # 例：'PHYS 1111 OR PHYS 1112 OR PHYS 1312' 已修 1312 → 整桶满足；
     #     CC 区域内已修任意一门 → 该区域满足（HMW/E-Comm/C-Comm 同理）。
@@ -964,6 +1058,9 @@ def main():
     # 即误判整桶满足；嵌套括号/方括号不会被 Python 当列表误判）。
     quota_map = {b.get("bucket_id"): b.get("quota", 1) for b in buckets}
     drop_buckets = set()
+    eval_kept = set()  # eval_note 明确判定未满足（met=False）的桶：不得被下方
+                       # 计数兜底再推翻——如 AND 组 '[SCIE 1500 AND ... AND UROP]'
+                       # 只修 UROP 1000 时按"桶内已修 1 ≥ 配额 1"会误判整桶满足。
     note_by_bucket = {b.get("bucket_id"): str(b.get("note", "") or "")
                       for b in buckets}
     for b in buckets:
@@ -977,6 +1074,8 @@ def main():
             print(f"  - {bid}: Note 表达式已满足 → 整桶移除（{note[:70]}）")
         else:
             print(f"  ~ {bid}: Note 表达式未满足（met={met}），保守保留")
+            if met is False:
+                eval_kept.add(bid)
     done_in = {}
     for c in courses:
         bid = c.get("bucket_id")
@@ -985,7 +1084,8 @@ def main():
         if norm_code(c["code"]) in done:
             done_in[bid] = done_in.get(bid, 0) + 1
     for bid, n in done_in.items():
-        if bid not in drop_buckets and n >= quota_map.get(bid, 1):
+        if bid not in drop_buckets and bid not in eval_kept \
+                and n >= quota_map.get(bid, 1):
             drop_buckets.add(bid)
     if drop_buckets:
         names = {b.get("bucket_id"): b.get("label", "") for b in buckets}

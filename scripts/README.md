@@ -9,7 +9,7 @@ Python 脚本目录，按职责分域组织。
 ```
 scripts/
 ├── ustplan.py                  # 统一入口（产品化运行唯一入口）
-├── cookies_setup.py            # cookie 获取与预检（--check 含 TTL / --listen 一键接收 / 交互引导 / --print-bookmarklet）
+├── cookies_setup.py            # cookie 获取与预检（--check 含 TTL / --gen-code 生成连接码 / --listen --code 一键接收 / 交互引导 / --print-bookmarklet）
 ├── credentials.py              # 凭据统一模块（load/save/filter/meta/TTL；二期 DPAPI 加密插槽）
 ├── sis/                        # SIS 抓取解析（学生现状，需 PS_TOKEN cookie）
 │   ├── parser.py               #   统一工具：--fetch 抓取（含 Pre-Enroll 预选课）+ 解析 → JSON
@@ -75,7 +75,8 @@ scripts/
 ```bash
 # cookie 获取与预检（产品化由 phase1 引导；调试时手动执行）
 python3 scripts/cookies_setup.py --check                # 预检（OK/失效/缺失 + TTL 提醒）
-python3 scripts/cookies_setup.py --listen               # 一键获取：本机接收端（扩展按钮推送）
+python3 scripts/cookies_setup.py --gen-code             # 生成 4 位连接码（分段式：提前告知用户）
+python3 scripts/cookies_setup.py --listen --code NNNN --user-ready  # 一键获取：本机接收端（须先 --gen-code 且用户确认就绪，否则拒绝）
 python3 scripts/cookies_setup.py                        # 交互：粘贴 → 写入 → 自动验证
 python3 scripts/cookies_setup.py --print-bookmarklet    # 登录页一键复制 cookie 的书签（读不到 httpOnly）
 

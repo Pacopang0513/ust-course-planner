@@ -28,7 +28,10 @@ python3 scripts/ustplan.py grid --plan 1 --html    # 周历 HTML 一并交付（
    shopping cart）；waiver 申请（课程 + missing pre-req）；overload/低学分说明；
    **预选课 drop 决策**（如 report 中 pre_enroll_section 有建议：学校预选课
    一般不建议 drop，坚持 drop 需申请 waiver，且可能影响下学期预选资格）；
-3. **末尾附加选课时间提醒**（enrollment-dates-reminder 固定模板，不可删除）；
+3. **末尾附加选课时间提醒**（enrollment-dates-reminder 固定模板，不可删除）
+   与**开发者模式关闭提醒**（报告模板固定段落，不可删除：提醒用户自行关闭
+   浏览器开发者模式并可选移除 ust-cookie 扩展，附 1-2-3 操作步骤）；用户
+   面输出同样带这两段提醒；
 4. 产物仅引用 artifact 数据（可追溯），不写脚本运行细节。
 
 ## 确认点

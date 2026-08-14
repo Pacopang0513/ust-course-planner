@@ -41,6 +41,8 @@ ROOT = Path(__file__).resolve().parents[2]
 JOBS_DIR = ROOT / "data" / "jobs"
 PY = sys.executable
 
+PID_ALIVE_GRACE_SEC = 300  # PID 复用防护宽限：timeout 之外的存活判定余量
+
 # 统一 UTF-8 输出（Windows GBK 控制台会因 ✓ 等字符崩溃）
 UTF8_ENV = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
 
@@ -91,9 +93,22 @@ def _write(path: Path, obj: dict):
     path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def _pid_alive(pid: int) -> bool:
+def _pid_alive(pid: int, started: dict = None) -> bool:
+    """PID 是否存活。started 提供 job 记录时附加"时间窗"校验：worker 生命周期
+    受 timeout_minutes 约束（worker 超时自动击杀），记录早于 timeout+宽限仍
+    "存活"的 PID 几乎必是系统复用（Windows 常见：SearchFilterHost 等进程占用
+    旧 worker PID），按已退出处理——否则会误报"仍在运行"卡死 start/kill。"""
     if not pid or pid <= 0:
         return False
+    if started:
+        try:
+            st = datetime.fromisoformat(str(started.get("started_at") or ""))
+            timeout = float(started.get("timeout_minutes") or 0)
+            if timeout > 0 and (datetime.now(timezone.utc) - st).total_seconds() \
+                    > timeout * 60 + PID_ALIVE_GRACE_SEC:
+                return False
+        except (ValueError, TypeError):
+            pass
     if os.name == "nt":
         try:
             out = subprocess.run(
@@ -132,10 +147,11 @@ def _patch_started(job_id: str, **kw):
 
 
 def _cleanup_job(job_id: str, started: dict):
-    """清理任务记录前先击杀可能残留的孤儿进程（否则 .log 句柄被占用删不掉）"""
+    """清理任务记录前先击杀可能残留的孤儿进程（否则 .log 句柄被占用删不掉）。
+    PID 复用防护：仅击杀时间窗内"真正属于本 job"的进程。"""
     for key in ("target_pid", "worker_pid"):
         pid = started.get(key)
-        if pid and _pid_alive(pid):
+        if pid and _pid_alive(pid, started):
             _kill_tree(pid)
     for f in JOBS_DIR.glob(f"{job_id}.*"):
         try:
@@ -210,7 +226,7 @@ def cmd_start(args):
                  f"需 --force 重跑")
     if paths["started"].exists():
         started = _load(paths["started"]) or {}
-        if _pid_alive(started.get("worker_pid")):
+        if _pid_alive(started.get("worker_pid"), started):
             sys.exit(f"[JOBS] FAIL: {args.job_id} 仍在运行，禁止重复启动"
                      f"（kill 或等待完成后再 start）")
         print(f"[JOBS] 提示: {args.job_id} 上次运行异常退出，清理后重启")
@@ -246,7 +262,7 @@ def _state_of(job_id: str) -> str:
     if paths["done"].exists():
         return "done"
     started = _load(paths["started"]) or {}
-    if _pid_alive(started.get("worker_pid")):
+    if _pid_alive(started.get("worker_pid"), started):
         return "running"
     return "crashed"
 
@@ -262,7 +278,7 @@ def cmd_status(args):
         print(f"[JOBS] {args.job_id}: done（{tag}={done['exit_code']}，"
               f"耗时 {(datetime.fromisoformat(done['finished_at']) - datetime.fromisoformat(done['started_at'])).total_seconds():.0f}s）")
         sys.exit(0)
-    if _pid_alive(started.get("worker_pid")):
+    if _pid_alive(started.get("worker_pid"), started):
         secs = (datetime.now(timezone.utc) - datetime.fromisoformat(started["started_at"])).total_seconds()
         print(f"[JOBS] {args.job_id}: running（worker pid {started['worker_pid']}，"
               f"已运行 {secs:.0f}s）")
@@ -305,7 +321,7 @@ def cmd_wait(args):
             print(f"[JOBS] {args.job_id}: 完成（{tag}={done['exit_code']}）")
             sys.exit(0 if done["exit_code"] == 0 else 1)
         started = _load(paths["started"]) or {}
-        if not _pid_alive(started.get("worker_pid")):
+        if not _pid_alive(started.get("worker_pid"), started):
             print(f"[JOBS] {args.job_id}: crashed（worker 进程不存在）")
             sys.exit(3)
         if time.monotonic() >= deadline:
@@ -321,7 +337,7 @@ def cmd_kill(args):
         sys.exit(f"[JOBS] 错误: 任务 {args.job_id} 不存在")
     for key in ("worker_pid", "target_pid"):
         pid = started.get(key)
-        if pid and _pid_alive(pid):
+        if pid and _pid_alive(pid, started):
             _kill_tree(pid)
     if not paths["done"].exists():
         _write_done(args.job_id, -9, False, True, started.get("started_at", _now()),

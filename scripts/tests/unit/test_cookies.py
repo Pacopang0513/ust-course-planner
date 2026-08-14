@@ -22,7 +22,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from credentials import (KNOWN_KEYS, filter_known, load_cookies,  # noqa: E402
                          meta_read, meta_update, meta_write, save_cookies,
                          ttl_info, ttl_warning)
-from cookies_setup import handle_submit_payload, make_token  # noqa: E402
+from cookies_setup import (handle_submit_payload, listen_gate, make_token,  # noqa: E402
+                           read_code_state, validate_code, write_code_state)
 
 
 class TestLoadSave(unittest.TestCase):
@@ -111,21 +112,21 @@ class TestListenProtocol(unittest.TestCase):
     def test_wrong_token_rejected(self):
         ok, msg, _ = handle_submit_payload(
             {"source": "sis", "cookies": {"PS_TOKEN": "x"}},
-            "000000", "123456", self.cf)
+            "0000", "1234", self.cf)
         self.assertFalse(ok)
         self.assertIn("连接码", msg)
 
     def test_unknown_source_rejected(self):
         ok, msg, _ = handle_submit_payload(
             {"source": "evil", "cookies": {"PS_TOKEN": "x"}},
-            "123456", "123456", self.cf)
+            "1234", "1234", self.cf)
         self.assertFalse(ok)
 
     def test_accepts_and_filters(self):
         ok, msg, merged = handle_submit_payload(
             {"source": "sis", "cookies": {"PS_TOKEN": "t1", "JSESSIONID": "t2",
                                           "junk": "z"}},
-            "123456", "123456", self.cf)
+            "1234", "1234", self.cf)
         self.assertTrue(ok)
         self.assertEqual(merged, {"PS_TOKEN": "t1", "JSESSIONID": "t2"})
         self.assertEqual(load_cookies(self.cf),
@@ -136,7 +137,7 @@ class TestListenProtocol(unittest.TestCase):
     def test_merge_preserves_existing(self):
         save_cookies({"ustspace_session": "old"}, self.cf)
         handle_submit_payload({"source": "sis", "cookies": {"PS_TOKEN": "new"}},
-                              "123456", "123456", self.cf)
+                              "1234", "1234", self.cf)
         got = load_cookies(self.cf)
         self.assertEqual(got["ustspace_session"], "old")
         self.assertEqual(got["PS_TOKEN"], "new")
@@ -144,13 +145,126 @@ class TestListenProtocol(unittest.TestCase):
     def test_empty_cookies_rejected(self):
         ok, msg, _ = handle_submit_payload(
             {"source": "sis", "cookies": {"junk": "x"}},
-            "123456", "123456", self.cf)
+            "1234", "1234", self.cf)
         self.assertFalse(ok)
 
-    def test_make_token_six_digits(self):
+    def test_make_token_four_digits(self):
         for _ in range(20):
             t = make_token()
-            self.assertRegex(t, r"^\d{6}$")
+            self.assertRegex(t, r"^\d{4}$")
+
+    def test_validate_code_accepts_four_digits(self):
+        for code in ("0000", "1234", "9999"):
+            self.assertTrue(validate_code(code))
+
+    def test_validate_code_rejects_bad_format(self):
+        for code in ("", "123", "12345", "12a4", "abcd", None):
+            self.assertFalse(validate_code(code))
+
+
+class TestGenCodeStateAndListenGate(unittest.TestCase):
+    """--listen 门禁：语法层（--code/--user-ready 必填）由解析器强制，
+    状态语义由 listen_gate 校验（码必须等于最近一次 --gen-code 生成的码）。
+    防止 AI 跳过"先给连接码+教程、等用户确认'准备好了'"直接启动接收端。"""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="ust_cred_"))
+        self.cf = self.tmp / "cookies.txt"
+
+    def tearDown(self):
+        import shutil
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_state_write_read_roundtrip(self):
+        write_code_state("1234", self.cf)
+        self.assertEqual(read_code_state(self.cf).get("code"), "1234")
+        self.assertIn("generated_at", read_code_state(self.cf))
+
+    def test_state_absent_returns_empty(self):
+        self.assertEqual(read_code_state(self.cf), {})
+
+    def test_gate_refuses_without_gen_code(self):
+        ok, msg = listen_gate(self.cf, "1234")
+        self.assertFalse(ok)
+        self.assertIn("--gen-code", msg)
+
+    def test_gate_refuses_stale_code(self):
+        write_code_state("1234", self.cf)
+        ok, _ = listen_gate(self.cf, "9999")
+        self.assertFalse(ok)
+
+    def test_gate_passes_with_matching_code(self):
+        write_code_state("1234", self.cf)
+        ok, msg = listen_gate(self.cf, "1234")
+        self.assertTrue(ok)
+        self.assertEqual(msg, "")
+
+
+class TestListenCliGate(unittest.TestCase):
+    """CLI 级门禁（子进程）：--gen-code → --listen --code 各门禁组合。"""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="ust_cred_"))
+        self.cf = self.tmp / "cookies.txt"
+
+    def tearDown(self):
+        import shutil
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _run(self, *args):
+        import subprocess
+        import sys
+        return subprocess.run(
+            [sys.executable, str(Path(__file__).resolve().parents[2]
+                                 / "cookies_setup.py"),
+             "--cookie-file", str(self.cf), *args],
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+            timeout=30)
+
+    def test_gen_code_writes_state_and_listen_full_flow(self):
+        """正确形态端到端：--gen-code 写状态 → --listen --code <同一码>
+        --user-ready 能真正启动接收端（1 秒超时，非门禁拒绝）。"""
+        r = self._run("--gen-code")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        code = r.stdout.splitlines()[0].strip()
+        self.assertRegex(code, r"^\d{4}$")
+        self.assertEqual(read_code_state(self.cf).get("code"), code)
+        r2 = self._run("--listen", "--code", code, "--user-ready", "--timeout", "1")
+        self.assertIn("连接码", r2.stdout)
+        self.assertNotEqual(r2.returncode, 0)  # 1 秒无请求超时退出（非门禁）
+
+    def test_listen_refuses_code_not_generated(self):
+        r = self._run("--listen", "--code", "0000", "--user-ready", "--timeout", "1")
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("--gen-code", r.stdout)
+
+    def test_listen_refuses_stale_code_even_with_user_ready(self):
+        self._run("--gen-code")
+        r = self._run("--listen", "--code", "0000", "--user-ready", "--timeout", "1")
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("连接码", r.stdout)
+
+    def test_listen_without_code_refused(self):
+        """裸 --listen（无 --code/--user-ready）由 CLI 语法强制拒绝（解析器
+        usage 错误，exit 2，消息在 stderr）：运行时不存在裸 listen 分支。"""
+        r = self._run("--listen", "--timeout", "1")
+        self.assertEqual(r.returncode, 2)
+        self.assertIn("--code", r.stderr)
+        self.assertIn("--user-ready", r.stderr)
+
+    def test_listen_with_code_but_no_user_ready_refused(self):
+        """有 --code 无 --user-ready 同样被解析器拒绝（语法层，非运行时）。"""
+        self._run("--gen-code")
+        r = self._run("--listen", "--code", "1234", "--timeout", "1")
+        self.assertEqual(r.returncode, 2)
+        self.assertIn("--user-ready", r.stderr)
+
+    def test_gen_code_output_includes_checklist(self):
+        """--gen-code 输出除 4 位码外，附分段式步骤清单（提醒 AI 先告知用户再等确认）。"""
+        r = self._run("--gen-code")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("连接码", r.stdout)
+        self.assertIn("--user-ready", r.stdout)
 
 
 if __name__ == "__main__":

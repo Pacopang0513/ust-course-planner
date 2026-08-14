@@ -95,6 +95,12 @@ P4 过滤确认已并入 P3；P5 方案选择弱化为展示（用户主动要�
 | `ext_capstone_pairing` | EXT 顶点 4990/4991 选择取决于主修是否含 major_capstone（如 PHYS 4291） | buckets 规则消费 |
 | `grading_prereq` | pre-req 可含成绩要求（如 PHYS 1314 要求 PHYS 1312 达某成绩），不达标需 waiver | filter 运行时解析 + step6 waiver |
 | `major_capstone` | 主修顶点课程标记（4291/4191 等） | 触发 EXT 顶点规则 |
+| `cc_gap_substitution` | 30 学分制 v1/v2：CTDL 与 UxOP(Experiencing) 均选修，未修时缺额由任意区域 CC 课程替代（AR 明文）；缺口口诀"UROP/CTDL + CC 五个类别 = 18 学分"（12+3+3），替代课可搜已完成区域、优先按主修相关区域（如 PHYS+AI → T/S） | buckets.py `cc_substitute_quota` + `cc-extra` 桶 |
+
+**覆盖率门禁（P3 前硬检查）**：向用户确认未修清单前必须跑五类别覆盖率检查
+（major/extended_major/minor/school/common core，每项有 SIS AR 数据支撑）——
+`ustplan step step1` 后置自动执行，FAIL 即拦截；手动 `ustplan coverage --session <S>`；
+数据源登记与 CC 缺口规则详见 `docs/COVERAGE_CHECK.md`。
 
 **新增规则流程**：发现新的特殊规则 → 上网核实官方来源 → 写入
 `database/course_notes/{SUBJ}.json` 或 `RULES.json`（rules[] 带机器可读 logic）

@@ -166,8 +166,16 @@ Class Schedule（wcq）页内联 PRE-REQUISITE 为准；需要单课详情时按
    `scripts/cookies_setup.py`：
    - `--check` 只输出状态（OK/EXPIRED/MISSING/UNREACHABLE）+ TTL 提醒；
    - `--listen` 一键获取（本机回环 + 连接码，浏览器扩展 `extensions/ust-cookie`
-     按钮推送，可读 httpOnly 的 PS_TOKEN）；bookmarklet / F12 粘贴为降级通道；
-   - TTL（config → credentials.ttl_hours，默认 12h）超期时引导 `--listen` 刷新；
+      按钮推送，可读 httpOnly 的 PS_TOKEN）；**分段式：AI 先 `--gen-code`
+      生成连接码，把安装/登录步骤清单 + 端口（默认 8765）+ 连接码一起给
+      用户（用户可预填扩展设置），停下等用户确认就绪后，再
+      `--listen --code <同一连接码> --user-ready` 启动**（脚本门禁：
+      `--listen --code` 缺 `--user-ready` 或码与 `--gen-code` 不一致会拒绝
+      启动；用户操作浏览器期间接收端会空转超时；连接码须提前固定才能让
+      用户预填）；bookmarklet /
+      F12 粘贴为降级通道；
+   - TTL（config → credentials.ttl_hours，默认 12h）超期时引导 `--listen` 刷新
+     （分段式：--gen-code → 告知用户 → --user-ready，见上）；
    测试 cookie 放项目外临时目录，用后删除
 5. **版本化**：schedule 按 session（2610）、curriculum 按入学年份（2026-27）
 6. **运行时产物链（固定）**：`data/unmet_courses.json`（bucket 化）→

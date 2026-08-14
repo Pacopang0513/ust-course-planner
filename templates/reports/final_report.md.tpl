@@ -49,3 +49,15 @@
 ## 选课时间提醒（{{semester_label}}）
 
 <!-- AI 附加：enrollment-dates-reminder 固定模板（Shopping Cart / Enrollment Appointment / Add-Drop 三期） -->
+
+---
+
+## 安全提醒：关闭浏览器开发者模式
+
+本次选课辅助使用的浏览器扩展需要"开发者模式"才能运行，现在所有数据抓取已完成，扩展不再需要。请自行关闭开发者模式以预防风险：
+
+1. 打开 `chrome://extensions`（Edge 用 `edge://extensions`）
+2. 右上角关闭"开发者模式"开关
+3. （可选）在扩展列表中点击"移除"，删除 ust-cookie 扩展
+
+关闭或移除后不影响任何已生成的方案与报告。

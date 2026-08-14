@@ -9,14 +9,18 @@ const SOURCE_KEYS = {
   sis: ["PS_TOKEN", "JSESSIONID", "PS_TOKENEXPIRE"],
   ustspace: ["ustspace_session"],
 };
+const SITE_ORIGINS = {
+  sis: ["https://sisprod.psft.ust.hk/*"],
+  ustspace: ["https://ust.space/*", "https://*.ust.space/*"],
+};
 
 const $ = (id) => document.getElementById(id);
 
 function detectSource(url) {
   try {
     const u = new URL(url);
-    if (u.hostname.includes(SIS_HOST)) return "sis";
-    if (u.hostname.includes(UST_HOST)) return "ustspace";
+    if (u.hostname === SIS_HOST || u.hostname.endsWith("." + SIS_HOST)) return "sis";
+    if (u.hostname === UST_HOST || u.hostname.endsWith("." + UST_HOST)) return "ustspace";
   } catch (e) { /* ignore */ }
   return null;
 }
@@ -40,10 +44,10 @@ async function init() {
 }
 
 async function grabCookies(source, tabUrl) {
-  const cookies = await chrome.cookies.getAll({ url: tabUrl });
   const out = {};
-  for (const c of cookies) {
-    if (SOURCE_KEYS[source].includes(c.name)) out[c.name] = c.value;
+  for (const name of SOURCE_KEYS[source]) {
+    const c = await chrome.cookies.get({ url: tabUrl, name });
+    if (c && c.value) out[name] = c.value;
   }
   return out;
 }
@@ -58,9 +62,16 @@ async function send() {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     const src = detectSource(tab && tab.url);
     if (!src) throw new Error("当前页面不是 SIS / ust.space");
+    const granted = await chrome.permissions.contains({ origins: SITE_ORIGINS[src] });
+    if (!granted) {
+      throw new Error("扩展没有读取该站点 cookie 的权限。请到 chrome://extensions 点该扩展的「重新加载」，或重启浏览器后重试。");
+    }
     const cookies = await grabCookies(src, tab.url);
     if (Object.keys(cookies).length === 0) {
-      throw new Error("未找到登录 cookie（未登录？请先登录当前站点）");
+      const names = (await chrome.cookies.getAll({ url: tab.url }))
+        .map((c) => c.name).join(", ") || "(空)";
+      throw new Error("未找到登录 cookie（当前页面可见 cookie: " + names +
+        "；若已登录仍为空，请重载扩展并确认站点权限）");
     }
     const r = await fetch(`http://127.0.0.1:${port}/submit`, {
       method: "POST",
@@ -75,8 +86,12 @@ async function send() {
       throw new Error(text || ("HTTP " + r.status));
     }
   } catch (e) {
+    let msg = (e && e.message) ? e.message : String(e);
+    if (/no host permissions|host permission/i.test(msg) && !msg.includes("权限。请")) {
+      msg = "扩展没有读取该站点 cookie 的权限。请到 chrome://extensions 点该扩展的「重新加载」，或重启浏览器后重试。";
+    }
     status.className = "err";
-    status.textContent = "✗ 失败：" + e.message +
+    status.textContent = "✗ 失败：" + msg +
       "\n请确认已运行 cookies_setup.py --listen 且端口/连接码一致。";
   }
 }
@@ -84,9 +99,9 @@ async function send() {
 $("save").addEventListener("click", async () => {
   const port = ($("port").value || "8765").trim();
   const token = $("token").value.trim();
-  if (!/^\d+$/.test(port) || !/^\d{6}$/.test(token)) {
+  if (!/^\d+$/.test(port) || !/^\d{4}$/.test(token)) {
     $("status").className = "err";
-    $("status").textContent = "端口需为数字，连接码为 6 位数字（--listen 终端显示）。";
+    $("status").textContent = "端口需为数字，连接码为 4 位数字（AI 会告诉你，保存一次即可）。";
     return;
   }
   await chrome.storage.local.set({ port, token });

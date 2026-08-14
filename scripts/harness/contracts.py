@@ -316,12 +316,30 @@ def step_precheck(ctx, step: str, force: bool = False) -> list:
 
 
 def step_postcheck(ctx, step: str) -> list:
-    """后置检查：产物存在 + schema 合法"""
+    """后置检查：产物存在 + schema 合法；step1 追加五类别覆盖率硬检查
+    （P3 确认前门禁：major/extended_major/minor/school/common core 任一类别
+    缺口、AR 未修课未被覆盖 → FAIL 禁止推进）。"""
     spec = STEPS[step]
     errs = []
     for rel, schema in spec["outputs"]:
         errs += manifest.validate_artifact(ctx["root"], rel, schema)
+    if step == "step1":
+        errs += _coverage_gate(ctx)
     return errs
+
+
+def _coverage_gate(ctx) -> list:
+    """五类别覆盖率硬检查（scripts/harness/coverage_check.py）。"""
+    import subprocess
+    import sys as _sys
+    py = _sys.executable
+    r = subprocess.run(
+        [py, str(ctx["root"] / "scripts" / "harness" / "coverage_check.py"),
+         "--session", str(ctx["session"])],
+        capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if r.returncode == 1:
+        return [f"五类别覆盖率检查 FAIL（禁止 P3 确认）:\n{r.stdout}"]
+    return []
 
 
 def phase_begin_checks(ctx, phase: str) -> list:
