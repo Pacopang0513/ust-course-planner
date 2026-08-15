@@ -8,7 +8,7 @@
 ## 简介
 - 考虑到同学们天天问什么CC好，以及为了节省对照USTSpace评论、编排时间表的时间，所以写了用户友好优先的"简易Agent"；
 - 这是一个面向香港科技大学学生的选课辅助工具。它由Claude Code、opencode等AI编程助手平台运行；
-- 同时也是作者们第一次尝试Agent harness，技术与流程并不成熟，若有优化建议还请提出；
+- 同时也是作者们第一次尝试Agent harness，技术与流程并不成熟，若有优化建议或bug还请联系 pacopang0513@gmail.com 或任何平台上发布者的账号提出；
 
 ---
 
@@ -23,7 +23,7 @@
   - 目标学分定制：按你期望的学分范围（12-18 学分）生成方案；
   - 必选课硬插：指定"这学期一定要上的课"，重新排课；
 - **预选课智能处理**：学校为你预选的课程会自动纳入分析；若某门预选课优先级过低，会建议你考虑退选（必修预选课不会提示退选）；
-- **完整报告输出**：每门课的权衡说明 + 周历视图 + 选课时间提醒，可直接导入 Timetable planner；
+- **完整报告输出**：每门课的权衡说明 + 周历视图 + 选课时间提醒，可直接导入 Timetable planner（因时间未开放暂未测试）；
 
 ### 最近更新
 
@@ -58,14 +58,12 @@
   - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
   - 记得手动选择内置的Deepseek V4 flash模型；
 - 1. **提供登录信息（一键方式，推荐）**：
-  - 一次性安装：浏览器打开"扩展管理"（Chrome 输 `chrome://extensions`，Edge 输
-    `edge://extensions`）→ 开启"开发者模式" → "加载已解压的扩展程序" →
-    选择项目内 `extensions/ust-cookie` 文件夹；
-  - 之后每次排课：对 AI 说"帮我排课" → 按提示在浏览器分别登录
-    SIS（ustportal/学号登录）与 ust.space → 各点一下扩展按钮即可，
-    无需复制粘贴任何内容（连接码由 AI 侧自动生成，首次填入扩展一次）。
-  - 备用方式：手动复制两个网站登录后的 Cookie（`PS_TOKEN` / `ustspace_session`）
-    粘贴给 AI 即可；
+  - 一次性安装（推荐）：
+    - 浏览器打开"扩展管理"（Chrome 输入 `chrome://extensions`，Edge 输入`edge://extensions`）→ 左下角开启"开发人员模式" → 正上方栏位点击"加载解压缩的扩展程序" → 选择项目内 `extensions/ust-cookie` 文件夹；
+    - 分别登录SIS系统及USTSpace → 在网址右方点击"拓展"按钮 → 打开"UST Cookie Sender" → 输入Agent所提供的连接码与本机接收端口；
+    - 告诉Agent你已经完成配置（或需要Agent提供额外协助） → 当他运行...listen脚本时，分别点击两个网站拓展中的"抓取并发送当前站点cookie"；
+  - 备用方式：
+    - 手动复制两个网站登录后的 Cookie（`PS_TOKEN` / `ustspace_session`）粘贴给 AI 即可；
 - 2. **专业信息**：
   - 你必须向Agent提供你希望就读的major track；
   - 除此之外，若能提供major/extend major/minor等信息，能提高Agent准确性；
