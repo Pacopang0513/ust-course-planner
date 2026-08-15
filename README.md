@@ -57,6 +57,7 @@
   - 在官网 https://opencode.ai/zh/download 下载Opencode桌面版；
   - 将本文件下载到电脑上，由Opencode选取文件夹后即可使用；
   - 记得手动选择内置的Deepseek V4 flash模型；
+  - 除此之外，要记得下载python，这很关键；
 - 1. **提供登录信息（一键方式，推荐）**：
   - 一次性安装（推荐）：
     - 浏览器打开"扩展管理"（Chrome 输入 `chrome://extensions`，Edge 输入`edge://extensions`）→ 左下角开启"开发人员模式" → 正上方栏位点击"加载解压缩的扩展程序" → 选择项目内 `extensions/ust-cookie` 文件夹；
