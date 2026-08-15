@@ -345,10 +345,11 @@ def parse_academic_requirements(html: str) -> dict:
         for m in re.finditer(r"<td class='PAGROUPDIVIDER'[^>]*>\s*(.*?)\s*</td>", html)
     ]
 
-    # 提取所有需求状态项
+    # 提取所有需求状态项（RE_NS_ITEM 分组：(引号, 状态标签, 描述)——
+    # 状态标签在第二组，第一组是 class= 的引号字符）
     ns_items = [
         (status, desc_raw)
-        for status, _, desc_raw in RE_NS_ITEM.findall(html)
+        for _, status, desc_raw in RE_NS_ITEM.findall(html)
     ]
 
     requirements = []

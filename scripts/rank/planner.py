@@ -790,12 +790,12 @@ def main():
     ap.add_argument("--top", type=int,
                     default=int(CFG_DEFAULTS.get("candidate_pool", 50)),
                     help="选课池取排名前 N（默认取 config）")
-    ap.add_argument("--must-take", action="append", default=[],
+    ap.add_argument("--must-take", action="append", default=[], nargs="+",
                     help="硬插课程（phase4.5），如 'COMP 3111' 'MATH 2023'；"
                          "可重复 flag 或一次传多个")
-    ap.add_argument("--exclude", action="append", default=[],
+    ap.add_argument("--exclude", action="append", default=[], nargs="+",
                     help="从选课池排除的课程（如未选的 Capstone 备选）；可重复 flag")
-    ap.add_argument("--credits-override", action="append", default=[],
+    ap.add_argument("--credits-override", action="append", default=[], nargs="+",
                     help="学分覆盖 'CODE=学分'（可多个；如全年课按学期计："
                          "'PHYS 4291=3'）；可重复 flag")
     ap.add_argument("--pre-enrolled", default="",

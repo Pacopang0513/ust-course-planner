@@ -108,8 +108,8 @@ def infer_year_of_study(admission_year: str, target_label: str) -> int:
 
 
 def infer_school(major: str) -> str:
-    return SCHOOL_BY_PREFIX.get((major or "").strip().upper().split()[0]
-                                if major else "", "")
+    s = (major or "").strip()
+    return SCHOOL_BY_PREFIX.get(s.upper().split()[0] if s else "", "")
 
 
 def main():

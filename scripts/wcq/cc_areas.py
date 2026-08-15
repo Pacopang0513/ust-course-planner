@@ -80,7 +80,7 @@ def main():
         from crawler import latest_session
         args.latest = latest_session()
     latest = int(args.latest)
-    sessions = args.sessions or default_sessions(args.admission_year or f"{latest // 100 - 2}", latest)
+    sessions = args.sessions or default_sessions(args.admission_year or f"{latest // 100 + 2000 - 2}", latest)
     print(f"CC 组 {group}，历史 session: {', '.join(sessions)}")
 
     sem = asyncio.Semaphore(args.concurrency)

@@ -63,7 +63,8 @@ def main():
         buckets.setdefault(c.get("bucket_id"), []).append(c)
     scope, reasons = [], []
     for bid, items in buckets.items():
-        items = sorted(items, key=lambda x: -(x.get("review_count") or 0))
+        items = sorted(items, key=lambda x: -(rv_by_code.get(x.get("code", ""), {})
+                                              .get("review_count") or 0))
         required = any(x.get("category") in ("major_required", "cc_required")
                        for x in items)
         picked = items if required else items[:args.top]

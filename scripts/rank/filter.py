@@ -560,7 +560,7 @@ def main():
                 break
             if c["code"] in done_set:
                 continue
-            code, sc, reasons, pre_text = eval_one(c)
+            code, sc, reasons, pre_text, _grading = eval_one(c)
             done_set.add(code)
             hard = [r for r in reasons if r.startswith("not_offered")]
             if hard:

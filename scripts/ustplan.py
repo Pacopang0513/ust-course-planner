@@ -470,11 +470,15 @@ def cmd_job(args):
         line = r.stdout.strip().splitlines()
         if line:
             print(line[0])
-        # status 输出 "done（exit=0）"；wait 输出 "完成（exit=0）"——统一按
-        # 任务成功结束判断（exit 0），完成即收录产物到 manifest
+        # status 输出 "done（exit=N）"；wait 输出 "完成（exit=N）"——统一按
+        # 任务自身退出码 0 判断成功（jobs.py status 命令对任务成败都退出 0，
+        # 不能拿命令退出码当任务结果——失败任务此前被误收录产物），
+        # 成功结束才收录产物到 manifest
         done_line = line[0] if line else ""
-        finished = r.returncode == 0 and ("done" in done_line
-                                          or "完成" in done_line)
+        m_exit = re.search(r"exit=(-?\d+)", done_line)
+        finished = (r.returncode == 0
+                    and ("done" in done_line or "完成" in done_line)
+                    and m_exit is not None and m_exit.group(1) == "0")
         if finished:
             _adopt_job_outputs(ctx, jid)
         elif args.action == "wait":
