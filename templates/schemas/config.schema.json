@@ -25,7 +25,8 @@
         "credits_min": { "type": "number", "description": "Regular Term 学分下限" },
         "credits_max": { "type": "number", "description": "学分上限（overload 需 Dean 批准）" },
         "candidate_pool": { "type": "integer", "minimum": 1, "description": "选课池取排名前 N" },
-        "graduation_credits": { "type": "number", "minimum": 0, "description": "毕业总学分（4 年制默认 120；双主修等以 AR 为准）" }
+        "graduation_credits": { "type": "number", "minimum": 0, "description": "毕业总学分（4 年制默认 120；双主修等以 AR 为准）" },
+        "unmet_credit_mode": { "type": "string", "enum": ["median", "min"], "description": "未修学分估算代表性学分：median（桶内中位数，默认）/ min（保守下限）" }
       },
       "additionalProperties": false
     },
@@ -104,6 +105,15 @@
       },
       "additionalProperties": false
     },
+    "history": {
+      "type": "object",
+      "description": "历史学期教授对照（step5.5，step6 消费）：往期教授评分明显优于本学期 → 本年度课程降权 + 延后建议",
+      "properties": {
+        "threshold": { "type": "number", "minimum": 0, "description": "触发降权的往期−本学期教授评分差（默认 0.5）" },
+        "penalty_pct": { "type": "number", "minimum": 0, "maximum": 100, "description": "降权比例（默认 10 = 总分 ×0.9，仅影响排序）" }
+      },
+      "additionalProperties": false
+    },
     "jobs": {
       "type": "object",
       "description": "后台任务超时（分钟）",
@@ -118,6 +128,14 @@
       "type": "object",
       "description": "学期 → session 尾号映射（{YY}{YY+1}{尾号}）",
       "additionalProperties": { "type": "number" }
+    },
+    "credentials": {
+      "type": "object",
+      "description": "凭据（cookie）管理参数",
+      "properties": {
+        "ttl_hours": { "type": "number", "minimum": 0.5, "description": "凭据有效期阈值（小时，默认 12）：超过后 --check/doctor/status 提示刷新" }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

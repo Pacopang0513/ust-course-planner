@@ -12,6 +12,7 @@ description: Step 6 课程表编排。ustplan step step6 执行 scripts/rank/pla
 ## 执行（ustplan 合约）
 
 ```bash
+python3 scripts/ustplan.py job start wcq_history   # step5 后：前两学期课表抓取（后台）
 python3 scripts/ustplan.py step step6
 python3 scripts/ustplan.py plan --must-take "PHYS 4291"   # phase4.5 硬插重排
 python3 scripts/ustplan.py plan --exclude "PHYS 4191"     # 备选排除
@@ -19,6 +20,21 @@ python3 scripts/ustplan.py plan --target 19               # overload 提示（�
 python3 scripts/ustplan.py grid --plan 1 [--html]         # 周历展示（ASCII/HTML）
 ```
 
+- step5 完成后（P3 前或后均可）启动 `wcq_history`：抓取目标学期前两个学期的
+  候选 subject 课表（subject 自动从 course_scores 汇总，产物
+  `data/courses_{prev}.json`）；step6 前 `job status/wait` 取结果；
+- **历史学期教授对照（history_compare，2026-08 新增）**：
+  - 数据流：候选（每 bucket TOP3 + ranked_out）→ 对照前两学期开课与授课教授 →
+    计算该教授在【这门课】上的评分（USTspace 评论，raw 优先、限定该学期）→
+    与本学期教授评分比较；
+  - 往期最高 − 本学期 ≥ 阈值（`config → history.threshold`，默认 0.5）→ 该课
+    本年度评分按 `penalty_pct`（默认 10%）降权（`score_effective =
+    score × (1−penalty_pct)`，**仅影响排序，course_scores 原始分不变**）+
+    延后建议：若往期学期存在同序下一轮（四学期循环，如去年 Spring → 今年
+    Spring），提示"可考虑该学期再修"（defer_advice[] + notes，方案展示时向
+    用户说明；必修课同样提示，但 phase1 仍强制入排）；
+  - 前两学期课表缺失 → 优雅降级（提示后正常排课；job 完成后
+    `ustplan step step6 --force` 重跑即可）；无教授评分数据 → 该课程跳过不打扰；
 - 方案生成：目标学分参照（P3），默认三档 目标 / +3 / −3（夹 12-18）；
   <12 或 >18 → 按边界编排 + 提示（<12 咨询学校、>18 Dean 批准 overload）；
 - 硬约束：学分 12-18 / 不重复 / 不含已修 / 每栏位不超配额 / 无时间冲突 /

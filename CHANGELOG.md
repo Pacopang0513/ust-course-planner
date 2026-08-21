@@ -1,5 +1,38 @@
 # 变更记录（CHANGELOG）
 
+## 2026-08-13（二）— cookie 一键获取 + 凭据有效期（TTL）提醒
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **浏览器扩展一键获取** | 新增 `extensions/ust-cookie/`（Chrome/Edge Manifest V3，unpacked 加载）：`chrome.cookies` 读取当前站点 cookie（**含 httpOnly 的 PS_TOKEN**，bookmarklet 做不到）→ 仅经本机回环 POST 到接收端；cookie 不落扩展存储；只发送当前站点已知键（SIS: PS_TOKEN/JSESSIONID/PS_TOKENEXPIRE；USTspace: ustspace_session） | extensions/ust-cookie/*（新） |
+| **`cookies_setup.py --listen` 接收端** | 绑定 127.0.0.1 + 随机 token（6 位连接码，secrets 生成），收齐 SIS+USTspace 两源或超时自动退出；协议纯函数 `handle_submit_payload`（连接码校验 → 按源过滤已知键 → 写盘 + meta）；错误响应不携带 cookie 值；bookmarklet / F12 粘贴保留为降级通道；`--token-test` 离线自测（用临时文件，不触碰真实凭据） | scripts/cookies_setup.py |
+| **凭据有效期（TTL）提醒** | 新增 `credentials/meta.json`（fetched_at/sources，跟随 cookie 文件目录）；`config → credentials.ttl_hours`（默认 12h，schema 同步）；`--check` / `doctor` / `ustplan status` 输出"凭据已 X 小时，建议刷新"（警告级别不阻断）；失效引导指向 `--listen` | scripts/credentials.py（新）, config/ustplan.json, templates/schemas/config.schema.json, scripts/ustplan.py, harness/doctor.py |
+| **统一凭据模块** | 收敛三处重复 load_cookies（cookies_setup / ustspace crawler / sis parser）→ `scripts/credentials.py`（load/save/filter_known/meta/TTL；utf-8-sig 兼容 BOM；写盘后 icacls 收窄当前用户权限）；接口按可替换存储后端设计（二期 DPAPI 加密插槽） | scripts/credentials.py（新）, scripts/ustspace/crawler.py, scripts/sis/parser.py |
+| 文档同步 | README 使用说明改推荐一键方式；RUNBOOK §2/§4（获取三方式 + TTL）；web-crawl-guide 通用规则；phase1-input skill（P1 收集支持一键/粘贴两种） | README.md, docs/RUNBOOK.md, skills/web-crawl-guide, skills/phase1-input |
+
+配套：单测新增 15 例（load/save 往返、BOM、按源过滤、meta 跟随/合并、TTL 过期/
+新鲜/无 meta、协议 6 例：错码拒收/未知源/过滤/合并保留/空 cookie 拒收/连接码格式）；
+全量 155 例通过；`--listen` 端到端验证（子进程启动 → 解析端口/连接码 → 模拟扩展
+提交两源 → 写盘 + meta 落位 → 自动退出）；config schema / doctor 回归通过。
+
+## 2026-08-13 — minor 合并修复 + 未修学分按桶聚合 + 历史学期教授对照
+
+| 变更 | 说明 | 文件 |
+|---|---|---|
+| **副修（minor）漏读修复** | 根因三处：① 文件名按 `{m}.json` 查（实际 `MINOR-{m}.json`）永远报缺失；② 找到也只打印不合并（"二期增强"从未实现）；③ MINOR-MATH/AERO/BDT 等 courses=[] 仅描述性 note，旧 `RE_LEVEL_POOL` 匹配不上 → 空组跳过。修复：按 `MINOR-{m}.json` 读取并**合并要求桶**（prefix `min`，新类别 `minor_required`/`minor_elective`）；新增 `_level_pool_spec` 描述性级别范围解析（"courses at 1000- and 2000- level (except courses coded from 1000 to 1600)" / "at 3000- level or above"）从本学年课表生成真实候选（级别带语义 1000-2999、排除段剔除、subject 过滤）；学分描述池按 credits/3 推导配额（MINOR-MATH 18 学分 → 6 门）；P3 展示副修计数与 double-count 提示 | rank/buckets.py, templates/schemas/unmet_courses.schema.json, report/stats.py, report/render.py, skills/step1 |
+| **未修学分统计修复（误算 300）** | 原逐课程累加：3 学分选修池 100 门候选 → 300。改按 bucket 配额聚合：`bucket_credits = quota × 桶内学分中位数`（`config → defaults.unmet_credit_mode: median/min`）；学分缺失课程按桶计数；新增 `buckets.bucket_credit_sum()` 纯函数（可单测）；schema 描述同步 | rank/buckets.py, config/ustplan.json, harness/config.py, templates/schemas/unmet_courses.schema.json |
+| **历史学期教授对照（历史感知排课）** | 新后台 job `wcq_history`（crawler 新增 `--subjects-file`，新脚本 `wcq/history_fetch.py` 逐前序学期抓取候选 subject）；新脚本 `rank/history_compare.py`（step5.5，产物 `data/history_compare.json` + 新 schema）：对照前两学期开课与授课教授（`harness.config.previous_sessions()`：Fall→2540/2530 等），用 USTspace 评论算该教授在**这门课**的评分（raw 优先、限定该学期，回退全部）；往期最高 − 本学期 ≥ `history.threshold`（默认 0.5）→ 本年度评分按 `penalty_pct`（默认 10%）降权（`score_effective`，仅影响排序，原始分保留）+ 延后建议（`defer_advice[]` + notes："可考虑下个同序学期（四学期循环）再修"，如去年 Spring → 今年 Spring）；前序数据缺失优雅降级，job 完成后 `step step6 --force` 重跑即可 | rank/history_compare.py（新）, wcq/history_fetch.py（新）, rank/planner.py, wcq/crawler.py, harness/config.py, harness/contracts.py, ustplan.py, templates/schemas/history_compare.schema.json（新）, templates/schemas/timetable_plan.schema.json, config/ustplan.json, skills/harness, skills/step6 |
+| **planner 类别/输出扩展** | CATEGORY_ORDER 增加 minor_required/minor_elective；方案新增 `minor_credits` 与 `defer_advice[]` 字段（schema 可选）；stats/render 同步展示 | rank/planner.py, templates/schemas/timetable_plan.schema.json, report/stats.py, report/render.py |
+| **多栏位同课重复入排修复** | 三用户 mock 提取验证发现：同一课程同时满足多个栏位（主修 + 副修/第二主修 double count，如 MATH 2411 同在主修与 addCOSC 桶）且课程有多 section 或 TBA 时，此前两桶各选一次（COMP 2011 L1+L2 计 6 学分）。修复：`try_add` 全局课程唯一（同 code 已入选 → 不重复选取 + note）；顺带修复 filter `eval_one` 未开设课程 UnboundLocalError（info 未定义，必修未开设时真实触发） | rank/planner.py, rank/filter.py |
+
+配套：单测新增 33 例（学分聚合 7 / 级别池规格 4 / minor 合并 4 / previous_sessions 6 /
+next_occurrence 3 / sem_matches 4 / history compute 3 / planner 历史池 2 / 多栏位去重 2）；全量 140 例通过；
+config schema 校验通过；smoke 验证：MINOR-MATH 合并 3 门（1011 被 1000-1600 排除段剔除）、
+MATH 2023 往期教授提升 +1.12 → 降权 10% + 延后建议 2026-27 Spring。
+三用户 mock 提取验证（COMP+minor MATH / PHYS P&M track+预选课 / MATH General track+第二主修 COSC）：
+step1 三次均 exit 0，未修学分逐桶验算与产物一致（97.5/66.5/79.5），minor 桶 quota=6、
+级别池 11 门、track 限制、预选课登记、pre-req 引用补录均正常。
+
 ## 2026-08-09（六）— 排课偏好：整天空闲优先 + 正餐时段避让
 
 | 变更 | 说明 | 文件 |

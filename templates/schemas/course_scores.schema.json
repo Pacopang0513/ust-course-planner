@@ -18,7 +18,7 @@
         "properties": {
           "bucket_id": { "type": "string" },
           "label": { "type": "string" },
-          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled"] },
+          "category": { "type": "string", "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled", "minor_required", "minor_elective"] },
           "quota": { "type": "integer", "minimum": 1 },
           "note": { "type": "string" },
           "top_codes": { "type": "array", "items": { "type": "string" }, "description": "该栏位 TOP3 课程码（按分数降序）" }
@@ -37,7 +37,7 @@
           "credits": { "type": ["number", "null"], "minimum": 0 },
           "category": {
             "type": "string",
-            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled"]
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled", "minor_required", "minor_elective"]
           },
           "bucket_id": { "type": "string" },
           "bucket_quota": { "type": "integer", "minimum": 1 },
@@ -91,7 +91,7 @@
           "credits": { "type": ["number", "null"], "minimum": 0 },
           "category": {
             "type": "string",
-            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled"]
+            "enum": ["major_required", "cc_required", "major_elective", "cc_elective", "free_elective", "pre_enrolled", "minor_required", "minor_elective"]
           },
           "bucket_id": { "type": "string" },
           "bucket_quota": { "type": "integer", "minimum": 1 },

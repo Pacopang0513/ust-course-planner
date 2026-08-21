@@ -84,7 +84,8 @@ MAX_CREDITS = float(CFG_DEFAULTS.get("credits_max", 18))  # 超过仅提示（ov
 MIN_CREDITS = float(CFG_DEFAULTS.get("credits_min", 12))  # 低于仅提示
 CREDIT_TOLERANCE = 3  # 目标 ±3 学分（一门课粒度）内视为达标
 CATEGORY_ORDER = {"cc_required": 0, "cc_elective": 1,
-                  "major_elective": 2, "free_elective": 3}
+                  "major_elective": 2, "minor_required": 3, "minor_elective": 4,
+                  "free_elective": 5}
 
 # 排课偏好（config/ustplan.json → planner）：整天空闲优先（高权重）+
 # 正餐时段避让（低权重）；meal_windows 分钟化，缺省 午餐 12:00-14:00 / 晚餐 18:00-20:00
@@ -144,12 +145,15 @@ def course_number(code: str) -> int:
 
 
 def build_pool(scores: dict, schedule: dict, passed: set, top: int,
-               credits_overrides: dict = None) -> list:
+               credits_overrides: dict = None, history: dict = None) -> list:
     """course_scores（每 bucket TOP3）→ 池（含 schedule section/slots，学分取 schedule units）。
     major_required/major_elective 即使分数在 top 之外也强制入池。
     credits_overrides：{norm_code: 学分} 覆盖 schedule units（如全年课按学期学分计）。
     全年课程自动折算：course_notes tags.year_long → units/2（每学期注册学分，
     如 PHYS 4291 全年 6 → 每学期 3）；手动 credits_overrides 优先。
+    history：history_compare.json 的 advice 索引 {norm_code: entry}——命中 penalty_pct
+    的课程生成 score_effective（总分 ×(1−penalty_pct)），仅影响排序，原始 score 保留；
+    history_advice 文本随排入输出（延后建议，见 emit）。
     sections 按组件类型分组（groups）：课程有多个组件类型（如 L+T）时，
     排课必须每个组件各选一节（tutorial 处理，序号无需对应）。"""
     overrides = {norm_code(k): float(v) for k, v in (credits_overrides or {}).items()}
@@ -189,9 +193,18 @@ def build_pool(scores: dict, schedule: dict, passed: set, top: int,
         # 组件顺序：L/LA/T 优先，其余按类型字母序（确定性）
         ordered = [groups[t] for t in sorted(groups,
                                              key=lambda t: (TYPE_ORDER.get(t, 9), t))]
+        score = float(c.get("score") or 0.0)
+        score_effective, history_advice = score, ""
+        if history and n in history:
+            ha = history[n]
+            if ha.get("penalty_pct"):
+                pct = float(ha["penalty_pct"]) / 100.0
+                score_effective = round(score * (1 - pct), 2) if score > 0 else score
+                history_advice = str(ha.get("note") or "")
         return {
             "code": c.get("code", ""), "name": c.get("name", ""),
-            "score": float(c.get("score") or 0.0),
+            "score": score, "score_effective": score_effective,
+            "history_advice": history_advice,
             "category": c.get("category") or "free_elective",
             "bucket_id": c.get("bucket_id") or c.get("code", ""),
             "bucket_quota": int(c.get("bucket_quota") or 1),
@@ -367,6 +380,14 @@ def build_plan(label: str, target_credits: float, pool: list, must_take: list = 
         if item["passed"]:
             plan["notes"].append(f"已修课程跳过：{item['code']}")
             return False
+        # 同一课程全局唯一（2026-08 修复）：同一课程可能同时满足多个栏位
+        # （主修 + 副修/第二主修 double count，如 MATH 2411 同在主修与
+        # addCOSC 桶），多 section 或 TBA 课程此前会被两桶各选一次 → 学分
+        # double count（如 COMP 2011 L1+L2 计 6 学分）
+        if item["code"] in plan["courses"]:
+            plan["notes"].append(
+                f"{item['code']} 已由其他栏位选入（同一课程全局唯一），不重复选取")
+            return False
         if not bucket_ok(item):
             return False
         if not exclusion_ok(item):
@@ -422,12 +443,13 @@ def build_plan(label: str, target_credits: float, pool: list, must_take: list = 
         if try_add(item, force_tba=True, enforce_credit=False):
             plan["must_take"].append(code)
 
-    # phase1：必修全部先入（低阶课号优先 → 基础课先排，同号按分数；零学分
+    # phase1：必修全部先入（低阶课号优先 → 基础课先排，同号按有效分数；零学分
     # 课程靠后——同桶真实学分课先占配额，防 0 学分实习挡 FYP；只取栏位 TOP3）
     for item in sorted(remaining(),
                        key=lambda x: (x["category"] != "major_required",
                                       bool(x.get("zero_credit")),
-                                      course_number(x["code"]), -x["score"])):
+                                      course_number(x["code"]),
+                                      -x.get("score_effective", x["score"]))):
         if item["category"] == "major_required" and not item.get("not_top3"):
             try_add(item, force_tba=True, enforce_credit=False)
 
@@ -437,11 +459,11 @@ def build_plan(label: str, target_credits: float, pool: list, must_take: list = 
     if cc_first or variant % 3 == 1:
         cc = sorted([i for i in rest if i["category"] in ("cc_required", "cc_elective")
                      and not i.get("not_top3")],
-                    key=lambda x: -x["score"])
+                    key=lambda x: -x.get("score_effective", x["score"]))
         other = sorted([i for i in rest
                         if i["category"] not in ("cc_required", "cc_elective")
                         and not i.get("not_top3")],
-                       key=lambda x: -x["score"])
+                       key=lambda x: -x.get("score_effective", x["score"]))
         order = cc + other
     elif variant % 3 == 2:
         buckets_order = []
@@ -451,10 +473,11 @@ def build_plan(label: str, target_credits: float, pool: list, must_take: list = 
         rot = {bid: (idx + 1) % max(1, len(buckets_order))
                for idx, bid in enumerate(buckets_order)}
         order = sorted([i for i in rest if not i.get("not_top3")],
-                       key=lambda x: (rot.get(x["bucket_id"], 9), -x["score"]))
+                       key=lambda x: (rot.get(x["bucket_id"], 9),
+                                      -x.get("score_effective", x["score"])))
     else:
         order = sorted([i for i in rest if not i.get("not_top3")],
-                       key=lambda x: -x["score"])
+                       key=lambda x: -x.get("score_effective", x["score"]))
     for item in order:
         if plan["credits"] >= target_credits:
             break
@@ -482,7 +505,7 @@ def diversity_swap(plan: dict, pool: list):
                        and not d.get("zero_credit")]
     if not drop_candidates:
         return False
-    by_score = {i["code"]: i["score"] for i in pool}
+    by_score = {i["code"]: i.get("score_effective", i["score"]) for i in pool}
     drop = min(drop_candidates, key=lambda d: (by_score.get(d["code"], 0.0), d["code"]))
 
     rest = [i for i in pool if i["code"] not in selected]
@@ -683,16 +706,37 @@ def _plan_comfort(plan: dict) -> tuple:
     return days_used, free_days, meals
 
 
-def emit(plans: list, session: str, target_credits: float) -> dict:
+def emit(plans: list, session: str, target_credits: float,
+         history_map: dict = None) -> dict:
+    """history_map：{norm_code: history_compare advice entry}——已排入课程的
+    延后建议写入 notes + defer_advice[]（本学期教授评分明显低于往期的课程）。"""
+    history_map = history_map or {}
     out_plans = []
     for p in plans:
         cc = sum(d["credits"] for d in p["details"]
                  if d["category"] in ("cc_required", "cc_elective"))
         major = sum(d["credits"] for d in p["details"]
                     if d["category"] in ("major_required", "major_elective"))
+        minor = sum(d["credits"] for d in p["details"]
+                    if d["category"] in ("minor_required", "minor_elective"))
         elec = sum(d["credits"] for d in p["details"] if d["category"] == "free_elective")
         days_used, free_days, meal_conflicts = _plan_comfort(p)
         notes = list(p["notes"])
+        defer_advice = []
+        for d in p["details"]:
+            ha = history_map.get(norm_code(d["code"]))
+            if not ha or not ha.get("penalty_pct"):
+                continue
+            defer_advice.append({
+                "code": d["code"],
+                "this_year_rating": ha.get("this_year", {}).get("rating"),
+                "best_prev": ha.get("best_prev") or {},
+                "delta": ha.get("delta"),
+                "penalty_pct": ha.get("penalty_pct"),
+                "next_occurrence": ha.get("next_occurrence") or {},
+                "note": ha.get("note", ""),
+            })
+            notes.append(ha.get("note", ""))
         if PREFER_DAY_OFF:
             if free_days:
                 notes.insert(0, f"整天空闲：{'、'.join(free_days)} 无课"
@@ -714,6 +758,7 @@ def emit(plans: list, session: str, target_credits: float) -> dict:
             "workload": workload(p["credits"]),
             "cc_credits": round(cc, 1),
             "major_credits": round(major, 1),
+            "minor_credits": round(minor, 1),
             "elective_credits": round(elec, 1),
             "days_used": days_used,
             "free_days": free_days,
@@ -722,6 +767,7 @@ def emit(plans: list, session: str, target_credits: float) -> dict:
             "must_take_inserted": p["must_take"],
             "waiver_required": waiver_list(p),
             "pre_enroll_advice": p.get("pre_enroll_advice", []),
+            "defer_advice": defer_advice,
             "notes": notes,
         })
     return {"session": session, "target_credits": target_credits, "plans": out_plans,
@@ -755,6 +801,9 @@ def main():
     ap.add_argument("--pre-enrolled", default="",
                     help="SIS 预选课文件（data/pre_enrolled.json）；预选课 section 时段"
                          "进入占用槽，选课不得与其冲突")
+    ap.add_argument("--history", default=str(ROOT / "data" / "history_compare.json"),
+                    help="历史学期教授对照（data/history_compare.json，可选；缺失"
+                         "则跳过历史降权与延后建议）")
     ap.add_argument("--output", default=str(ROOT / "output" / "timetable_plan.json"))
     args = ap.parse_args()
     # action=append 兼容：重复 flag 与单次多值都扁平化为列表（2026-08 修复
@@ -790,7 +839,47 @@ def main():
     if credits_overrides:
         print("学分覆盖:", ", ".join(f"{k}={v}" for k, v in credits_overrides.items()))
 
-    pool = build_pool(scores, schedule, passed_norm, args.top, credits_overrides)
+    # 历史学期教授对照（history_compare.json，可选）：命中 penalty_pct 的课程
+    # 按 score_effective 排序（总分 −penalty_pct%），并输出延后建议。
+    # 文件缺失时若前两学期课表已就绪（wcq_history job 产物）→ 现场计算并落盘；
+    # 均不可用时优雅降级（仅提示，不阻塞排课）。
+    history_map = {}
+    history_path = Path(args.history)
+    hist_data = load_json(history_path) if history_path.exists() else None
+    if hist_data is None:
+        try:
+            from history_compare import compute as hc_compute
+            reviews_doc = {}
+            rv_path = ROOT / "data" / "ustspace_reviews.json"
+            if rv_path.exists():
+                reviews_doc = load_json(rv_path)
+            hist_data = hc_compute(args.session, scores, reviews_doc,
+                                   ROOT / "cache" / "ustspace" / "raw", ROOT / "data")
+            if hist_data.get("previous_sessions"):
+                history_path.parent.mkdir(parents=True, exist_ok=True)
+                history_path.write_text(
+                    json.dumps(hist_data, ensure_ascii=False, indent=2),
+                    encoding="utf-8")
+                print(f"历史对照: 现场计算完成 -> {args.history}")
+        except ImportError:
+            pass
+        except Exception as e:  # noqa: BLE001  历史对照为可选特性，不阻塞排课
+            hist_data = None
+            print(f"提示: 历史对照现场计算失败（{type(e).__name__}: {e}），跳过")
+    if hist_data:
+        history_map = {norm_code(a.get("code", "")): a
+                       for a in hist_data.get("advice", [])}
+        penalized = [a for a in history_map.values() if a.get("penalty_pct")]
+        print(f"历史对照: 读取 {hist_data.get('checked', 0)} 门候选，"
+              f"{len(penalized)} 门触发降权"
+              f"（前两学期: {', '.join(hist_data.get('previous_sessions') or [])}）"
+              + ("" if penalized else "，无降权课程"))
+    else:
+        print(f"提示: 未找到 {args.history} 且前两学期课表未就绪（跳过历史降权与"
+              f"延后建议；可先跑后台 job wcq_history，完成后重跑本步）")
+
+    pool = build_pool(scores, schedule, passed_norm, args.top, credits_overrides,
+                      history_map or None)
     if args.exclude:
         exclude = set(args.exclude)
         pool = [p for p in pool if p["code"] not in exclude]
@@ -899,7 +988,7 @@ def main():
                     f"{a['min_plan_score']:+.2f}）：可考虑 drop，需 waiver（见 "
                     f"pre_enroll_advice）")
 
-    out = emit(plans, args.session, args.target_credits)
+    out = emit(plans, args.session, args.target_credits, history_map or None)
     dest = Path(args.output)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -925,6 +1014,9 @@ def main():
             print(f"      ! 预选课 drop 建议: {a['code']}  "
                   f"({a['score']:+.2f} < 方案最低 {a['min_plan_score']:+.2f})，"
                   f"需 waiver")
+        for d in p.get("defer_advice", []):
+            print(f"      ! 历史对照: {d['code']}（往期教授评分更佳，可考虑 "
+                  f"{d.get('next_occurrence', {}).get('label', '下学期')} 再修）")
         for n in p["notes"]:
             print(f"      ! {n}")
 

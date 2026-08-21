@@ -21,8 +21,10 @@ t0  用户首条消息 → ustplan start（manifest 初始化 + 后台 wcq_full 
 phase1-input        → [P1] 两个登录令牌 + major/minor/extended_major（三状态：代码/NA，全必填）+ track + 目标学期
 phase2-profile      → [P2] 画像确认 + 预选课（Pre-Enroll）核对 + 未修清单预览
 phase3-course-analysis（checkpoint 容器）：
-  step1 未修(bucket化) → step3 schedule 过滤 → step4 评论精读
-  → step5 bucket 评分（预选课按 pre_enroll_boost 加权）→ step6 课表编排（预选课固定/低优先级 drop 建议）
+  step1 未修(bucket化，含副修合并) → step3 schedule 过滤 → step4 评论精读
+  → step5 bucket 评分（预选课按 pre_enroll_boost 加权）
+  → 后台 job wcq_history（前两学期课表抓取，step5 后启动）
+  → step6 课表编排（预选课固定/低优先级 drop 建议；历史教授对照降权+延后建议）
   → [P3] 未修清单确认 + 过滤结果展示（waiver/移除）+ 目标学分，一次问清
   → 方案展示（P5 弱化：展示 N 套方案，用户可要求修改，不单独提问）
 phase4-report        → 报告即交付物（含选课时间提醒 + 预选课 drop 建议）
@@ -34,6 +36,15 @@ enrollment-commit    → 选课写入（可选）：方案确认后询问是否�
 **预选课（Pre-Enroll）固定认知**：SIS 扫描（sis_fetch）自动抓学校预选课并写
 `data/pre_enrolled.json`（step1 排除推荐、step5 按 pre_enroll_boost 加权、step6 固定选课 +
 低优先级 drop 建议）。详见 skills/web-crawl-guide §2c 与 phase2/step5/step6。
+
+**历史学期教授对照（历史感知排课，2026-08 新增）**：step5 完成后启动后台 job
+`wcq_history`（抓取前两个学期的候选 subject 课表，产出
+`data/courses_{prev}.json`）；step6 编排时对照往期开课与授课教授口碑——若往期
+（如前两学期的 Spring）教授在这门课上的评分比本学期教授高 ≥ 阈值（config →
+history.threshold，默认 0.5），该课程本年度评分按 penalty_pct（默认 10%）降权
+（仅影响排序，原始分保留可追溯），并输出"可考虑下学期（同序学期循环）再修"
+的延后建议（defer_advice + notes，方案展示时向用户说明）。前两学期课表未就绪
+时优雅降级（提示后正常排课，job 完成后重跑 step6 即可）。详见 skills/step6。
 
 **特殊规则检查清单（每次流程过一遍）**：`database/course_notes/`（全局
 RULES.json + 分 subject 文件）是唯一规则源，AI 在任何涉及专业/课程/学分的
@@ -87,7 +98,7 @@ P5 方案选择弱化为展示——方案生成后直接展示，用户主动�
 |---|---|---|---|
 | phase1-input | phase1-input | P1 | manifest/decisions（P1） |
 | phase2-profile | phase2-profile | P2 | profile/passed_courses/pre_enrolled |
-| phase3-course-analysis | step1→step3→step4→step5→step6 | P3（含过滤展示）+ 方案展示 | unmet（含 pre_enrolled）/filter/review_summary/course_scores（预选课按 boost 加权）/timetable_plan（含 pre_enroll_advice） |
+| phase3-course-analysis | step1→step3→step4→step5→step6 + job wcq_history | P3（含过滤展示）+ 方案展示 | unmet（含 pre_enrolled）/filter/review_summary/course_scores（预选课按 boost 加权）/history_compare（可选）/timetable_plan（含 pre_enroll_advice + defer_advice） |
 | phase4-report | phase4-report + enrollment-dates-reminder | — | final_report.md |
 | phase4.5-must-take | must-take-course-insertion | 用户指定课程 | 调整后 timetable_plan（可选） |
 | enrollment-commit | enrollment-commit（可选） | 用户同意写入 | enroll_cart.json + 人工提交流程 |

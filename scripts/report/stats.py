@@ -47,7 +47,11 @@ def stats_unmet(d: dict) -> str:
         f"  合计 {len(d['courses'])} 门: "
         f"必修 {c.get('major_required',0)} / 选修 {c.get('major_elective',0)} / "
         f"CC必修 {c.get('cc_required',0)} / CC选修 {c.get('cc_elective',0)} / "
+        f"副修 {c.get('minor_required',0) + c.get('minor_elective',0)} / "
         f"自由 {c.get('free_elective',0)}",
+        f"  未修学分 ≈ {d.get('unmet_credits', '?')}"
+        + (f"（{d.get('unmet_credits_unknown_count', 0)} 门学分未知）"
+           if d.get('unmet_credits_unknown_count') else ""),
     ]
     major = [x for x in d["courses"] if x["category"].startswith("major")]
     if major:
@@ -114,10 +118,11 @@ def stats_scores(d: dict, top: int) -> str:
 def stats_plans(d: dict) -> str:
     lines = [f"课程表方案（session {d.get('session')}）: {len(d.get('plans', []))} 套"]
     for p in d.get("plans", []):
+        minor_txt = f" / 副修 {p['minor_credits']}" if p.get("minor_credits") else ""
         lines.append(
             f"  {p['plan_id']} ({p.get('label','')}) {p['total_credits']} 学分 {p['workload']} "
-            f"CC {p['cc_credits']} / major {p['major_credits']} / 选修 {p['elective_credits']} "
-            f"no_conflict={p['no_conflict']}")
+            f"CC {p['cc_credits']} / major {p['major_credits']}{minor_txt} / "
+            f"选修 {p['elective_credits']} no_conflict={p['no_conflict']}")
         for c in p.get("course_details", []):
             lines.append(
                 f"    {c['code']:12} [{c.get('section',''):5}] {c.get('datetime',''):28} "

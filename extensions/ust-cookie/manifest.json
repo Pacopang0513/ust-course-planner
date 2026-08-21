@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "UST Cookie Sender",
+  "version": "1.0.0",
+  "description": "一键把 SIS / USTspace 登录 cookie 安全发送到本机 ustplan（仅回环 127.0.0.1，cookie 不落盘、不留存）",
+  "permissions": ["cookies", "tabs", "storage", "debugger"],
+  "host_permissions": [
+    "https://sisprod.psft.ust.hk/*",
+    "https://ust.space/*",
+    "https://*.ust.space/*",
+    "http://127.0.0.1/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "UST Cookie Sender"
+  }
+}

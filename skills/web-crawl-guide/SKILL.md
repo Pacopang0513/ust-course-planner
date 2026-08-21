@@ -163,7 +163,12 @@ Class Schedule（wcq）页内联 PRE-REQUISITE 为准；需要单课详情时按
 2. **失败重试**：单 URL 最多 3 次（30-60s 超时）；连续失败记录到产物 `failed` 字段，不静默
 3. **产物落盘**：解析结果写入 `data/` 或 `database/`，原始 HTML/JSON 只进 `cache/`
 4. **凭据**：AI 上下文不得出现 cookie 值；cookie 的获取/写入/有效期预检统一走
-   `scripts/cookies_setup.py`（`--check` 只输出状态）；测试 cookie 放项目外临时目录，用后删除
+   `scripts/cookies_setup.py`：
+   - `--check` 只输出状态（OK/EXPIRED/MISSING/UNREACHABLE）+ TTL 提醒；
+   - `--listen` 一键获取（本机回环 + 连接码，浏览器扩展 `extensions/ust-cookie`
+     按钮推送，可读 httpOnly 的 PS_TOKEN）；bookmarklet / F12 粘贴为降级通道；
+   - TTL（config → credentials.ttl_hours，默认 12h）超期时引导 `--listen` 刷新；
+   测试 cookie 放项目外临时目录，用后删除
 5. **版本化**：schedule 按 session（2610）、curriculum 按入学年份（2026-27）
 6. **运行时产物链（固定）**：`data/unmet_courses.json`（bucket 化）→
    `data/filter_report.json`（pre-req 只标记不移除）→ `data/ustspace_reviews.json`

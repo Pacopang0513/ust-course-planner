@@ -9,5 +9,9 @@ user/
 __pycache__/
 *.pyc
 
+# Python 虚拟环境（uv 管理）
+.venv/
+.uv-cache/
+
 # Windows 下载标记（ADS，非项目内容；文件名中冒号为全角）
 *Zone.Identifier

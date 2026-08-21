@@ -32,13 +32,14 @@ python3 scripts/ustplan.py start
 | `ustplan.py start / status / resume` | 开始运行 / 总览（阶段+任务+产物+决策+下一步）/ 断点续跑建议 |
 | `ustplan.py step <step1/3/4/5/6> [--finalize]` | Step 合约执行（前置校验→命令→后置校验→摘要） |
 | `ustplan.py phase begin/done <phase>` | 阶段推进（确认点通过后，含数据检查） |
-| `ustplan.py job start/status/wait/clean <job-id>` | 后台任务（并行时间线，超时/孤儿自动处理） |
+| `ustplan.py job start/status/wait/clean <job-id>` | 后台任务（并行时间线，超时/孤儿自动处理；`wcq_history` = 前两学期课表抓取，step5 后启动） |
 | `ustplan.py plan [--must-take …] [--target N]` | 重排（硬插/备选/学分覆盖，自动记录决策） |
 | `ustplan.py report [--plan plan-N]` | 渲染 final_report.md（机械段落自动填） |
 | `ustplan.py grid [--plan 1] [--html]` | 课程表周历（终端 ASCII / 单文件 HTML 导出） |
 | `ustplan.py decisions set/show` | 用户决策日志（P1-P5 审计；`set` 支持 `--value-file <json>` 读文件，绕开 shell 引号） |
 | `sis/build_profile.py` | Phase 2 画像基架（course_history → profile/passed_courses，机械转换固化） |
 | `rank/cc_status.py` | CC 区域满足性核查（已修/未修 + Broadening 12 学分 4 区域） |
+| `rank/history_compare.py` | Step 5.5 历史学期教授对照（前两学期开课 + 授课教授口碑 → 降权与延后建议） |
 | `rank/review_scope.py` | Step 4 精读范围（必修全读 + 其余按评论数 TOP N）→ scope + digest |
 
 ## 流程与确认点（P1-P3，question 工具内联提问；P4 并入 P3、P5 弱化为展示）
@@ -47,8 +48,9 @@ python3 scripts/ustplan.py start
 t0 start → 后台 wcq 全量抓取（--session latest）
 phase1-input   [P1] 两个登录凭证 + major + track + 目标学期
 phase2-profile [P2] 画像确认 + 未修清单预览（后台 SIS/USTSPACE 并行）
-phase3-course-analysis（step1 未修(bucket化) → step3 过滤 → step4 评论精读
-  → step5 bucket 评分 A+B+C+D → step6 课表编排）
+phase3-course-analysis（step1 未修(bucket化，含副修合并) → step3 过滤 → step4 评论精读
+  → step5 bucket 评分 A+B+C+D → step5.5 历史学期教授对照（后台 wcq_history 抓取
+  前两学期课表，缺失优雅降级）→ step6 课表编排）
                [P3] 未修清单确认 + 目标学分 + 过滤结果（一次问清）
                [P5 弱化] 方案展示（用户要求修改才记录决策并重排）
 phase4-report  最终报告（含选课时间提醒）→ phase4.5-must-take 必选课（可选）

@@ -21,12 +21,16 @@ python3 scripts/ustplan.py step step1
   --passed …`（session/track 从运行状态注入，无需手写）；
 - 公式：未修 = 专业必修（按 track 过滤）+ 今年可读 CC − 已修 − 预选课。
 - 脚本自动处理（无需 AI）：track 限制（"can only use X"）、EXT 主修合并、
-  课号清洗、已修/预选扣除、OR 池整桶满足、pre-req 引用补录、
-  **CC 区域满足性三层判定**（历史区域表 → AR 条目 → AR 组回退）。
+  **副修（minor）合并**（`MINOR-{m}.json`，category=minor_required/minor_elective；
+  描述性级别池如 "courses at 1000- and 2000- level (except …)" 自动从课表生成候选；
+  学分描述池按 credits/3 推导配额）、课号清洗、已修/预选扣除、OR 池整桶满足、
+  pre-req 引用补录、**CC 区域满足性三层判定**（历史区域表 → AR 条目 → AR 组回退）。
 
 ## AI 职责（精读，脚本不做语义判断）
 
 1. 核对产物与 SIS AR 一致（AR 权威）：AR 显示满足的栏位 → 相应 bucket 移除或标注；
+   副修课程可与主修课程重复计数（double count），未修学分统计按桶配额估算会
+   高估/低估属正常，以 AR 学位审计为准；
 2. **Note 语义已脚本固化**（`scripts/rank/note_eval.py`，AND/OR/方括号/any N of
    表达式解析 + 整桶满足判定），复杂 Note 的表达式形状写入 `buckets[].note_semantics`；
    AI 复核该形状与要求一致即可，**不再手写求值器**（嵌套括号/方括号 `[...]`
@@ -47,7 +51,9 @@ python3 scripts/ustplan.py step step1
   脚本固化，AI 不自行推导）；
 - 展示（产品化）：必修按 bucket 全列；CC/选修仅列未满足栏位；review_pending 列表；
   pre-req 参考课程；
-- **未修学分统计（指导建议）**：产物含 `unmet_credits`（未修学分总和）/
+- **未修学分统计（指导建议）**：产物含 `unmet_credits`（按 bucket 配额聚合估算：
+  quota × 桶内学分中位数，config → defaults.unmet_credit_mode 可切 min 保守；
+  不再逐课程累加——pool 桶 100 门候选不会误算 300）/
   `estimated_semesters_left`（剩余学期估算，4 年制 8 学期含当前）/
   `credits_per_semester_estimate`（平均每学期建议学分）。P3 问目标学分前
   展示建议值："按剩余 X 个学期，每学期平均约 Y 学分即可按时毕业"——

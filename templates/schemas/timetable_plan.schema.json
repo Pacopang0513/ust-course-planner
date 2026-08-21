@@ -29,6 +29,7 @@
           "workload": { "type": "string", "enum": ["light", "medium", "heavy"] },
           "cc_credits": { "type": "number", "minimum": 0 },
           "major_credits": { "type": "number", "minimum": 0 },
+          "minor_credits": { "type": "number", "minimum": 0, "description": "副修课程学分（minor_required/minor_elective）" },
           "elective_credits": { "type": "number", "minimum": 0 },
           "days_used": {
             "type": "array",
@@ -78,6 +79,38 @@
                 "min_plan_score": { "type": "number", "description": "本方案已选课程最低分" },
                 "reason": { "type": "string" },
                 "note": { "type": "string", "description": "drop 风险提示（waiver / 预选资格）" }
+              }
+            }
+          },
+          "defer_advice": {
+            "type": "array",
+            "description": "历史学期对照延后建议（history_compare）：本学期教授评分明显低于往期 → 已排入课程提示可考虑下个同序学期再修",
+            "items": {
+              "type": "object",
+              "required": ["code"],
+              "properties": {
+                "code": { "type": "string" },
+                "this_year_rating": { "type": ["number", "null"] },
+                "best_prev": {
+                  "type": "object",
+                  "properties": {
+                    "session": { "type": "string" },
+                    "label": { "type": "string" },
+                    "professors": { "type": "array", "items": { "type": "string" } },
+                    "rating": { "type": ["number", "null"] },
+                    "review_count": { "type": "integer" }
+                  }
+                },
+                "delta": { "type": ["number", "null"] },
+                "penalty_pct": { "type": ["number", "null"] },
+                "next_occurrence": {
+                  "type": "object",
+                  "properties": {
+                    "session": { "type": "string" },
+                    "label": { "type": "string" }
+                  }
+                },
+                "note": { "type": "string" }
               }
             }
           },

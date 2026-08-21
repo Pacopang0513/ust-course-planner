@@ -466,6 +466,9 @@ def main():
         sc = sched.get(code)
         reasons = []
         pre = ""
+        # 未开设课程的 pre-req 上下文为空（此前 UnboundLocalError：not_offered
+        # 分支直接 return 时 info 未定义——必修今年不开设时真实触发）
+        info = {"missing": [], "grading": [], "note": ""}
         if sc is None:
             reasons.append("not_offered_this_year")
         else:

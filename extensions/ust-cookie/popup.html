@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 320px; font-family: "Segoe UI", sans-serif; margin: 0; padding: 14px; }
+    h1 { font-size: 14px; margin: 0 0 10px; }
+    .row { margin: 8px 0; }
+    label { display: block; font-size: 12px; color: #555; margin-bottom: 2px; }
+    input { width: 100%; box-sizing: border-box; padding: 5px 8px; font-size: 13px; }
+    button { width: 100%; padding: 8px; font-size: 13px; border: none; border-radius: 4px;
+             cursor: pointer; margin-top: 10px; }
+    #send { background: #1a73e8; color: #fff; }
+    #send:disabled { background: #ccc; cursor: not-allowed; }
+    #save { background: #e8eaed; color: #202124; margin-top: 6px; font-size: 12px; padding: 5px; }
+    #status { margin-top: 10px; font-size: 12px; white-space: pre-wrap; word-break: break-all; }
+    .ok { color: #188038; } .err { color: #d93025; }
+    #site { font-size: 12px; color: #1a73e8; margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>UST Cookie Sender</h1>
+  <div id="site">当前页面：…（需在 SIS 或 ust.space 登录页使用）</div>
+  <div class="row">
+    <label>本机接收端口（cookies_setup.py --listen 显示）</label>
+    <input id="port" type="text" inputmode="numeric" placeholder="8765">
+  </div>
+  <div class="row">
+    <label>连接码（--listen 终端显示，保存一次即可）</label>
+    <input id="token" type="text" inputmode="numeric" maxlength="6" placeholder="6 位数字">
+  </div>
+  <button id="save">保存设置</button>
+  <button id="send" disabled>抓取并发送当前站点 cookie</button>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
